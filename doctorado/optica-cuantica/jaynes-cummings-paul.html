@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelo de Jaynes-Cummings-Paul · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams',
+    macros: {
+      Real: '\\operatorname{Re}',
+      Imag: '\\operatorname{Im}'
+    }
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Jaynes-Cummings-Paul
+</div>
+
+<div class="container">
+<article class="note">
+
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="20" cy="32" r="10" fill="#fff3d8" stroke="#f3c623" stroke-width="2"/>
+      <circle cx="20" cy="32" r="3" fill="#2a2a2a"/>
+      <path d="M32 32 Q40 22 48 32 T60 32" stroke="#d4453a" stroke-width="2.5" fill="none"/>
+      <path d="M32 32 Q40 42 48 32 T60 32" stroke="#2b5fb3" stroke-width="2.5" fill="none"/>
+    </svg>
+    <h1>Modelo de Jaynes-Cummings-Paul</h1>
+    <div class="author">Schleich · Quantum Optics in Phase Space</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Modelo%20de%20Jaynes-Cummins-Paul.pdf" target="_blank">📄 PDF original</a>
+      <a href="jaynes-cummings-paul.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="jaynes-cummings-paul.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#intro">Introducción</a></li>
+      <li><a href="#hamiltoniano">Hamiltoniano y marco de interacción</a></li>
+      <li><a href="#resonante">Caso resonante</a></li>
+      <li><a href="#exponencial">Exponenciación directa del operador de evolución</a></li>
+      <li><a href="#estado-inicial">Aplicación a un estado inicial general</a></li>
+      <li><a href="#fock">Campo en estado de Fock</a></li>
+      <li><a href="#rabi">Ecuaciones de Rabi</a></li>
+      <li><a href="#dispersivo">Régimen dispersivo</a></li>
+      <li><a href="#polaritonico">Diagonalización por bloques: estados vestidos</a></li>
+      <li><a href="#evolucion-vestida">Operador de evolución en la base vestida</a></li>
+      <li><a href="#conclusion">Conexión con la tesis</a></li>
+    </ol>
+  </div>
+
+  <h2 id="intro">1. Introducción</h2>
+  <p>
+    El modelo de Jaynes-Cummings-Paul (JCP) describe la interacción entre un
+    átomo de dos niveles y un único modo cuantizado del campo
+    electromagnético dentro de una cavidad. Es uno de los pocos modelos
+    exactamente solucionables de la electrodinámica cuántica con materia, y
+    captura efectos centrales del acoplamiento luz-materia cuántico:
+    oscilaciones de Rabi cuánticas, intercambio coherente de excitaciones,
+    régimen dispersivo y estados vestidos.
+  </p>
+  <p>
+    El sistema es cerrado, así que su dinámica viene gobernada por la
+    ecuación de Schrödinger
+  </p>
+  $$i\hbar\,\frac{d}{dt}\ket{\psi(t)} = \hat H_{\text{int}}\,\ket{\psi(t)},$$
+  <p>
+    donde $\hat H_{\text{int}}$ es el hamiltoniano de interacción en el marco
+    de interacción, después de haber hecho la aproximación dipolar y la de
+    onda rotante (RWA). La forma estándar es
+  </p>
+
+  <h2 id="hamiltoniano">2. Hamiltoniano y marco de interacción</h2>
+
+  <div class="boxed def">
+    $$\boxed{\;\hat H_{\text{int}} = \hbar g\bigl(e^{i\Delta t}\,\hat a^\dagger \hat\sigma_- + e^{-i\Delta t}\,\hat\sigma_+ \hat a\bigr),\;}$$
+  </div>
+
+  <p>
+    con $g$ la constante de acoplamiento dipolar (real),
+    $\Delta = \omega_a - \omega_c$ el desafine (detuning) entre la frecuencia
+    atómica $\omega_a$ y la del modo del campo $\omega_c$, y los operadores
+    atómicos $\hat\sigma_\pm$ definidos por
+  </p>
+  $$\hat\sigma_+ = \ket{a}\bra{b}, \qquad \hat\sigma_- = \ket{b}\bra{a},$$
+  <p>
+    con $\ket{a}$ el estado excitado y $\ket{b}$ el base. El operador
+    $\hat a^\dagger \hat\sigma_-$ crea un fotón y des-excita el átomo: es la
+    emisión. $\hat\sigma_+ \hat a$ aniquila un fotón y excita el átomo:
+    absorción. La RWA descarta los procesos contra-rotantes
+    $\hat\sigma_+ \hat a^\dagger$ (que crean un fotón y excitan el átomo
+    simultáneamente) y $\hat\sigma_- \hat a$ (los aniquilan a ambos).
+  </p>
+
+  <h2 id="resonante">3. Caso resonante</h2>
+  <p>
+    En el límite resonante $\Delta = 0$ el hamiltoniano de interacción es
+    independiente del tiempo,
+  </p>
+  $$\hat H_{\text{int}}^{(\text{res})} = \hbar g\bigl(\hat a^\dagger \hat\sigma_- + \hat\sigma_+ \hat a\bigr).$$
+  <p>
+    La ecuación de Schrödinger se integra de manera elemental:
+  </p>
+  $$\ket{\psi(t)} = \hat U(t, 0)\,\ket{\psi(0)}, \qquad \hat U(t, 0) = e^{-i\hat H_{\text{int}}^{(\text{res})}\, t/\hbar} = e^{-igt\,(\hat a^\dagger \hat\sigma_- + \hat\sigma_+ \hat a)}.$$
+  <p>
+    El estado inicial más general factorizado entre átomo y campo se escribe
+  </p>
+  $$\ket{\psi(0)} = \ket{\Psi_{\text{at}}(0)}\otimes\ket{\Psi_{\text{cp}}(0)} = \sum_{n=0}^{\infty} W_n\bigl(C_a\ket{a} + C_b\ket{b}\bigr)\ket{n},$$
+  <p>
+    con $W_n$ los coeficientes del campo en la base de número y $C_a, C_b$
+    las amplitudes atómicas (con $|C_a|^2 + |C_b|^2 = 1$).
+  </p>
+
+  <h2 id="exponencial">4. Exponenciación directa del operador de evolución</h2>
+  <p>
+    Se calcula $\hat U(t, 0)$ expandiendo la exponencial en serie. Sea
+    $\hat V = \hat a^\dagger \hat\sigma_- + \hat\sigma_+ \hat a$. Entonces
+  </p>
+  $$\hat U(t, 0) = e^{-igt\,\hat V} = \sum_{n=0}^{\infty} \frac{(-igt)^n}{n!}\,\hat V^n.$$
+  <p>
+    Se separa la suma en términos pares e impares:
+  </p>
+  $$\hat U(t, 0) = \sum_{n=0}^{\infty} \frac{(-igt)^{2n}}{(2n)!}\,\hat V^{2n} + \sum_{n=0}^{\infty} \frac{(-igt)^{2n+1}}{(2n+1)!}\,\hat V^{2n+1} = \hat C - i\hat S,$$
+  <p>
+    de modo que solo se necesitan potencias de $\hat V^2$.
+  </p>
+
+  <h3>4.1. Análisis de $\hat V^2$</h3>
+  <p>
+    Se desarrolla el cuadrado:
+  </p>
+  $$\hat V^2 = (\hat a^\dagger \hat\sigma_- + \hat\sigma_+ \hat a)^2 = \hat a^\dagger \hat\sigma_-\hat a^\dagger \hat\sigma_- + \hat a^\dagger \hat\sigma_-\hat\sigma_+ \hat a + \hat\sigma_+ \hat a\,\hat a^\dagger \hat\sigma_- + \hat\sigma_+ \hat a\,\hat\sigma_+ \hat a.$$
+  <p>
+    Se usan las identidades atómicas, válidas en un sistema de dos niveles:
+  </p>
+  $$\hat\sigma_-\hat\sigma_- = 0, \qquad \hat\sigma_+\hat\sigma_+ = 0,$$
+  <p>
+    porque doble bajada o doble subida no caben en dos niveles. Esto cancela
+    el primer y el último término. Quedan
+  </p>
+  $$\hat V^2 = \hat a^\dagger\hat a\,\hat\sigma_-\hat\sigma_+ + \hat a\hat a^\dagger\,\hat\sigma_+\hat\sigma_-,$$
+  <p>
+    donde se usó que los operadores atómicos y de campo conmutan. Con
+    $\hat\sigma_+\hat\sigma_- = \ket{a}\bra{a}$ (proyector sobre excitado) y
+    $\hat\sigma_-\hat\sigma_+ = \ket{b}\bra{b}$ (proyector sobre base),
+  </p>
+  $$\hat V^2 = \hat a\hat a^\dagger\,\ket{a}\bra{a} + \hat a^\dagger\hat a\,\ket{b}\bra{b}.$$
+  <p>
+    Esto es diagonal en la base atómica. Como matriz $2\times 2$ en
+    $\{\ket{a}, \ket{b}\}$:
+  </p>
+  $$\hat V^2 = \begin{pmatrix} \hat a\hat a^\dagger & 0 \\ 0 & \hat a^\dagger\hat a \end{pmatrix} = \begin{pmatrix} \hat n + 1 & 0 \\ 0 & \hat n \end{pmatrix},$$
+  <p>
+    con $\hat n = \hat a^\dagger\hat a$ el operador de número de fotones.
+  </p>
+
+  <h3>4.2. Potencias pares e impares</h3>
+  <p>
+    Por inducción,
+  </p>
+  $$\hat V^{2n} = \begin{pmatrix} (\hat a\hat a^\dagger)^n & 0 \\ 0 & (\hat a^\dagger\hat a)^n \end{pmatrix} = \begin{pmatrix} (\hat n + 1)^n & 0 \\ 0 & \hat n^n \end{pmatrix}.$$
+  <p>
+    Para las potencias impares, $\hat V^{2n+1} = \hat V\cdot\hat V^{2n}$. Como
+    $\hat V$ es antidiagonal en la base atómica,
+  </p>
+  $$\hat V = \begin{pmatrix} 0 & \hat a \\ \hat a^\dagger & 0 \end{pmatrix},$$
+  <p>
+    el producto da
+  </p>
+  $$\hat V^{2n+1} = \begin{pmatrix} 0 & \hat a\,(\hat a^\dagger\hat a)^n \\ \hat a^\dagger(\hat a\hat a^\dagger)^n & 0 \end{pmatrix}.$$
+  <p>
+    Usando la identidad $\hat a\,(\hat a^\dagger\hat a)^n = (\hat a\hat a^\dagger)^n\,\hat a$
+    (que se verifica por inducción a partir de $\hat a\hat a^\dagger = \hat a^\dagger\hat a + 1$),
+  </p>
+  $$\hat V^{2n+1} = \begin{pmatrix} 0 & (\hat n + 1)^n\,\hat a \\ \hat a^\dagger\,(\hat n + 1)^n & 0 \end{pmatrix}.$$
+
+  <h3>4.3. Identificación de coseno y seno</h3>
+  <p>
+    Al sustituir en la serie, la parte par se reconoce inmediatamente como un
+    coseno:
+  </p>
+  $$\hat C = \sum_{n=0}^{\infty} \frac{(-1)^n (gt)^{2n}}{(2n)!}\,\hat V^{2n} = \begin{pmatrix} \cos(gt\sqrt{\hat n + 1}) & 0 \\ 0 & \cos(gt\sqrt{\hat n}) \end{pmatrix},$$
+  <p>
+    porque la serie del coseno es $\sum_n (-1)^n x^{2n}/(2n)!$, y en este caso
+    $x^{2n}$ es reemplazado por $(\hat n + 1)^n$ (interpretado como
+    $(\sqrt{\hat n + 1})^{2n}$).
+  </p>
+  <p>
+    La parte impar se reconoce como un seno, salvo un factor que organiza la
+    serie. Concretamente, el coeficiente $(\hat n + 1)^n$ que aparece en
+    $\hat V^{2n+1}$ es $(\sqrt{\hat n + 1})^{2n} = (\sqrt{\hat n + 1})^{2n+1}/\sqrt{\hat n+1}$.
+    Reorganizando,
+  </p>
+  $$\hat S = \sum_{n=0}^{\infty} \frac{(-1)^n (gt)^{2n+1}}{(2n+1)!}\,\hat V^{2n+1}
+     = \begin{pmatrix} 0 & \dfrac{\sin(gt\sqrt{\hat n + 1})}{\sqrt{\hat n + 1}}\,\hat a \\[8pt] \hat a^\dagger\,\dfrac{\sin(gt\sqrt{\hat n + 1})}{\sqrt{\hat n + 1}} & 0 \end{pmatrix}.$$
+  <p>
+    Esta es la forma más simétrica. Para el elemento $(2,1)$ conviene usar
+    la identidad $\hat a^\dagger\,f(\hat n + 1) = f(\hat n)\,\hat a^\dagger$
+    (cualquier función de $\hat n + 1$ aplicada antes de $\hat a^\dagger$
+    se vuelve función de $\hat n$ cuando se aplica después), que da
+  </p>
+  $$\hat a^\dagger\,\frac{\sin(gt\sqrt{\hat n + 1})}{\sqrt{\hat n + 1}} = \frac{\sin(gt\sqrt{\hat n})}{\sqrt{\hat n}}\,\hat a^\dagger.$$
+
+  <h3>4.4. Forma final del operador de evolución</h3>
+
+  <div class="boxed result">
+    $$\boxed{\;\hat U(t, 0) = \begin{pmatrix}
+      \cos(gt\sqrt{\hat n + 1}) & -i\,\dfrac{\sin(gt\sqrt{\hat n + 1})}{\sqrt{\hat n + 1}}\,\hat a \\[10pt]
+      -i\,\dfrac{\sin(gt\sqrt{\hat n})}{\sqrt{\hat n}}\,\hat a^\dagger & \cos(gt\sqrt{\hat n})
+    \end{pmatrix}.\;}$$
+  </div>
+
+  <p>
+    La diagonal corresponde a la probabilidad de que el átomo permanezca en
+    su estado (excitado en la entrada $(1,1)$, base en la $(2,2)$). La
+    antidiagonal mezcla los estados: el átomo intercambia un fotón con el
+    campo en cada transición. La aparición de $\sqrt{\hat n + 1}$ y
+    $\sqrt{\hat n}$ es la firma cuántica: la frecuencia de oscilación
+    depende del número de fotones presentes.
+  </p>
+
+  <h2 id="estado-inicial">5. Aplicación a un estado inicial general</h2>
+  <p>
+    Se aplica $\hat U(t, 0)$ al estado inicial
+    $\ket{\psi(0)} = \sum_n W_n(C_a\ket{a} + C_b\ket{b})\ket{n}$. La acción
+    sobre cada componente es:
+  </p>
+  $$\hat U(t,0)\,\ket{a, n} = \cos(gt\sqrt{n + 1})\,\ket{a, n} - i\,\sin(gt\sqrt{n + 1})\,\ket{b, n+1},$$
+  $$\hat U(t,0)\,\ket{b, n} = \cos(gt\sqrt{n})\,\ket{b, n} - i\,\sin(gt\sqrt{n})\,\ket{a, n-1},$$
+  <p>
+    donde se usa la notación $\ket{x, n} = \ket{x}\ket{n}$. Estas dos
+    expresiones resumen toda la dinámica: el estado $\ket{a, n}$ oscila
+    coherentemente entre sí mismo y $\ket{b, n+1}$ con frecuencia
+    $g\sqrt{n+1}$; análogamente $\ket{b, n}$ con $\ket{a, n-1}$ con
+    frecuencia $g\sqrt{n}$.
+  </p>
+  <p>
+    El estado completo a tiempo $t$:
+  </p>
+  <div class="boxed result">
+    $$\ket{\psi(t)} = \sum_{n=0}^{\infty} W_n\Bigl\{ C_a\bigl[\cos(gt\sqrt{n+1})\ket{a, n} - i\sin(gt\sqrt{n+1})\ket{b, n+1}\bigr]$$
+    $$+\ C_b\bigl[\cos(gt\sqrt{n})\ket{b, n} - i\sin(gt\sqrt{n})\ket{a, n-1}\bigr]\Bigr\}.$$
+  </div>
+  <p>
+    Nótese el detalle de borde: para $n = 0$ y $C_b \neq 0$, el término
+    $\sin(gt\sqrt{0})\ket{a, -1} = 0$ no contribuye porque $\sin(0) = 0$. Es
+    decir, el estado $\ket{b, 0}$ no se puede des-excitar más: ya está en el
+    vacío y en el estado base atómico. Esto es físicamente esperable:
+    $\hat H_{\text{int}}\ket{b, 0} = \hbar g(\hat a^\dagger\hat\sigma_-\ket{b}\ket{0} + \hat\sigma_+\hat a\ket{b}\ket{0}) = 0$,
+    el estado base conjunto es aniquilado por la interacción.
+  </p>
+
+  <h2 id="fock">6. Campo en estado de Fock</h2>
+  <p>
+    Si el campo está inicialmente en un estado de número definido,
+    $W_n = \delta_{n, n_0}$. La suma colapsa y queda solo el término
+    $n = n_0$:
+  </p>
+  $$\ket{\psi(t)} = C_a\bigl[\cos(gt\sqrt{n_0 + 1})\ket{a, n_0} - i\sin(gt\sqrt{n_0 + 1})\ket{b, n_0 + 1}\bigr]$$
+  $$+\ C_b\bigl[\cos(gt\sqrt{n_0})\ket{b, n_0} - i\sin(gt\sqrt{n_0})\ket{a, n_0 - 1}\bigr].$$
+  <p>
+    En particular, si el campo está en el vacío ($n_0 = 0$) y el átomo en
+    excitado ($C_a = 1$, $C_b = 0$):
+  </p>
+
+  $$\ket{\psi(t)} = \cos(gt)\ket{a, 0} - i\sin(gt)\ket{b, 1}.$$
+
+  <p>
+    El átomo intercambia el cuanto de excitación con el modo del campo a
+    frecuencia $g$. Esta es la <em>oscilación de Rabi del vacío</em>, la cual
+    puede entenderse como emisión espontánea hacia un único modo resonante de
+    la cavidad, seguida de reabsorción coherente. A diferencia de la emisión
+    espontánea en espacio libre, la excitación no se dispersa en un continuo
+    de modos, sino que permanece en el sistema átomo-campo y oscila entre
+    ambos.
+  </p>
+  <p>
+    La probabilidad de encontrar el átomo en cada estado es:
+  </p>
+  $$P_a(t) = \cos^2(gt), \qquad P_b(t) = \sin^2(gt),$$
+  <p>
+    que oscilan entre $0$ y $1$ con periodo $\pi/g$.
+  </p>
+
+  <h2 id="rabi">7. Ecuaciones de Rabi</h2>
+  <p>
+    Hay una segunda forma equivalente de obtener la dinámica: resolver la
+    ecuación de Schrödinger directamente como un sistema de ecuaciones
+    diferenciales acopladas para las amplitudes. Funciona también fuera de
+    resonancia y permite ver la estructura del problema con más detalle.
+  </p>
+  <p>
+    Se recuerda la acción del hamiltoniano (con $\Delta$ general) sobre los
+    estados producto:
+  </p>
+  $$\hat H_{\text{int}}\ket{a, n} = \hbar g\,e^{-i\Delta t}\sqrt{n + 1}\,\ket{b, n + 1},$$
+  $$\hat H_{\text{int}}\ket{b, n + 1} = \hbar g\,e^{i\Delta t}\sqrt{n + 1}\,\ket{a, n}.$$
+  <p>
+    El hamiltoniano solo conecta $\ket{a, n}$ con $\ket{b, n+1}$. Esto define
+    una <em>cadena de subespacios bidimensionales</em> invariantes,
+    parametrizados por $n$. Dentro de cada uno, se expande
+  </p>
+  $$\ket{\psi(t)} = \sum_n\bigl[\Psi_{a,n}(t)\ket{a, n} + \Psi_{b,n+1}(t)\ket{b, n+1}\bigr].$$
+  <p>
+    Sustituyendo en la ecuación de Schrödinger y proyectando sobre $\bra{a,n}$ y $\bra{b, n+1}$:
+  </p>
+  $$i\hbar\,\dot\Psi_{a,n} = \hbar g\,e^{-i\Delta t}\sqrt{n+1}\,\Psi_{b,n+1},$$
+  $$i\hbar\,\dot\Psi_{b,n+1} = \hbar g\,e^{i\Delta t}\sqrt{n+1}\,\Psi_{a,n}.$$
+  <p>
+    Que se reescribe como
+  </p>
+  $$\dot\Psi_{a,n} = -ig\sqrt{n+1}\,e^{-i\Delta t}\,\Psi_{b,n+1},$$
+  $$\dot\Psi_{b,n+1} = -ig\sqrt{n+1}\,e^{i\Delta t}\,\Psi_{a,n}.$$
+
+  <h3>7.1. Ecuación de segundo orden</h3>
+  <p>
+    Se deriva la primera respecto al tiempo:
+  </p>
+  $$\ddot\Psi_{a,n} = -ig\sqrt{n+1}\bigl[-i\Delta\,e^{-i\Delta t}\Psi_{b,n+1} + e^{-i\Delta t}\dot\Psi_{b,n+1}\bigr].$$
+  <p>
+    Se sustituye $\dot\Psi_{b,n+1}$ con la segunda ecuación:
+  </p>
+  $$\ddot\Psi_{a,n} = -g\Delta\sqrt{n+1}\,e^{-i\Delta t}\Psi_{b,n+1} - g^2(n+1)\,\Psi_{a,n}.$$
+  <p>
+    Para eliminar $\Psi_{b,n+1}$ se usa de nuevo la primera ecuación,
+    $-ig\sqrt{n+1}\,e^{-i\Delta t}\Psi_{b,n+1} = \dot\Psi_{a,n}$, es decir,
+    $-g\sqrt{n+1}\,e^{-i\Delta t}\Psi_{b,n+1} = -i\dot\Psi_{a,n}$. Por tanto
+  </p>
+
+  $$\ddot\Psi_{a,n}(t) - i\Delta\,\dot\Psi_{a,n}(t) + g^2(n+1)\,\Psi_{a,n}(t) = 0.$$
+
+  <p>
+    Una ecuación lineal de segundo orden con coeficientes constantes.
+    Se propone $\Psi_{a,n}(t) = e^{\lambda t}$ y se obtiene la ecuación
+    característica
+  </p>
+  $$\lambda^2 - i\Delta\,\lambda + g^2(n+1) = 0
+     \;\;\Longrightarrow\;\; \lambda_\pm = \frac{i\Delta \pm i\sqrt{\Delta^2 + 4g^2(n+1)}}{2}.$$
+  <p>
+    Se define la <em>frecuencia de Rabi generalizada</em>:
+  </p>
+  $$\boxed{\;\tilde\Omega_n = \tfrac{1}{2}\sqrt{\Delta^2 + 4g^2(n + 1)},\;}$$
+  <p>
+    de modo que $\lambda_\pm = i\Delta/2 \pm i\tilde\Omega_n$.
+  </p>
+
+  <h3>7.2. Solución general</h3>
+  <p>
+    La solución general es
+  </p>
+  $$\Psi_{a,n}(t) = e^{i\Delta t/2}\bigl(A_+\,e^{i\tilde\Omega_n t} + A_-\,e^{-i\tilde\Omega_n t}\bigr),$$
+  <p>
+    y análogamente para $\Psi_{b,n+1}$ con constantes $B_\pm$. Las constantes
+    se fijan con las condiciones iniciales
+    $\Psi_{a,n}(0) = W_nC_a$ y $\Psi_{b,n+1}(0) = W_{n+1}C_b$, junto con la primera
+    ecuación de Rabi evaluada en $t = 0$ (para relacionar $A_\pm$ con $B_\pm$).
+  </p>
+  <p>
+    Después de resolver el sistema lineal para las constantes (usando
+    $\dot\Psi_{a,n}(0) = -ig\sqrt{n+1}\,W_{n+1}C_b$),
+  </p>
+  <div class="boxed result">
+    $$\Psi_{a,n}(t) = e^{i\Delta t/2}\left[\bigl(\cos(\tilde\Omega_n t) + \tfrac{i\Delta}{2\tilde\Omega_n}\sin(\tilde\Omega_n t)\bigr)W_nC_a - i\,\frac{g\sqrt{n+1}}{\tilde\Omega_n}\sin(\tilde\Omega_n t)\,W_{n+1}C_b\right],$$
+    $$\Psi_{b,n+1}(t) = e^{-i\Delta t/2}\left[-i\,\frac{g\sqrt{n+1}}{\tilde\Omega_n}\sin(\tilde\Omega_n t)\,W_nC_a + \bigl(\cos(\tilde\Omega_n t) - \tfrac{i\Delta}{2\tilde\Omega_n}\sin(\tilde\Omega_n t)\bigr)W_{n+1}C_b\right].$$
+  </div>
+  <p>
+    Estas son las <em>amplitudes de probabilidad</em> que controlan toda la
+    dinámica. La aparición de $W_n$ y $W_{n+1}$ no es un detalle menor:
+    dentro del bloque $\{\ket{a,n},\ket{b,n+1}\}$ contribuyen los componentes
+    iniciales del campo con $n$ y con $n+1$ fotones, porque ambos pertenecen
+    al mismo sector de excitación total.
+  </p>
+
+  <h3>7.3. Caso resonante recuperado</h3>
+  <p>
+    Si $\Delta = 0$, la frecuencia de Rabi generalizada se simplifica a
+    $\tilde\Omega_n = g\sqrt{n+1} \equiv \Omega_n/2$, con
+    $\Omega_n = 2g\sqrt{n+1}$, y las amplitudes quedan
+  </p>
+  $$\Psi_{a,n}(t) = \cos(g\sqrt{n+1}\,t)\,C_a - i\sin(g\sqrt{n+1}\,t)\,C_b,$$
+  $$\Psi_{b,n+1}(t) = -i\sin(g\sqrt{n+1}\,t)\,C_a + \cos(g\sqrt{n+1}\,t)\,C_b.$$
+  <p>
+    Idéntico a lo que se obtiene aplicando $\hat U(t,0)$ del método de
+    exponenciación directa.
+  </p>
+
+  <h3>7.4. Probabilidades de transición</h3>
+  <p>
+    Si el sistema inicia en $\ket{a,n}$, entonces $W_nC_a = 1$ y
+    $W_{n+1}C_b = 0$. Las probabilidades de encontrar el átomo excitado o en
+    el estado base son
+  </p>
+  $$P_{a,n}(t)=1-\frac{g^2(n+1)}{\tilde\Omega_n^2}\sin^2(\tilde\Omega_n t),$$
+  $$P_{b,n+1}(t)=\frac{g^2(n+1)}{\tilde\Omega_n^2}\sin^2(\tilde\Omega_n t).$$
+  <p>
+    En resonancia el prefactor es uno y la transferencia de población puede
+    ser completa. Fuera de resonancia, el factor
+    $g^2(n+1)/\tilde\Omega_n^2$ reduce la amplitud máxima de transferencia:
+    el átomo y el campo se mezclan menos porque sus frecuencias naturales no
+    coinciden.
+  </p>
+  <h2 id="dispersivo">8. Régimen dispersivo</h2>
+  <p>
+    Cuando $|\Delta| \gg 2g\sqrt{n+1}$, se expande la frecuencia de Rabi
+    generalizada:
+  </p>
+  $$\tilde\Omega_n = \tfrac{|\Delta|}{2}\sqrt{1 + \tfrac{4g^2(n+1)}{\Delta^2}} \approx \tfrac{|\Delta|}{2}\left(1 + \tfrac{2g^2(n+1)}{\Delta^2}\right) = \tfrac{|\Delta|}{2} + \tfrac{g^2(n+1)}{|\Delta|}.$$
+  <p>
+    En este régimen, la mezcla entre $\ket{a, n}$ y $\ket{b, n+1}$ está
+    fuertemente suprimida (el cociente $g\sqrt{n+1}/\tilde\Omega_n \ll 1$).
+    El átomo no transiciona, pero acumula una fase dependiente del número de
+    fotones. El hamiltoniano efectivo en este límite es
+  </p>
+  $$\hat H_{\text{eff}} = \tfrac{\hbar g^2}{\Delta}\bigl(\hat a^\dagger\hat a\,\hat\sigma_+\hat\sigma_- - \hat a\hat a^\dagger\,\hat\sigma_-\hat\sigma_+\bigr),$$
+  <p>
+    que produce un desplazamiento de los niveles atómicos dependiente del
+    número de fotones (Stark shift cuántico, ac-Stark). Es la base de la
+    lectura no-demolición del estado del campo midiendo el átomo, y de la
+    arquitectura dispersiva de QED de cavidad superconductora.
+  </p>
+
+  <h2 id="polaritonico">9. Diagonalización por bloques: estados vestidos</h2>
+  <p>
+    El tercer enfoque, equivalente y muy iluminador, es diagonalizar el
+    hamiltoniano completo (no solo el de interacción) en la base producto
+    átomo-campo. La base natural es
+  </p>
+  $$\{\ket{a, n}, \ket{b, n+1}\}_{n = 0, 1, 2, \ldots} \cup \{\ket{b, 0}\}.$$
+
+  <h3>9.1. Cantidad conservada</h3>
+  <p>
+    El hamiltoniano completo (en el marco de Schrödinger) es
+  </p>
+  $$\hat H = \hbar\omega_c\,\hat a^\dagger\hat a + \tfrac{1}{2}\hbar\omega_a\,\hat\sigma_z + \hbar g\bigl(\hat\sigma_+\hat a + \hat\sigma_-\hat a^\dagger\bigr),$$
+  <p>
+    con $\hat\sigma_z = \ket{a}\bra{a} - \ket{b}\bra{b}$. Se define el operador
+    de número total de excitaciones,
+  </p>
+  $$\hat N = \hat a^\dagger\hat a + \hat\sigma_+\hat\sigma_- = \hat a^\dagger\hat a + \ket{a}\bra{a}.$$
+  <p>
+    Se calcula $[\hat H, \hat N]$. Las partes libres conmutan trivialmente (los
+    hamiltonianos libres son funciones de $\hat n$ y $\hat\sigma_z$, ambos
+    diagonales en la base producto). La interacción:
+  </p>
+  $$[\hat\sigma_+\hat a, \hat N] = [\hat\sigma_+\hat a, \hat a^\dagger\hat a] + [\hat\sigma_+\hat a, \hat\sigma_+\hat\sigma_-].$$
+  <p>
+    El primer conmutador: usando $[\hat a, \hat a^\dagger\hat a] = \hat a$,
+    $[\hat\sigma_+\hat a, \hat a^\dagger\hat a] = \hat\sigma_+[\hat a, \hat a^\dagger\hat a] = \hat\sigma_+\hat a$.
+    El segundo:
+    $[\hat\sigma_+\hat a, \hat\sigma_+\hat\sigma_-] = [\hat\sigma_+, \hat\sigma_+\hat\sigma_-]\hat a = -\hat\sigma_+\hat a$
+    (porque $[\hat\sigma_+, \hat\sigma_+\hat\sigma_-] = -\hat\sigma_+$).
+    Suma: $\hat\sigma_+\hat a - \hat\sigma_+\hat a = 0$. Análogamente para
+    $\hat\sigma_-\hat a^\dagger$. Por tanto
+  </p>
+
+  <div class="boxed result">
+    $$\boxed{\;[\hat H, \hat N] = 0.\;}$$
+  </div>
+
+  <p>
+    El número total de excitaciones es constante de movimiento. Esto
+    significa que $\hat H$ es diagonal a bloques en los subespacios de
+    $\hat N$ fijo, y cada bloque tiene dimensión finita.
+  </p>
+
+  <h3>9.2. Estructura de bloques</h3>
+  <p>
+    El sector $N = 0$ contiene solo $\ket{b, 0}$, con eigenvalor
+    $-\tfrac{1}{2}\hbar\omega_a$.
+  </p>
+  <p>
+    Para $N = n + 1 \geq 1$, el subespacio está generado por $\{\ket{a, n}, \ket{b, n+1}\}$:
+    son los dos únicos estados producto con $\hat N = n+1$ (el átomo
+    excitado con $n$ fotones, o el átomo en base con $n+1$ fotones). Los
+    elementos de matriz de $\hat H$ en este subespacio:
+  </p>
+  $$\bra{a, n}\hat H\ket{a, n} = \hbar\omega_c n + \tfrac{1}{2}\hbar\omega_a,$$
+  $$\bra{b, n+1}\hat H\ket{b, n+1} = \hbar\omega_c(n+1) - \tfrac{1}{2}\hbar\omega_a,$$
+  $$\bra{a, n}\hat H\ket{b, n+1} = \hbar g\sqrt{n+1}, \qquad \bra{b, n+1}\hat H\ket{a, n} = \hbar g\sqrt{n+1}.$$
+  <p>
+    Al reunir los términos en forma matricial, en la base ordenada $\{\ket{a, n}, \ket{b, n+1}\}$:
+  </p>
+  $$\hat H^{(n)} = \hbar\omega_c\bigl(n + \tfrac{1}{2}\bigr)\,\mathbb{1} + \hbar\begin{pmatrix} -\tfrac{1}{2}\Delta & g\sqrt{n+1} \\ g\sqrt{n+1} & \tfrac{1}{2}\Delta \end{pmatrix},$$
+  <p>
+    con $\Delta = \omega_c - \omega_a$. El primer término es proporcional a
+    la identidad y solo añade una energía global irrelevante para la
+    dinámica. La parte no trivial es la matriz $2\times 2$.
+  </p>
+
+  <h3>9.3. Diagonalización</h3>
+  <p>
+    Para diagonalizar la matriz no trivial, se calcula
+    $\det(\hat H^{(n)}_{\text{nt}} - \lambda\mathbb{1}) = 0$:
+  </p>
+  $$\bigl(-\tfrac{1}{2}\hbar\Delta - \lambda\bigr)\bigl(\tfrac{1}{2}\hbar\Delta - \lambda\bigr) - \hbar^2 g^2(n+1) = 0,$$
+  $$\lambda^2 - \tfrac{(\hbar\Delta)^2}{4} - \hbar^2 g^2(n+1) = 0
+     \;\;\Longrightarrow\;\; \lambda_\pm = \pm\hbar\tilde\Omega_n,$$
+  <p>
+    con la frecuencia de Rabi generalizada de antes
+    $\tilde\Omega_n = \tfrac{1}{2}\sqrt{\Delta^2 + 4g^2(n+1)}$. Los
+    eigenvalores totales (incluyendo el offset proporcional a la identidad)
+    son
+  </p>
+  $$E_\pm^{(n)} = \hbar\omega_c\bigl(n + \tfrac{1}{2}\bigr) \pm \hbar\tilde\Omega_n.$$
+
+  <h3>9.4. Eigenvectores: estados vestidos</h3>
+  <p>
+    Se define el ángulo de mezcla $\theta_n$ mediante
+  </p>
+  $$\tan(2\theta_n) = \frac{2g\sqrt{n+1}}{\Delta}, \qquad 0 \leq \theta_n \leq \tfrac{\pi}{2}.$$
+  <p>
+    De esta relación se obtiene
+  </p>
+  $$\cos(2\theta_n) = \frac{\Delta}{2\tilde\Omega_n}, \qquad \sin(2\theta_n) = \frac{2g\sqrt{n+1}}{2\tilde\Omega_n}.$$
+  <p>
+    Los eigenestados resultan ser
+  </p>
+
+  <div class="boxed result">
+    $$\boxed{\;\ket{+, n} = \sin\theta_n\,\ket{a, n} + \cos\theta_n\,\ket{b, n+1},\;}$$
+    $$\boxed{\;\ket{-, n} = \cos\theta_n\,\ket{a, n} - \sin\theta_n\,\ket{b, n+1},\;}$$
+  </div>
+
+  <p>
+    con energías $E_\pm^{(n)}$. Estos son los <em>estados vestidos</em>
+    (dressed states): superposiciones fijas de átomo+campo que diagonalizan
+    el sistema acoplado. En resonancia, $\Delta = 0$, $\theta_n = \pi/4$ y
+    los estados vestidos son simétricos y antisimétricos,
+    $(\ket{a,n} \pm \ket{b,n+1})/\sqrt{2}$, con energías separadas por
+    $2\hbar g\sqrt{n+1}$. Esta separación se llama <em>desdoblamiento de
+    Rabi cuántico</em> y es observable directamente en espectroscopía de QED
+    de cavidad.
+  </p>
+
+  <h2 id="evolucion-vestida">10. Operador de evolución en la base vestida</h2>
+  <p>
+    En la base vestida la evolución es trivial:
+  </p>
+  $$\hat U^{(n)}(t) = e^{-i\hat H^{(n)} t/\hbar} = e^{-i\omega_c(n+\tfrac{1}{2})t}\bigl(e^{-i\tilde\Omega_n t}\ket{+, n}\bra{+, n} + e^{+i\tilde\Omega_n t}\ket{-, n}\bra{-, n}\bigr).$$
+  <p>
+    Al aplicar la inversa de la transformación a la base producto,
+  </p>
+  $$\ket{a, n} = \sin\theta_n\,\ket{+, n} + \cos\theta_n\,\ket{-, n},$$
+  $$\ket{b, n+1} = \cos\theta_n\,\ket{+, n} - \sin\theta_n\,\ket{-, n},$$
+  <p>
+    el operador de evolución en la base producto queda (ignorando la fase
+    global $e^{-i\omega_c(n+\tfrac{1}{2})t}$)
+  </p>
+  $$\hat U^{(n)}_{\text{prod}}(t) = \begin{pmatrix}
+    \cos(\tilde\Omega_n t) + i\tfrac{\Delta}{2\tilde\Omega_n}\sin(\tilde\Omega_n t) & -i\tfrac{g\sqrt{n+1}}{\tilde\Omega_n}\sin(\tilde\Omega_n t) \\
+    -i\tfrac{g\sqrt{n+1}}{\tilde\Omega_n}\sin(\tilde\Omega_n t) & \cos(\tilde\Omega_n t) - i\tfrac{\Delta}{2\tilde\Omega_n}\sin(\tilde\Omega_n t)
+  \end{pmatrix}.$$
+  <p>
+    En resonancia $\Delta = 0$ y $\tilde\Omega_n = g\sqrt{n+1}$, esto se
+    reduce a la forma del método de exponenciación directa. Los dos
+    enfoques coinciden, como corresponde.
+  </p>
+
+  <h2 id="conclusion">11. Conexión con la tesis</h2>
+  <p>
+    El modelo de Jaynes-Cummings-Paul es el bloque fundamental sobre el que
+    se construye la electrodinámica cuántica de cavidad. La tesis doctoral
+    extiende este modelo de dos maneras:
+  </p>
+  <ul>
+    <li>
+      <strong>Múltiples emisores</strong> (Tavis-Cummings): $N$ átomos
+      acoplados al mismo modo del campo. Aparecen estados superradiantes con
+      acoplamiento colectivo $g\sqrt{N}$.
+    </li>
+    <li>
+      <strong>Grados de libertad vibracionales</strong> (Holstein): cada
+      molécula tiene un modo fonónico interno acoplado a sus niveles
+      electrónicos. La combinación da el modelo Holstein-Tavis-Cummings
+      (HTC), donde la dinámica se complica por la triple interacción
+      fotón-electrón-fonón.
+    </li>
+  </ul>
+  <p>
+    Las técnicas centrales usadas en este desarrollo (diagonalización por bloques de
+    excitaciones conservadas, identificación de frecuencias generalizadas
+    de Rabi, estados vestidos) reaparecen en HTC con bloques de dimensión
+    mayor, pero con el mismo espíritu. Por eso esta nota es la base
+    obligada para todo lo demás.
+  </p>
+
+  <blockquote>
+    Tres caminos llevan al mismo operador de evolución: exponenciación
+    directa, ecuaciones de Rabi, diagonalización por bloques. Tener los tres
+    en la cabeza es útil porque cada uno generaliza distinto: el primero, a
+    hamiltonianos más complicados con simetrías cuya estructura algebraica
+    es clara; el segundo, al caso disipativo (ecuación maestra) que es el
+    siguiente paso; el tercero, a sistemas con más bloques (Tavis-Cummings,
+    HTC).
+  </blockquote>
+
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 28 de mayo de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

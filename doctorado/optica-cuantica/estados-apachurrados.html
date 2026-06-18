@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estados Apachurrados · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams',
+    macros: {
+      Real: '\\operatorname{Re}',
+      Imag: '\\operatorname{Im}',
+      ii: '\\mathrm{i}',
+      ee: '\\mathrm{e}',
+      dd: '\\mathrm{d}',
+      adag: '\\hat a^\\dagger'
+    }
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Estados apachurrados
+</div>
+
+<div class="container">
+<article class="note">
+
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <radialGradient id="sqGradHero" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#cfe6ff"/>
+          <stop offset="100%" stop-color="#5d8fd6"/>
+        </radialGradient>
+      </defs>
+      <ellipse cx="32" cy="32" rx="22" ry="8" fill="url(#sqGradHero)" stroke="#2b5fb3" stroke-width="2" transform="rotate(-25 32 32)"/>
+      <line x1="6" y1="32" x2="58" y2="32" stroke="#222" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="32" y1="6" x2="32" y2="58" stroke="#222" stroke-width="1" stroke-dasharray="3 3"/>
+    </svg>
+    <h1>Estados Apachurrados</h1>
+    <div class="author">Schleich · Quantum Optics in Phase Space</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Estados%20Apachurrados.pdf" target="_blank">📄 PDF original</a>
+      <a href="estados-apachurrados.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="estados-apachurrados.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#motivacion">Motivación física</a></li>
+      <li><a href="#frecuencia">Cambio de frecuencia</a></li>
+      <li><a href="#operador">Operador \(S(s)\)</a></li>
+      <li><a href="#incertidumbre">Incertidumbres</a></li>
+      <li><a href="#wigner-vacio">Wigner del vacío apachurrado</a></li>
+      <li><a href="#desplazado">Estado coherente apachurrado</a></li>
+      <li><a href="#orden">Orden de operaciones</a></li>
+      <li><a href="#fock">Base de energía</a></li>
+      <li><a href="#distribucion">Distribución y límite coherente</a></li>
+      <li><a href="#retorno">Puntos de retorno</a></li>
+      <li><a href="#evolucion">Evolución temporal</a></li>
+    </ol>
+  </div>
+
+  <h2 id="motivacion">1. Motivación física</h2>
+  <p>
+    Los estados apachurrados, o <em>squeezed states</em>, aparecen cuando se cambia
+    la anchura de las fluctuaciones cuánticas de un oscilador. En un estado
+    coherente las incertidumbres de posición y momento son iguales, y el
+    producto toma el valor mínimo permitido, $\hbar/2$. En un estado
+    apachurrado el producto sigue siendo mínimo, pero las incertidumbres se
+    redistribuyen: una cuadratura se vuelve más precisa y la otra más ruidosa.
+  </p>
+  <p>
+    Una forma física de generar este estado es cambiar repentinamente la
+    frecuencia del oscilador. Si el potencial se modifica de golpe, el estado
+    que antes era el vacío deja de ser el vacío del nuevo oscilador. Visto
+    desde el oscilador original, ese estado tiene una gaussiana con anchura
+    distinta: está apachurrado.
+  </p>
+  <p>
+    Se usa un parámetro real positivo $s>0$. Para $s=1$ no hay
+    apachurramiento. Para $s>1$ se reduce la fluctuación en posición y aumenta
+    la fluctuación en momento. Para $s<1$ ocurre lo contrario.
+  </p>
+
+  <h2 id="frecuencia">2. Estado base y cambio repentino de frecuencia</h2>
+  <p>
+    La función de onda del estado base del oscilador armónico es
+  </p>
+  $$u_0(x)=\left(\frac{K^2}{\pi}\right)^{1/4}e^{-K^2x^2/2},\qquad
+  K=\sqrt{\frac{M\Omega}{\hbar}}.$$
+  <p>
+    Si la frecuencia cambia repentinamente como
+  </p>
+  $$\Omega\longrightarrow \frac{\Omega}{s},$$
+  <p>
+    el nuevo parámetro de anchura es
+  </p>
+  $$K'=\sqrt{\frac{M(\Omega/s)}{\hbar}}=\frac{K}{\sqrt{s}}.$$
+  <p>
+    Como $K^2=sK'^2$, el estado base original se puede escribir en términos
+    de $K'$ como
+  </p>
+  $$u_0(x)=\left(\frac{sK'^2}{\pi}\right)^{1/4}e^{-sK'^2x^2/2}.$$
+  <p>
+    Sólo para $s=1$ coincide con el estado base del nuevo potencial. Para
+    $s\neq1$ es una gaussiana con anchura distinta. Esta es la primera manera
+    de entender el apachurramiento.
+  </p>
+
+  <h2 id="operador">3. Operador de apachurramiento</h2>
+  <p>
+    De manera equivalente, se puede dejar fijo el potencial y transformar el
+    estado. Se define
+  </p>
+  <div class="boxed def">
+    $$\boxed{\hat S(s)\psi(x)=s^{1/4}\psi(\sqrt{s}\,x).}$$
+  </div>
+  <p>
+    El factor $s^{1/4}$ preserva la normalización. En efecto,
+  </p>
+  $$\int |\hat S(s)\psi(x)|^2\,dx
+  =\int s^{1/2}|\psi(\sqrt{s}\,x)|^2\,dx.$$
+  <p>
+    Con $u=\sqrt{s}\,x$, $dx=du/\sqrt{s}$, y por tanto
+  </p>
+  $$\int |\hat S(s)\psi(x)|^2\,dx=\int |\psi(u)|^2\,du.$$
+  <p>
+    Aplicando $\hat S(s)$ al vacío:
+  </p>
+  $$\hat S(s)u_0(x)=s^{1/4}\left(\frac{K^2}{\pi}\right)^{1/4}
+  e^{-K^2(\sqrt{s}x)^2/2}
+  =\left(\frac{sK^2}{\pi}\right)^{1/4}e^{-sK^2x^2/2}.$$
+  <p>
+    Para $s>1$ la campana se estrecha; para $s<1$ se ensancha.
+  </p>
+
+  <h2 id="incertidumbre">4. Incertidumbres del vacío apachurrado</h2>
+  <p>
+    La densidad del vacío original es
+  </p>
+  $$|u_0(x)|^2=\left(\frac{K^2}{\pi}\right)^{1/2}e^{-K^2x^2}.$$
+  <p>
+    Al compararla con una gaussiana normal, se obtiene
+  </p>
+  $$\sigma_x^{(0)}=\frac{1}{\sqrt2\,K}.$$
+  <p>
+    Para el estado apachurrado,
+  </p>
+  $$|\psi_s(x)|^2=\left(\frac{sK^2}{\pi}\right)^{1/2}e^{-sK^2x^2},$$
+  <div class="boxed result">
+    $$\boxed{\sigma_x=\frac{1}{\sqrt{2s}\,K}.}$$
+  </div>
+  <p>
+    La transformada de Fourier de esta gaussiana da
+  </p>
+  $$\psi_s(p)=\left(\frac{1}{\pi\hbar^2sK^2}\right)^{1/4}
+  e^{-p^2/(2\hbar^2sK^2)},$$
+  <p>
+    de modo que
+  </p>
+  <div class="boxed result">
+    $$\boxed{\sigma_p=\sqrt{\frac{s}{2}}\,\hbar K.}$$
+  </div>
+  <p>
+    El producto es
+  </p>
+  $$\sigma_x\sigma_p=
+  \frac{1}{\sqrt{2s}K}\sqrt{\frac{s}{2}}\hbar K=\frac{\hbar}{2}.$$
+  <p>
+    Así, el estado sigue saturando Heisenberg, pero la incertidumbre ya no
+    está repartida simétricamente.
+  </p>
+
+  <h2 id="wigner-vacio">5. Función de Wigner del vacío apachurrado</h2>
+  <p>
+    Se usa la definición
+  </p>
+  $$W(x,p)=\frac{1}{\pi\hbar}\int_{-\infty}^{\infty}
+  \psi(x+y)\psi^*(x-y)e^{2ipy/\hbar}\,dy.$$
+  <p>
+    Para el vacío apachurrado la función de onda es real:
+  </p>
+  $$\psi_s(x)=\left(\frac{sK^2}{\pi}\right)^{1/4}e^{-sK^2x^2/2}.$$
+  <p>
+    Sustituyendo,
+  </p>
+  $$W_s(x,p)=\frac{1}{\pi\hbar}\left(\frac{sK^2}{\pi}\right)^{1/2}
+  \int e^{-\frac{sK^2}{2}(x+y)^2}e^{-\frac{sK^2}{2}(x-y)^2}
+  e^{2ipy/\hbar}\,dy.$$
+  <p>
+    Como
+  </p>
+  $$(x+y)^2+(x-y)^2=2x^2+2y^2,$$
+  <p>
+    queda
+  </p>
+  $$W_s(x,p)=\frac{1}{\pi\hbar}\left(\frac{sK^2}{\pi}\right)^{1/2}
+  e^{-sK^2x^2}\int e^{-sK^2y^2+2ipy/\hbar}\,dy.$$
+  <p>
+    La integral gaussiana
+    $\int e^{-ay^2+by}\,dy=\sqrt{\pi/a}\,e^{b^2/(4a)}$ con
+    $a=sK^2$ y $b=2ip/\hbar$ da
+  </p>
+  $$\int e^{-sK^2y^2+2ipy/\hbar}\,dy
+  =\sqrt{\frac{\pi}{sK^2}}e^{-p^2/(\hbar^2sK^2)}.$$
+  <div class="boxed result">
+    $$\boxed{W_s(x,p)=\frac{1}{\pi\hbar}
+    \exp\left[-sK^2x^2-\frac{p^2}{\hbar^2sK^2}\right].}$$
+  </div>
+  <p>
+    La gaussiana circular del vacío coherente se convierte en una elipse. Se
+    estrecha en una dirección y se alarga en la otra, manteniendo fija el área
+    mínima.
+  </p>
+
+  <h2 id="desplazado">6. Estado coherente apachurrado</h2>
+  <p>
+    En el manuscrito se toma $\alpha\in\mathbb R$, de modo que el
+    desplazamiento es sólo en posición. El estado se define como
+  </p>
+  $$\ket{\psi_s(\alpha)}=\hat D(\alpha)\hat S(s)\ket0.$$
+  <p>
+    En posición,
+  </p>
+  <div class="boxed result">
+    $$\boxed{\psi_s(x)=\left(\frac{sK^2}{\pi}\right)^{1/4}
+    \exp\left[-\frac{s}{2}(Kx-\sqrt2\alpha)^2\right].}$$
+  </div>
+  <p>
+    El centro de la gaussiana es
+  </p>
+  $$x_0=\frac{\sqrt2\alpha}{K}.$$
+  <p>
+    Su función de Wigner se obtiene desplazando la elipse:
+  </p>
+  <div class="boxed result">
+    $$\boxed{W(x,p)=\frac{1}{\pi\hbar}
+    \exp\left[-s(Kx-\sqrt2\alpha)^2-\frac{1}{s}
+    \left(\frac{p}{\hbar K}\right)^2\right].}$$
+  </div>
+  <p>
+    Si $\alpha=\alpha_R+i\alpha_I$, el centro también se desplaza en momento:
+  </p>
+  $$W_{\alpha,s}(x,p)=\frac{1}{\pi\hbar}
+  \exp\left[-s(Kx-\sqrt2\alpha_R)^2-\frac{1}{s}
+  \left(\frac{p}{\hbar K}-\sqrt2\alpha_I\right)^2\right].$$
+
+  <h2 id="orden">7. El orden de desplazar y apachurrar no conmuta</h2>
+  <p>
+    Si primero se apachurra y luego se desplaza,
+  </p>
+  $$\hat D(\alpha)\hat S(s)u_0(x)
+  =\left(\frac{sK^2}{\pi}\right)^{1/4}
+  e^{-\frac{s}{2}(Kx-\sqrt2\alpha)^2}.$$
+  <p>
+    En cambio, si primero se desplaza y luego se apachurra,
+  </p>
+  $$\hat S(s)\hat D(\alpha)u_0(x)
+  =\left(\frac{sK^2}{\pi}\right)^{1/4}
+  e^{-\frac12(\sqrt{s}Kx-\sqrt2\alpha)^2}.$$
+  <p>
+    Reescribiendo el exponente,
+  </p>
+  $$\hat S(s)\hat D(\alpha)u_0(x)
+  =\left(\frac{sK^2}{\pi}\right)^{1/4}
+  e^{-\frac{s}{2}\left(Kx-\sqrt{\frac{2}{s}}\alpha\right)^2}.$$
+  <div class="boxed result">
+    $$\boxed{\hat S(s)\hat D(\alpha)
+    =\hat D\left(\frac{\alpha}{\sqrt{s}}\right)\hat S(s)
+    \qquad(\alpha\in\mathbb R).}$$
+  </div>
+  <p>
+    Apachurrar después de desplazar también escala el desplazamiento efectivo.
+    Por eso el orden de operaciones produce estados distintos.
+  </p>
+
+  <h2 id="fock">8. Amplitud en la base de energía</h2>
+  <p>
+    El estado apachurrado desplazado no es eigenestado del oscilador original.
+    Para conocer su distribución de energía se calcula
+  </p>
+  $$W_m=|w_m|^2,\qquad
+  w_m=\braket{m|\psi_s}=\int_{-\infty}^{\infty}u_m(x)\psi_s(x)\,dx.$$
+  <p>
+    Con
+  </p>
+  $$u_m(x)=\frac{K^{1/2}}{\pi^{1/4}\sqrt{2^m m!}}\,
+  H_m(Kx)e^{-(Kx)^2/2},$$
+  <p>
+    se obtiene
+  </p>
+  $$w_m=\frac{s^{1/4}}{\sqrt{\pi}\sqrt{2^m m!}}
+  \int_{-\infty}^{\infty}H_m(\xi)
+  \exp\left[-\frac12\xi^2-\frac{s}{2}(\xi-\sqrt2\alpha)^2\right]d\xi,$$
+  <p>
+    donde $\xi=Kx$. Se completa el cuadrado:
+  </p>
+  $$\frac12[\xi^2+s(\xi-\sqrt2\alpha)^2]
+  =
+  \left[\left(\frac{s+1}{2}\right)^{1/2}\xi
+  -s(s+1)^{-1/2}\alpha\right]^2
+  +\frac{s}{s+1}\alpha^2.$$
+  <p>
+    Definiendo
+  </p>
+  $$y=\left(\frac{s+1}{2}\right)^{1/2}\xi,\qquad
+  y_0=s(s+1)^{-1/2}\alpha,$$
+  <p>
+    la integral se reduce a la forma
+  </p>
+  $$\int e^{-(y-y_0)^2}H_m(\lambda y)\,dy,$$
+  <p>
+    con
+  </p>
+  $$\lambda=\left(\frac{s+1}{2}\right)^{-1/2},\qquad
+  1-\lambda^2=\frac{s-1}{s+1}.$$
+  <p>
+    Usando la identidad generada por los polinomios de Hermite,
+  </p>
+  $$\int e^{-(y-y_0)^2}H_m(\lambda y)\,dy
+  =\sqrt{\pi}(1-\lambda^2)^{m/2}
+  H_m\left(\frac{\lambda y_0}{\sqrt{1-\lambda^2}}\right),$$
+  <p>
+    se obtiene
+  </p>
+  <div class="boxed result">
+    $$\boxed{w_m=\left(\frac{2\sqrt{s}}{s+1}\right)^{1/2}
+    \left(\frac{s-1}{s+1}\right)^{m/2}
+    \frac{1}{\sqrt{2^m m!}}e^{-s\alpha^2/(s+1)}
+    H_m\left(\frac{s\sqrt2\,\alpha}{\sqrt{s^2-1}}\right).}$$
+  </div>
+
+  <h2 id="distribucion">9. Distribución de energía y límite coherente</h2>
+  <p>
+    Como $\alpha$ y $s$ son reales en esta derivación,
+  </p>
+  <div class="boxed result">
+    $$\boxed{W_m=\frac{2\sqrt{s}}{s+1}
+    \left(\frac{s-1}{s+1}\right)^m
+    \frac{1}{2^m m!}e^{-2s\alpha^2/(s+1)}
+    H_m^2\left(\frac{s\sqrt2\,\alpha}{\sqrt{s^2-1}}\right).}$$
+  </div>
+  <p>
+    Cuando $s\to1$, el argumento del polinomio de Hermite tiende a infinito.
+    Se usa la aproximación de argumento grande
+  </p>
+  $$H_m(y)\sim (2y)^m.$$
+  <p>
+    Al sustituirla, los factores singulares se cancelan y se recupera
+  </p>
+  <div class="boxed result">
+    $$\boxed{\lim_{s\to1}W_m=e^{-|\alpha|^2}\frac{|\alpha|^{2m}}{m!}.}$$
+  </div>
+  <p>
+    Es decir, el estado apachurrado se reduce al estado coherente y la
+    distribución de energía se vuelve poissoniana.
+  </p>
+
+  <h2 id="retorno">10. Puntos clásicos de retorno y oscilaciones</h2>
+  <p>
+    Para $s\gg1$, la función de onda apachurrada en posición se vuelve muy
+    estrecha y se aproxima a una delta centrada en
+  </p>
+  $$X=\frac{\sqrt2\alpha}{K}.$$
+  <p>
+    Entonces
+  </p>
+  $$w_m(\psi_s)\approx N\,u_m\left(X=\frac{\sqrt2\alpha}{K}\right)
+  \propto H_m(\sqrt2\alpha)e^{-\alpha^2}.$$
+  <p>
+    La estructura de $W_m$ se entiende comparando este punto con los puntos
+    clásicos de retorno del oscilador. Como
+  </p>
+  $$V(x)=\frac12m\omega^2x^2,\qquad E_m=\hbar\omega\left(m+\frac12\right),$$
+  <p>
+    los puntos de retorno satisfacen
+  </p>
+  $$\frac12m\omega^2X_t^2=\hbar\omega\left(m+\frac12\right).$$
+  <p>
+    Por tanto
+  </p>
+  <div class="boxed result">
+    $$\boxed{X_t=\pm\frac{1}{K}\sqrt{2m+1}.}$$
+  </div>
+  <p>
+    La región permitida es $|X|<X_t$. Para que
+    $X=\sqrt2\alpha/K$ caiga dentro de ella,
+  </p>
+  $$\frac{\sqrt2\alpha}{K}<\frac{1}{K}\sqrt{2m+1}
+  \quad\Longrightarrow\quad m+\frac12>\alpha^2.$$
+  <p>
+    Así:
+  </p>
+  <ul>
+    <li>Si $m<\alpha^2$, el punto cae fuera de la región permitida y la
+    probabilidad es baja.</li>
+    <li>Si $m\simeq\alpha^2$, cae cerca del punto de retorno y aparece un
+    máximo.</li>
+    <li>Si $m>\alpha^2$, entra en la región oscilatoria de $u_m$, lo que
+    produce las oscilaciones en $W_m$.</li>
+  </ul>
+
+  <figure class="note-figure">
+    <img src="../../notas-doctorado/imgs/wm_apachurrado_s21_alpha7.png" alt="Distribución oscilatoria W_m para un estado apachurrado con s igual a 21 y alfa igual a 7.">
+    <figcaption>Distribución oscilatoria $W_m$ para un estado altamente apachurrado con $s=21$ y $\alpha=7$, como en el manuscrito.</figcaption>
+  </figure>
+
+  <h2 id="evolucion">11. Evolución temporal de la función de Wigner</h2>
+  <p>
+    La Wigner inicial, para $\alpha\in\mathbb R$, es
+  </p>
+  $$W(x,p,0)=\frac{1}{\pi\hbar}
+  \exp\left[-s(Kx-\sqrt2\alpha)^2-\frac{1}{s}
+  \left(\frac{p}{\hbar K}\right)^2\right].$$
+  <p>
+    Para el hamiltoniano armónico,
+  </p>
+  $$H=\frac{p^2}{2m}+\frac12m\omega^2x^2,$$
+  <p>
+    las ecuaciones de Hamilton son
+  </p>
+  $$\dot x=\frac{p}{m},\qquad \dot p=-m\omega^2x.$$
+  <p>
+    Por tanto $\ddot x=-\omega^2x$ y
+  </p>
+  $$x(t)=x_0\cos(\omega t)+\frac{p_0}{m\omega}\sin(\omega t),$$
+  $$p(t)=-m\omega x_0\sin(\omega t)+p_0\cos(\omega t).$$
+  <p>
+    Como $m\omega=\hbar K^2$,
+  </p>
+  $$x(t)=x_0\cos(\omega t)+\frac{p_0}{\hbar K^2}\sin(\omega t),$$
+  $$p(t)=-\hbar K^2x_0\sin(\omega t)+p_0\cos(\omega t).$$
+  <p>
+    Invirtiendo esta rotación,
+  </p>
+  $$x_0=x\cos(\omega t)-\frac{p}{\hbar K^2}\sin(\omega t),$$
+  $$p_0=p\cos(\omega t)+\hbar K^2x\sin(\omega t).$$
+  <p>
+    La Wigner evoluciona por composición con el flujo clásico,
+    $W(x,p,t)=W(x_0,p_0,0)$. Sustituyendo:
+  </p>
+  <div class="boxed result">
+    $$\boxed{W(x,p,t)=\frac{1}{\pi\hbar}
+    \exp\left\{
+    -s\left[\cos(\omega t)Kx-\sin(\omega t)\frac{p}{\hbar K}
+    -\sqrt2\alpha\right]^2
+    -\frac{1}{s}\left[\sin(\omega t)Kx+\cos(\omega t)\frac{p}{\hbar K}\right]^2
+    \right\}.}$$
+  </div>
+  <p>
+    La elipse de Wigner rota rígidamente en el espacio fase con frecuencia
+    $\omega$. Su área no cambia, pero la dirección apachurrada sí: en ciertos
+    tiempos el ruido reducido está principalmente en posición, y en otros en
+    momento.
+  </p>
+
+  <blockquote>
+    Los estados apachurrados son una herramienta central de metrología
+    cuántica. Reducen el ruido en la cuadratura que se desea medir y aumentan
+    el ruido en la conjugada, sin violar Heisenberg. Esta idea aparece en
+    interferometría, mediciones cuánticas no destructivas y detectores como
+    LIGO.
+  </blockquote>
+
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 4 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

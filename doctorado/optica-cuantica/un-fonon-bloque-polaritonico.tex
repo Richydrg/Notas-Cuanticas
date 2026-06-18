@@ -1,0 +1,637 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{braket}
+\usepackage{dsfont}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\emergencystretch=2em
+\allowdisplaybreaks
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\Id}{\mathds{1}}
+\newcommand{\Om}{\Omega_{99}^{\mathrm{ef}}}
+
+\title{Un fon\'on en un bloque polarit\'onico}
+\author{Ricardo Del Rosal Gardu\~no \\ \small Doctorado en F\'isica, BUAP}
+\date{Notas de doctorado}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\bigskip
+
+\section{Idea de la reducci\'on}
+
+En la nota de din\'amica del modelo HC se obtuvo la evoluci\'on general del
+hamiltoniano efectivo en el espacio desplazado. Para cada bloque \'optico
+$n>0$ y cada n\'umero efectivo polarit\'on-fon\'on $m>0$, el hamiltoniano
+conecta \'unicamente los dos estados
+\begin{equation}
+  \ket{+,n,m-1},
+  \qquad
+  \ket{-,n,m}.
+\end{equation}
+Esto ocurre porque el t\'ermino de interacci\'on efectivo
+\begin{equation}
+  -\frac{\hbar\nu\lambda}{2}
+  \left(
+  \hat b\hat S^{(n)\dagger}
+  +
+  \hat b^\dagger\hat S^{(n)}
+  \right)
+\end{equation}
+destruye un fon\'on y sube el polarit\'on, o crea un fon\'on y baja el
+polarit\'on. En ambos procesos se conserva
+\begin{equation}
+  \boxed{
+  \hat M^{(n)}
+  =
+  \hat b^\dagger\hat b+\hat S^{(n)\dagger}\hat S^{(n)}.
+  }
+\end{equation}
+
+La diferencia con la nota anterior es que ahora no se considera una
+distribuci\'on coherente de muchos fonones. Se toma un \'unico estado de
+n\'umero fon\'onico y, por tanto, el sistema queda dentro de un solo doblete.
+El manuscrito elige
+\begin{equation}
+  \boxed{
+  n=9,
+  \qquad
+  m=9.
+  }
+\end{equation}
+As\'i, el subespacio din\'amico relevante es
+\begin{equation}
+  \boxed{
+  \mathcal H_{99}
+  =
+  \operatorname{span}
+  \left\{
+  \ket{+,9,8},
+  \ket{-,9,9}
+  \right\}.
+  }
+\end{equation}
+La primera etiqueta despu\'es del signo polarit\'onico es el bloque \'optico
+$n=9$. La \'ultima etiqueta es el n\'umero de fonones. El estado
+$\ket{+,9,8}$ tiene el polarit\'on superior y ocho fonones; el estado
+$\ket{-,9,9}$ tiene el polarit\'on inferior y nueve fonones. Ambos tienen
+$M^{(9)}=9$.
+
+\section{Estado inicial dentro del doblete}
+
+La forma general de un doblete $(n,m)$ es
+\begin{equation}
+  \ket{\psi_{nm}(0)}
+  =
+  a_{nm}\ket{+,n,m-1}
+  +
+  b_{nm}\ket{-,n,m},
+\end{equation}
+con
+\begin{equation}
+  \boxed{
+  a_{nm}=\tilde c_{m-1}d_n^+,
+  \qquad
+  b_{nm}=\tilde c_md_n^-.
+  }
+\end{equation}
+Los coeficientes $\tilde c_m$ vienen del estado vibracional desplazado y los
+coeficientes $d_n^\pm$ vienen de la descomposici\'on polarit\'onica del estado
+\'optico-electr\'onico inicial.
+
+Para el bloque elegido,
+\begin{equation}
+  \boxed{
+  \ket{\psi_{99}(0)}
+  =
+  a_{99}\ket{+,9,8}
+  +
+  b_{99}\ket{-,9,9}.
+  }
+\end{equation}
+El manuscrito toma como estado inicial preparado el estado inferior del
+doblete:
+\begin{equation}
+  \boxed{
+  \ket{\psi_{99}(0)}=\ket{-,9,9}.
+  }
+\end{equation}
+Esto equivale a fijar
+\begin{equation}
+  \boxed{
+  a_{99}=0,
+  \qquad
+  b_{99}=1.
+  }
+\end{equation}
+F\'isicamente, el sistema comienza con el polarit\'on inferior y con nueve
+fonones. La \'unica transici\'on permitida por el hamiltoniano efectivo es
+hacia $\ket{+,9,8}$, porque subir el polarit\'on consume un fon\'on.
+
+\section{Par\'ametros del doblete}
+
+Para un doblete general, la matriz efectiva tiene la forma
+\begin{equation}
+  \tilde H_{\mathrm{ef}}^{(n,m)}
+  =
+  \hbar A_{nm}\Id_{2\times2}
+  +
+  \frac{\hbar}{2}
+  \begin{pmatrix}
+  \delta_n & -k_m\\
+  -k_m & -\delta_n
+  \end{pmatrix},
+\end{equation}
+donde
+\begin{equation}
+  A_{nm}
+  =
+  \Omega n+\frac{\nu\lambda^2}{4}
+  +
+  \nu\left(m-\frac12\right),
+\end{equation}
+\begin{equation}
+  \delta_n=2g\sqrt n-\nu,
+  \qquad
+  k_m=\nu\lambda\sqrt m.
+\end{equation}
+La frecuencia de Rabi efectiva del doblete es
+\begin{equation}
+  \Omega_{nm}^{\mathrm{ef}}
+  =
+  \sqrt{\delta_n^2+k_m^2}.
+\end{equation}
+
+Al sustituir $n=9$ y $m=9$ se obtiene
+\begin{equation}
+  \boxed{
+  A_{99}
+  =
+  9\Omega+\frac{\nu\lambda^2}{4}
+  +
+  \frac{17}{2}\nu.
+  }
+\end{equation}
+La desintonizaci\'on polarit\'on-fon\'on queda
+\begin{equation}
+  \boxed{
+  \delta_9
+  =
+  2g\sqrt9-\nu
+  =
+  6g-\nu.
+  }
+\end{equation}
+El acoplamiento del doblete es
+\begin{equation}
+  \boxed{
+  k_9
+  =
+  \nu\lambda\sqrt9
+  =
+  3\nu\lambda.
+  }
+\end{equation}
+En las gr\'aficas se usa con frecuencia el par\'ametro
+\begin{equation}
+  \boxed{
+  \eta=\nu\lambda,
+  \qquad
+  k_9=3\eta.
+  }
+\end{equation}
+Con esta notaci\'on, la frecuencia efectiva es
+\begin{equation}
+  \boxed{
+  \Omega_{99}^{\mathrm{ef}}
+  =
+  \sqrt{(6g-\nu)^2+9\nu^2\lambda^2}
+  =
+  \sqrt{(6g-\nu)^2+9\eta^2}.
+  }
+\end{equation}
+
+La condici\'on de resonancia del bloque $n=9$ es
+\begin{equation}
+  \boxed{
+  \delta_9=0
+  \qquad\Longleftrightarrow\qquad
+  \nu=6g.
+  }
+\end{equation}
+Si $\nu$ se aleja de $6g$, la transferencia entre las dos ramas ya no es
+completa: la oscilaci\'on conserva la misma frecuencia efectiva, pero su
+amplitud se reduce por el factor $k_9/\Omega_{99}^{\mathrm{ef}}$.
+
+\section{Evoluci\'on temporal}
+
+La soluci\'on general en el doblete es
+\begin{equation}
+  \ket{\psi_{99}(t)}
+  =
+  p_{99}^{+}(t)\ket{+,9,8}
+  +
+  p_{99}^{-}(t)\ket{-,9,9}.
+\end{equation}
+De la soluci\'on exacta de la nota de din\'amica,
+\begin{align}
+  p_{nm}^{+}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \left[
+  \left(
+  \cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  -
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)a_{nm}
+  \right.
+  \notag\\
+  &\hspace{3.2cm}
+  \left.
+  +
+  \ii\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  b_{nm}
+  \right],
+  \\
+  p_{nm}^{-}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \left[
+  \ii\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  a_{nm}
+  \right.
+  \notag\\
+  &\hspace{3.2cm}
+  \left.
+  +
+  \left(
+  \cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  +
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)b_{nm}
+  \right].
+\end{align}
+Como en este caso $a_{99}=0$ y $b_{99}=1$, queda
+\begin{equation}
+  \boxed{
+  p_{99}^{+}(t)
+  =
+  \ee^{-\ii A_{99}t}
+  \ii\frac{k_9}{\Omega_{99}^{\mathrm{ef}}}
+  \sin\!\left(
+  \frac{\Omega_{99}^{\mathrm{ef}}t}{2}
+  \right).
+  }
+\end{equation}
+La amplitud de permanecer en la rama inferior es
+\begin{equation}
+  \boxed{
+  p_{99}^{-}(t)
+  =
+  \ee^{-\ii A_{99}t}
+  \left[
+  \cos\!\left(
+  \frac{\Omega_{99}^{\mathrm{ef}}t}{2}
+  \right)
+  +
+  \ii\frac{\delta_9}{\Omega_{99}^{\mathrm{ef}}}
+  \sin\!\left(
+  \frac{\Omega_{99}^{\mathrm{ef}}t}{2}
+  \right)
+  \right].
+  }
+\end{equation}
+El factor $\ee^{-\ii A_{99}t}$ es una fase com\'un. No afecta las
+probabilidades, pero s\'i forma parte del estado vectorial completo.
+
+\section{Probabilidades de las ramas polarit\'onicas}
+
+La probabilidad de encontrar el sistema en la rama superior es
+\begin{align}
+  P_+(t)
+  &=
+  |p_{99}^{+}(t)|^2
+  \notag\\
+  &=
+  \left|
+  \ee^{-\ii A_{99}t}
+  \ii\frac{k_9}{\Omega_{99}^{\mathrm{ef}}}
+  \sin\!\left(
+  \frac{\Omega_{99}^{\mathrm{ef}}t}{2}
+  \right)
+  \right|^2.
+\end{align}
+La fase global y el factor $\ii$ tienen m\'odulo uno. Por tanto,
+\begin{equation}
+  \boxed{
+  P_+(t)
+  =
+  \left(
+  \frac{k_9}{\Omega_{99}^{\mathrm{ef}}}
+  \right)^2
+  \sin^2\!\left(
+  \frac{\Omega_{99}^{\mathrm{ef}}t}{2}
+  \right).
+  }
+\end{equation}
+
+Para la rama inferior,
+\begin{align}
+  P_-(t)
+  &=
+  |p_{99}^{-}(t)|^2
+  \notag\\
+  &=
+  \left|
+  \cos\!\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right)
+  +
+  \ii
+  \frac{\delta_9}{\Omega_{99}^{\mathrm{ef}}}
+  \sin\!\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right)
+  \right|^2.
+\end{align}
+El primer t\'ermino es real y el segundo es puramente imaginario, de modo que
+no aparece t\'ermino cruzado:
+\begin{equation}
+  P_-(t)
+  =
+  \cos^2\!\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right)
+  +
+  \left(
+  \frac{\delta_9}{\Omega_{99}^{\mathrm{ef}}}
+  \right)^2
+  \sin^2\!\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right).
+\end{equation}
+Como
+\begin{equation}
+  (\Omega_{99}^{\mathrm{ef}})^2=\delta_9^2+k_9^2,
+\end{equation}
+se tiene
+\begin{equation}
+  \frac{\delta_9^2}{(\Omega_{99}^{\mathrm{ef}})^2}
+  =
+  1-
+  \frac{k_9^2}{(\Omega_{99}^{\mathrm{ef}})^2}.
+\end{equation}
+Sustituyendo,
+\begin{equation}
+  \boxed{
+  P_-(t)
+  =
+  1-
+  \left(
+  \frac{k_9}{\Omega_{99}^{\mathrm{ef}}}
+  \right)^2
+  \sin^2\!\left(
+  \frac{\Omega_{99}^{\mathrm{ef}}t}{2}
+  \right).
+  }
+\end{equation}
+Esto confirma que $P_+(t)+P_-(t)=1$ dentro del doblete. No hay p\'erdida de
+probabilidad porque se est\'a resolviendo un subespacio cerrado del
+hamiltoniano efectivo.
+
+\section{Inversi\'on polarit\'onica}
+
+La inversi\'on polarit\'onica mide si el sistema se encuentra preferentemente
+en la rama superior o en la inferior. Para el bloque $n=9$ se define
+\begin{equation}
+  \boxed{
+  \mathcal W(t)
+  =
+  \bra{\psi_{99}(t)}
+  \hat S_z^{(9)}
+  \ket{\psi_{99}(t)}.
+  }
+\end{equation}
+El operador $\hat S_z^{(9)}$ act\'ua como
+\begin{equation}
+  \hat S_z^{(9)}\ket{+,9}=+\ket{+,9},
+  \qquad
+  \hat S_z^{(9)}\ket{-,9}=-\ket{-,9}.
+\end{equation}
+Los estados vibracionales $\ket8$ y $\ket9$ son ortogonales, de modo que los
+t\'erminos cruzados desaparecen. Entonces
+\begin{align}
+  \mathcal W(t)
+  &=
+  |p_{99}^{+}(t)|^2
+  -
+  |p_{99}^{-}(t)|^2
+  \notag\\
+  &=
+  P_+(t)-P_-(t).
+\end{align}
+Usando las probabilidades anteriores,
+\begin{equation}
+  \boxed{
+  \mathcal W(t)
+  =
+  -1+
+  2
+  \left(
+  \frac{k_9}{\Omega_{99}^{\mathrm{ef}}}
+  \right)^2
+  \sin^2\!\left(
+  \frac{\Omega_{99}^{\mathrm{ef}}t}{2}
+  \right).
+  }
+\end{equation}
+Al inicio, $\mathcal W(0)=-1$, porque el sistema fue preparado en
+$\ket{-,9,9}$. Si la transferencia es completa, la inversi\'on puede alcanzar
+$+1$, lo que corresponde al estado $\ket{+,9,8}$.
+
+\subsection{Caso resonante}
+
+En resonancia $\delta_9=0$, por lo que
+\begin{equation}
+  \Omega_{99}^{\mathrm{ef}}=|k_9|.
+\end{equation}
+La inversi\'on se simplifica a
+\begin{equation}
+  \mathcal W_R(t)
+  =
+  -1+2\sin^2\!\left(\frac{k_9t}{2}\right).
+\end{equation}
+Usando la identidad
+\begin{equation}
+  1-2\sin^2\left(\frac{x}{2}\right)=\cos x,
+\end{equation}
+se obtiene
+\begin{equation}
+  \boxed{
+  \mathcal W_R(t)
+  =
+  -\cos(k_9t).
+  }
+\end{equation}
+Esta expresi\'on muestra una oscilaci\'on completa entre $-1$ y $+1$. La
+frecuencia est\'a fijada por $k_9=3\eta$. Si $\eta=0.01g$, entonces
+$k_9=0.03g$.
+
+\section{Inversi\'on electr\'onica}
+
+La inversi\'on electr\'onica se define como
+\begin{equation}
+  W(t)
+  =
+  \bra{\psi_{99}(t)}
+  \hat\sigma_z
+  \ket{\psi_{99}(t)}.
+\end{equation}
+Aunque el sistema oscila entre dos ramas polarit\'onicas, cada polarit\'on
+contiene la misma cantidad de poblaci\'on electr\'onica excitada y base. En el
+bloque $n=9$,
+\begin{equation}
+  \ket{+,9}
+  =
+  \frac{\ket{e,8}+\ket{g,9}}{\sqrt2},
+  \qquad
+  \ket{-,9}
+  =
+  \frac{\ket{e,8}-\ket{g,9}}{\sqrt2}.
+\end{equation}
+Para cada una de estas ramas,
+\begin{equation}
+  \bra{+,9}\hat\sigma_z\ket{+,9}=0,
+  \qquad
+  \bra{-,9}\hat\sigma_z\ket{-,9}=0.
+\end{equation}
+En principio, $\hat\sigma_z$ tiene elementos cruzados entre $\ket{+,9}$ y
+$\ket{-,9}$. Sin embargo, en el estado del doblete esos polaritones est\'an
+acompa\~nados por estados fon\'onicos distintos:
+\begin{equation}
+  \ket{+,9,8},
+  \qquad
+  \ket{-,9,9}.
+\end{equation}
+Como $\braket{8|9}=0$, los t\'erminos cruzados no contribuyen. Por tanto,
+\begin{equation}
+  \boxed{
+  W(t)=0.
+  }
+\end{equation}
+La lectura f\'isica es importante: hay intercambio polarit\'on-fon\'on, pero no
+aparece inversi\'on electr\'onica neta. El movimiento ocurre entre ramas
+vestidas que, vistas electr\'onicamente, tienen poblaciones balanceadas.
+
+\clearpage
+\section{Gr\'aficas}
+
+En esta secci\'on se incluyen las gr\'aficas asociadas a la din\'amica de un
+fon\'on en un bloque polarit\'onico. En las comparaciones se contrasta la
+evoluci\'on generada por el hamiltoniano HC completo con la soluci\'on
+anal\'itica del hamiltoniano efectivo. Se usa $\eta=0.01g$ y se toma el bloque
+$n=9$ como referencia resonante, para el cual $\nu=6g$.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Un fonon en bloque polaritonico/InversionPolaritonica.png}}
+  \caption{Inversi\'on polarit\'onica calculada a partir del resultado
+  anal\'itico del hamiltoniano efectivo con $\eta=0.01g$ y $\nu=5.99g$. Al estar
+  muy cerca de la resonancia del bloque $n=9$, la oscilaci\'on conserva una
+  amplitud grande, aunque la desintonizaci\'on evita que el caso sea
+  exactamente resonante.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Un fonon en bloque polaritonico/Comparacion-IP-R.png}}
+  \caption{Comparaci\'on de la inversi\'on polarit\'onica entre la soluci\'on
+  num\'erica del hamiltoniano HC completo y la soluci\'on anal\'itica del
+  hamiltoniano efectivo en el caso resonante. Para $\eta=0.01g$, las curvas se
+  superponen dentro de la escala de la figura, lo que indica que el modelo
+  efectivo captura correctamente la oscilaci\'on polarit\'on-fon\'on.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Un fonon en bloque polaritonico/Comparacion-IE.png}}
+  \caption{Comparaci\'on de la inversi\'on electr\'onica. El resultado
+  anal\'itico del hamiltoniano efectivo predice $W(t)=0$. La soluci\'on
+  num\'erica del hamiltoniano completo reproduce ese comportamiento tanto en
+  resonancia como fuera de resonancia, porque las ramas polarit\'onicas tienen
+  poblaci\'on electr\'onica balanceada.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Un fonon en bloque polaritonico/Comparacion-IP-NR1.png}}
+  \caption{Comparaci\'on de la inversi\'on polarit\'onica en un caso no
+  resonante con $\eta=0.01g$ y $\nu=5.9g$. Para el bloque $n=9$, esta frecuencia
+  produce $\delta_9=6g-\nu=0.1g$, de modo que la amplitud de transferencia se
+  reduce por el factor $k_9/\Omega_{99}^{\mathrm{ef}}$.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Un fonon en bloque polaritonico/Comparacion-IP-NR2.png}}
+  \caption{Comparaci\'on de la inversi\'on polarit\'onica para un caso no
+  resonante construido de otra manera. Se mantiene $\nu=6g$, que resonar\'ia
+  con el bloque $n=9$, pero se mide el bloque $n=10$. Como la resonancia de
+  ese bloque requerir\'ia $\nu=2g\sqrt{10}$, la din\'amica observada queda
+  desintonizada.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Un fonon en bloque polaritonico/Fidelidad-R.png}}
+  \caption{Fidelidad entre los estados evolucionados con el hamiltoniano HC
+  completo y con el hamiltoniano efectivo en el caso resonante
+  $(\eta=0.01g,\nu=6g)$. La fidelidad permanece muy cercana a uno, lo que
+  muestra que los t\'erminos descartados en la reducci\'on efectiva tienen un
+  efecto peque\~no en esta escala de tiempo.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Un fonon en bloque polaritonico/Fidelidad-NR1.png}}
+  \caption{Fidelidad para el caso no resonante con $\nu=5.9g$. La comparaci\'on
+  cuantifica qu\'e tan cerca permanece la evoluci\'on efectiva de la evoluci\'on
+  completa cuando el doblete $n=9,m=9$ ya no est\'a en resonancia exacta.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Un fonon en bloque polaritonico/Fidelidad-NR2.png}}
+  \caption{Fidelidad para el caso no resonante donde se mantiene $\nu=6g$ pero
+  se observa el bloque $n=10$. Este caso separa la idea de resonancia global de
+  la resonancia por bloque: la frecuencia fon\'onica puede estar ajustada a un
+  bloque y, al mismo tiempo, estar fuera de resonancia para otro.}
+\end{figure}
+
+\section{Lectura f\'isica}
+
+El caso de un solo fon\'on en un bloque polarit\'onico deja ver la estructura
+m\'as simple de la din\'amica efectiva. No hay suma sobre muchos valores de
+$m$, no hay colapso por de-fasaje entre frecuencias distintas y no aparece una
+distribuci\'on fon\'onica extendida. Todo se reduce a una oscilaci\'on entre
+dos estados:
+\begin{equation}
+  \ket{-,9,9}
+  \longleftrightarrow
+  \ket{+,9,8}.
+\end{equation}
+En resonancia, la transferencia puede ser completa. Fuera de resonancia, la
+frecuencia efectiva aumenta, pero la amplitud de transferencia disminuye.
+La inversi\'on polarit\'onica detecta directamente esa oscilaci\'on. La
+inversi\'on electr\'onica, en cambio, permanece nula porque cada polarit\'on
+tiene igual peso de estado electr\'onico excitado y base, y los t\'erminos de
+coherencia electr\'onica quedan acompa\~nados por estados fon\'onicos
+ortogonales.
+
+\end{document}

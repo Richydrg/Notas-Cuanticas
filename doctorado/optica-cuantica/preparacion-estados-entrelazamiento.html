@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preparación de estados y entrelazamiento · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams',
+    macros: {
+      Real: '\\operatorname{Re}',
+      Imag: '\\operatorname{Im}'
+    }
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Preparación de estados y entrelazamiento
+</div>
+
+<div class="container">
+<article class="note">
+
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="20" cy="32" r="10" fill="#fff3d8" stroke="#f3c623" stroke-width="2"/>
+      <circle cx="20" cy="32" r="3" fill="#2a2a2a"/>
+      <path d="M32 32 C38 18 48 18 54 30" stroke="#d4453a" stroke-width="2.5" fill="none"/>
+      <path d="M32 32 C38 46 48 46 54 34" stroke="#2b5fb3" stroke-width="2.5" fill="none"/>
+      <path d="M30 24 C38 28 45 28 56 22" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M30 40 C38 36 45 36 56 42" stroke="#6b48a6" stroke-width="2" fill="none"/>
+    </svg>
+    <h1>Preparación de estados y entrelazamiento</h1>
+    <div class="author">Schleich · Quantum Optics in Phase Space</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Preparacio%CC%81n%20de%20Estados%20y%20Entrelazamiento.pdf" target="_blank">📄 PDF original</a>
+      <a href="preparacion-estados-entrelazamiento.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="preparacion-estados-entrelazamiento.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#idea">Idea física</a></li>
+      <li><a href="#medicion-conjunta">Medición conjunta átomo-campo</a></li>
+      <li><a href="#medicion-atomo">Medición del estado interno del átomo</a></li>
+      <li><a href="#medicion-campo">Medición del estado del campo</a></li>
+      <li><a href="#postmedicion">Estados condicionales tras la medición</a></li>
+      <li><a href="#setup">Medición experimental del átomo</a></li>
+      <li><a href="#inversion">Inversión atómica, colapsos y revivals</a></li>
+      <li><a href="#husimi">Función Q de Husimi del campo</a></li>
+      <li><a href="#gatos">Preparación de superposiciones coherentes</a></li>
+      <li><a href="#ingenieria">Ingeniería de estados finitos de Fock</a></li>
+    </ol>
+  </div>
+
+  <h2 id="idea">1. Idea física</h2>
+  <p>
+    Después de la interacción de Jaynes-Cummings-Paul, el estado del átomo y el
+    estado del campo ya no tienen por qué factorizarse. En general no existe
+    una escritura de la forma
+  </p>
+  $$\ket{\psi(t)}=\ket{\psi_{\text{at}}(t)}\otimes\ket{\psi_{\text{c}}(t)}.$$
+  <p>
+    Cuando esto ocurre, el átomo y el campo están entrelazados. La información
+    sobre el campo queda parcialmente escrita en los grados de libertad internos
+    del átomo, y la información sobre el átomo queda parcialmente escrita en el
+    campo. Por eso, midiendo el átomo se puede obtener información del campo de
+    radiación. Más aún, si después de la interacción se selecciona únicamente
+    cierto resultado atómico, la medición no solo observa el campo: también lo
+    prepara. Esta es la idea básica de la ingeniería de estados cuánticos.
+  </p>
+  <p>
+    Se toma como punto de partida el ansatz general
+  </p>
+  $$\ket{\psi(t)}=\sum_{n=0}^{\infty}\left(\psi_{a,n}(t)\ket{a,n}+\psi_{b,n}(t)\ket{b,n}\right),$$
+  <p>
+    donde $\ket{a}$ es el estado atómico excitado, $\ket{b}$ el estado base y
+    $\ket{n}$ el estado de Fock del campo. Todas las probabilidades de medición
+    se obtienen proyectando este vector sobre el estado de referencia adecuado.
+  </p>
+
+  <h2 id="medicion-conjunta">2. Medición conjunta átomo-campo</h2>
+  <p>
+    Se prepara inicialmente el átomo en un estado $\ket{\psi_{\text{at}}(0)}$
+    y el campo en $\ket{\psi_{\text{c}}(0)}$. Después se dejan interactuar
+    durante un tiempo $t$. Al final se pregunta si el átomo se encuentra en un
+    estado de referencia $\ket{F_{\text{at}}}$ y si el campo se encuentra en un
+    estado de referencia $\ket{F_{\text{c}}}$. Cuando ambos subsistemas se
+    encuentran en sus estados de referencia, el evento se acepta; si no, se
+    descarta.
+  </p>
+  <p>
+    La mecánica cuántica no predice un resultado individual con certeza. Lo que
+    predice es la probabilidad de obtener ese resultado. Para una medición
+    conjunta, la amplitud de probabilidad es
+  </p>
+  $$A(t;F_{\text{at}},F_{\text{c}})=\bra{F_{\text{c}}}\bra{F_{\text{at}}}\psi(t)\rangle,$$
+  <p>
+    y la probabilidad asociada es
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;W(t;F_{\text{at}},F_{\text{c}})=
+    \left|\bra{F_{\text{c}}}\bra{F_{\text{at}}}\psi(t)\rangle\right|^2.\;}$$
+  </div>
+  <p>
+    Sustituyendo el ansatz,
+  </p>
+  $$A(t;F_{\text{at}},F_{\text{c}})=
+  \sum_{n=0}^{\infty}
+  \left[
+  \psi_{a,n}(t)\braket{F_{\text{at}}|a}\braket{F_{\text{c}}|n}
+  +
+  \psi_{b,n}(t)\braket{F_{\text{at}}|b}\braket{F_{\text{c}}|n}
+  \right].$$
+  <p>
+    Es importante que primero se suman amplitudes y solamente después se toma
+    el módulo cuadrado. Por tanto, si el estado de referencia del campo tiene
+    superposición de varios números de fotones, las contribuciones con distintos
+    $n$ interfieren entre sí. Esta interferencia no es un detalle algebraico:
+    es la señal de que la medición conjunta conserva información de fase entre
+    los distintos caminos cuánticos que llevan al mismo resultado final.
+  </p>
+
+  <h2 id="medicion-atomo">3. Medición del estado interno del átomo</h2>
+  <p>
+    Si únicamente se mide el estado interno del átomo y no se observa en qué
+    estado quedó el campo, entonces el campo debe tratarse como grado de
+    libertad no observado. Matemáticamente esto significa sumar sobre una base
+    completa del campo. Usando la base de Fock,
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;W(t;F_{\text{at}})=
+    \sum_{n=0}^{\infty}
+    \left|\bra{n}\bra{F_{\text{at}}}\psi(t)\rangle\right|^2.\;}$$
+  </div>
+  <p>
+    Si el estado de referencia atómico es
+  </p>
+  $$\ket{F_{\text{at}}}=f_a\ket{a}+f_b\ket{b},$$
+  <p>
+    entonces
+  </p>
+  $$\bra{n}\bra{F_{\text{at}}}\psi(t)\rangle=
+  f_a^*\,\psi_{a,n}(t)+f_b^*\,\psi_{b,n}(t),$$
+  <p>
+    y, por tanto,
+  </p>
+  $$W(t;F_{\text{at}})=
+  \sum_{n=0}^{\infty}
+  \left|f_a^*\,\psi_{a,n}(t)+f_b^*\,\psi_{b,n}(t)\right|^2.$$
+  <p>
+    Para los dos estados internos de la base atómica se recuperan las
+    poblaciones usuales:
+  </p>
+  $$W(t;a)=\sum_{n=0}^{\infty}|\psi_{a,n}(t)|^2,\qquad
+  W(t;b)=\sum_{n=0}^{\infty}|\psi_{b,n}(t)|^2.$$
+  <p>
+    La diferencia con la medición conjunta es conceptual. En la medición
+    conjunta se proyecta también el campo sobre un estado definido y sobreviven
+    interferencias entre diferentes números de fotones. En la medición atómica
+    marginal, en cambio, se suma incoherentemente sobre los estados del campo:
+    cada valor de $n$ contribuye con una probabilidad, no con una amplitud
+    común con los demás valores de $n$.
+  </p>
+  <p>
+    Esto se ve al expandir el módulo cuadrado. Para cada $n$ aparecen términos
+    diagonales,
+  </p>
+  $$|f_a|^2|\psi_{a,n}|^2+|f_b|^2|\psi_{b,n}|^2,$$
+  <p>
+    que son reales y no negativos, y términos cruzados,
+  </p>
+  $$f_a^*f_b\,\psi_{a,n}\psi_{b,n}^*
+  +f_b^*f_a\,\psi_{b,n}\psi_{a,n}^*,$$
+  <p>
+    que dependen de la fase relativa entre las amplitudes atómicas. Esos
+    términos cruzados pueden sumar o restar y son los responsables de la
+    interferencia cuando el estado de referencia atómico es una superposición.
+  </p>
+
+  <h2 id="medicion-campo">4. Medición del estado del campo</h2>
+  <p>
+    Si se mide el campo en un estado $\ket{F_{\text{c}}}$ y no se observa el
+    estado atómico, entonces se traza sobre los dos estados internos del átomo:
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;W(t;F_{\text{c}})=
+    \sum_{s=a,b}
+    \left|\bra{F_{\text{c}}}\bra{s}\psi(t)\rangle\right|^2.\;}$$
+  </div>
+  <p>
+    En términos de probabilidades conjuntas, esta probabilidad marginal se
+    escribe como
+  </p>
+  $$W(t;F_{\text{c}})=W(t;a,F_{\text{c}})+W(t;b,F_{\text{c}}).$$
+  <p>
+    La suma es incoherente entre los resultados atómicos $a$ y $b$ porque esos
+    resultados son distinguibles. Si no se lee el átomo, pero en principio el
+    estado atómico contiene información sobre el camino seguido por el sistema,
+    esa información reduce las interferencias visibles en el campo reducido.
+  </p>
+
+  <h2 id="postmedicion">5. Estados condicionales tras la medición</h2>
+  <p>
+    Las expresiones anteriores dan probabilidades. El siguiente paso consiste
+    en preguntar cuál es el estado de un subsistema después de medir el otro.
+    Si se detecta el átomo en el estado $\ket{F_{\text{at}}}$, el estado del
+    campo se obtiene proyectando el estado total sobre ese estado atómico:
+  </p>
+  $$\ket{\tilde\psi_{\text{c}}(t;F_{\text{at}})}=\bra{F_{\text{at}}}\psi(t)\rangle.$$
+  <p>
+    La tilde recuerda que este vector no está normalizado. Su norma cuadrada es
+    precisamente la probabilidad de obtener el resultado atómico:
+  </p>
+  $$\braket{\tilde\psi_{\text{c}}|\tilde\psi_{\text{c}}}=
+  W(t;F_{\text{at}}).$$
+  <p>
+    Por tanto, el estado normalizado del campo condicionado a esa detección es
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\ket{\psi_{\text{c}}(t;F_{\text{at}})}=
+    \frac{\bra{F_{\text{at}}}\psi(t)\rangle}
+    {\sqrt{W(t;F_{\text{at}})}}.\;}$$
+  </div>
+  <p>
+    El significado físico es directo: este estado del campo solo aparece en las
+    corridas donde el átomo fue encontrado en $\ket{F_{\text{at}}}$. Como ese
+    evento ocurre con probabilidad $W(t;F_{\text{at}})$, la normalización debe
+    hacerse con esa misma probabilidad.
+  </p>
+  <p>
+    De forma completamente análoga, si se mide el campo en
+    $\ket{F_{\text{c}}}$, el estado atómico condicionado queda
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\ket{\psi_{\text{at}}(t;F_{\text{c}})}=
+    \frac{\bra{F_{\text{c}}}\psi(t)\rangle}
+    {\sqrt{W(t;F_{\text{c}})}}.\;}$$
+  </div>
+
+  <h2 id="setup">6. Medición experimental del átomo</h2>
+  <h3>6.1. Medición de poblaciones por ionización</h3>
+  <p>
+    Para medir si el átomo salió en $\ket{a}$ o en $\ket{b}$ se usa
+    típicamente ionización selectiva por campo eléctrico. Se aplica un campo
+    externo en la dirección $z$,
+  </p>
+  $$\mathbf E=E_0\,\hat{\mathbf z},$$
+  <p>
+    de modo que la energía potencial asociada al dipolo en el campo externo es
+  </p>
+  $$V_E(z)=-\mathbf d\cdot\mathbf E.$$
+  <p>
+    Para un electrón ligado, esta contribución inclina el potencial Coulombiano.
+    De manera esquemática,
+  </p>
+  $$V_{\text{tot}}(z)=V_C(z)+V_E(z)
+  \simeq -\frac{e^2}{4\pi\epsilon_0|z|}-eE_0 z,$$
+  <p>
+    con el signo efectivo fijado por la dirección del campo y la carga del
+    electrón. Al aumentar $E_0$, la barrera de potencial se reduce. Un estado
+    de Rydberg con energía más alta puede tunelar e ionizarse para un campo más
+    débil que un estado más ligado. Así, si los niveles $\ket{a}$ y $\ket{b}$
+    tienen umbrales de ionización distintos, se incrementa el campo eléctrico
+    en el tiempo y se observa la corriente de ionización $I(t)$.
+  </p>
+  <p>
+    La posición temporal de los máximos de $I(t)$ indica qué nivel se ionizó, y
+    el área bajo cada máximo da información sobre la población correspondiente.
+    De esta forma se miden directamente las probabilidades $W(t;a)$ y
+    $W(t;b)$.
+  </p>
+
+  <h3>6.2. Proyección sobre superposiciones atómicas</h3>
+  <p>
+    La ionización selectiva mide poblaciones en la base $\{\ket{a},\ket{b}\}$.
+    Para medir una superposición arbitraria,
+  </p>
+  $$\ket{F_{\text{at}}}=\epsilon_a\ket{a}+\epsilon_b\ket{b},$$
+  <p>
+    se antepone un pulso clásico resonante que rota el estado atómico antes de
+    la ionización. Si el estado atómico antes del pulso es
+  </p>
+  $$\ket{\psi_{\text{at}}}=C_a\ket{a}+C_b\ket{b},$$
+  <p>
+    un pulso resonante con fase adecuada produce una transformación del tipo
+  </p>
+  $$C_a'=\cos(\Omega t)C_a-i e^{-i\varphi}\sin(\Omega t)C_b,$$
+  $$C_b'=\cos(\Omega t)C_b-i e^{i\varphi}\sin(\Omega t)C_a,$$
+  <p>
+    donde $\Omega$ es la frecuencia clásica de Rabi. Al elegir el área del
+    pulso $\Omega t$ y la fase $\varphi$, se puede hacer que la amplitud
+    $C_a'$ sea proporcional a la proyección
+    $\braket{F_{\text{at}}|\psi_{\text{at}}}$. Luego basta medir la población
+    en $\ket{a}$ por ionización. Así se implementa experimentalmente una
+    proyección sobre el estado de referencia $\ket{F_{\text{at}}}$.
+  </p>
+
+  <h2 id="inversion">7. Inversión atómica, colapsos y revivals</h2>
+  <p>
+    La inversión atómica se define como la diferencia entre la probabilidad de
+    encontrar el átomo excitado y la probabilidad de encontrarlo en el estado
+    base:
+  </p>
+  <div class="boxed def">
+    $$\boxed{\;I(t)=W(t;a)-W(t;b)
+    =\sum_{n=0}^{\infty}\left(|\psi_{a,n}(t)|^2-|\psi_{b,n}(t)|^2\right).\;}$$
+  </div>
+  <p>
+    Si $I(t)>0$, es más probable hallar el átomo excitado. Para un ensamble,
+    esto significa que hay más átomos en $\ket{a}$ que en $\ket{b}$. Si
+    $I(t)<0$, domina la población del estado base.
+  </p>
+  <p>
+    Se considera ahora el caso resonante con el átomo inicialmente en el estado
+    base y el campo inicialmente en
+  </p>
+  $$\ket{\psi_{\text{c}}(0)}=\sum_{n=0}^{\infty}W_n\ket{n}.$$
+  <p>
+    En cada sector de número de fotones, el modelo de Jaynes-Cummings-Paul da
+  </p>
+  $$\ket{b,n}\longrightarrow
+  \cos(gt\sqrt{n})\ket{b,n}
+  -i\sin(gt\sqrt{n})\ket{a,n-1},$$
+  <p>
+    con el término $\ket{a,-1}$ ausente para $n=0$. Por tanto,
+  </p>
+  $$P_a(t)=\sum_{n=0}^{\infty}|W_n|^2\sin^2(gt\sqrt{n}),\qquad
+  P_b(t)=\sum_{n=0}^{\infty}|W_n|^2\cos^2(gt\sqrt{n}).$$
+  <p>
+    Definiendo $P_n=|W_n|^2$, la inversión queda
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;I(t)=\sum_{n=0}^{\infty}P_n
+    \left[\sin^2(gt\sqrt{n})-\cos^2(gt\sqrt{n})\right]
+    =-\sum_{n=0}^{\infty}P_n\cos(2gt\sqrt{n}).\;}$$
+  </div>
+  <p>
+    Si el campo es coherente con número medio de fotones $\bar n$, entonces
+  </p>
+  $$P_n=e^{-\bar n}\frac{\bar n^n}{n!}.$$
+  <p>
+    Como el paquete de Poisson está centrado alrededor de $\bar n$, la inversión
+    es una suma de oscilaciones con frecuencias $2g\sqrt{n}$. Al inicio esas
+    oscilaciones están aproximadamente en fase, pero después se desincronizan:
+    aparece el colapso. Más tarde, las fases de sectores vecinos vuelven a
+    alinearse aproximadamente y aparece un revival.
+  </p>
+  <figure class="note-figure">
+    <img src="../../notas-doctorado/imgs/inversion_base.png" alt="Inversión atómica para átomo inicialmente en el estado base, caso resonante y 25 fotones en promedio.">
+    <figcaption>Inversión atómica en resonancia para un átomo inicialmente en $\ket{b}$ y un campo coherente con $\bar n=25$.</figcaption>
+  </figure>
+  <p>
+    Para ver de dónde sale la escala temporal del revival, se escribe
+  </p>
+  $$n=\bar n+m,$$
+  <p>
+    y se expande la raíz alrededor de $\bar n$:
+  </p>
+  $$\sqrt{\bar n+m}
+  =\sqrt{\bar n}
+  +\frac{m}{2\sqrt{\bar n}}
+  -\frac{m^2}{8\bar n^{3/2}}
+  +\cdots.$$
+  <p>
+    Por tanto, la fase que aparece en la inversión se aproxima por
+  </p>
+  $$2gt\sqrt{\bar n+m}
+  \simeq
+  2gt\sqrt{\bar n}
+  +\frac{gt}{\sqrt{\bar n}}m
+  -\frac{gt}{4\bar n^{3/2}}m^2+\cdots.$$
+  <p>
+    El término lineal controla la realineación de fases entre componentes
+    vecinas. Cuando su incremento es $2\pi$, los sectores cercanos al máximo de
+    la distribución vuelven a estar aproximadamente en fase:
+  </p>
+  $$\frac{gT_R}{\sqrt{\bar n}}\simeq 2\pi,\qquad
+  T_R\simeq \frac{2\pi\sqrt{\bar n}}{g}.$$
+  <p>
+    En la convención usada para la figura, la escala se toma con
+    $\sqrt{\bar n+1}$, de modo que para $\bar n=25$ se obtiene
+    $gT_R=2\pi\sqrt{26}\simeq 32.038$. El término cuadrático no permite una
+    realineación perfecta: corrige la fase, ensancha los revivals y, a tiempos
+    más largos, favorece revivals fraccionarios.
+  </p>
+  <p>
+    También es útil introducir la señal compleja
+  </p>
+  $$S(t)=\sum_{n=0}^{\infty}P_n e^{i2gt\sqrt{n}},$$
+  <p>
+    de modo que
+  </p>
+  $$I(t)=-\operatorname{Re}S(t).$$
+  <p>
+    El módulo de $S(t)$ mide qué tan sincronizadas están las contribuciones de
+    los distintos sectores de fotones. Cuando $|S(t)|$ es grande, aparece una
+    oscilación visible; cuando $|S(t)|$ es pequeño, las contribuciones se
+    cancelan y la inversión colapsa hacia cero.
+  </p>
+
+  <h2 id="husimi">8. Función Q de Husimi del campo</h2>
+  <p>
+    La dinámica anterior también deja una huella directa en el estado reducido
+    del campo. Si el átomo no se mide, el campo se describe por
+  </p>
+  $$\hat\rho_{\text{c}}(t)=\operatorname{Tr}_{\text{at}}
+  \left[\ket{\psi(t)}\bra{\psi(t)}\right].$$
+  <p>
+    Para el átomo inicialmente en $\ket{b}$,
+  </p>
+  $$\ket{\psi(t)}=
+  \sum_{n=0}^{\infty}W_n
+  \left[
+  \cos(gt\sqrt{n})\ket{b,n}
+  -i\sin(gt\sqrt{n})\ket{a,n-1}
+  \right],$$
+  <p>
+    y al trazar sobre el átomo se obtiene una mezcla de dos contribuciones de
+    campo:
+  </p>
+  $$\hat\rho_{\text{c}}(t)=
+  \ket{\phi_b(t)}\bra{\phi_b(t)}
+  +
+  \ket{\phi_a(t)}\bra{\phi_a(t)},$$
+  <p>
+    con
+  </p>
+  $$\ket{\phi_b(t)}=\sum_{n=0}^{\infty}W_n\cos(gt\sqrt{n})\ket{n},$$
+  $$\ket{\phi_a(t)}=-i\sum_{n=1}^{\infty}W_n\sin(gt\sqrt{n})\ket{n-1}.$$
+  <p>
+    La función Q de Husimi se define como
+  </p>
+  <div class="boxed def">
+    $$\boxed{\;Q(\beta,t)=\frac{1}{\pi}\bra{\beta}\hat\rho_{\text{c}}(t)\ket{\beta}.\;}$$
+  </div>
+  <p>
+    Sustituyendo la descomposición anterior,
+  </p>
+  $$Q(\beta,t)=\frac{1}{\pi}
+  \left(
+  |\braket{\beta|\phi_b(t)}|^2+
+  |\braket{\beta|\phi_a(t)}|^2
+  \right).$$
+  <p>
+    Esta representación en espacio de fase permite ver cómo el paquete
+    coherente inicial se deforma, se separa en componentes y vuelve a
+    reagruparse alrededor de los tiempos de revival.
+  </p>
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Q_base.png" alt="Función Q de Husimi del campo para t igual a cero, medio tiempo de revival y un tiempo de revival.">
+    <figcaption>Función Q de Husimi del campo para $\bar n=25$ en $t=0$, $t=T_R/2$ y $t=T_R$.</figcaption>
+  </figure>
+
+  <h2 id="gatos">9. Preparación de superposiciones coherentes</h2>
+  <p>
+    Una aplicación importante del entrelazamiento átomo-campo es la preparación
+    de superposiciones de estados coherentes con fases distintas, es decir,
+    estados tipo gato. Se considera un átomo preparado en
+  </p>
+  $$\ket{\psi_{\text{at}}(0)}=C_a\ket{a}+C_b\ket{b},$$
+  <p>
+    y un campo
+  </p>
+  $$\ket{\psi_{\text{c}}(0)}=\sum_{n=0}^{\infty}W_n\ket{n}.$$
+  <p>
+    En el régimen altamente desintonizado, el intercambio real de excitaciones
+    queda suprimido, pero el campo adquiere fases condicionadas al estado
+    atómico. Por eso la evolución tiene la forma
+  </p>
+  $$\ket{\psi(t)}=
+  \sum_{n=0}^{\infty}W_n
+  \left[
+  C_a e^{i\phi_{a,n}(t)}\ket{a,n}
+  +
+  C_b e^{i\phi_{b,n}(t)}\ket{b,n}
+  \right].$$
+  <p>
+    En el límite dispersivo las fases son lineales en el número de fotones, más
+    fases globales:
+  </p>
+  $$\phi_{a,n}(t)=\phi_a(t)+n\theta_a(t),\qquad
+  \phi_{b,n}(t)=\phi_b(t)+n\theta_b(t),$$
+  <p>
+    con $\theta_{a,b}(t)$ proporcionales a $g^2t/\Delta$. Esto significa que
+    cada componente atómica rota el estado del campo en una dirección distinta
+    en el espacio de fase.
+  </p>
+  <p>
+    Si ahora se mide el átomo y se acepta únicamente el resultado
+  </p>
+  $$\ket{F_{\text{at}}}=f_a\ket{a}+f_b\ket{b},$$
+  <p>
+    el estado condicionado del campo es
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\ket{\psi_{\text{c}}(t;F_{\text{at}})}=
+    \mathcal N
+    \sum_{n=0}^{\infty}W_n
+    \left[
+    f_a^*C_a e^{i\phi_{a,n}(t)}
+    +
+    f_b^*C_b e^{i\phi_{b,n}(t)}
+    \right]\ket{n}.\;}$$
+  </div>
+  <p>
+    La constante $\mathcal N$ normaliza el estado y contiene la probabilidad de
+    éxito de la postselección. Lo esencial es que las amplitudes originales
+    $W_n$ no solo se multiplican por números constantes: reciben fases
+    dependientes de $n$. Por eso la medición atómica puede cambiar
+    considerablemente el estado del campo.
+  </p>
+  <p>
+    Si el campo inicial es coherente,
+  </p>
+  $$\ket{\alpha}=
+  e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket{n},$$
+  <p>
+    entonces multiplicar cada amplitud por $e^{in\theta}$ equivale a rotar la
+    amplitud coherente:
+  </p>
+  $$e^{in\theta}\alpha^n=(\alpha e^{i\theta})^n.$$
+  <p>
+    Así, después de la proyección atómica,
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\ket{\psi_{\text{c}}}\propto
+    A\ket{\alpha e^{i\theta_a}}
+    +
+    B\ket{\alpha e^{i\theta_b}},\;}$$
+  </div>
+  <p>
+    donde $A=f_a^*C_a e^{i\phi_a}$ y $B=f_b^*C_b e^{i\phi_b}$. Esta es una
+    superposición coherente de dos paquetes con fases diferentes. Cuando las
+    dos amplitudes quedan bien separadas en espacio de fase, el estado preparado
+    es el estado gato discutido en las notas de estados apachurrados.
+  </p>
+
+  <h2 id="ingenieria">10. Ingeniería de estados finitos de Fock</h2>
+  <p>
+    El objetivo ahora es preparar un estado finito del campo,
+  </p>
+  $$\ket{\psi_{\text{target}}}=\sum_{n=0}^{N}d_n\ket{n}
+  =d_0\ket{0}+d_1\ket{1}+\cdots+d_N\ket{N}.$$
+  <p>
+    Como se parte del vacío, para llegar a $\ket{N}$ se deben transferir
+    excitaciones a la cavidad. Una idea básica sería inyectar $N$ átomos
+    excitados y hacer que todos salgan en el estado base; de esta forma cada
+    átomo depositaría una excitación en el campo. Sin embargo, eso solo produce
+    transferencia de energía. Para preparar una superposición coherente de los
+    primeros $N+1$ estados de Fock, también se necesita controlar las fases y
+    las interferencias entre los distintos caminos.
+  </p>
+  <p>
+    El procedimiento consiste en enviar átomos resonantes, uno por uno. El
+    $k$-ésimo átomo entra en una superposición
+  </p>
+  $$\ket{\chi_k}=\alpha_k\ket{a}+\beta_k\ket{b},$$
+  <p>
+    interactúa durante un tiempo $\tau_k$ y luego se mide. Se conservan solo
+    las corridas en las que el átomo sale en $\ket{b}$. Si antes del átomo
+    $k$ el campo está en
+  </p>
+  $$\ket{\psi_{\text{c}}^{(k-1)}}=\sum_{n=0}^{k-1}c_n^{(k-1)}\ket{n},$$
+  <p>
+    entonces, después de la interacción resonante y de postseleccionar el átomo
+    en $\ket{b}$, los nuevos coeficientes no normalizados cumplen la recurrencia
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;c_n^{(k)}=
+    \beta_k\cos(g\tau_k\sqrt{n})\,c_n^{(k-1)}
+    -i\alpha_k\sin(g\tau_k\sqrt{n})\,c_{n-1}^{(k-1)},\;}$$
+  </div>
+  <p>
+    con $c_{-1}^{(k-1)}=0$. El primer término corresponde al camino donde el
+    átomo entró en $\ket{b}$ y no depositó excitación en la cavidad. El segundo
+    término corresponde al camino donde el átomo entró en $\ket{a}$, emitió un
+    fotón y salió en $\ket{b}$. La misma amplitud final $\ket{n}$ puede recibir
+    contribuciones de dos historias distintas; por eso aparece interferencia.
+  </p>
+  <p>
+    Para el primer átomo, con la cavidad inicialmente en el vacío,
+    $c_0^{(0)}=1$, se obtiene
+  </p>
+  $$\ket{\tilde\psi_{\text{c}}^{(1)}}=
+  \beta_1\ket{0}
+  -i\alpha_1\sin(g\tau_1)\ket{1}.$$
+  <p>
+    Después de normalizar, el campo queda en una superposición de $\ket{0}$ y
+    $\ket{1}$. Para el segundo átomo,
+  </p>
+  $$\ket{\tilde\psi_{\text{c}}^{(2)}}=
+  c_0^{(2)}\ket{0}+c_1^{(2)}\ket{1}+c_2^{(2)}\ket{2}.$$
+  <p>
+    Solo hay un camino que lleva de $\ket{0}$ a $\ket{2}$: los dos átomos
+    deben transferir su excitación. También hay un camino que deja el vacío sin
+    alterar: ambos átomos deben contribuir por su componente $\ket{b}$. En
+    cambio, para terminar en $\ket{1}$ hay dos caminos indistinguibles: puede
+    haber emitido el primer átomo o puede haber emitido el segundo. La amplitud
+    final de $\ket{1}$ es la suma coherente de ambos caminos.
+  </p>
+  <p>
+    Repitiendo el proceso con $N$ átomos, cada paso agrega como máximo un fotón
+    y aumenta en una unidad la dimensión accesible del espacio de Fock. Al
+    escoger las amplitudes $\alpha_k,\beta_k$ y los tiempos $\tau_k$, se pueden
+    ajustar los coeficientes finales para aproximar o realizar exactamente el
+    conjunto deseado $\{d_0,d_1,\ldots,d_N\}$, siempre condicionado a que todas
+    las mediciones atómicas den el resultado postseleccionado.
+  </p>
+
+  <blockquote>
+    La idea que unifica toda la nota es que la medición no es solo lectura. En
+    un sistema entrelazado, proyectar el átomo selecciona una rama coherente del
+    campo; por eso una secuencia controlada de interacciones y mediciones puede
+    usarse como herramienta de preparación de estados.
+  </blockquote>
+
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 28 de mayo de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

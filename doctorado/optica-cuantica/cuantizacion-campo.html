@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuantización del Campo · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams'
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Cuantización del campo
+</div>
+
+<div class="container">
+<article class="note">
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <rect x="8" y="8" width="48" height="48" rx="6" fill="#e8eefb" stroke="#2b5fb3" stroke-width="2"/>
+      <circle cx="20" cy="20" r="3" fill="#2b5fb3"/>
+      <circle cx="44" cy="20" r="3" fill="#2b5fb3"/>
+      <circle cx="20" cy="44" r="3" fill="#2b5fb3"/>
+      <circle cx="44" cy="44" r="3" fill="#2b5fb3"/>
+      <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="2"/>
+      <path d="M14 32 Q23 24 32 32 T 50 32" stroke="#d4453a" stroke-width="2" fill="none"/>
+    </svg>
+    <h1>Cuantización del Campo Electromagnético</h1>
+    <div class="author">Schleich · Quantum Optics in Phase Space</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Cuantizacio%CC%81n%20del%20Campo.pdf" target="_blank">📄 PDF original</a>
+      <a href="cuantizacion-campo.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="cuantizacion-campo.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#maxwell">Leyes de Maxwell</a></li>
+      <li><a href="#potenciales">Potenciales electromagnéticos</a></li>
+      <li><a href="#separacion">Separación de variables</a></li>
+      <li><a href="#modos">Modos de un resonador rectangular</a></li>
+      <li><a href="#ortogonalidad">Ortogonalidad y normalización</a></li>
+      <li><a href="#expansion">Expansión modal del campo</a></li>
+      <li><a href="#poynting">Energía del campo y teorema de Poynting</a></li>
+      <li><a href="#osciladores">Reducción a osciladores armónicos</a></li>
+      <li><a href="#cuantizacion">Cuantización de amplitudes normales</a></li>
+      <li><a href="#casimir">Energía de punto cero y efecto Casimir</a></li>
+      <li><a href="#operadores-campo">Operadores del potencial vectorial y de los campos</a></li>
+      <li><a href="#fock">Estados de número del campo</a></li>
+    </ol>
+  </div>
+
+  <h2 id="maxwell">1. Leyes de Maxwell</h2>
+  <p>
+    La cuantización del campo empieza desde el campo electromagnético clásico.
+    La ley de Gauss para el campo eléctrico establece que el flujo de
+    $\mathbf E$ a través de una superficie cerrada mide la carga encerrada:
+  </p>
+  $$\oint_S \mathbf E\cdot d\mathbf A=\frac{Q_{\mathrm{enc}}}{\varepsilon_0},
+  \qquad
+  \nabla\cdot\mathbf E=\frac{\rho}{\varepsilon_0}.$$
+  <p>
+    La forma diferencial se obtiene a partir de la forma integral usando el
+    teorema de Gauss. Para una carga puntual, el campo de Coulomb es
+  </p>
+  $$\mathbf E(\mathbf r)
+  =
+  \frac{1}{4\pi\varepsilon_0}
+  q_1\frac{\mathbf r-\mathbf r_1}{|\mathbf r-\mathbf r_1|^3}.$$
+  <p>
+    Por superposición, varias cargas producen
+  </p>
+  $$\mathbf E_{\mathrm{tot}}(\mathbf r)
+  =
+  \sum_{i=1}^N
+  \frac{1}{4\pi\varepsilon_0}
+  q_i\frac{\mathbf r-\mathbf r_i}{|\mathbf r-\mathbf r_i|^3},$$
+  <p>
+    y una distribución continua se escribe como
+  </p>
+  $$\mathbf E(\mathbf r)
+  =
+  \frac{1}{4\pi\varepsilon_0}
+  \int_V\rho(\mathbf r')
+  \frac{\mathbf r-\mathbf r'}{|\mathbf r-\mathbf r'|^3}\,d^3r'.$$
+  <p>
+    Para una carga dentro de una superficie cerrada, el flujo se puede escribir
+    en términos del ángulo sólido:
+  </p>
+  $$\Phi_E
+  =
+  \oint_S\mathbf E\cdot d\mathbf A
+  =
+  \frac{q}{4\pi\varepsilon_0}
+  \oint_S\frac{\hat{\mathbf r}\cdot d\mathbf A}{r^2}
+  =
+  \frac{q}{4\pi\varepsilon_0}\oint_S d\Omega.$$
+  <p>
+    Si la carga está dentro del volumen, $\oint_Sd\Omega=4\pi$; si está fuera,
+    el ángulo sólido neto es cero. Para una distribución continua,
+  </p>
+  $$\oint_S\mathbf E\cdot d\mathbf A
+  =
+  \frac{1}{\varepsilon_0}
+  \int_V\rho(\mathbf r)\,d^3r.$$
+  <p>
+    Aplicando el teorema de Gauss,
+  </p>
+  $$\int_V\nabla\cdot\mathbf E\,d^3r
+  =
+  \int_V\frac{\rho(\mathbf r)}{\varepsilon_0}\,d^3r,$$
+  <p>
+    y como el volumen es arbitrario, se recupera
+  </p>
+  <div class="boxed result">
+    $$\boxed{\nabla\cdot\mathbf E=\frac{\rho}{\varepsilon_0}.}$$
+  </div>
+
+  <p>
+    La ley de Gauss magnética expresa que no hay monopolos magnéticos:
+  </p>
+  $$\oint_S\mathbf B\cdot d\mathbf A=0,
+  \qquad
+  \boxed{\nabla\cdot\mathbf B=0.}$$
+  <p>
+    La ley de Faraday-Lenz dice que un flujo magnético variable induce un campo
+    eléctrico rotacional:
+  </p>
+  $$\oint_C\mathbf E\cdot d\boldsymbol\ell
+  =
+  -\frac{d}{dt}\int_S\mathbf B\cdot d\mathbf A,
+  \qquad
+  \boxed{\nabla\times\mathbf E=-\frac{\partial\mathbf B}{\partial t}.}$$
+  <p>
+    La ley de Ampere-Maxwell incluye tanto corrientes como corriente de
+    desplazamiento:
+  </p>
+  $$\oint_C\mathbf B\cdot d\boldsymbol\ell
+  =
+  \mu_0 I_{\mathrm{enc}}
+  +
+  \mu_0\varepsilon_0
+  \frac{d}{dt}\int_S\mathbf E\cdot d\mathbf A,$$
+  <div class="boxed result">
+    $$\boxed{
+    \nabla\times\mathbf B
+    =
+    \mu_0\mathbf J
+    +
+    \mu_0\varepsilon_0
+    \frac{\partial\mathbf E}{\partial t}.}$$
+  </div>
+
+  <h2 id="potenciales">2. Potenciales electromagnéticos</h2>
+  <p>
+    Como $\nabla\cdot\mathbf B=0$, se introduce un potencial vectorial
+    $\mathbf A$ tal que
+  </p>
+  $$\mathbf B=\nabla\times\mathbf A.$$
+  <p>
+    Esta elección satisface automáticamente $\nabla\cdot\mathbf B=0$. Al usar
+    Faraday,
+  </p>
+  $$\nabla\times\left(\mathbf E+\frac{\partial\mathbf A}{\partial t}\right)=0,$$
+  <p>
+    se introduce un potencial escalar $\Phi$:
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \mathbf E=-\nabla\Phi-\frac{\partial\mathbf A}{\partial t},
+    \qquad
+    \mathbf B=\nabla\times\mathbf A.}$$
+  </div>
+  <p>
+    Las ecuaciones homogéneas de Maxwell quedan satisfechas por construcción.
+    Las ecuaciones con fuentes determinan $\Phi$ y $\mathbf A$. Sustituyendo en
+    Ampere-Maxwell y usando
+    $\nabla\times(\nabla\times\mathbf A)=\nabla(\nabla\cdot\mathbf A)-\nabla^2\mathbf A$,
+    se obtiene
+  </p>
+  $$\nabla^2\mathbf A
+  -
+  \frac{1}{c^2}\frac{\partial^2\mathbf A}{\partial t^2}
+  =
+  -\mu_0\mathbf J
+  +
+  \nabla\left(
+  \nabla\cdot\mathbf A+
+  \frac{1}{c^2}\frac{\partial\Phi}{\partial t}
+  \right).$$
+  <p>
+    La ley de Gauss da la ecuación acoplada para $\Phi$:
+  </p>
+  $$\nabla^2\Phi
+  -
+  \frac{1}{c^2}\frac{\partial^2\Phi}{\partial t^2}
+  =
+  -\frac{\rho}{\varepsilon_0}
+  -
+  \frac{\partial}{\partial t}
+  \left(
+  \nabla\cdot\mathbf A+
+  \frac{1}{c^2}\frac{\partial\Phi}{\partial t}
+  \right).$$
+  <p>
+    La libertad de gauge permite transformar
+  </p>
+  $$\mathbf A'=\mathbf A+\nabla\Lambda,\qquad
+  \Phi'=\Phi-\frac{\partial\Lambda}{\partial t},$$
+  <p>
+    sin cambiar los campos. En efecto,
+    $\nabla\times\nabla\Lambda=0$ y
+    $\nabla\partial_t\Lambda=\partial_t\nabla\Lambda$, por lo que
+    $\mathbf E'=\mathbf E$ y $\mathbf B'=\mathbf B$.
+  </p>
+  <p>
+    Si se escoge $\Lambda$ para imponer
+  </p>
+  $$\nabla\cdot\mathbf A'
+  +
+  \frac{1}{c^2}\frac{\partial\Phi'}{\partial t}=0,$$
+  <p>
+    se obtiene el gauge de Lorenz. La condición requiere resolver
+  </p>
+  $$\left(\nabla^2-\frac{1}{c^2}\frac{\partial^2}{\partial t^2}\right)\Lambda
+  =
+  -
+  \left(
+  \nabla\cdot\mathbf A+
+  \frac{1}{c^2}\frac{\partial\Phi}{\partial t}
+  \right).$$
+  <p>
+    En este gauge, las ecuaciones se desacoplan:
+  </p>
+  $$\nabla^2\Phi-\frac{1}{c^2}\frac{\partial^2\Phi}{\partial t^2}
+  =
+  -\frac{\rho}{\varepsilon_0},
+  \qquad
+  \nabla^2\mathbf A-\frac{1}{c^2}\frac{\partial^2\mathbf A}{\partial t^2}
+  =
+  -\mu_0\mathbf J.$$
+  <p>
+    Para el campo libre en una cavidad se usa el gauge de Coulomb,
+    $\nabla\cdot\mathbf A=0$. En el vacío, $\rho=0$ y $\mathbf J=0$, se toma
+    $\Phi=0$, y queda la ecuación de onda:
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \nabla^2\mathbf A
+    -
+    \frac{1}{c^2}
+    \frac{\partial^2\mathbf A}{\partial t^2}
+    =
+    0.}$$
+  </div>
+
+  <h2 id="separacion">3. Separación de variables en una cavidad</h2>
+  <p>
+    En un resonador de paredes conductoras se propone
+  </p>
+  $$\mathbf A(\mathbf r,t)=\gamma q(t)\mathbf v(\mathbf r).$$
+  <p>
+    Sustituyendo en la ecuación de onda,
+  </p>
+  $$q(t)\nabla^2\mathbf v(\mathbf r)
+  -
+  \frac{1}{c^2}\ddot q(t)\mathbf v(\mathbf r)=0.$$
+  <p>
+    Para cada componente,
+  </p>
+  $$\frac{\nabla^2 v_j(\mathbf r)}{v_j(\mathbf r)}
+  =
+  \frac{1}{c^2}\frac{\ddot q(t)}{q(t)}.$$
+  <p>
+    El lado izquierdo depende sólo de $\mathbf r$ y el derecho sólo de $t$,
+    así que ambos deben ser constantes. Tomando la constante como $-k^2$,
+  </p>
+  <div class="boxed result">
+    $$\boxed{\nabla^2\mathbf v(\mathbf r)+k^2\mathbf v(\mathbf r)=0,}$$
+    $$\boxed{\ddot q(t)+\omega^2q(t)=0,\qquad \omega=ck.}$$
+  </div>
+  <p>
+    La parte espacial satisface la ecuación de Helmholtz. La parte temporal
+    satisface la ecuación del oscilador armónico. Esta separación es la razón
+    estructural por la que el campo se cuantiza como una colección de
+    osciladores.
+  </p>
+  <p>
+    En un conductor perfecto,
+  </p>
+  $$\mathbf E_\parallel=0,\qquad \mathbf B_\perp=0.$$
+  <p>
+    Como $\Phi=0$, $\mathbf E=-\partial_t\mathbf A=-\gamma\dot q(t)\mathbf v$.
+    Por tanto, en la frontera,
+  </p>
+  $$\hat{\mathbf e}_\parallel\cdot\mathbf v\big|_F=0.$$
+  <p>
+    Es decir, la función modal debe ser normal a la superficie. Además,
+  </p>
+  $$\hat{\mathbf e}_\perp\cdot[\nabla\times\mathbf v]\big|_F=0.$$
+  <p>
+    Esta segunda condición se entiende por Stokes: si $\mathbf v$ es normal a
+    la superficie, entonces su circulación sobre un lazo tangente se anula,
+    y la componente normal de $\nabla\times\mathbf v$ también se anula. En el
+    interior se conserva el gauge de Coulomb:
+  </p>
+  $$\nabla\cdot\mathbf A=0
+  \quad\Rightarrow\quad
+  \nabla\cdot\mathbf v(\mathbf r)=0.$$
+
+  <h2 id="modos">4. Modos de un resonador rectangular</h2>
+  <p>
+    En una cavidad rectangular de lados $L_x,L_y,L_z$,
+  </p>
+  $$\mathbf k=k_x\hat{\mathbf e}_x+k_y\hat{\mathbf e}_y+k_z\hat{\mathbf e}_z,
+  \qquad
+  \mathbf r=x\hat{\mathbf e}_x+y\hat{\mathbf e}_y+z\hat{\mathbf e}_z.$$
+  <p>
+    La condición de campo eléctrico tangencial nulo en las caras impone, por
+    ejemplo,
+  </p>
+  $$v_y(0,y,z)=v_z(0,y,z)=0,$$
+  $$v_x(x,0,z)=v_z(x,0,z)=0,$$
+  $$v_x(x,y,0)=v_y(x,y,0)=0.$$
+  <p>
+    Un ansatz que satisface estas condiciones es
+  </p>
+  $$v_x=N e_x\cos(k_xx)\sin(k_yy)\sin(k_zz),$$
+  $$v_y=N e_y\sin(k_xx)\cos(k_yy)\sin(k_zz),$$
+  $$v_z=N e_z\sin(k_xx)\sin(k_yy)\cos(k_zz).$$
+  <p>
+    La ecuación de Helmholtz se cumple porque
+  </p>
+  $$\partial_x^2v_x=-k_x^2v_x,\qquad
+  \partial_y^2v_x=-k_y^2v_x,\qquad
+  \partial_z^2v_x=-k_z^2v_x,$$
+  <p>
+    de modo que
+  </p>
+  $$\nabla^2v_x=-(k_x^2+k_y^2+k_z^2)v_x.$$
+  <p>
+    Por tanto, $k^2=k_x^2+k_y^2+k_z^2$. El gauge de Coulomb da
+  </p>
+  $$\nabla\cdot\mathbf v
+  =
+  -N(e_xk_x+e_yk_y+e_zk_z)
+  \sin(k_xx)\sin(k_yy)\sin(k_zz)=0.$$
+  <p>
+    Como debe cumplirse para todo punto,
+  </p>
+  <div class="boxed result">
+    $$\boxed{\mathbf e\cdot\mathbf k=e_xk_x+e_yk_y+e_zk_z=0.}$$
+  </div>
+  <p>
+    El gauge de Coulomb selecciona ondas transversales: la polarización es
+    ortogonal a la dirección de propagación. Para un $\mathbf k$ dado hay dos
+    polarizaciones lineales independientes, salvo casos degenerados donde una
+    componente de $\mathbf k$ se anula.
+  </p>
+  <p>
+    Las paredes opuestas discretizan las componentes del vector de onda:
+  </p>
+  $$k_xL_x=\ell_x\pi,\qquad
+  k_yL_y=\ell_y\pi,\qquad
+  k_zL_z=\ell_z\pi,$$
+  <div class="boxed result">
+    $$\boxed{
+    k_x=\ell_x\frac{\pi}{L_x},\qquad
+    k_y=\ell_y\frac{\pi}{L_y},\qquad
+    k_z=\ell_z\frac{\pi}{L_z}.}$$
+  </div>
+  <p>
+    Esta discretización de $\mathbf k$ se debe a la geometría de la caja, no a
+    la cuantización del campo. La cuantización aparece al promover
+    $q_\lambda$ y $p_\lambda$ a operadores.
+  </p>
+  <p>
+    La condición magnética queda satisfecha con la eléctrica. En las caras
+    $x=0,L_x$ se requiere
+  </p>
+  $$(\nabla\times\mathbf v)_x
+  =
+  \frac{\partial v_z}{\partial y}
+  -
+  \frac{\partial v_y}{\partial z}
+  =
+  0,$$
+  <p>
+    y de forma análoga en las caras normales a $y$ y $z$:
+  </p>
+  $$(\nabla\times\mathbf v)_y
+  =
+  \frac{\partial v_x}{\partial z}
+  -
+  \frac{\partial v_z}{\partial x}=0,\qquad
+  (\nabla\times\mathbf v)_z
+  =
+  \frac{\partial v_y}{\partial x}
+  -
+  \frac{\partial v_x}{\partial y}=0.$$
+
+  <h2 id="ortogonalidad">5. Ortogonalidad y normalización</h2>
+  <p>
+    El índice $\lambda$ representa los tres enteros de modo y la polarización.
+    Se busca
+  </p>
+  $$\int_V\mathbf v_\lambda(\mathbf r)\cdot
+  \mathbf v_{\lambda'}(\mathbf r)\,d^3r
+  =
+  \delta_{\lambda,\lambda'}.$$
+  <p>
+    Si las polarizaciones son distintas, la ortogonalidad viene de
+    $\mathbf e_1\cdot\mathbf e_2=0$. Si la polarización es la misma pero los
+    enteros son distintos, se usan
+  </p>
+  $$\int_0^{L_i}
+  \cos\left(\pi\ell_i\frac{x_i}{L_i}\right)
+  \cos\left(\pi\ell_i'\frac{x_i}{L_i}\right)\,dx_i
+  =
+  \delta_{\ell_i,\ell_i'}\frac{L_i}{2},$$
+  $$\int_0^{L_i}
+  \sin\left(\pi\ell_i\frac{x_i}{L_i}\right)
+  \sin\left(\pi\ell_i'\frac{x_i}{L_i}\right)\,dx_i
+  =
+  \delta_{\ell_i,\ell_i'}\frac{L_i}{2}.$$
+  <p>
+    Para la componente $x$:
+  </p>
+  $$\int v_{x,\lambda}v_{x,\lambda'}\,d^3r
+  =
+  N_\lambda N_{\lambda'}e_{x,\lambda}e_{x,\lambda'}
+  \frac{L_xL_yL_z}{8}
+  \delta_{\ell_x,\ell_x'}
+  \delta_{\ell_y,\ell_y'}
+  \delta_{\ell_z,\ell_z'}.$$
+  <p>
+    Sumando las tres componentes y usando
+    $e_x^2+e_y^2+e_z^2=1$,
+  </p>
+  $$\int_V\mathbf v_\lambda^2(\mathbf r)\,d^3r
+  =
+  N_\lambda^2\frac{V}{8}.$$
+  <p>
+    Así, para una caja rectangular,
+  </p>
+  $$N_\lambda=\sqrt{\frac{8}{V}}.$$
+  <p>
+    Para una cavidad arbitraria se introduce un volumen efectivo $V_\lambda$
+    y funciones adimensionales $\mathbf u_\lambda$:
+  </p>
+  $$\mathbf v_\lambda(\mathbf r)=\frac{1}{\sqrt{V_\lambda}}\mathbf u_\lambda(\mathbf r),$$
+  <div class="boxed result">
+    $$\boxed{
+    \frac{1}{\sqrt{V_\lambda V_{\lambda'}}}
+    \int
+    \mathbf u_\lambda(\mathbf r)\cdot
+    \mathbf u_{\lambda'}(\mathbf r)\,d^3r
+    =
+    \delta_{\lambda,\lambda'}.}$$
+  </div>
+
+  <h2 id="expansion">6. Expansión modal del campo</h2>
+  <p>
+    Con esta normalización, el potencial vectorial se expande como
+  </p>
+  $$\mathbf A(\mathbf r,t)
+  =
+  \sum_\lambda
+  \frac{1}{\sqrt{\varepsilon_0V_\lambda}}
+  q_\lambda(t)\mathbf u_\lambda(\mathbf r).$$
+  <p>
+    La constante se elige para que la energía del campo tenga la forma
+    canónica de osciladores. Como $\Phi=0$,
+  </p>
+  $$\mathbf E(\mathbf r,t)
+  =
+  -\frac{\partial\mathbf A}{\partial t}
+  =
+  -\sum_\lambda
+  \frac{\dot q_\lambda(t)}{\sqrt{\varepsilon_0V_\lambda}}
+  \mathbf u_\lambda(\mathbf r).$$
+  <p>
+    Además,
+  </p>
+  $$\mathbf H(\mathbf r,t)
+  =
+  \frac{1}{\mu_0}\mathbf B
+  =
+  \frac{1}{\mu_0}\nabla\times\mathbf A
+  =
+  \sum_\lambda
+  \frac{q_\lambda(t)}{\mu_0\sqrt{\varepsilon_0V_\lambda}}
+  \nabla\times\mathbf u_\lambda(\mathbf r).$$
+  <p>
+    El campo eléctrico queda asociado a $\dot q_\lambda$ y el magnético a
+    $q_\lambda$. Al cuantizar, estas cantidades serán variables conjugadas.
+  </p>
+
+  <h2 id="poynting">7. Energía del campo y teorema de Poynting</h2>
+  <p>
+    La energía electromagnética puede derivarse desde la fuerza de Lorentz:
+  </p>
+  $$\mathbf F=q(\mathbf E+\mathbf v\times\mathbf B).$$
+  <p>
+    La potencia entregada por el campo a una carga es
+  </p>
+  $$\frac{dW}{dt}=\mathbf F\cdot\mathbf v=q\mathbf E\cdot\mathbf v,$$
+  <p>
+    porque $(\mathbf v\times\mathbf B)\cdot\mathbf v=0$. Para una densidad de
+    corriente $\mathbf J=\rho\mathbf v$,
+  </p>
+  $$\frac{dW}{dt}=\int_V\mathbf E\cdot\mathbf J\,d^3r.$$
+  <p>
+    Usando
+  </p>
+  $$\nabla\times\mathbf H=\mathbf J+\frac{\partial\mathbf D}{\partial t},
+  \qquad
+  \mathbf D=\varepsilon_0\mathbf E,$$
+  <p>
+    se tiene
+  </p>
+  $$\mathbf J=\nabla\times\mathbf H-\varepsilon_0\frac{\partial\mathbf E}{\partial t}.$$
+  <p>
+    Entonces
+  </p>
+  $$\frac{dW}{dt}
+  =
+  \int_V
+  \left[
+  (\nabla\times\mathbf H)\cdot\mathbf E
+  -
+  \varepsilon_0
+  \frac{\partial\mathbf E}{\partial t}\cdot\mathbf E
+  \right]d^3r.$$
+  <p>
+    Con
+  </p>
+  $$\nabla\cdot(\mathbf E\times\mathbf H)
+  =
+  \mathbf H\cdot(\nabla\times\mathbf E)
+  -
+  \mathbf E\cdot(\nabla\times\mathbf H),$$
+  <p>
+    y $\nabla\times\mathbf E=-\partial_t\mathbf B=-\mu_0\partial_t\mathbf H$,
+    resulta
+  </p>
+  $$\frac{dW}{dt}
+  =
+  -\int_V
+  \frac{\partial}{\partial t}
+  \left(
+  \frac{\varepsilon_0}{2}E^2+
+  \frac{\mu_0}{2}H^2
+  \right)d^3r
+  -
+  \int_V\nabla\cdot(\mathbf E\times\mathbf H)\,d^3r.$$
+  <p>
+    Aplicando el teorema de Gauss al último término,
+  </p>
+  $$\int_V\mathbf E\cdot\mathbf J\,d^3r
+  +
+  \int_V
+  \frac{\partial}{\partial t}
+  \left(
+  \frac{\varepsilon_0}{2}E^2+
+  \frac{\mu_0}{2}H^2
+  \right)d^3r
+  =
+  -\oint_S(\mathbf E\times\mathbf H)\cdot d\mathbf S.$$
+  <p>
+    En forma local:
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \frac{\partial u}{\partial t}
+    +
+    \nabla\cdot\mathbf S
+    =
+    -\mathbf E\cdot\mathbf J,}$$
+    $$u=\frac{\varepsilon_0}{2}E^2+\frac{\mu_0}{2}H^2,
+    \qquad
+    \mathbf S=\mathbf E\times\mathbf H.$$
+  </div>
+  <p>
+    En una cavidad conductora sin cargas ni corrientes, no hay flujo neto
+    hacia afuera y la energía total del campo se conserva:
+  </p>
+  $$\mathcal H=
+  \int_V
+  \left(
+  \frac{\varepsilon_0}{2}E^2+
+  \frac{\mu_0}{2}H^2
+  \right)d^3r.$$
+
+  <h2 id="osciladores">8. Reducción a osciladores armónicos</h2>
+  <p>
+    Sustituyendo la expansión modal en $\mathcal H$,
+  </p>
+  $$\mathcal H
+  =
+  \frac{1}{2}
+  \sum_{\lambda,\lambda'}
+  \frac{\dot q_\lambda\dot q_{\lambda'}}{\sqrt{V_\lambda V_{\lambda'}}}
+  \int\mathbf u_\lambda\cdot\mathbf u_{\lambda'}\,d^3r
+  +
+  \frac{1}{2\mu_0\varepsilon_0}
+  \sum_{\lambda,\lambda'}
+  \frac{q_\lambda q_{\lambda'}}{\sqrt{V_\lambda V_{\lambda'}}}
+  \int
+  (\nabla\times\mathbf u_\lambda)\cdot
+  (\nabla\times\mathbf u_{\lambda'})\,d^3r.$$
+  <p>
+    El primer término se reduce por ortogonalidad a
+  </p>
+  $$\frac{1}{2}\sum_\lambda\dot q_\lambda^2.$$
+  <p>
+    Para el término magnético se usa
+  </p>
+  $$\nabla\cdot[\mathbf u_\lambda\times(\nabla\times\mathbf u_{\lambda'})]
+  =
+  (\nabla\times\mathbf u_\lambda)\cdot(\nabla\times\mathbf u_{\lambda'})
+  -
+  \mathbf u_\lambda\cdot[\nabla\times(\nabla\times\mathbf u_{\lambda'})].$$
+  <p>
+    La integral de superficie se anula por las condiciones de frontera. Queda
+  </p>
+  $$\int
+  (\nabla\times\mathbf u_\lambda)\cdot
+  (\nabla\times\mathbf u_{\lambda'})\,d^3r
+  =
+  \int
+  \mathbf u_\lambda\cdot
+  [\nabla\times(\nabla\times\mathbf u_{\lambda'})]\,d^3r.$$
+  <p>
+    Como
+  </p>
+  $$\nabla\times(\nabla\times\mathbf u_{\lambda'})
+  =
+  \nabla(\nabla\cdot\mathbf u_{\lambda'})
+  -
+  \nabla^2\mathbf u_{\lambda'}
+  =
+  k_{\lambda'}^2\mathbf u_{\lambda'},$$
+  <p>
+    se obtiene, usando $c^2=1/(\mu_0\varepsilon_0)$ y
+    $\omega_\lambda=ck_\lambda$,
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \mathcal H
+    =
+    \sum_\lambda
+    \left(
+    \frac{1}{2}\dot q_\lambda^2+
+    \frac{1}{2}\omega_\lambda^2q_\lambda^2
+    \right).}$$
+  </div>
+  <p>
+    El campo en la cavidad queda como una suma de osciladores armónicos
+    independientes. Con $p_\lambda=\dot q_\lambda$, las ecuaciones de Hamilton
+    dan
+  </p>
+  $$\dot q_\lambda=p_\lambda,\qquad
+  \dot p_\lambda=-\omega_\lambda^2q_\lambda,$$
+  <p>
+    y por tanto
+  </p>
+  $$\ddot q_\lambda+\omega_\lambda^2q_\lambda=0.$$
+
+  <h2 id="cuantizacion">9. Cuantización de las amplitudes normales</h2>
+  <p>
+    Se promueven $q_\lambda$ y $p_\lambda$ a operadores:
+  </p>
+  $$q_\lambda\to\hat q_\lambda,\qquad
+  p_\lambda\to\hat p_\lambda,$$
+  <p>
+    con relaciones canónicas
+  </p>
+  $$[\hat q_\lambda,\hat p_{\lambda'}]
+  =
+  i\hbar\delta_{\lambda,\lambda'},
+  \qquad
+  [\hat q_\lambda,\hat q_{\lambda'}]=
+  [\hat p_\lambda,\hat p_{\lambda'}]=0.$$
+  <p>
+    Se definen operadores de aniquilación y creación:
+  </p>
+  $$\hat a_\lambda
+  =
+  \frac{1}{\sqrt{2\hbar\omega_\lambda}}
+  (\omega_\lambda\hat q_\lambda+i\hat p_\lambda),$$
+  $$\hat a_\lambda^\dagger
+  =
+  \frac{1}{\sqrt{2\hbar\omega_\lambda}}
+  (\omega_\lambda\hat q_\lambda-i\hat p_\lambda).$$
+  <p>
+    Invirtiendo,
+  </p>
+  $$\hat q_\lambda
+  =
+  \sqrt{\frac{\hbar}{2\omega_\lambda}}
+  (\hat a_\lambda+\hat a_\lambda^\dagger),
+  \qquad
+  \hat p_\lambda
+  =
+  -i\sqrt{\frac{\hbar\omega_\lambda}{2}}
+  (\hat a_\lambda-\hat a_\lambda^\dagger).$$
+  <p>
+    De las relaciones canónicas se obtiene
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    [\hat a_\lambda,\hat a_{\lambda'}^\dagger]
+    =
+    \delta_{\lambda,\lambda'},
+    \qquad
+    [\hat a_\lambda,\hat a_{\lambda'}]=
+    [\hat a_\lambda^\dagger,\hat a_{\lambda'}^\dagger]=0.}$$
+  </div>
+  <p>
+    El hamiltoniano de un modo es
+  </p>
+  $$\hat{\mathcal H}_\lambda
+  =
+  \frac{1}{2}\hat p_\lambda^2+
+  \frac{1}{2}\omega_\lambda^2\hat q_\lambda^2.$$
+  <p>
+    Sustituyendo $\hat q_\lambda$ y $\hat p_\lambda$,
+  </p>
+  $$\hat{\mathcal H}_\lambda
+  =
+  -\frac{\hbar\omega_\lambda}{4}
+  (\hat a_\lambda-\hat a_\lambda^\dagger)^2
+  +
+  \frac{\hbar\omega_\lambda}{4}
+  (\hat a_\lambda+\hat a_\lambda^\dagger)^2.$$
+  <p>
+    Los términos $\hat a_\lambda^2$ y
+    $\hat a_\lambda^{\dagger 2}$ se cancelan, y queda
+  </p>
+  $$\hat{\mathcal H}_\lambda
+  =
+  \frac{\hbar\omega_\lambda}{2}
+  (\hat a_\lambda\hat a_\lambda^\dagger+
+  \hat a_\lambda^\dagger\hat a_\lambda).$$
+  <p>
+    Usando $\hat a_\lambda\hat a_\lambda^\dagger
+    =\hat a_\lambda^\dagger\hat a_\lambda+1$,
+  </p>
+  $$\hat{\mathcal H}_\lambda
+  =
+  \hbar\omega_\lambda
+  \left(
+  \hat a_\lambda^\dagger\hat a_\lambda+\frac{1}{2}
+  \right).$$
+  <div class="boxed result">
+    $$\boxed{
+    \hat{\mathcal H}
+    =
+    \sum_\lambda
+    \hbar\omega_\lambda
+    \hat a_\lambda^\dagger\hat a_\lambda
+    +
+    \mathcal H_0,
+    \qquad
+    \mathcal H_0=
+    \sum_\lambda\frac{1}{2}\hbar\omega_\lambda.}$$
+  </div>
+
+  <h2 id="casimir">10. Energía de punto cero y efecto Casimir</h2>
+  <p>
+    Para una cavidad rectangular,
+  </p>
+  $$\omega_\lambda
+  =
+  c\left[
+  \frac{\ell_x^2\pi^2}{L_x^2}
+  +
+  \frac{\ell_y^2\pi^2}{L_y^2}
+  +
+  \frac{\ell_z^2\pi^2}{L_z^2}
+  \right]^{1/2}.$$
+  <p>
+    Para dos placas paralelas de área $L^2$ separadas por $a$,
+    $L_x=a$ y $L_y=L_z=L$, por lo que
+  </p>
+  $$\omega_\lambda
+  =
+  c\left[
+  \frac{\ell_x^2\pi^2}{a^2}
+  +
+  (\ell_y^2+\ell_z^2)\frac{\pi^2}{L^2}
+  \right]^{1/2}.$$
+  <p>
+    La energía de punto cero dentro de la caja es
+  </p>
+  $$\mathcal H_0^{\mathrm{box}}
+  =
+  \frac{\hbar c}{2}
+  \sum_{\mathrm{pol}}
+  \sum_{\ell_x,\ell_y,\ell_z=0}^{\infty}
+  \left[
+  \frac{\ell_x^2\pi^2}{a^2}
+  +
+  (\ell_y^2+\ell_z^2)\frac{\pi^2}{L^2}
+  \right]^{1/2}.$$
+  <p>
+    Si $L\gg a$, las sumas en $y$ y $z$ se vuelven integrales. Con
+    $\xi=(a/L)\ell_y$ y $\zeta=(a/L)\ell_z$,
+  </p>
+  $$\mathcal H_0^{\mathrm{box}}
+  =
+  \frac{\hbar c\pi}{2a}\frac{L^2}{a^2}
+  \sum_{\mathrm{pol}}\sum_{\ell_x=0}^{\infty}
+  \int_0^\infty\int_0^\infty
+  (\ell_x^2+\xi^2+\zeta^2)^{1/2}d\xi\,d\zeta.$$
+  <p>
+    Con $\xi=\sqrt u\cos\varphi$, $\zeta=\sqrt u\sin\varphi$, el jacobiano es
+    $J=1/2$ y $\varphi\in[0,\pi/2]$, de modo que
+  </p>
+  $$\mathcal H_0^{\mathrm{box}}
+  =
+  \frac{\hbar c\pi^2}{8a^3}L^2
+  \sum_{\mathrm{pol}}\sum_{\ell_x=0}^{\infty}
+  \int_0^\infty(\ell_x^2+u)^{1/2}du.$$
+  <p>
+    Separando el modo $\ell_x=0$, que tiene una sola polarización,
+  </p>
+  $$\mathcal H_0^{\mathrm{box}}
+  =
+  \frac{\hbar c\pi^2}{8a^3}L^2
+  \left[
+  \int_0^\infty\sqrt u\,du
+  +
+  2\sum_{\ell_x=1}^{\infty}
+  \int_0^\infty\sqrt{\ell_x^2+u}\,du
+  \right].$$
+  <p>
+    La referencia sin placas se obtiene haciendo continua también la dirección
+    $x$:
+  </p>
+  $$\mathcal H_0^{\mathrm{vac}}
+  =
+  \frac{\hbar c\pi^2}{8a^3}L^2
+  2\int_0^\infty\int_0^\infty
+  (\ell_x^2+u)^{1/2}d\ell_x\,du.$$
+  <p>
+    La energía por unidad de área es
+  </p>
+  $$v
+  =
+  \frac{1}{L^2}
+  \left(\mathcal H_0^{\mathrm{box}}-\mathcal H_0^{\mathrm{vac}}\right)
+  =
+  \frac{\hbar c\pi^2}{4a^3}\tilde I,$$
+  <p>
+    donde
+  </p>
+  $$\tilde I
+  =
+  \frac{1}{2}I(0)+
+  \sum_{\ell_x=1}^{\infty}I(\ell_x)
+  -
+  \int_0^\infty I(\ell_x)d\ell_x,
+  \qquad
+  I(\lambda)=\int_0^\infty\sqrt{\lambda^2+u}\,du.$$
+  <p>
+    Para aplicar Euler-Maclaurin se escribe
+  </p>
+  $$\tilde I
+  =
+  -\frac{1}{2}I(0)
+  +
+  \sum_{\ell_x=0}^{\infty}I(\ell_x)
+  -
+  \int_0^\infty I(\ell_x)d\ell_x.$$
+  <p>
+    La fórmula de Euler-Maclaurin es
+  </p>
+  $$\sum_{n=a}^bF(n)
+  =
+  \int_a^bF(x)dx
+  +
+  \frac{1}{2}[F(a)+F(b)]
+  +
+  \sum_{k=1}^{p}
+  \frac{B_{2k}}{(2k)!}
+  [F^{(2k-1)}(b)-F^{(2k-1)}(a)]
+  +
+  R_p.$$
+  <p>
+    Formalmente,
+  </p>
+  $$I(\lambda)
+  =
+  \int_{\lambda^2}^{\infty}\sqrt v\,dv
+  =
+  \infty-\frac{2}{3}\lambda^3,$$
+  <p>
+    así que
+  </p>
+  $$I'(\lambda)=-2\lambda^2,\qquad
+  I''(\lambda)=-4\lambda,\qquad
+  I'''(\lambda)=-4,\qquad
+  I^{(4)}=I^{(5)}=\cdots=0.$$
+  <p>
+    Con $B_4=-1/30$,
+  </p>
+  $$\tilde I
+  =
+  \frac{B_4}{4!}[I'''(\infty)-I'''(0)]
+  =
+  -\frac{1}{30}\frac{1}{24}[0-(-4)]
+  =
+  -\frac{1}{180}.$$
+  <div class="boxed result">
+    $$\boxed{
+    v(a)=-\frac{\hbar c\pi^2}{720a^3}.}$$
+  </div>
+  <p>
+    Para placas de área $A$,
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    V(a)
+    =
+    -\frac{\hbar c\pi^2}{720}\frac{A}{a^3},
+    \qquad
+    \frac{F}{A}
+    =
+    -\frac{dv}{da}
+    =
+    -\frac{\hbar c\pi^2}{240a^4}.}$$
+  </div>
+  <p>
+    La fuerza es atractiva. Su origen es cuántico: aparece porque las
+    condiciones de frontera cambian los modos permitidos del vacío.
+  </p>
+
+  <h2 id="operadores-campo">11. Operadores del potencial vectorial y de los campos</h2>
+  <p>
+    La expansión clásica se vuelve operatorial:
+  </p>
+  $$\hat{\mathbf A}(\mathbf r,t)
+  =
+  \sum_\lambda
+  \frac{1}{\sqrt{\varepsilon_0V_\lambda}}
+  \hat q_\lambda(t)\mathbf u_\lambda(\mathbf r).$$
+  <p>
+    Como
+  </p>
+  $$\hat q_\lambda
+  =
+  \sqrt{\frac{\hbar}{2\omega_\lambda}}
+  (\hat a_\lambda+\hat a_\lambda^\dagger),$$
+  <p>
+    entonces
+  </p>
+  $$\hat{\mathbf A}(\mathbf r,t)
+  =
+  \sum_\lambda
+  \sqrt{\frac{\hbar}{2\varepsilon_0V_\lambda\omega_\lambda}}
+  \mathbf u_\lambda(\mathbf r)
+  [\hat a_\lambda(t)+\hat a_\lambda^\dagger(t)].$$
+  <p>
+    La dependencia temporal se obtiene en la imagen de Heisenberg:
+  </p>
+  $$\dot{\hat a}_\lambda
+  =
+  \frac{i}{\hbar}[\hat{\mathcal H},\hat a_\lambda]
+  =
+  -i\omega_\lambda\hat a_\lambda,$$
+  <p>
+    por lo que
+  </p>
+  $$\hat a_\lambda(t)=\hat a_\lambda(0)e^{-i\omega_\lambda t},
+  \qquad
+  \hat a_\lambda^\dagger(t)=\hat a_\lambda^\dagger(0)e^{i\omega_\lambda t}.$$
+  <p>
+    Definiendo
+  </p>
+  $$A_\lambda=\sqrt{\frac{\hbar}{\varepsilon_0V_\lambda\omega_\lambda}},$$
+  <div class="boxed result">
+    $$\boxed{
+    \hat{\mathbf A}(\mathbf r,t)
+    =
+    \sum_\lambda
+    \frac{A_\lambda}{\sqrt2}\mathbf u_\lambda(\mathbf r)
+    \left[
+    \hat a_\lambda(0)e^{-i\omega_\lambda t}
+    +
+    \hat a_\lambda^\dagger(0)e^{i\omega_\lambda t}
+    \right].}$$
+  </div>
+  <p>
+    La parte de frecuencia positiva contiene operadores de aniquilación:
+  </p>
+  $$\hat{\mathbf A}^{(+)}(\mathbf r,t)
+  =
+  \frac{1}{\sqrt2}
+  \sum_\lambda A_\lambda\mathbf u_\lambda(\mathbf r)
+  \hat a_\lambda(0)e^{-i\omega_\lambda t},$$
+  <p>
+    y la parte de frecuencia negativa contiene operadores de creación:
+  </p>
+  $$\hat{\mathbf A}^{(-)}(\mathbf r,t)
+  =
+  \frac{1}{\sqrt2}
+  \sum_\lambda A_\lambda\mathbf u_\lambda(\mathbf r)
+  \hat a_\lambda^\dagger(0)e^{i\omega_\lambda t}.$$
+  <p>
+    El campo eléctrico es $-\partial_t\hat{\mathbf A}$:
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \hat{\mathbf E}(\mathbf r,t)
+    =
+    \sum_\lambda
+    \frac{iE_\lambda}{\sqrt2}
+    \mathbf u_\lambda(\mathbf r)
+    \left[
+    \hat a_\lambda(0)e^{-i\omega_\lambda t}
+    -
+    \hat a_\lambda^\dagger(0)e^{i\omega_\lambda t}
+    \right],}$$
+    $$E_\lambda=\omega_\lambda A_\lambda
+    =
+    \sqrt{\frac{\hbar\omega_\lambda}{\varepsilon_0V_\lambda}}.$$
+  </div>
+  <p>
+    Su descomposición es
+  </p>
+  $$\hat{\mathbf E}^{(+)}
+  =
+  \frac{i}{\sqrt2}
+  \sum_\lambda E_\lambda\mathbf u_\lambda
+  \hat a_\lambda(0)e^{-i\omega_\lambda t},
+  \qquad
+  \hat{\mathbf E}^{(-)}
+  =
+  -\frac{i}{\sqrt2}
+  \sum_\lambda E_\lambda\mathbf u_\lambda
+  \hat a_\lambda^\dagger(0)e^{i\omega_\lambda t}.$$
+  <p>
+    El campo magnético es el rotacional del potencial:
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \hat{\mathbf B}(\mathbf r,t)
+    =
+    \sum_\lambda
+    \frac{A_\lambda}{\sqrt2}
+    [\nabla\times\mathbf u_\lambda(\mathbf r)]
+    \left[
+    \hat a_\lambda(0)e^{-i\omega_\lambda t}
+    +
+    \hat a_\lambda^\dagger(0)e^{i\omega_\lambda t}
+    \right].}$$
+  </div>
+  <p>
+    Equivalentemente, $\hat{\mathbf H}=\hat{\mathbf B}/\mu_0$. Como
+    $\hat{\mathbf E}$ contiene la variable conjugada de momento y
+    $\hat{\mathbf B}$ contiene la variable de posición del oscilador, los
+    campos no conmutan en general.
+  </p>
+
+  <h2 id="fock">12. Estados de número del campo</h2>
+  <p>
+    Si se omite la energía de punto cero mediante renormalización,
+  </p>
+  $$\hat{\mathcal H}_\lambda
+  =
+  \hbar\omega_\lambda\hat n_\lambda,
+  \qquad
+  \hat n_\lambda=\hat a_\lambda^\dagger\hat a_\lambda.$$
+  <p>
+    Los eigenestados del operador número satisfacen
+  </p>
+  $$\hat n_\lambda\ket{n_\lambda}=n_\lambda\ket{n_\lambda},
+  \qquad
+  n_\lambda=0,1,2,\ldots.$$
+  <p>
+    Las excitaciones discretas $n_\lambda\hbar\omega_\lambda$ son fotones.
+    Para muchos modos independientes,
+  </p>
+  $$\ket{\Psi}
+  =
+  \ket{n_1}\ket{n_2}\ket{n_3}\cdots\ket{n_\lambda}\cdots
+  =
+  \ket{n_1,n_2,n_3,\ldots,n_\lambda,\ldots}.$$
+  <p>
+    El valor esperado de la energía, ignorando $\mathcal H_0$, es
+  </p>
+  $$\langle\hat{\mathcal H}\rangle
+  =
+  \bra{n_1,n_2,\ldots}
+  \sum_\lambda\hbar\omega_\lambda\hat n_\lambda
+  \ket{n_1,n_2,\ldots}
+  =
+  \sum_\lambda\hbar\omega_\lambda n_\lambda.$$
+  <p>
+    Un modo también puede estar en una superposición de estados de número:
+  </p>
+  $$\ket{\psi_\lambda}
+  =
+  \sum_{n_\lambda}c_{n_\lambda}\ket{n_\lambda}.$$
+  <p>
+    Un estado factorizado del campo sería
+  </p>
+  $$\ket{\Psi}
+  =
+  \ket{\psi_1}\ket{\psi_2}\ket{\psi_3}\cdots\ket{\psi_\lambda}\cdots.$$
+  <p>
+    Algunos de estos estados pueden ser coherentes, apachurrados o estados de
+    cuadratura. También pueden existir estados no factorizables entre modos,
+    es decir, estados entrelazados del campo.
+  </p>
+</article>
+</div>
+
+<footer class="site">
+  <div class="container">
+    <div>Notas Cuánticas · Maestría y Doctorado</div>
+    <div class="modified">Última modificación: 4 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

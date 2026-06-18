@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un fonón en un bloque polaritónico · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams'
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Un fonón en un bloque polaritónico
+</div>
+
+<div class="container">
+<article class="note">
+
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <ellipse cx="31" cy="32" rx="22" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2.4" transform="rotate(-18 31 32)"/>
+      <ellipse cx="34" cy="31" rx="22" ry="8" fill="none" stroke="#d4453a" stroke-width="2.4" transform="rotate(22 34 31)"/>
+      <circle cx="19" cy="35" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.8"/>
+      <circle cx="45" cy="29" r="5" fill="#fff3d8" stroke="#6b48a6" stroke-width="1.8"/>
+      <path d="M20 47 C29 55 42 53 49 44" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M47 44 l5 1 -3 -5" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M15 18 h34" stroke="#d4453a" stroke-width="2" fill="none"/>
+      <path d="M49 18 l-5 -4 v8 z" fill="#d4453a"/>
+    </svg>
+    <h1>Un fonón en un bloque polaritónico</h1>
+    <div class="author">Bloque $n=9,m=9$ · Inversión polaritónica y comparación numérica</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Dina%CC%81mica%20del%20Modelo%20HC.pdf#page=8" target="_blank">📄 PDF original pág. 8</a>
+      <a href="un-fonon-bloque-polaritonico.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="un-fonon-bloque-polaritonico.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#idea">Idea de la reducción</a></li>
+      <li><a href="#estado-inicial">Estado inicial</a></li>
+      <li><a href="#parametros">Parámetros del doblete</a></li>
+      <li><a href="#evolucion">Evolución temporal</a></li>
+      <li><a href="#probabilidades">Probabilidades</a></li>
+      <li><a href="#inversion-polaritonica">Inversión polaritónica</a></li>
+      <li><a href="#inversion-electronica">Inversión electrónica</a></li>
+      <li><a href="#graficas">Gráficas</a></li>
+      <li><a href="#lectura">Lectura física</a></li>
+    </ol>
+  </div>
+
+  <h2 id="idea">1. Idea de la reducción</h2>
+  <p>
+    En la dinámica general del modelo HC efectivo, cada bloque óptico $n>0$
+    se descompone en dobletes polaritón-fonón. El hamiltoniano conecta
+    únicamente los estados
+  </p>
+  $$\ket{+,n,m-1},\qquad \ket{-,n,m},$$
+  <p>porque la interacción efectiva</p>
+  $$-\frac{\hbar\nu\lambda}{2}
+  \left(\hat b\hat S^{(n)\dagger}
+  +\hat b^\dagger\hat S^{(n)}\right)$$
+  <p>
+    destruye un fonón y sube el polaritón, o crea un fonón y baja el polaritón.
+    En ambos casos se conserva
+  </p>
+  <div class="boxed def">
+    $$\boxed{\hat M^{(n)}
+    =\hat b^\dagger\hat b+\hat S^{(n)\dagger}\hat S^{(n)}.}$$
+  </div>
+  <p>
+    Ahora no se toma una distribución coherente de muchos fonones. Se prepara
+    un único estado de número fonónico, de modo que el sistema vive en un solo
+    doblete. El manuscrito fija
+  </p>
+  <div class="boxed result">
+    $$\boxed{n=9,\qquad m=9.}$$
+  </div>
+  <p>El subespacio relevante es</p>
+  <div class="boxed result">
+    $$\boxed{\mathcal H_{99}
+    =\operatorname{span}\{\ket{+,9,8},\ket{-,9,9}\}.}$$
+  </div>
+  <p>
+    $\ket{+,9,8}$ tiene el polaritón superior y ocho fonones. $\ket{-,9,9}$
+    tiene el polaritón inferior y nueve fonones. Ambos tienen $M^{(9)}=9$.
+  </p>
+
+  <h2 id="estado-inicial">2. Estado inicial dentro del doblete</h2>
+  <p>La forma general de un doblete es</p>
+  $$\ket{\psi_{nm}(0)}
+  =a_{nm}\ket{+,n,m-1}+b_{nm}\ket{-,n,m},$$
+  <div class="boxed def">
+    $$\boxed{a_{nm}=\tilde c_{m-1}d_n^+,\qquad
+    b_{nm}=\tilde c_md_n^-.}$$
+  </div>
+  <p>Para el bloque elegido,</p>
+  <div class="boxed result">
+    $$\boxed{\ket{\psi_{99}(0)}
+    =a_{99}\ket{+,9,8}+b_{99}\ket{-,9,9}.}$$
+  </div>
+  <p>
+    Se toma como estado inicial preparado la rama inferior:
+  </p>
+  <div class="boxed result">
+    $$\boxed{\ket{\psi_{99}(0)}=\ket{-,9,9},
+    \qquad a_{99}=0,\qquad b_{99}=1.}$$
+  </div>
+  <p>
+    La única transición permitida dentro del doblete lleva a
+    $\ket{+,9,8}$: subir el polaritón consume un fonón.
+  </p>
+
+  <h2 id="parametros">3. Parámetros del doblete</h2>
+  <p>La matriz efectiva general es</p>
+  $$\tilde H_{\mathrm{ef}}^{(n,m)}
+  =\hbar A_{nm}\mathbb{1}_{2\times2}
+  +\frac{\hbar}{2}
+  \begin{pmatrix}
+  \delta_n & -k_m\\
+  -k_m & -\delta_n
+  \end{pmatrix},$$
+  <p>donde</p>
+  $$A_{nm}=\Omega n+\frac{\nu\lambda^2}{4}
+  +\nu\left(m-\frac12\right),\qquad
+  \delta_n=2g\sqrt n-\nu,\qquad
+  k_m=\nu\lambda\sqrt m.$$
+  <p>Para $n=9,m=9$,</p>
+  <div class="boxed def">
+    $$\boxed{A_{99}
+    =9\Omega+\frac{\nu\lambda^2}{4}+\frac{17}{2}\nu,}$$
+    $$\boxed{\delta_9=6g-\nu,\qquad k_9=3\nu\lambda.}$$
+  </div>
+  <p>
+    En las gráficas se usa $\eta=\nu\lambda$, así que $k_9=3\eta$. La
+    frecuencia de Rabi efectiva queda
+  </p>
+  <div class="boxed result">
+    $$\boxed{\Omega_{99}^{\mathrm{ef}}
+    =\sqrt{(6g-\nu)^2+9\nu^2\lambda^2}
+    =\sqrt{(6g-\nu)^2+9\eta^2}.}$$
+  </div>
+  <p>
+    La resonancia del bloque ocurre cuando
+  </p>
+  <div class="boxed result">
+    $$\boxed{\delta_9=0\quad\Longleftrightarrow\quad \nu=6g.}$$
+  </div>
+
+  <h2 id="evolucion">4. Evolución temporal</h2>
+  <p>La solución dentro del doblete se escribe como</p>
+  <div class="boxed def">
+    $$\boxed{\ket{\psi_{99}(t)}
+    =p_{99}^{+}(t)\ket{+,9,8}
+    +p_{99}^{-}(t)\ket{-,9,9}.}$$
+  </div>
+  <p>
+    Sustituyendo $a_{99}=0$ y $b_{99}=1$ en la solución exacta general:
+  </p>
+  <div class="boxed result">
+    $$\boxed{p_{99}^{+}(t)
+    =e^{-iA_{99}t}
+    i\frac{k_9}{\Omega_{99}^{\mathrm{ef}}}
+    \sin\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right),}$$
+    $$\boxed{p_{99}^{-}(t)
+    =e^{-iA_{99}t}
+    \left[
+    \cos\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right)
+    +i\frac{\delta_9}{\Omega_{99}^{\mathrm{ef}}}
+    \sin\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right)
+    \right].}$$
+  </div>
+  <p>
+    La fase $e^{-iA_{99}t}$ no cambia las probabilidades, pero sí forma parte
+    del estado vectorial completo.
+  </p>
+
+  <h2 id="probabilidades">5. Probabilidades de las ramas</h2>
+  <p>La probabilidad de estar en la rama superior es</p>
+  <div class="boxed result">
+    $$\boxed{P_+(t)=|p_{99}^{+}(t)|^2
+    =
+    \left(\frac{k_9}{\Omega_{99}^{\mathrm{ef}}}\right)^2
+    \sin^2\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right).}$$
+  </div>
+  <p>
+    Para la rama inferior,
+  </p>
+  $$P_-(t)
+  =
+  \cos^2\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right)
+  +
+  \left(\frac{\delta_9}{\Omega_{99}^{\mathrm{ef}}}\right)^2
+  \sin^2\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right).$$
+  <p>
+    Usando $(\Omega_{99}^{\mathrm{ef}})^2=\delta_9^2+k_9^2$,
+  </p>
+  <div class="boxed result">
+    $$\boxed{P_-(t)
+    =
+    1-
+    \left(\frac{k_9}{\Omega_{99}^{\mathrm{ef}}}\right)^2
+    \sin^2\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right).}$$
+  </div>
+  <p>
+    Por construcción, $P_+(t)+P_-(t)=1$. La probabilidad permanece dentro del
+    doblete.
+  </p>
+
+  <h2 id="inversion-polaritonica">6. Inversión polaritónica</h2>
+  <p>
+    La inversión polaritónica mide la diferencia entre población en la rama
+    superior y población en la rama inferior:
+  </p>
+  <div class="boxed def">
+    $$\boxed{\mathcal W(t)
+    =\bra{\psi_{99}(t)}\hat S_z^{(9)}\ket{\psi_{99}(t)}.}$$
+  </div>
+  $$\hat S_z^{(9)}\ket{+,9}=+\ket{+,9},\qquad
+  \hat S_z^{(9)}\ket{-,9}=-\ket{-,9}.$$
+  <p>
+    Como $\braket{8|9}=0$, los términos cruzados desaparecen y
+  </p>
+  <div class="boxed result">
+    $$\boxed{\mathcal W(t)=P_+(t)-P_-(t)
+    =
+    -1+
+    2\left(\frac{k_9}{\Omega_{99}^{\mathrm{ef}}}\right)^2
+    \sin^2\left(\frac{\Omega_{99}^{\mathrm{ef}}t}{2}\right).}$$
+  </div>
+  <p>
+    En resonancia, $\delta_9=0$ y $\Omega_{99}^{\mathrm{ef}}=|k_9|$, de modo
+    que
+  </p>
+  <div class="boxed result">
+    $$\boxed{\mathcal W_R(t)=-\cos(k_9t).}$$
+  </div>
+
+  <h2 id="inversion-electronica">7. Inversión electrónica</h2>
+  <p>La inversión electrónica es</p>
+  $$W(t)=\bra{\psi_{99}(t)}\hat\sigma_z\ket{\psi_{99}(t)}.$$
+  <p>En el bloque $n=9$,</p>
+  $$\ket{+,9}=\frac{\ket{e,8}+\ket{g,9}}{\sqrt2},\qquad
+  \ket{-,9}=\frac{\ket{e,8}-\ket{g,9}}{\sqrt2}.$$
+  <p>
+    Cada polaritón tiene mitad de población electrónica excitada y mitad de
+    población base:
+  </p>
+  $$\bra{+,9}\hat\sigma_z\ket{+,9}=0,\qquad
+  \bra{-,9}\hat\sigma_z\ket{-,9}=0.$$
+  <p>
+    Los posibles términos cruzados entre $\ket{+,9}$ y $\ket{-,9}$ no
+    contribuyen en este doblete porque vienen acompañados de estados fonónicos
+    ortogonales, $\ket8$ y $\ket9$. Por tanto,
+  </p>
+  <div class="boxed result">
+    $$\boxed{W(t)=0.}$$
+  </div>
+
+  <h2 id="graficas">8. Gráficas</h2>
+  <p>
+    Las siguientes gráficas comparan la solución analítica del hamiltoniano
+    efectivo con la evolución numérica del hamiltoniano HC completo. El bloque
+    de referencia es $n=9$, cuya resonancia ocurre en $\nu=6g$.
+  </p>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Un%20fonon%20en%20bloque%20polaritonico/InversionPolaritonica.png" alt="Inversión polaritónica analítica.">
+    <figcaption>Inversión polaritónica analítica con $\eta=0.01g$ y $\nu=5.99g$. Al estar cerca de la resonancia del bloque $n=9$, la oscilación conserva gran amplitud.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Un%20fonon%20en%20bloque%20polaritonico/Comparacion-IP-R.png" alt="Comparación resonante de inversión polaritónica.">
+    <figcaption>Comparación de la inversión polaritónica entre el hamiltoniano completo y el efectivo en el caso resonante. Para $\eta=0.01g$, las curvas se superponen dentro de la escala mostrada.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Un%20fonon%20en%20bloque%20polaritonico/Comparacion-IE.png" alt="Comparación de inversión electrónica.">
+    <figcaption>Comparación de la inversión electrónica. El modelo efectivo predice $W(t)=0$ y la solución numérica reproduce ese resultado tanto en resonancia como fuera de resonancia.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Un%20fonon%20en%20bloque%20polaritonico/Comparacion-IP-NR1.png" alt="Comparación no resonante con nu igual a 5.9 g.">
+    <figcaption>Caso no resonante con $\eta=0.01g$ y $\nu=5.9g$. Para el bloque $n=9$, la desintonización es $\delta_9=0.1g$, de modo que la transferencia queda reducida.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Un%20fonon%20en%20bloque%20polaritonico/Comparacion-IP-NR2.png" alt="Comparación no resonante midiendo el bloque n igual a 10.">
+    <figcaption>Caso no resonante manteniendo $\nu=6g$ pero midiendo el bloque $n=10$. Esa frecuencia está ajustada al bloque $n=9$, no al bloque $n=10$.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Un%20fonon%20en%20bloque%20polaritonico/Fidelidad-R.png" alt="Fidelidad en resonancia.">
+    <figcaption>Fidelidad entre los estados evolucionados con el hamiltoniano completo y con el efectivo en el caso resonante, con $\eta=0.01g$ y $\nu=6g$.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Un%20fonon%20en%20bloque%20polaritonico/Fidelidad-NR1.png" alt="Fidelidad no resonante con nu igual a 5.9 g.">
+    <figcaption>Fidelidad en el caso no resonante con $\nu=5.9g$. Esta gráfica mide cuánto se separa la evolución efectiva de la evolución completa cuando el bloque $n=9$ no está exactamente resonante.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Un%20fonon%20en%20bloque%20polaritonico/Fidelidad-NR2.png" alt="Fidelidad no resonante midiendo el bloque n igual a 10.">
+    <figcaption>Fidelidad para el caso donde se mantiene $\nu=6g$ pero se observa el bloque $n=10$. La resonancia es una condición por bloque.</figcaption>
+  </figure>
+
+  <h2 id="lectura">9. Lectura física</h2>
+  <p>
+    El caso de un solo fonón en un bloque polaritónico es la dinámica efectiva
+    más simple: todo se reduce a una oscilación entre
+  </p>
+  <div class="boxed result">
+    $$\boxed{\ket{-,9,9}\longleftrightarrow\ket{+,9,8}.}$$
+  </div>
+  <p>
+    En resonancia, la transferencia puede ser completa. Fuera de resonancia,
+    la frecuencia efectiva aumenta, pero la amplitud se reduce por el factor
+    $k_9/\Omega_{99}^{\mathrm{ef}}$. La inversión polaritónica ve
+    directamente ese intercambio. La inversión electrónica permanece nula
+    porque las ramas polaritónicas tienen poblaciones electrónicas balanceadas
+    y porque las coherencias entre ramas llevan fonones ortogonales.
+  </p>
+
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 8 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

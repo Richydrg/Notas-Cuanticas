@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interacción Átomo-Campo · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams'
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Interacción átomo-campo
+</div>
+
+<div class="container">
+<article class="note">
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <ellipse cx="32" cy="32" rx="24" ry="8" fill="none" stroke="#6b48a6" stroke-width="2"/>
+      <ellipse cx="32" cy="32" rx="24" ry="8" fill="none" stroke="#d4453a" stroke-width="2" transform="rotate(60 32 32)"/>
+      <ellipse cx="32" cy="32" rx="24" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2" transform="rotate(-60 32 32)"/>
+      <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="2"/>
+      <path d="M50 50 Q56 56 60 52" stroke="#d4453a" stroke-width="2" fill="none"/>
+    </svg>
+    <h1>Interacción Átomo-Campo</h1>
+    <div class="author">Schleich · Quantum Optics in Phase Space</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Interacci%C3%B3n%20%C3%81tomo-Campo.pdf" target="_blank">📄 PDF original</a>
+      <a href="interaccion-atomo-campo.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="interaccion-atomo-campo.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#construccion">Construcción de la interacción</a></li>
+      <li><a href="#lorentz">Lagrangiano y fuerza de Lorentz</a></li>
+      <li><a href="#minimal">Acoplamiento mínimo</a></li>
+      <li><a href="#coulomb">Gauge de Coulomb</a></li>
+      <li><a href="#hidrogeno">Centro de masa del hidrógeno</a></li>
+      <li><a href="#dipolar-ap">Aproximación dipolar</a></li>
+      <li><a href="#hamiltoniano-h">Hamiltoniano hidrogenoide</a></li>
+      <li><a href="#gauge">Invariancia local de gauge</a></li>
+      <li><a href="#electrico">Forma eléctrico-dipolo</a></li>
+      <li><a href="#equiv-clasica">Equivalencia clásica</a></li>
+      <li><a href="#equiv-cuantica">Equivalencia cuántica</a></li>
+      <li><a href="#matriz">Elementos de matriz</a></li>
+      <li><a href="#entrelazamiento">Subsistemas y entrelazamiento</a></li>
+      <li><a href="#dos-niveles">Modelo de dos niveles</a></li>
+      <li><a href="#dipolo">Operador dipolar</a></li>
+      <li><a href="#campo">Campo de un modo</a></li>
+      <li><a href="#total">Hamiltoniano total</a></li>
+      <li><a href="#interaccion">Cuadro de interacción</a></li>
+      <li><a href="#rwa">Aproximación de onda rotante</a></li>
+    </ol>
+  </div>
+
+  <h2 id="construccion">1. Construcción de la interacción</h2>
+  <p>
+    Se quiere construir el hamiltoniano que describe la interacción entre un
+    átomo y el campo electromagnético. La idea física es que el átomo contiene
+    cargas, y las cargas responden a los campos $\mathbf E$ y $\mathbf B$.
+    La pregunta es cómo escribir esa respuesta de forma compatible con la
+    mecánica cuántica y con la invariancia de gauge.
+  </p>
+  <p>
+    En el gauge de Coulomb,
+  </p>
+  $$\nabla\cdot\mathbf A=0,$$
+  <p>
+    los campos se escriben en términos de los potenciales como
+  </p>
+  $$\mathbf B=\nabla\times\mathbf A,\qquad
+  \mathbf E=-\nabla\phi-\frac{\partial\mathbf A}{\partial t}.$$
+  <p>
+    Hay dos rutas equivalentes. Una parte del acoplamiento mínimo y conduce a
+    la interacción $\mathbf A\cdot\mathbf p$. La otra parte del momento dipolar
+    del átomo y conduce a $-\mathbf d\cdot\mathbf E$. En la aproximación
+    dipolar y con el centro de masa fijo, ambas describen la misma física.
+  </p>
+
+  <h2 id="lorentz">2. Lagrangiano y fuerza de Lorentz</h2>
+  <p>
+    La fuerza de Lorentz sobre una carga $q$ es
+  </p>
+  $$\mathbf F=q(\mathbf E+\mathbf v\times\mathbf B).$$
+  <p>
+    Para una carga $e$, un lagrangiano que reproduce esa fuerza es
+  </p>
+  $$L=\frac{1}{2}m\dot{\mathbf r}^{\,2}
+  +e\,\dot{\mathbf r}\cdot\mathbf A(\mathbf r,t)
+  -e\,\phi(\mathbf r,t).$$
+  <p>
+    La ecuación de Euler-Lagrange por componente es
+  </p>
+  $$\frac{d}{dt}\left(\frac{\partial L}{\partial\dot r_i}\right)
+  -
+  \frac{\partial L}{\partial r_i}=0.$$
+  <p>
+    Se calculan primero las dos piezas:
+  </p>
+  $$\frac{\partial L}{\partial\dot r_i}=m\dot r_i+eA_i(\mathbf r,t),$$
+  $$\frac{d}{dt}\left(\frac{\partial L}{\partial\dot r_i}\right)
+  =
+  m\ddot r_i
+  +e\frac{\partial A_i}{\partial t}
+  +e\dot r_j\frac{\partial A_i}{\partial r_j},$$
+  $$\frac{\partial L}{\partial r_i}
+  =
+  e\dot r_j\frac{\partial A_j}{\partial r_i}
+  -e\frac{\partial\phi}{\partial r_i}.$$
+  <p>
+    Sustituyendo y despejando,
+  </p>
+  $$m\ddot r_i
+  =
+  -e\frac{\partial A_i}{\partial t}
+  -e\frac{\partial\phi}{\partial r_i}
+  -e\dot r_j
+  \left(
+  \frac{\partial A_i}{\partial r_j}
+  -
+  \frac{\partial A_j}{\partial r_i}
+  \right).$$
+  <p>
+    Los dos primeros términos son $eE_i$. El último término debe identificarse
+    con la parte magnética. Usando $\mathbf B=\nabla\times\mathbf A$,
+  </p>
+  $$(\dot{\mathbf r}\times\mathbf B)_i
+  =
+  \epsilon_{ijk}\dot r_j(\nabla\times\mathbf A)_k
+  =
+  \epsilon_{ijk}\epsilon_{klm}\dot r_j
+  \frac{\partial A_m}{\partial r_l}.$$
+  <p>
+    Con
+  </p>
+  $$\epsilon_{ijk}\epsilon_{klm}
+  =
+  \delta_{il}\delta_{jm}-\delta_{im}\delta_{jl},$$
+  <p>
+    se obtiene
+  </p>
+  $$(\dot{\mathbf r}\times\mathbf B)_i
+  =
+  \dot r_j
+  \left(
+  \frac{\partial A_j}{\partial r_i}
+  -
+  \frac{\partial A_i}{\partial r_j}
+  \right).$$
+  <p>
+    Por tanto,
+  </p>
+  $$m\ddot r_i
+  =
+  e\left[E_i+(\dot{\mathbf r}\times\mathbf B)_i\right],$$
+  <p>
+    que es exactamente la fuerza de Lorentz. El lagrangiano elegido contiene
+    entonces la interacción electromagnética correcta.
+  </p>
+
+  <h2 id="minimal">3. Momento canónico y acoplamiento mínimo</h2>
+  <p>
+    El momento canónico conjugado a la posición del electrón es
+  </p>
+  $$\mathbf p_e
+  =
+  \frac{\partial L}{\partial\dot{\mathbf r}_e}
+  =
+  m_e\dot{\mathbf r}_e+e\mathbf A(\mathbf r_e,t).$$
+  <p>
+    Por tanto,
+  </p>
+  $$\dot{\mathbf r}_e
+  =
+  \frac{1}{m_e}
+  \left[\mathbf p_e-e\mathbf A(\mathbf r_e,t)\right].$$
+  <p>
+    El momento canónico $\mathbf p_e$ no es el momento mecánico. El momento
+    mecánico es
+  </p>
+  $$m_e\dot{\mathbf r}_e=\mathbf p_e-e\mathbf A(\mathbf r_e,t).$$
+  <p>
+    Esta es la razón por la que el campo entra mediante el reemplazo mínimo
+  </p>
+  $$\mathbf p_e\longrightarrow\mathbf p_e-e\mathbf A(\mathbf r_e,t).$$
+  <p>
+    La transformada de Legendre da
+  </p>
+  $$H=\mathbf p_e\cdot\dot{\mathbf r}_e-L.$$
+  <p>
+    Sustituyendo la velocidad,
+  </p>
+  $$H=
+  \mathbf p_e\cdot\frac{1}{m_e}(\mathbf p_e-e\mathbf A)
+  -\frac{1}{2}m_e\frac{1}{m_e^2}(\mathbf p_e-e\mathbf A)^2
+  -e\frac{1}{m_e}(\mathbf p_e-e\mathbf A)\cdot\mathbf A+e\phi.$$
+  <p>
+    Al expandir y cancelar términos se obtiene
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  H=
+  \frac{1}{2m_e}
+  \left[\mathbf p_e-e\mathbf A(\mathbf r_e,t)\right]^2
+  +e\phi(\mathbf r_e,t).
+  }$$
+  </div>
+  <p>
+    Desarrollando el cuadrado,
+  </p>
+  $$H=
+  \frac{\mathbf p_e^{\,2}}{2m_e}
+  -\frac{e}{m_e}\mathbf p_e\cdot\mathbf A(\mathbf r_e,t)
+  +\frac{e^2}{2m_e}\mathbf A^2(\mathbf r_e,t)
+  +e\phi(\mathbf r_e,t).$$
+
+  <h2 id="coulomb">4. Gauge de Coulomb y término $\mathbf A\cdot\mathbf p$</h2>
+  <p>
+    En mecánica cuántica el orden de $\mathbf p_e$ y $\mathbf A$ importa porque
+    $\mathbf p_e=-i\hbar\nabla$. Para una función de prueba $\psi$,
+  </p>
+  $$\mathbf p_e\cdot\mathbf A\,\psi
+  =
+  -i\hbar\nabla\cdot(\mathbf A\psi)
+  =
+  -i\hbar(\nabla\cdot\mathbf A)\psi
+  -i\hbar\mathbf A\cdot\nabla\psi.$$
+  <p>
+    En el gauge de Coulomb $\nabla\cdot\mathbf A=0$, así que
+  </p>
+  $$\mathbf p_e\cdot\mathbf A\,\psi
+  =
+  \mathbf A\cdot\mathbf p_e\,\psi.$$
+  <p>
+    La parte lineal de la interacción queda
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  H_{\mathbf A\cdot\mathbf p}
+  =
+  -\frac{e}{m_e}
+  \mathbf A(\mathbf r_e,t)\cdot\mathbf p_e.
+  }$$
+  </div>
+  <p>
+    El término $e^2\mathbf A^2/(2m_e)$ también pertenece al hamiltoniano de
+    acoplamiento mínimo. En muchos procesos de un fotón no es el término
+    dominante, pero forma parte de la descripción completa.
+  </p>
+
+  <h2 id="hidrogeno">5. Átomo de hidrógeno y coordenadas relativas</h2>
+  <p>
+    Para el átomo de hidrógeno se tienen electrón y protón. El término lineal
+    en el campo es
+  </p>
+  $$H_{\mathrm{int}}
+  =
+  -\frac{e}{m_e}\mathbf A(\mathbf r_e,t)\cdot\mathbf p_e
+  +
+  \frac{e}{m_p}\mathbf A(\mathbf r_p,t)\cdot\mathbf p_p.$$
+  <p>
+    Se introducen
+  </p>
+  $$\mathbf R=\frac{m_e\mathbf r_e+m_p\mathbf r_p}{M},
+  \qquad
+  \mathbf r=\mathbf r_e-\mathbf r_p,
+  \qquad
+  M=m_e+m_p.$$
+  <p>
+    De $\mathbf r_p=\mathbf r_e-\mathbf r$ se sigue
+  </p>
+  $$\mathbf R
+  =
+  \frac{m_e\mathbf r_e+m_p(\mathbf r_e-\mathbf r)}{M}
+  =
+  \mathbf r_e-\frac{m_p}{M}\mathbf r,$$
+  <p>
+    y por tanto
+  </p>
+  $$\mathbf r_e=\mathbf R+\frac{m_p}{M}\mathbf r,\qquad
+  \mathbf r_p=\mathbf R-\frac{m_e}{M}\mathbf r.$$
+  <p>
+    Los momentos conjugados son
+  </p>
+  $$\mathbf P=\mathbf p_e+\mathbf p_p,\qquad
+  \mathbf p=
+  \frac{m_p}{M}\mathbf p_e
+  -
+  \frac{m_e}{M}\mathbf p_p,$$
+  <p>
+    con masa reducida
+  </p>
+  $$\mu=\frac{m_em_p}{M}.$$
+  <p>
+    Invirtiendo estas relaciones,
+  </p>
+  $$\mathbf p_e=\frac{m_e}{M}\mathbf P+\mathbf p,\qquad
+  \mathbf p_p=\frac{m_p}{M}\mathbf P-\mathbf p.$$
+  <p>
+    La energía cinética se separa porque los términos cruzados se cancelan:
+  </p>
+  $$\frac{\mathbf p_e^{\,2}}{2m_e}
+  +
+  \frac{\mathbf p_p^{\,2}}{2m_p}
+  =
+  \frac{\mathbf P^{\,2}}{2M}
+  +
+  \frac{\mathbf p^{\,2}}{2\mu}.$$
+
+  <h2 id="dipolar-ap">6. Aproximación dipolar</h2>
+  <p>
+    En óptica, la longitud de onda es mucho mayor que el tamaño atómico:
+  </p>
+  $$\lambda\sim 500\,\mathrm{nm},\qquad
+  a_0\sim0.05\,\mathrm{nm},\qquad
+  a_0\ll\lambda.$$
+  <p>
+    Por ello,
+  </p>
+  $$\mathbf A(\mathbf r_e,t)\simeq
+  \mathbf A(\mathbf r_p,t)\simeq
+  \mathbf A(\mathbf R,t).$$
+  <p>
+    Esta aproximación se ve expandiendo alrededor del centro de masa:
+  </p>
+  $$\mathbf A(\mathbf R+\delta\mathbf r,t)
+  \simeq
+  \mathbf A(\mathbf R,t)
+  +
+  (\delta\mathbf r\cdot\nabla_{\mathbf R})\mathbf A(\mathbf R,t)+\cdots.$$
+  <p>
+    Para una onda $\mathbf A_0\cos(\mathbf k\cdot\mathbf r-\omega t)$,
+    cada derivada espacial introduce un factor del orden de
+    $|\mathbf k|=2\pi/\lambda$. Entonces
+  </p>
+  $$\frac{|(\delta\mathbf r\cdot\nabla_{\mathbf R})\mathbf A|}
+  {|\mathbf A|}
+  \sim
+  |\delta\mathbf r|\,|\mathbf k|
+  \lesssim
+  2\pi\frac{\text{tamaño atómico}}{\text{longitud de onda}}
+  \ll1.$$
+  <p>
+    Sustituyendo la aproximación dipolar en el acoplamiento,
+  </p>
+  $$H_{\mathrm{int}}
+  \simeq
+  \mathbf A(\mathbf R,t)\cdot
+  \left(
+  -\frac{e}{m_e}\mathbf p_e+\frac{e}{m_p}\mathbf p_p
+  \right).$$
+  <p>
+    Usando las expresiones de $\mathbf p_e$ y $\mathbf p_p$,
+  </p>
+  $$H_{\mathrm{int}}
+  =
+  \mathbf A(\mathbf R,t)\cdot
+  \left(
+  -\frac{e}{M}\mathbf P-\frac{e}{m_e}\mathbf p
+  +\frac{e}{M}\mathbf P-\frac{e}{m_p}\mathbf p
+  \right).$$
+  <p>
+    Los términos con $\mathbf P$ se cancelan. Como
+    $1/\mu=1/m_e+1/m_p$,
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  H_{\mathbf A\cdot\mathbf p}
+  =
+  -\frac{e}{\mu}
+  \mathbf A(\mathbf R,t)\cdot\mathbf p.
+  }$$
+  </div>
+
+  <h2 id="hamiltoniano-h">7. Hamiltoniano hidrogenoide en el campo</h2>
+  <p>
+    El potencial interno es
+  </p>
+  $$V(\mathbf r)
+  =
+  -\frac{1}{4\pi\varepsilon_0}\frac{e^2}{|\mathbf r|}.$$
+  <p>
+    Después de separar centro de masa y movimiento relativo, y conservando el
+    término cuadrático en el campo, el hamiltoniano en orden dipolar es
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  H^{(0)}
+  =
+  \frac{\mathbf P^{\,2}}{2M}
+  +
+  \frac{\mathbf p^{\,2}}{2\mu}
+  -
+  \frac{1}{4\pi\varepsilon_0}\frac{e^2}{|\mathbf r|}
+  -
+  \frac{e}{\mu}\mathbf A(\mathbf R,t)\cdot\mathbf p
+  +
+  \frac{e^2}{2\mu}\mathbf A^2(\mathbf R,t).
+  }$$
+  </div>
+  <p>
+    También puede escribirse como
+  </p>
+  $$H^{(0)}
+  =
+  \frac{\mathbf P^{\,2}}{2M}
+  +
+  \frac{1}{2\mu}
+  \left[\mathbf p-e\mathbf A(\mathbf R,t)\right]^2
+  -
+  \frac{1}{4\pi\varepsilon_0}\frac{e^2}{|\mathbf r|}.$$
+  <p>
+    El término
+  </p>
+  $$U(\mathbf R)=\frac{e^2}{2\mu}\mathbf A^2(\mathbf R,t)$$
+  <p>
+    actúa como un potencial ponderomotriz para el centro de masa. Este término
+    aparece en física de plasmas, átomos en campos intensos y lásers de
+    electrones libres.
+  </p>
+
+  <h2 id="gauge">8. Invariancia local de gauge</h2>
+  <p>
+    La forma de acoplamiento mínimo también se entiende desde la invariancia
+    local de fase. La ecuación libre es
+  </p>
+  $$i\hbar\frac{\partial\psi}{\partial t}
+  =
+  \left[
+  \frac{1}{2m}
+  \left(\frac{\hbar}{i}\nabla\right)^2
+  +U(\mathbf r)
+  \right]\psi.$$
+  <p>
+    Una fase global $e^{i\alpha}$ no cambia $|\psi|^2$ ni la ecuación. En
+    cambio, una fase local
+  </p>
+  $$\tilde\psi(\mathbf r,t)
+  =
+  e^{\frac{i}{\hbar}e\Lambda(\mathbf r,t)}\psi(\mathbf r,t)$$
+  <p>
+    introduce términos extra. En efecto,
+  </p>
+  $$i\hbar\frac{\partial\tilde\psi}{\partial t}
+  =
+  e^{\frac{i}{\hbar}e\Lambda}
+  \left(
+  i\hbar\frac{\partial\psi}{\partial t}
+  -
+  e\frac{\partial\Lambda}{\partial t}\psi
+  \right),$$
+  $$\frac{\hbar}{i}\nabla\tilde\psi
+  =
+  e^{\frac{i}{\hbar}e\Lambda}
+  \left[
+  \frac{\hbar}{i}\nabla\psi+e(\nabla\Lambda)\psi
+  \right].$$
+  <p>
+    Para que la teoría sea invariante se introducen potenciales que se
+    transforman como
+  </p>
+  $$\mathbf A'=\mathbf A+\nabla\Lambda,\qquad
+  \phi'=\phi-\frac{\partial\Lambda}{\partial t}.$$
+  <p>
+    Con estas transformaciones,
+  </p>
+  $$\mathbf B'=\nabla\times\mathbf A'=\mathbf B,$$
+  $$\mathbf E'=-\nabla\phi'-\frac{\partial\mathbf A'}{\partial t}
+  =\mathbf E.$$
+  <p>
+    La ecuación covariante bajo cambios locales de fase es entonces
+  </p>
+  $$i\hbar\frac{\partial\psi}{\partial t}
+  =
+  \left[
+  \frac{1}{2m}
+  \left(
+  \frac{\hbar}{i}\nabla-e\mathbf A(\mathbf r,t)
+  \right)^2
+  +U(\mathbf r)+e\phi(\mathbf r,t)
+  \right]\psi.$$
+  <p>
+    De esta forma, la invariancia local de gauge fuerza precisamente el
+    reemplazo $\mathbf p\to\mathbf p-e\mathbf A$.
+  </p>
+
+  <h2 id="electrico">9. Forma campo eléctrico-dipolo</h2>
+  <p>
+    En la aproximación dipolar también puede describirse al átomo como un dipolo
+    eléctrico,
+  </p>
+  $$\mathbf d=e\mathbf r.$$
+  <p>
+    La energía de un dipolo en un campo eléctrico uniforme es
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  H_{\mathbf r\cdot\mathbf E}
+  =
+  -e\mathbf r\cdot\mathbf E(\mathbf R,t)
+  =
+  -\mathbf d\cdot\mathbf E(\mathbf R,t).
+  }$$
+  </div>
+  <p>
+    Si el centro de masa está fijo, el hamiltoniano dipolar queda
+  </p>
+  $$\tilde H^{(0)}
+  =
+  \frac{\mathbf P^{\,2}}{2M}
+  +
+  \frac{\mathbf p^{\,2}}{2\mu}
+  +
+  V(\mathbf r)
+  -
+  e\mathbf r\cdot\mathbf E(\mathbf R,t).$$
+  <p>
+    Si el centro de masa se mueve, la equivalencia exige términos adicionales
+    tipo Röntgen. Aquí se mantiene la aproximación usual: centro de masa fijo
+    o tratado separadamente.
+  </p>
+
+  <h2 id="equiv-clasica">10. Equivalencia clásica de $\mathbf A\cdot\mathbf p$ y $\mathbf r\cdot\mathbf E$</h2>
+  <p>
+    Dos lagrangianos que difieren por una derivada total producen las mismas
+    ecuaciones de movimiento. Si
+  </p>
+  $$\tilde L=L+\frac{d}{dt}F(\mathbf r,t),$$
+  <p>
+    entonces
+  </p>
+  $$\tilde S=S+F(\mathbf r(t_2),t_2)-F(\mathbf r(t_1),t_1),$$
+  <p>
+    y los términos de borde no contribuyen a la variación porque los extremos
+    están fijos.
+  </p>
+  <p>
+    Para centro de masa fijo,
+  </p>
+  $$H^{(0)}
+  =
+  \frac{1}{2\mu}
+  \left[\mathbf p-e\mathbf A(\mathbf R,t)\right]^2+V(\mathbf r).$$
+  <p>
+    De $\dot{\mathbf r}=\partial H^{(0)}/\partial\mathbf p$ se obtiene
+  </p>
+  $$\dot{\mathbf r}
+  =
+  \frac{1}{\mu}
+  \left[\mathbf p-e\mathbf A(\mathbf R,t)\right],
+  \qquad
+  \mathbf p=\mu\dot{\mathbf r}+e\mathbf A(\mathbf R,t).$$
+  <p>
+    La transformada inversa da
+  </p>
+  $$L^{(0)}
+  =
+  \frac{\mu}{2}\dot{\mathbf r}^{\,2}
+  +
+  e\dot{\mathbf r}\cdot\mathbf A(\mathbf R,t)
+  -
+  V(\mathbf r).$$
+  <p>
+    Restando la derivada total
+    $e\,d[\mathbf r\cdot\mathbf A(\mathbf R,t)]/dt$,
+  </p>
+  $$\tilde L^{(0)}
+  =
+  \frac{\mu}{2}\dot{\mathbf r}^{\,2}
+  -
+  V(\mathbf r)
+  -
+  e\mathbf r\cdot\frac{\partial\mathbf A}{\partial t}.$$
+  <p>
+    Como $\mathbf E=-\partial\mathbf A/\partial t$,
+  </p>
+  $$\tilde L^{(0)}
+  =
+  \frac{\mu}{2}\dot{\mathbf r}^{\,2}
+  -
+  V(\mathbf r)
+  +
+  e\mathbf r\cdot\mathbf E(\mathbf R,t).$$
+  <p>
+    El hamiltoniano correspondiente es
+  </p>
+  $$\tilde H^{(0)}
+  =
+  \frac{\mathbf p^{\,2}}{2\mu}
+  +
+  V(\mathbf r)
+  -
+  e\mathbf r\cdot\mathbf E(\mathbf R,t).$$
+
+  <h2 id="equiv-cuantica">11. Equivalencia cuántica por transformación de gauge</h2>
+  <p>
+    En mecánica cuántica se parte de
+  </p>
+  $$i\hbar\frac{\partial\tilde\psi}{\partial t}
+  =
+  \left[
+  \frac{1}{2\mu}
+  \left(\mathbf p-e\mathbf A(\mathbf R,t)\right)^2
+  +V(\mathbf r)
+  \right]\tilde\psi.$$
+  <p>
+    Se usa la transformación
+  </p>
+  $$\tilde\psi(\mathbf r,t)
+  =
+  e^{\frac{i}{\hbar}e\mathbf r\cdot\mathbf A(\mathbf R,t)}
+  \psi(\mathbf r,t).$$
+  <p>
+    Con $\Lambda(\mathbf r,t)=\mathbf r\cdot\mathbf A(\mathbf R,t)$,
+  </p>
+  $$\nabla_{\mathbf r}\Lambda=\mathbf A(\mathbf R,t).$$
+  <p>
+    La elección de signo correspondiente lleva a
+  </p>
+  $$\mathbf A'=\mathbf A-\nabla_{\mathbf r}\Lambda=0,$$
+  $$\phi'=\frac{\partial\Lambda}{\partial t}
+  =
+  \mathbf r\cdot\frac{\partial\mathbf A}{\partial t}
+  =
+  -\mathbf r\cdot\mathbf E.$$
+  <p>
+    La función transformada $\psi$ satisface entonces
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  i\hbar\frac{\partial\psi}{\partial t}
+  =
+  \left[
+  \frac{\mathbf p^{\,2}}{2\mu}
+  +
+  V(\mathbf r)
+  -
+  e\mathbf r\cdot\mathbf E(\mathbf R,t)
+  \right]\psi.
+  }$$
+  </div>
+
+  <h2 id="matriz">12. Elementos de matriz</h2>
+  <p>
+    Aunque las dos descripciones son equivalentes, no se deben comparar sus
+    elementos de matriz sin transformar también los estados. Para eigenestados
+    del átomo libre,
+  </p>
+  $$\hat H_{\mathrm{atom}}\ket j=E_j\ket j,$$
+  <p>
+    se tiene
+  </p>
+  $$\langle j|\hat H_{\mathbf A\cdot\mathbf p}|j'\rangle
+  =
+  -\frac{e}{\mu}\mathbf A(\mathbf R,t)\cdot
+  \langle j|\hat{\mathbf p}|j'\rangle,$$
+  $$\langle j|\hat H_{\mathbf r\cdot\mathbf E}|j'\rangle
+  =
+  -e\mathbf E(\mathbf R,t)\cdot
+  \langle j|\hat{\mathbf r}|j'\rangle.$$
+  <p>
+    La ecuación de Heisenberg para el átomo libre da
+  </p>
+  $$\frac{\hat{\mathbf p}}{\mu}
+  =
+  \frac{d\hat{\mathbf r}}{dt}
+  =
+  \frac{i}{\hbar}[\hat H_{\mathrm{atom}},\hat{\mathbf r}].$$
+  <p>
+    Tomando elementos de matriz,
+  </p>
+  $$\frac{1}{\mu}\langle j|\hat{\mathbf p}|j'\rangle
+  =
+  \frac{i}{\hbar}(E_j-E_{j'})
+  \langle j|\hat{\mathbf r}|j'\rangle.$$
+  <p>
+    Con $\omega_{jj'}=(E_j-E_{j'})/\hbar$,
+  </p>
+  $$\frac{1}{\mu}\langle j|\hat{\mathbf p}|j'\rangle
+  =
+  i\omega_{jj'}\langle j|\hat{\mathbf r}|j'\rangle.$$
+  <p>
+    Así,
+  </p>
+  $$\langle j|\hat H_{\mathbf A\cdot\mathbf p}|j'\rangle
+  =
+  -ie\omega_{jj'}\mathbf A(\mathbf R,t)\cdot
+  \langle j|\hat{\mathbf r}|j'\rangle,$$
+  <p>
+    lo cual no coincide, en general, con el elemento de matriz de
+    $-e\mathbf r\cdot\mathbf E$. La equivalencia es de la dinámica completa,
+    no de cada matriz escrita en la misma base sin transformar.
+  </p>
+
+  <h2 id="entrelazamiento">13. Subsistemas, interacción y entrelazamiento</h2>
+  <p>
+    En la teoría cuántica completa,
+  </p>
+  $$i\hbar\frac{d}{dt}\ket{\Psi}=\hat H\ket{\Psi}.$$
+  <p>
+    Antes de ignorar el centro de masa, un estado separable se escribiría como
+  </p>
+  $$\ket{\Psi}
+  =
+  \ket{\psi_{\mathrm{cm}}}
+  \ket{\psi_{\mathrm{atom}}}
+  \ket{\psi_{\mathrm{campo}}}.$$
+  <p>
+    Los operadores $\hat{\mathbf R},\hat{\mathbf P}$ actúan sobre el centro de
+    masa; $\hat{\mathbf r},\hat{\mathbf p}$ sobre el átomo; y
+    $\hat{\mathbf E}$, $\hat{\mathbf A}$ contienen operadores de campo
+    $\hat a,\hat a^\dagger$ y funciones de modo $\mathbf u_l(\mathbf R)$.
+    Una interacción que multiplica operadores atómicos por operadores del campo
+    genera, en general, entrelazamiento. Esa es la base de la dinámica del
+    modelo de Jaynes-Cummings-Paul.
+  </p>
+
+  <h2 id="dos-niveles">14. Modelo simple de dos niveles</h2>
+  <p>
+    Se conserva un modo de cavidad y dos niveles atómicos:
+    $\ket a$ excitado y $\ket b$ base. Sus energías son
+  </p>
+  $$E_a=\hbar\omega_a,\qquad E_b=\hbar\omega_b,$$
+  <p>
+    y la frecuencia de transición es
+  </p>
+  $$\omega=\omega_a-\omega_b=\frac{E_a-E_b}{\hbar}.$$
+  <p>
+    Para cualquier operador atómico,
+  </p>
+  $$\hat O
+  =
+  \sum_{j=a,b}\sum_{j'=a,b}
+  \ket j\langle j|\hat O|j'\rangle\bra{j'}.$$
+  <p>
+    El hamiltoniano atómico es
+  </p>
+  $$\hat H_{\mathrm{atom}}
+  =
+  E_a\ket a\bra a+E_b\ket b\bra b.$$
+  <p>
+    En la base $\ket a=(1,0)^T$, $\ket b=(0,1)^T$,
+  </p>
+  $$\hat H_{\mathrm{atom}}
+  =
+  \begin{pmatrix}E_a&0\\0&E_b\end{pmatrix}
+  =
+  E\mathbb{1}
+  +
+  \frac{\hbar\omega}{2}
+  \begin{pmatrix}1&0\\0&-1\end{pmatrix},$$
+  <p>
+    donde $E=(E_a+E_b)/2$. Quitando la constante,
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  \hat H_{\mathrm{atom}}
+  =
+  \frac{\hbar\omega}{2}\hat\sigma_z.
+  }$$
+  </div>
+
+  <h2 id="dipolo">15. Operador dipolar de transición</h2>
+  <p>
+    El operador $\hat{\mathbf r}$ es impar bajo paridad, por lo que para estados
+    de paridad definida
+  </p>
+  $$\langle j|\hat{\mathbf r}|j\rangle
+  =
+  \int d^3r\,|\psi_j(\mathbf r)|^2\mathbf r=0.$$
+  <p>
+    Los elementos no diagonales definen el dipolo de transición:
+  </p>
+  $$\mathbf d
+  =
+  e\langle a|\hat{\mathbf r}|b\rangle
+  =
+  e\int d^3r\,\psi_a^*(\mathbf r)\,\mathbf r\,\psi_b(\mathbf r),$$
+  $$\mathbf d^{\,*}=e\langle b|\hat{\mathbf r}|a\rangle.$$
+  <p>
+    Entonces
+  </p>
+  $$e\hat{\mathbf r}
+  =
+  \mathbf d\,\ket a\bra b
+  +
+  \mathbf d^{\,*}\ket b\bra a.$$
+  <p>
+    Definiendo
+  </p>
+  $$\hat\sigma^+=\ket a\bra b
+  =
+  \begin{pmatrix}0&1\\0&0\end{pmatrix},\qquad
+  \hat\sigma^-=\ket b\bra a
+  =
+  \begin{pmatrix}0&0\\1&0\end{pmatrix},$$
+  <p>
+    se obtiene
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  e\hat{\mathbf r}
+  =
+  \mathbf d\,\hat\sigma^+
+  +
+  \mathbf d^{\,*}\hat\sigma^-.
+  }$$
+  </div>
+  <p>
+    $\hat\sigma^+$ sube al átomo de $\ket b$ a $\ket a$; $\hat\sigma^-$ lo baja
+    de $\ket a$ a $\ket b$.
+  </p>
+
+  <h2 id="campo">16. Campo de un modo y frecuencia de Rabi del vacío</h2>
+  <p>
+    El hamiltoniano de un modo de frecuencia $\Omega$ es
+  </p>
+  $$\hat H_{\mathrm{campo}}=\hbar\Omega\,\hat a^\dagger\hat a.$$
+  <p>
+    El campo eléctrico del modo, evaluado en la posición del átomo, se escribe
+  </p>
+  $$\hat{\mathbf E}(\mathbf R,t)
+  =
+  \mathcal E_0\,\mathbf u(\mathbf R)\,i(\hat a-\hat a^\dagger),$$
+  $$\mathcal E_0=\sqrt{\frac{\hbar\Omega}{2\varepsilon_0V}}.$$
+  <p>
+    La interacción dipolar es
+  </p>
+  $$\hat H_{\mathbf r\cdot\mathbf E}
+  =
+  -i\mathcal E_0
+  \left[
+  \mathbf d\cdot\mathbf u(\mathbf R)\hat\sigma^+
+  +
+  \mathbf d^{\,*}\cdot\mathbf u(\mathbf R)\hat\sigma^-
+  \right]
+  (\hat a-\hat a^\dagger).$$
+  <p>
+    Se define
+  </p>
+  $$g(\mathbf R)
+  =
+  \frac{\mathcal E_0}{\hbar}
+  |\mathbf d\cdot\mathbf u(\mathbf R)|,$$
+  <p>
+    la frecuencia de Rabi del vacío dependiente de la posición. Si
+    $\mathbf d\cdot\mathbf u=|\mathbf d\cdot\mathbf u|e^{i\varphi}$ y se elige
+    $\varphi=\pi/2$, entonces
+  </p>
+  $$\hat H_{\mathbf r\cdot\mathbf E}
+  =
+  \hbar g(\mathbf R)
+  (\hat\sigma^+-\hat\sigma^-)
+  (\hat a-\hat a^\dagger).$$
+
+  <h2 id="total">17. Hamiltoniano total antes de RWA</h2>
+  <p>
+    Reuniendo centro de masa, campo, átomo e interacción,
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  \hat H
+  =
+  \frac{\hat{\mathbf P}^{\,2}}{2M}
+  +
+  \hbar\Omega\,\hat a^\dagger\hat a
+  +
+  \frac{\hbar\omega}{2}\hat\sigma_z
+  +
+  \hbar g(\hat{\mathbf R})
+  (\hat\sigma^+-\hat\sigma^-)(\hat a-\hat a^\dagger).
+  }$$
+  </div>
+  <p>
+    Si se omite momentáneamente la dependencia espacial de $g$,
+  </p>
+  $$\hat H_{\mathbf r\cdot\mathbf E}
+  =
+  \hbar g
+  \left(
+  \hat\sigma^+\hat a
+  -
+  \hat\sigma^+\hat a^\dagger
+  -
+  \hat\sigma^-\hat a
+  +
+  \hat\sigma^-\hat a^\dagger
+  \right).$$
+  <p>
+    Los términos $\hat\sigma^+\hat a$ y
+    $\hat\sigma^-\hat a^\dagger$ conservan excitaciones: absorción y emisión.
+    Los términos $\hat\sigma^+\hat a^\dagger$ y
+    $\hat\sigma^-\hat a$ son contra-rotantes porque crean o destruyen
+    simultáneamente una excitación atómica y una del campo.
+  </p>
+
+  <h2 id="interaccion">18. Cuadro de interacción</h2>
+  <p>
+    Para separar los términos lentos y rápidos se toma
+  </p>
+  $$\hat H_0
+  =
+  \hbar\Omega\,\hat a^\dagger\hat a
+  +
+  \frac{\hbar\omega}{2}\hat\sigma_z.$$
+  <p>
+    El estado de interacción es
+  </p>
+  $$\ket{\Psi_I(t)}
+  =
+  e^{\frac{i}{\hbar}\hat H_0t}\ket{\Psi(t)}.$$
+  <p>
+    Entonces
+  </p>
+  $$i\hbar\frac{d}{dt}\ket{\Psi_I(t)}
+  =
+  \left[
+  \frac{\hat{\mathbf P}^{\,2}}{2M}
+  +
+  \hat H_{\mathbf r\cdot\mathbf E}^{(I)}(t)
+  \right]\ket{\Psi_I(t)},$$
+  <p>
+    con
+  </p>
+  $$\hat H_{\mathbf r\cdot\mathbf E}^{(I)}(t)
+  =
+  e^{\frac{i}{\hbar}\hat H_0t}
+  \hat H_{\mathbf r\cdot\mathbf E}
+  e^{-\frac{i}{\hbar}\hat H_0t}.$$
+  <p>
+    La parte atómica evoluciona como
+  </p>
+  $$e^{\frac{i}{2}\omega t\hat\sigma_z}
+  \hat\sigma^+
+  e^{-\frac{i}{2}\omega t\hat\sigma_z}
+  =
+  e^{i\omega t}\hat\sigma^+,$$
+  $$e^{\frac{i}{2}\omega t\hat\sigma_z}
+  \hat\sigma^-
+  e^{-\frac{i}{2}\omega t\hat\sigma_z}
+  =
+  e^{-i\omega t}\hat\sigma^-.$$
+  <p>
+    La parte del campo evoluciona como
+  </p>
+  $$e^{i\Omega t\hat a^\dagger\hat a}\hat a
+  e^{-i\Omega t\hat a^\dagger\hat a}
+  =
+  e^{-i\Omega t}\hat a,$$
+  $$e^{i\Omega t\hat a^\dagger\hat a}\hat a^\dagger
+  e^{-i\Omega t\hat a^\dagger\hat a}
+  =
+  e^{i\Omega t}\hat a^\dagger.$$
+  <p>
+    Por tanto,
+  </p>
+  $$\hat H_{\mathbf r\cdot\mathbf E}^{(I)}(t)
+  =
+  \hbar g
+  \left[
+  e^{-i(\Omega-\omega)t}\hat\sigma^+\hat a
+  -
+  e^{i(\Omega+\omega)t}\hat\sigma^+\hat a^\dagger
+  -
+  e^{-i(\Omega+\omega)t}\hat\sigma^-\hat a
+  +
+  e^{i(\Omega-\omega)t}\hat\sigma^-\hat a^\dagger
+  \right].$$
+
+  <h2 id="rwa">19. Aproximación de onda rotante</h2>
+  <p>
+    Se define el desafine
+  </p>
+  $$\Delta=\Omega-\omega.$$
+  <p>
+    Los términos contra-rotantes oscilan con $\Omega+\omega$, mientras que los
+    términos resonantes oscilan con $\Delta$. Cerca de resonancia,
+    $\Delta$ es lento y $\Omega+\omega$ es rápido. La aproximación de onda
+    rotante conserva solo la parte lenta:
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  \hat H_{\mathrm{int}}^{(I)}(t)
+  \simeq
+  \hbar g
+  \left(
+  e^{-i\Delta t}\hat\sigma^+\hat a
+  +
+  e^{i\Delta t}\hat\sigma^-\hat a^\dagger
+  \right).
+  }$$
+  </div>
+  <p>
+    Al volver al marco de Schrödinger se obtiene la interacción resonante
+  </p>
+  $$\hat H_{\mathbf r\cdot\mathbf E}
+  =
+  \hbar g
+  \left(
+  \hat\sigma^-\hat a^\dagger
+  +
+  \hat\sigma^+\hat a
+  \right).$$
+  <p>
+    Finalmente,
+  </p>
+  <div class="boxed result">
+  $$\boxed{
+  \hat H
+  =
+  \frac{\hat{\mathbf P}^{\,2}}{2M}
+  +
+  \hbar\Omega\,\hat a^\dagger\hat a
+  +
+  \frac{\hbar\omega}{2}\hat\sigma_z
+  +
+  \hbar g(\hat{\mathbf R})
+  \left(
+  \hat\sigma^-\hat a^\dagger
+  +
+  \hat\sigma^+\hat a
+  \right).
+  }$$
+  </div>
+  <p>
+    Si se desprecia el movimiento del centro de masa y se toma $g$ constante,
+    se obtiene el hamiltoniano de Jaynes-Cummings-Paul. La física queda
+    concentrada en el intercambio coherente de una excitación entre átomo y
+    campo: absorción, $\hat\sigma^+\hat a$, y emisión,
+    $\hat\sigma^-\hat a^\dagger$.
+  </p>
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 4 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

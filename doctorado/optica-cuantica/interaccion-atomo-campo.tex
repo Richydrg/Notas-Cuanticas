@@ -1,0 +1,1811 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{braket}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+
+\allowdisplaybreaks
+\emergencystretch=2em
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\vb}[1]{\mathbf{#1}}
+\newcommand{\Ezero}{\mathcal E_0}
+\newcommand{\adag}{\hat a^\dagger}
+\newcommand{\splus}{\hat\sigma^+}
+\newcommand{\sminus}{\hat\sigma^-}
+
+\title{Interacci\'on \'Atomo--Campo}
+\author{Ricardo Del Rosal Gardu\~no \\ \small Doctorado en F\'isica, BUAP}
+\date{Notas a partir de Schleich, \emph{Quantum Optics in Phase Space}}
+
+\begin{document}
+\maketitle
+
+\section{C\'omo construir la interacci\'on}
+
+El objetivo es construir el hamiltoniano que describe la interacci\'on entre un
+\'atomo y el campo electromagn\'etico. La idea f\'isica es sencilla: el \'atomo
+contiene cargas, y las cargas responden al campo electromagn\'etico. La parte
+delicada es escribir esa respuesta de manera compatible con la mec\'anica
+cu\'antica, con las simetr\'ias de gauge del electromagnetismo y, m\'as
+adelante, con la cuantizaci\'on del propio campo.
+
+En las notas manuscritas se parte de una part\'icula cargada, que puede pensarse
+como el electr\'on del \'atomo, de masa \(m_e\), carga \(e\), posici\'on
+\(\vb r_e\), y acoplada al campo por medio del potencial vectorial
+\(\vb A(\vb r_e,t)\). Se trabaja en el gauge de Coulomb, donde
+\(\nabla\cdot\vb A=0\). El campo electromagn\'etico puede describirse en
+t\'erminos de los potenciales
+\begin{equation}
+  \vb B=\nabla\times\vb A,
+  \qquad
+  \vb E=-\nabla\phi-\frac{\partial\vb A}{\partial t}.
+\end{equation}
+Por tanto, construir la interacci\'on equivale a entender c\'omo deben entrar
+\(\phi\) y \(\vb A\) en la din\'amica de una carga.
+
+Hay dos formas equivalentes de llegar al acoplamiento que se usar\'a en \'optica
+cu\'antica. La primera parte de la fuerza de Lorentz y lleva al acoplamiento
+m\'inimo, o forma \(\vb A\cdot\vb p\). La segunda usa directamente el momento
+dipolar el\'ectrico del \'atomo y lleva a la forma \(-\vb d\cdot\vb E\). Ambas
+formas son equivalentes dentro de la aproximaci\'on dipolar y con el centro de
+masa fijo, aunque sus elementos de matriz no son iguales t\'ermino a t\'ermino
+si no se transforman tambi\'en los estados.
+
+\section{Lagrangiano y fuerza de Lorentz}
+
+El punto de partida experimental es la fuerza de Lorentz sobre una carga \(q\):
+\begin{equation}
+  \vb F
+  =
+  q\left(\vb E+\vb v\times\vb B\right).
+\end{equation}
+Se desea construir un lagrangiano que reproduzca esta fuerza por medio de las
+ecuaciones de Euler--Lagrange. Para una carga \(e\), el lagrangiano adecuado es
+\begin{equation}
+  L
+  =
+  \frac{1}{2}m\dot{\vb r}^{\,2}
+  +e\,\dot{\vb r}\cdot\vb A(\vb r,t)
+  -e\,\phi(\vb r,t).
+\end{equation}
+El primer t\'ermino es la energ\'ia cin\'etica usual. El segundo acopla la
+velocidad de la carga con el potencial vectorial. El tercero es el acoplamiento
+con el potencial escalar.
+
+Las ecuaciones de Euler--Lagrange, componente por componente, son
+\begin{equation}
+  \frac{\dd}{\dd t}\left(\frac{\partial L}{\partial\dot r_i}\right)
+  -
+  \frac{\partial L}{\partial r_i}
+  =
+  0.
+\end{equation}
+Primero se calcula la derivada respecto a la velocidad:
+\begin{equation}
+  \frac{\partial L}{\partial\dot r_i}
+  =
+  m\dot r_i+eA_i(\vb r,t).
+\end{equation}
+Al derivar respecto al tiempo debe recordarse que \(A_i\) depende de \(t\) y de
+la posici\'on \(\vb r(t)\). Por regla de la cadena,
+\begin{equation}
+  \frac{\dd}{\dd t}
+  \left(\frac{\partial L}{\partial\dot r_i}\right)
+  =
+  m\ddot r_i
+  +e\frac{\partial A_i}{\partial t}
+  +e\dot r_j\frac{\partial A_i}{\partial r_j},
+\end{equation}
+donde se suma sobre el \'indice repetido \(j\). La derivada del lagrangiano
+respecto a \(r_i\) es
+\begin{equation}
+  \frac{\partial L}{\partial r_i}
+  =
+  e\dot r_j\frac{\partial A_j}{\partial r_i}
+  -e\frac{\partial\phi}{\partial r_i}.
+\end{equation}
+Sustituyendo en Euler--Lagrange,
+\begin{align}
+  0
+  &=
+  m\ddot r_i
+  +e\frac{\partial A_i}{\partial t}
+  +e\dot r_j\frac{\partial A_i}{\partial r_j}
+  -e\dot r_j\frac{\partial A_j}{\partial r_i}
+  +e\frac{\partial\phi}{\partial r_i},
+\end{align}
+y, despejando la aceleraci\'on,
+\begin{equation}
+  m\ddot r_i
+  =
+  -e\frac{\partial A_i}{\partial t}
+  -e\frac{\partial\phi}{\partial r_i}
+  -e\dot r_j
+  \left(
+    \frac{\partial A_i}{\partial r_j}
+    -
+    \frac{\partial A_j}{\partial r_i}
+  \right).
+\end{equation}
+Los dos primeros t\'erminos son \(eE_i\), porque
+\begin{equation}
+  E_i
+  =
+  -\frac{\partial\phi}{\partial r_i}
+  -
+  \frac{\partial A_i}{\partial t}.
+\end{equation}
+Queda por identificar el t\'ermino magn\'etico. Usando
+\(\vb B=\nabla\times\vb A\),
+\begin{align}
+  \left(\dot{\vb r}\times\vb B\right)_i
+  &=
+  \epsilon_{ijk}\dot r_j B_k                                                   \\
+  &=
+  \epsilon_{ijk}\dot r_j(\nabla\times\vb A)_k                                  \\
+  &=
+  \epsilon_{ijk}\epsilon_{klm}\dot r_j
+  \frac{\partial A_m}{\partial r_l}.
+\end{align}
+Con la identidad
+\begin{equation}
+  \epsilon_{ijk}\epsilon_{klm}
+  =
+  \delta_{il}\delta_{jm}
+  -
+  \delta_{im}\delta_{jl},
+\end{equation}
+se obtiene
+\begin{align}
+  \left(\dot{\vb r}\times\vb B\right)_i
+  &=
+  \dot r_j
+  \left(
+    \frac{\partial A_j}{\partial r_i}
+    -
+    \frac{\partial A_i}{\partial r_j}
+  \right)                                                                      \\
+  &=
+  -\dot r_j
+  \left(
+    \frac{\partial A_i}{\partial r_j}
+    -
+    \frac{\partial A_j}{\partial r_i}
+  \right).
+\end{align}
+Por tanto,
+\begin{equation}
+  m\ddot r_i
+  =
+  e\left[E_i+\left(\dot{\vb r}\times\vb B\right)_i\right],
+\end{equation}
+que es justamente la fuerza de Lorentz. Esto confirma que el lagrangiano
+anterior contiene el acoplamiento correcto con el campo electromagn\'etico.
+
+\section{Momento can\'onico y acoplamiento m\'inimo}
+
+Una vez construido el lagrangiano, el hamiltoniano se obtiene por transformada
+de Legendre. El momento can\'onico conjugado a \(\vb r_e\) es
+\begin{equation}
+  \vb p_e
+  =
+  \frac{\partial L}{\partial\dot{\vb r}_e}
+  =
+  m_e\dot{\vb r}_e+e\vb A(\vb r_e,t).
+\end{equation}
+De aqu\'i se despeja la velocidad:
+\begin{equation}
+  \dot{\vb r}_e
+  =
+  \frac{1}{m_e}
+  \left[
+    \vb p_e-e\vb A(\vb r_e,t)
+  \right].
+\end{equation}
+Este punto es importante: \(\vb p_e\) no es el momento mec\'anico
+\(m_e\dot{\vb r}_e\). El momento mec\'anico es
+\begin{equation}
+  m_e\dot{\vb r}_e
+  =
+  \vb p_e-e\vb A(\vb r_e,t).
+\end{equation}
+Por eso se dice que el campo electromagn\'etico entra mediante el reemplazo
+m\'inimo
+\begin{equation}
+  \vb p_e
+  \longrightarrow
+  \vb p_e-e\vb A(\vb r_e,t).
+\end{equation}
+
+La transformada de Legendre es
+\begin{equation}
+  H
+  =
+  \vb p_e\cdot\dot{\vb r}_e-L.
+\end{equation}
+Sustituyendo la velocidad,
+\begin{align}
+  H
+  &=
+  \vb p_e\cdot
+  \frac{1}{m_e}\left(\vb p_e-e\vb A\right)
+  -
+  \frac{1}{2}m_e
+  \frac{1}{m_e^2}
+  \left(\vb p_e-e\vb A\right)^2
+  -
+  e
+  \frac{1}{m_e}
+  \left(\vb p_e-e\vb A\right)\cdot\vb A
+  +e\phi .
+\end{align}
+Para ver las cancelaciones, se agrupan los t\'erminos:
+\begin{align}
+  H
+  &=
+  \frac{1}{m_e}\vb p_e^{\,2}
+  -\frac{e}{m_e}\vb p_e\cdot\vb A
+  -\frac{1}{2m_e}
+  \left(
+    \vb p_e^{\,2}
+    -2e\vb p_e\cdot\vb A
+    +e^2\vb A^2
+  \right)                                                                     \\
+  &\quad
+  -\frac{e}{m_e}\vb p_e\cdot\vb A
+  +\frac{e^2}{m_e}\vb A^2
+  +e\phi .
+\end{align}
+Los t\'erminos lineales se combinan y queda
+\begin{equation}
+  H
+  =
+  \frac{1}{2m_e}
+  \left[
+    \vb p_e-e\vb A(\vb r_e,t)
+  \right]^2
+  +e\phi(\vb r_e,t).
+\end{equation}
+Al desarrollar el cuadrado,
+\begin{equation}
+  H
+  =
+  \frac{\vb p_e^{\,2}}{2m_e}
+  -
+  \frac{e}{m_e}\vb p_e\cdot\vb A(\vb r_e,t)
+  +
+  \frac{e^2}{2m_e}\vb A^2(\vb r_e,t)
+  +
+  e\phi(\vb r_e,t).
+\end{equation}
+Este es el hamiltoniano de acoplamiento m\'inimo.
+
+\section{Gauge de Coulomb y t\'ermino \texorpdfstring{\(\vb A\cdot\vb p\)}{A.p}}
+
+En mec\'anica cu\'antica debe cuidarse el orden de \(\vb p_e\) y
+\(\vb A\), porque \(\vb p_e=-\ii\hbar\nabla\) es un operador diferencial. Para
+una funci\'on de prueba \(\psi\),
+\begin{align}
+  \vb p_e\cdot\vb A\,\psi
+  &=
+  -\ii\hbar\nabla\cdot(\vb A\psi)                                             \\
+  &=
+  -\ii\hbar(\nabla\cdot\vb A)\psi
+  -\ii\hbar\vb A\cdot\nabla\psi .
+\end{align}
+En el gauge de Coulomb,
+\begin{equation}
+  \nabla\cdot\vb A=0,
+\end{equation}
+por lo que
+\begin{equation}
+  \vb p_e\cdot\vb A\,\psi
+  =
+  \vb A\cdot\vb p_e\,\psi.
+\end{equation}
+Dentro de este gauge se puede escribir
+\begin{equation}
+  \vb p_e\cdot\vb A
+  =
+  \vb A\cdot\vb p_e.
+\end{equation}
+El t\'ermino lineal que acopla el campo con el momento de la part\'icula es
+\begin{equation}
+  \boxed{
+  H_{\vb A\cdot\vb p}
+  =
+  -\frac{e}{m_e}\vb A(\vb r_e,t)\cdot\vb p_e .
+  }
+\end{equation}
+El t\'ermino proporcional a \(\vb A^2\) tambi\'en proviene del acoplamiento
+m\'inimo. En campos d\'ebiles suele no ser el protagonista de la absorci\'on y
+emisi\'on de un fot\'on, pero no debe olvidarse que est\'a presente en el
+hamiltoniano completo.
+
+\section{\'Atomo de hidr\'ogeno: coordenadas de centro de masa}
+
+Para un \'atomo de hidr\'ogeno se tienen dos cargas: electr\'on y prot\'on. En
+la convenci\'on de las notas manuscritas, el t\'ermino lineal en el campo queda
+\begin{equation}
+  H_{\mathrm{int}}
+  =
+  -\frac{e}{m_e}
+  \vb A(\vb r_e,t)\cdot\vb p_e
+  +
+  \frac{e}{m_p}
+  \vb A(\vb r_p,t)\cdot\vb p_p .
+\end{equation}
+El signo relativo refleja que electr\'on y prot\'on tienen cargas opuestas.
+
+Se introducen la coordenada de centro de masa y la coordenada relativa:
+\begin{equation}
+  \vb R
+  =
+  \frac{m_e\vb r_e+m_p\vb r_p}{M},
+  \qquad
+  \vb r
+  =
+  \vb r_e-\vb r_p,
+  \qquad
+  M=m_e+m_p.
+\end{equation}
+Para invertir estas relaciones, de \(\vb r=\vb r_e-\vb r_p\) se tiene
+\(\vb r_p=\vb r_e-\vb r\). Sustituyendo en \(\vb R\),
+\begin{align}
+  \vb R
+  &=
+  \frac{m_e\vb r_e+m_p(\vb r_e-\vb r)}{M}                                      \\
+  &=
+  \vb r_e-\frac{m_p}{M}\vb r,
+\end{align}
+por lo que
+\begin{equation}
+  \vb r_e
+  =
+  \vb R+\frac{m_p}{M}\vb r.
+\end{equation}
+De manera an\'aloga,
+\begin{equation}
+  \vb r_p
+  =
+  \vb R-\frac{m_e}{M}\vb r.
+\end{equation}
+
+Los momentos conjugados convenientes son
+\begin{equation}
+  \vb P=\vb p_e+\vb p_p,
+  \qquad
+  \vb p
+  =
+  \frac{m_p}{M}\vb p_e
+  -
+  \frac{m_e}{M}\vb p_p,
+\end{equation}
+donde \(\vb P\) es el momento total y \(\vb p\) es el momento relativo. La masa
+reducida es
+\begin{equation}
+  \mu
+  =
+  \frac{m_em_p}{M}.
+\end{equation}
+Para despejar \(\vb p_e\), se usa \(\vb p_p=\vb P-\vb p_e\):
+\begin{align}
+  \vb p
+  &=
+  \frac{m_p}{M}\vb p_e
+  -
+  \frac{m_e}{M}(\vb P-\vb p_e)                                                 \\
+  &=
+  \left(\frac{m_p+m_e}{M}\right)\vb p_e
+  -
+  \frac{m_e}{M}\vb P                                                           \\
+  &=
+  \vb p_e-\frac{m_e}{M}\vb P.
+\end{align}
+As\'i,
+\begin{equation}
+  \vb p_e
+  =
+  \frac{m_e}{M}\vb P+\vb p,
+  \qquad
+  \vb p_p
+  =
+  \frac{m_p}{M}\vb P-\vb p.
+\end{equation}
+La energ\'ia cin\'etica tambi\'en se separa. Sustituyendo,
+\begin{align}
+  \frac{\vb p_e^{\,2}}{2m_e}
+  +
+  \frac{\vb p_p^{\,2}}{2m_p}
+  &=
+  \frac{1}{2m_e}
+  \left(
+    \frac{m_e^2}{M^2}\vb P^{\,2}
+    +
+    \frac{2m_e}{M}\vb P\cdot\vb p
+    +
+    \vb p^{\,2}
+  \right)                                                                     \\
+  &\quad
+  +
+  \frac{1}{2m_p}
+  \left(
+    \frac{m_p^2}{M^2}\vb P^{\,2}
+    -
+    \frac{2m_p}{M}\vb P\cdot\vb p
+    +
+    \vb p^{\,2}
+  \right).
+\end{align}
+Los t\'erminos cruzados se cancelan. Los t\'erminos restantes dan
+\begin{equation}
+  \frac{\vb p_e^{\,2}}{2m_e}
+  +
+  \frac{\vb p_p^{\,2}}{2m_p}
+  =
+  \frac{\vb P^{\,2}}{2M}
+  +
+  \frac{\vb p^{\,2}}{2\mu}.
+\end{equation}
+Esta separaci\'on es esencial: \(\vb P\) describe el movimiento del centro de
+masa y \(\vb p\) describe la din\'amica interna del \'atomo.
+
+\section{Aproximaci\'on dipolar en la forma \texorpdfstring{\(\vb A\cdot\vb p\)}{A.p}}
+
+Las longitudes de onda \'opticas son mucho mayores que el tama\~no at\'omico.
+T\'ipicamente,
+\begin{equation}
+  \lambda\sim 500\,\mathrm{nm},
+  \qquad
+  a_0\sim 0.05\,\mathrm{nm},
+  \qquad
+  a_0\ll\lambda .
+\end{equation}
+Por ello, el potencial vectorial casi no cambia a lo largo del \'atomo. Para
+electr\'on y prot\'on,
+\begin{equation}
+  \vb A(\vb r_e,t)
+  \simeq
+  \vb A(\vb r_p,t)
+  \simeq
+  \vb A(\vb R,t).
+\end{equation}
+La estimaci\'on se obtiene expandiendo alrededor de \(\vb R\). Si
+\(\vb r_e=\vb R+\delta\vb r\), entonces
+\begin{equation}
+  \vb A(\vb R+\delta\vb r,t)
+  \simeq
+  \vb A(\vb R,t)
+  +
+  (\delta\vb r\cdot\nabla_{\vb R})\vb A(\vb R,t)+\cdots .
+\end{equation}
+Para una onda \'optica,
+\begin{equation}
+  \vb A(\vb r,t)
+  =
+  \vb A_0\cos(\vb k\cdot\vb r-\omega t),
+  \qquad
+  |\vb k|=\frac{2\pi}{\lambda}.
+\end{equation}
+Cada derivada espacial introduce un factor del orden de \(|\vb k|\), de modo
+que
+\begin{equation}
+  \frac{
+  |(\delta\vb r\cdot\nabla_{\vb R})\vb A(\vb R,t)|
+  }{
+  |\vb A(\vb R,t)|
+  }
+  \sim
+  |\delta\vb r|\,|\vb k|
+  \lesssim
+  |\vb r|\,\frac{2\pi}{\lambda}
+  =
+  2\pi\frac{\text{tama\~no at\'omico}}{\text{longitud de onda}}.
+\end{equation}
+Como esta raz\'on es mucho menor que uno, se conserva solamente el primer
+t\'ermino.
+
+Sustituyendo esta aproximaci\'on en el acoplamiento lineal,
+\begin{align}
+  H_{\mathrm{int}}
+  &\simeq
+  \vb A(\vb R,t)\cdot
+  \left(
+    -\frac{e}{m_e}\vb p_e
+    +
+    \frac{e}{m_p}\vb p_p
+  \right)                                                                     \\
+  &=
+  \vb A(\vb R,t)\cdot
+  \left[
+    -\frac{e}{m_e}
+    \left(
+      \frac{m_e}{M}\vb P+\vb p
+    \right)
+    +
+    \frac{e}{m_p}
+    \left(
+      \frac{m_p}{M}\vb P-\vb p
+    \right)
+  \right]                                                                     \\
+  &=
+  \vb A(\vb R,t)\cdot
+  \left(
+    -\frac{e}{M}\vb P
+    -\frac{e}{m_e}\vb p
+    +\frac{e}{M}\vb P
+    -\frac{e}{m_p}\vb p
+  \right).
+\end{align}
+Los t\'erminos proporcionales al momento total \(\vb P\) se cancelan. Queda
+\begin{equation}
+  H_{\vb A\cdot\vb p}
+  =
+  -e
+  \left(
+    \frac{1}{m_e}+\frac{1}{m_p}
+  \right)
+  \vb A(\vb R,t)\cdot\vb p.
+\end{equation}
+Como
+\begin{equation}
+  \frac{1}{\mu}
+  =
+  \frac{1}{m_e}+\frac{1}{m_p},
+\end{equation}
+se obtiene
+\begin{equation}
+  \boxed{
+  H_{\vb A\cdot\vb p}
+  =
+  -\frac{e}{\mu}
+  \vb A(\vb R,t)\cdot\vb p .
+  }
+\end{equation}
+Esta es la forma potencial vectorial--momento de la interacci\'on en la
+aproximaci\'on dipolar.
+
+\section{Hamiltoniano hidrogenoide en el campo}
+
+El potencial interno del hidr\'ogeno es el potencial coulombiano
+\begin{equation}
+  V(\vb r)
+  =
+  -\frac{1}{4\pi\varepsilon_0}
+  \frac{e^2}{|\vb r|}.
+\end{equation}
+El hamiltoniano, antes de hacer la aproximaci\'on dipolar, puede organizarse
+como la suma de las energ\'ias cin\'eticas de electr\'on y prot\'on, el
+potencial coulombiano y los acoplamientos con el campo:
+\begin{equation}
+  H
+  =
+  H_e+H_p+V(\vb r_e-\vb r_p),
+\end{equation}
+con
+\begin{align}
+  H_e
+  &=
+  \frac{\vb p_e^{\,2}}{2m_e}
+  -
+  \frac{e}{m_e}
+  \vb A(\vb r_e,t)\cdot\vb p_e
+  +
+  \frac{e^2}{2m_e}
+  \vb A^2(\vb r_e,t),                                                         \\
+  H_p
+  &=
+  \frac{\vb p_p^{\,2}}{2m_p}
+  +
+  \frac{e}{m_p}
+  \vb A(\vb r_p,t)\cdot\vb p_p
+  +
+  \frac{e^2}{2m_p}
+  \vb A^2(\vb r_p,t).
+\end{align}
+Al pasar a \(\vb R,\vb r,\vb P,\vb p\), la parte cin\'etica libre se convierte
+en
+\begin{equation}
+  \frac{\vb P^{\,2}}{2M}+\frac{\vb p^{\,2}}{2\mu}.
+\end{equation}
+La parte de interacci\'on contiene dos tipos de t\'erminos lineales: unos
+acoplan el campo al momento relativo \(\vb p\), y otros acoplan el campo al
+momento de centro de masa \(\vb P\). En orden dipolar, como
+\(\vb A(\vb r_e,t)\simeq\vb A(\vb r_p,t)\simeq\vb A(\vb R,t)\), los t\'erminos
+con \(\vb P\) se cancelan y queda el acoplamiento relativo derivado arriba.
+
+Conservando tambi\'en el t\'ermino cuadr\'atico en el campo, el hamiltoniano en
+orden dipolar es
+\begin{equation}
+  H^{(0)}
+  =
+  \frac{\vb P^{\,2}}{2M}
+  +
+  \frac{\vb p^{\,2}}{2\mu}
+  -
+  \frac{1}{4\pi\varepsilon_0}
+  \frac{e^2}{|\vb r|}
+  -
+  \frac{e}{\mu}\vb A(\vb R,t)\cdot\vb p
+  +
+  \frac{e^2}{2\mu}\vb A^2(\vb R,t).
+\end{equation}
+Equivalentemente,
+\begin{equation}
+  H^{(0)}
+  =
+  \frac{\vb P^{\,2}}{2M}
+  +
+  \frac{1}{2\mu}
+  \left[
+    \vb p-e\vb A(\vb R,t)
+  \right]^2
+  -
+  \frac{1}{4\pi\varepsilon_0}
+  \frac{e^2}{|\vb r|}.
+\end{equation}
+Si el centro de masa se trata aparte, se identifica
+\begin{equation}
+  H_{\mathrm{atom}}
+  =
+  \frac{\vb p^{\,2}}{2\mu}
+  -
+  \frac{1}{4\pi\varepsilon_0}
+  \frac{e^2}{|\vb r|},
+\end{equation}
+y
+\begin{equation}
+  H_{\mathrm{int}}
+  =
+  -\frac{e}{\mu}\vb A(\vb R,t)\cdot\vb p.
+\end{equation}
+El t\'ermino
+\begin{equation}
+  U(\vb R)
+  =
+  \frac{e^2}{2\mu}\vb A^2(\vb R,t)
+\end{equation}
+act\'ua como potencial ponderomotriz para el centro de masa. Es importante en
+contextos de campos intensos, plasmas, \'atomos en campos fuertes y l\'aseres
+de electrones libres.
+
+\section{Invariancia local de gauge y acoplamiento m\'inimo}
+
+La forma de acoplamiento m\'inimo tambi\'en puede entenderse como consecuencia
+de la invariancia local de gauge. Consid\'erese primero la ecuaci\'on de
+Schr\"odinger sin campo electromagn\'etico,
+\begin{equation}
+  \ii\hbar\frac{\partial\psi}{\partial t}
+  =
+  \left[
+    \frac{1}{2m}
+    \left(
+      \frac{\hbar}{\ii}\nabla
+    \right)^2
+    +
+    U(\vb r)
+  \right]\psi.
+\end{equation}
+La cantidad observable directa asociada a la funci\'on de onda es
+\(|\psi|^2\). Por tanto, una fase global
+\begin{equation}
+  \tilde\psi(\vb r,t)
+  =
+  \ee^{\ii\alpha}\psi(\vb r,t),
+\end{equation}
+con \(\alpha\) constante, no cambia la f\'isica. Adem\'as, como la fase no
+depende de \(\vb r\) ni de \(t\), \(\tilde\psi\) satisface la misma ecuaci\'on
+de Schr\"odinger.
+
+La pregunta de Weyl fue m\'as profunda: \textquestiondown qu\'e ocurre si la
+fase puede elegirse localmente, punto por punto? Se toma
+\begin{equation}
+  \tilde\psi(\vb r,t)
+  =
+  \ee^{\frac{\ii}{\hbar}e\Lambda(\vb r,t)}
+  \psi(\vb r,t).
+\end{equation}
+Al derivar respecto al tiempo,
+\begin{align}
+  \ii\hbar\frac{\partial\tilde\psi}{\partial t}
+  &=
+  \ee^{\frac{\ii}{\hbar}e\Lambda}
+  \left(
+    \ii\hbar\frac{\partial\psi}{\partial t}
+    -
+    e\frac{\partial\Lambda}{\partial t}\psi
+  \right).
+\end{align}
+Al derivar espacialmente,
+\begin{align}
+  \frac{\hbar}{\ii}\nabla\tilde\psi
+  &=
+  \ee^{\frac{\ii}{\hbar}e\Lambda}
+  \left[
+    \frac{\hbar}{\ii}\nabla\psi
+    +
+    e(\nabla\Lambda)\psi
+  \right].
+\end{align}
+Por tanto,
+\begin{equation}
+  \left(
+    \frac{\hbar}{\ii}\nabla
+  \right)^2\tilde\psi
+  =
+  \ee^{\frac{\ii}{\hbar}e\Lambda}
+  \left(
+    \frac{\hbar}{\ii}\nabla+e\nabla\Lambda
+  \right)^2\psi.
+\end{equation}
+La ecuaci\'on libre no mantiene su forma si la fase depende de
+\((\vb r,t)\). Para restaurar la invariancia se introducen potenciales que se
+transforman como
+\begin{equation}
+  \vb A'
+  =
+  \vb A+\nabla\Lambda,
+  \qquad
+  \phi'
+  =
+  \phi-\frac{\partial\Lambda}{\partial t}.
+\end{equation}
+Entonces
+\begin{equation}
+  \vb B'
+  =
+  \nabla\times\vb A'
+  =
+  \nabla\times\vb A
+  +
+  \nabla\times\nabla\Lambda
+  =
+  \vb B,
+\end{equation}
+y
+\begin{align}
+  \vb E'
+  &=
+  -\nabla\phi'
+  -
+  \frac{\partial\vb A'}{\partial t}                                           \\
+  &=
+  -\nabla\phi
+  +
+  \nabla\frac{\partial\Lambda}{\partial t}
+  -
+  \frac{\partial\vb A}{\partial t}
+  -
+  \frac{\partial}{\partial t}\nabla\Lambda                                    \\
+  &=
+  \vb E.
+\end{align}
+Los campos f\'isicos no cambian. La ecuaci\'on que s\'i es covariante bajo
+transformaciones locales de fase es
+\begin{equation}
+  \ii\hbar\frac{\partial\psi}{\partial t}
+  =
+  \left[
+    \frac{1}{2m}
+    \left(
+      \frac{\hbar}{\ii}\nabla-e\vb A(\vb r,t)
+    \right)^2
+    +
+    U(\vb r)
+    +
+    e\phi(\vb r,t)
+  \right]\psi .
+\end{equation}
+As\'i, la invariancia local de gauge obliga a reemplazar el momento can\'onico
+por el momento mec\'anico \(\vb p-e\vb A\). Esta es la raz\'on estructural del
+acoplamiento m\'inimo.
+
+\section{Forma campo el\'ectrico--dipolo}
+
+En muchas aplicaciones de \'optica cu\'antica conviene escribir la interacci\'on
+en t\'erminos del campo el\'ectrico y del dipolo del \'atomo. El momento dipolar
+asociado a la coordenada relativa es
+\begin{equation}
+  \vb d=e\vb r.
+\end{equation}
+Como el campo el\'ectrico tambi\'en var\'ia muy poco a lo largo del \'atomo,
+la energ\'ia de un dipolo en un campo uniforme es
+\begin{equation}
+  \boxed{
+  H_{\vb r\cdot\vb E}
+  =
+  -e\vb r\cdot\vb E(\vb R,t)
+  =
+  -\vb d\cdot\vb E(\vb R,t).
+  }
+\end{equation}
+En esta forma, el campo acopla directamente los dos centros de carga mediante
+la separaci\'on \(\vb r\). Es la forma que se usar\'a para construir el modelo
+de dos niveles porque sus elementos de matriz se interpretan naturalmente como
+dipolos de transici\'on.
+
+Si el centro de masa est\'a fijo, el hamiltoniano dipolar queda
+\begin{equation}
+  \tilde H^{(0)}
+  =
+  \frac{\vb P^{\,2}}{2M}
+  +
+  \frac{\vb p^{\,2}}{2\mu}
+  +
+  V(\vb r)
+  -
+  e\vb r\cdot\vb E(\vb R,t).
+\end{equation}
+Cuando el movimiento del centro de masa es relevante, la equivalencia entre las
+formas \(\vb A\cdot\vb p\) y \(\vb r\cdot\vb E\) requiere cuidado adicional.
+En particular, aparecen correcciones tipo R\"ontgen, asociadas al hecho de que
+un observador en movimiento en presencia de un campo magn\'etico percibe un
+campo el\'ectrico efectivo. En esta nota se conserva la aproximaci\'on usual
+con centro de masa fijo o tratado de forma separada.
+
+\section{Equivalencia cl\'asica de las dos formas}
+
+La equivalencia cl\'asica puede verse usando el hecho de que dos lagrangianos
+que difieren por una derivada total generan las mismas ecuaciones de movimiento.
+La acci\'on es
+\begin{equation}
+  S
+  =
+  \int_{t_1}^{t_2}
+  L(\vb r,\dot{\vb r},t)\,\dd t.
+\end{equation}
+Si se define
+\begin{equation}
+  \tilde L
+  =
+  L+
+  \frac{\dd}{\dd t}F(\vb r,t),
+\end{equation}
+entonces
+\begin{equation}
+  \tilde S
+  =
+  S+
+  F(\vb r(t_2),t_2)
+  -
+  F(\vb r(t_1),t_1).
+\end{equation}
+Como en el principio variacional los extremos est\'an fijos, la variaci\'on de
+los t\'erminos de borde es cero. Por tanto, \(L\) y \(\tilde L\) describen la
+misma din\'amica.
+
+Con el centro de masa fijo, el hamiltoniano de acoplamiento m\'inimo es
+\begin{equation}
+  H^{(0)}
+  =
+  \frac{1}{2\mu}
+  \left[
+    \vb p-e\vb A(\vb R,t)
+  \right]^2
+  +
+  V(\vb r).
+\end{equation}
+La relaci\'on entre velocidad y momento se obtiene de
+\begin{equation}
+  \dot{\vb r}
+  =
+  \frac{\partial H^{(0)}}{\partial\vb p}
+  =
+  \frac{1}{\mu}
+  \left[
+    \vb p-e\vb A(\vb R,t)
+  \right],
+\end{equation}
+por lo que
+\begin{equation}
+  \vb p
+  =
+  \mu\dot{\vb r}
+  +
+  e\vb A(\vb R,t).
+\end{equation}
+La transformada inversa de Legendre da
+\begin{align}
+  L^{(0)}
+  &=
+  \vb p\cdot\dot{\vb r}-H^{(0)}                                               \\
+  &=
+  \frac{\mu}{2}\dot{\vb r}^{\,2}
+  +
+  e\dot{\vb r}\cdot\vb A(\vb R,t)
+  -
+  V(\vb r).
+\end{align}
+Ahora se resta la derivada total
+\begin{equation}
+  e\frac{\dd}{\dd t}\left[\vb r\cdot\vb A(\vb R,t)\right].
+\end{equation}
+Como \(\vb R\) se considera fijo,
+\begin{equation}
+  \frac{\dd}{\dd t}\left[\vb r\cdot\vb A(\vb R,t)\right]
+  =
+  \dot{\vb r}\cdot\vb A(\vb R,t)
+  +
+  \vb r\cdot
+  \frac{\partial\vb A(\vb R,t)}{\partial t}.
+\end{equation}
+Entonces
+\begin{align}
+  \tilde L^{(0)}
+  &=
+  L^{(0)}
+  -
+  e\frac{\dd}{\dd t}\left[\vb r\cdot\vb A(\vb R,t)\right]                     \\
+  &=
+  \frac{\mu}{2}\dot{\vb r}^{\,2}
+  +
+  e\dot{\vb r}\cdot\vb A
+  -
+  V(\vb r)
+  -
+  e\dot{\vb r}\cdot\vb A
+  -
+  e\vb r\cdot\frac{\partial\vb A}{\partial t}                                \\
+  &=
+  \frac{\mu}{2}\dot{\vb r}^{\,2}
+  -
+  V(\vb r)
+  -
+  e\vb r\cdot\frac{\partial\vb A}{\partial t}.
+\end{align}
+En el gauge usado para el campo de radiaci\'on,
+\begin{equation}
+  \vb E(\vb R,t)
+  =
+  -\frac{\partial\vb A(\vb R,t)}{\partial t},
+\end{equation}
+por lo que
+\begin{equation}
+  \tilde L^{(0)}
+  =
+  \frac{\mu}{2}\dot{\vb r}^{\,2}
+  -
+  V(\vb r)
+  +
+  e\vb r\cdot\vb E(\vb R,t).
+\end{equation}
+El hamiltoniano correspondiente es
+\begin{equation}
+  \tilde H^{(0)}
+  =
+  \frac{\vb p^{\,2}}{2\mu}
+  +
+  V(\vb r)
+  -
+  e\vb r\cdot\vb E(\vb R,t).
+\end{equation}
+As\'i se obtiene la forma el\'ectrico--dipolo a partir de la forma
+\(\vb A\cdot\vb p\).
+
+\section{Equivalencia cu\'antica por transformaci\'on de gauge}
+
+La equivalencia cu\'antica se expresa mediante una transformaci\'on de fase.
+Consid\'erese la ecuaci\'on de Schr\"odinger en la forma de acoplamiento
+m\'inimo,
+\begin{equation}
+  \ii\hbar\frac{\partial\tilde\psi(\vb r,t)}{\partial t}
+  =
+  \left[
+    \frac{1}{2\mu}
+    \left(
+      \vb p-e\vb A(\vb R,t)
+    \right)^2
+    +
+    V(\vb r)
+  \right]\tilde\psi(\vb r,t).
+\end{equation}
+Se introduce la fase
+\begin{equation}
+  \tilde\psi(\vb r,t)
+  =
+  \ee^{\frac{\ii}{\hbar}e\vb r\cdot\vb A(\vb R,t)}
+  \psi(\vb r,t).
+\end{equation}
+Esta transformaci\'on corresponde a elegir
+\begin{equation}
+  \Lambda(\vb r,t)
+  =
+  \vb r\cdot\vb A(\vb R,t).
+\end{equation}
+Como la derivada se toma respecto a la coordenada interna \(\vb r\),
+\begin{equation}
+  \nabla_{\vb r}\Lambda
+  =
+  \vb A(\vb R,t).
+\end{equation}
+Con la elecci\'on de signo adecuada para pasar de \(\tilde\psi\) a \(\psi\),
+el potencial vectorial transformado es
+\begin{equation}
+  \vb A'
+  =
+  \vb A-\nabla_{\vb r}\Lambda
+  =
+  \vb A-\vb A
+  =
+  0.
+\end{equation}
+El potencial escalar transformado es
+\begin{equation}
+  \phi'
+  =
+  \phi+\frac{\partial\Lambda}{\partial t}.
+\end{equation}
+Tomando \(\phi=0\) para el campo de radiaci\'on,
+\begin{equation}
+  \phi'
+  =
+  \vb r\cdot
+  \frac{\partial\vb A(\vb R,t)}{\partial t}
+  =
+  -\vb r\cdot\vb E(\vb R,t).
+\end{equation}
+Por tanto, \(\psi\) satisface
+\begin{equation}
+  \ii\hbar\frac{\partial\psi(\vb r,t)}{\partial t}
+  =
+  \left[
+    \frac{\vb p^{\,2}}{2\mu}
+    +
+    V(\vb r)
+    -
+    e\vb r\cdot\vb E(\vb R,t)
+  \right]\psi(\vb r,t).
+\end{equation}
+La conclusi\'on es que si \(\tilde\psi\) obedece la ecuaci\'on con
+\(\vb A\cdot\vb p\), entonces \(\psi\), que es la funci\'on de onda
+transformada por gauge, obedece la ecuaci\'on con \(\vb r\cdot\vb E\).
+
+\section{Elementos de matriz de las dos interacciones}
+
+Aunque los dos hamiltonianos son equivalentes, sus elementos de matriz entre
+los mismos eigenestados del \'atomo libre no tienen por qu\'e coincidir. Esta
+observaci\'on es importante porque evita una confusi\'on com\'un: la equivalencia
+de gauge se refiere a la din\'amica completa, incluyendo la transformaci\'on de
+los estados, no a comparar directamente cada operador en la misma base sin
+transformar.
+
+Los hamiltonianos de interacci\'on son
+\begin{equation}
+  \hat H_{\vb A\cdot\vb p}
+  =
+  -\frac{e}{\mu}
+  \vb A(\vb R,t)\cdot\hat{\vb p},
+  \qquad
+  \hat H_{\vb r\cdot\vb E}
+  =
+  -e\hat{\vb r}\cdot\vb E(\vb R,t).
+\end{equation}
+Aqu\'i \(\vb A\) y \(\vb E\) se tratan como campos cl\'asicos para discutir los
+elementos de matriz at\'omicos. Si \(\ket j\) y \(\ket{j'}\) son eigenestados
+del hamiltoniano at\'omico libre,
+\begin{equation}
+  \hat H_{\mathrm{atom}}\ket j
+  =
+  E_j\ket j,
+\end{equation}
+entonces
+\begin{align}
+  \bra j\hat H_{\vb A\cdot\vb p}\ket{j'}
+  &=
+  -\frac{e}{\mu}
+  \vb A(\vb R,t)\cdot
+  \bra j\hat{\vb p}\ket{j'},                                                   \\
+  \bra j\hat H_{\vb r\cdot\vb E}\ket{j'}
+  &=
+  -e
+  \vb E(\vb R,t)\cdot
+  \bra j\hat{\vb r}\ket{j'}.
+\end{align}
+Para relacionar \(\hat{\vb p}\) con \(\hat{\vb r}\), se usa la ecuaci\'on de
+Heisenberg con el hamiltoniano libre:
+\begin{equation}
+  \frac{\hat{\vb p}}{\mu}
+  =
+  \frac{\dd\hat{\vb r}}{\dd t}
+  =
+  \frac{\ii}{\hbar}
+  \left[
+    \hat H_{\mathrm{atom}},
+    \hat{\vb r}
+  \right].
+\end{equation}
+Tomando elementos de matriz,
+\begin{align}
+  \frac{1}{\mu}
+  \bra j\hat{\vb p}\ket{j'}
+  &=
+  \frac{\ii}{\hbar}
+  \bra j
+  \hat H_{\mathrm{atom}}\hat{\vb r}
+  -
+  \hat{\vb r}\hat H_{\mathrm{atom}}
+  \ket{j'}                                                                    \\
+  &=
+  \frac{\ii}{\hbar}
+  \left(
+    E_j-E_{j'}
+  \right)
+  \bra j\hat{\vb r}\ket{j'}.
+\end{align}
+Definiendo
+\begin{equation}
+  \omega_{jj'}
+  =
+  \frac{E_j-E_{j'}}{\hbar},
+\end{equation}
+se obtiene
+\begin{equation}
+  \frac{1}{\mu}
+  \bra j\hat{\vb p}\ket{j'}
+  =
+  \ii\omega_{jj'}
+  \bra j\hat{\vb r}\ket{j'}.
+\end{equation}
+Entonces
+\begin{equation}
+  \bra j\hat H_{\vb A\cdot\vb p}\ket{j'}
+  =
+  -\ii e\omega_{jj'}
+  \vb A(\vb R,t)\cdot
+  \bra j\hat{\vb r}\ket{j'}.
+\end{equation}
+Esto no es, en general, igual a
+\begin{equation}
+  -e\vb E(\vb R,t)\cdot\bra j\hat{\vb r}\ket{j'}.
+\end{equation}
+Por tanto,
+\begin{equation}
+  \bra j\hat H_{\vb A\cdot\vb p}\ket{j'}
+  \neq
+  \bra j\hat H_{\vb r\cdot\vb E}\ket{j'}.
+\end{equation}
+La diferencia no contradice la equivalencia de las dos descripciones. Solo
+recuerda que al cambiar de gauge tambi\'en cambia la representaci\'on de los
+estados.
+
+\section{Subsistemas, interacci\'on y entrelazamiento}
+
+En la teor\'ia cu\'antica completa, el estado de \'atomo m\'as campo satisface
+\begin{equation}
+  \ii\hbar\frac{\dd}{\dd t}\ket{\Psi}
+  =
+  \hat H\ket{\Psi}.
+\end{equation}
+Antes de despreciar el movimiento del centro de masa, el estado total puede
+pensarse como un producto tensorial de tres sectores:
+\begin{equation}
+  \ket{\Psi}
+  =
+  \ket{\psi_{\mathrm{cm}}}
+  \ket{\psi_{\mathrm{atom}}}
+  \ket{\psi_{\mathrm{campo}}}.
+\end{equation}
+Los operadores \(\hat{\vb R},\hat{\vb P}\) act\'uan sobre el centro de masa; los
+operadores \(\hat{\vb r},\hat{\vb p}\) act\'uan sobre los grados internos del
+\'atomo; y los operadores \(\hat{\vb A},\hat{\vb E},\hat{\vb B}\) contienen
+\(\hat a,\adag\) y las funciones de modo \(\vb u_l(\vb R)\), por lo que act\'uan
+sobre el campo y pueden depender de la posici\'on del \'atomo.
+
+Aunque el estado inicial sea separable, una interacci\'on como
+\(\hat H_{\vb r\cdot\vb E}\) multiplica operadores at\'omicos por operadores del
+campo. Por eso la evoluci\'on genera, en general, un estado entrelazado. Esta es
+la base f\'isica del modelo de Jaynes--Cummings--Paul: el \'atomo no solo
+intercambia energ\'ia con el modo de la cavidad, sino que se correlaciona
+cu\'anticamente con el n\'umero y la fase del campo.
+
+\section{Modelo simple de interacci\'on \'atomo--campo}
+
+Para llegar a un modelo manejable se hacen tres simplificaciones:
+\begin{enumerate}
+  \item se conservan solo dos niveles at\'omicos, uno excitado \(\ket a\) y uno
+  base \(\ket b\);
+  \item se conserva un solo modo del campo de la cavidad;
+  \item inicialmente se permite que el acoplamiento dependa de la posici\'on del
+  centro de masa, aunque al ignorar este movimiento se obtiene el modelo usual
+  de Jaynes--Cummings--Paul.
+\end{enumerate}
+
+Las energ\'ias de los dos estados at\'omicos son
+\begin{equation}
+  E_a=\hbar\omega_a,
+  \qquad
+  E_b=\hbar\omega_b,
+\end{equation}
+y la frecuencia de transici\'on es
+\begin{equation}
+  \omega=\omega_a-\omega_b
+  =
+  \frac{E_a-E_b}{\hbar}.
+\end{equation}
+La identidad en el subespacio de dos niveles es
+\begin{equation}
+  \mathbb{1}
+  =
+  \ket a\bra a+\ket b\bra b.
+\end{equation}
+Para cualquier operador at\'omico \(\hat O\),
+\begin{equation}
+  \hat O
+  =
+  \mathbb{1}\hat O\mathbb{1}
+  =
+  \sum_{j=a,b}\sum_{j'=a,b}
+  \ket j
+  \bra j\hat O\ket{j'}
+  \bra{j'}.
+\end{equation}
+Aplicando esto al hamiltoniano at\'omico,
+\begin{align}
+  \hat H_{\mathrm{atom}}
+  &=
+  \mathbb{1}\hat H_{\mathrm{atom}}\mathbb{1}                                  \\
+  &=
+  E_a\ket a\bra a
+  +
+  E_b\ket b\bra b,
+\end{align}
+porque \(\ket a\) y \(\ket b\) son eigenestados de energ\'ia, de modo que los
+elementos fuera de la diagonal se anulan.
+
+En la base
+\begin{equation}
+  \ket a=
+  \begin{pmatrix}
+    1\\0
+  \end{pmatrix},
+  \qquad
+  \ket b=
+  \begin{pmatrix}
+    0\\1
+  \end{pmatrix},
+\end{equation}
+el hamiltoniano at\'omico es
+\begin{equation}
+  \hat H_{\mathrm{atom}}
+  =
+  \begin{pmatrix}
+    E_a & 0\\
+    0 & E_b
+  \end{pmatrix}.
+\end{equation}
+Se separa una constante de energ\'ia:
+\begin{align}
+  \hat H_{\mathrm{atom}}
+  &=
+  \begin{pmatrix}
+    \frac{E_a+E_b}{2}+\frac{E_a-E_b}{2} & 0\\
+    0 & \frac{E_a+E_b}{2}-\frac{E_a-E_b}{2}
+  \end{pmatrix}                                                               \\
+  &=
+  E\mathbb{1}
+  +
+  \frac{\hbar\omega}{2}
+  \begin{pmatrix}
+    1&0\\
+    0&-1
+  \end{pmatrix},
+\end{align}
+donde
+\begin{equation}
+  E=\frac{E_a+E_b}{2}.
+\end{equation}
+El t\'ermino \(E\mathbb{1}\) solo produce una fase global, por lo que se omite.
+Definiendo
+\begin{equation}
+  \hat\sigma_z
+  =
+  \ket a\bra a-\ket b\bra b
+  =
+  \begin{pmatrix}
+    1&0\\
+    0&-1
+  \end{pmatrix},
+\end{equation}
+queda
+\begin{equation}
+  \boxed{
+  \hat H_{\mathrm{atom}}
+  =
+  \frac{\hbar\omega}{2}\hat\sigma_z .
+  }
+\end{equation}
+
+\section{Operador dipolar en el subespacio de dos niveles}
+
+El operador de posici\'on \(\hat{\vb r}\) es impar bajo paridad:
+\(\vb r\to-\vb r\). Por ello, si los estados at\'omicos tienen paridad definida,
+los elementos diagonales se anulan. En detalle,
+\begin{equation}
+  \bra j\hat{\vb r}\ket j
+  =
+  \int \dd^3r\,
+  |\psi_j(\vb r)|^2\vb r.
+\end{equation}
+Haciendo el cambio de variable \(\vb r=-\vb u\), se tiene
+\(\dd^3r=\dd^3u\) y
+\begin{align}
+  \bra j\hat{\vb r}\ket j
+  &=
+  -\int \dd^3u\,
+  |\psi_j(-\vb u)|^2\vb u.
+\end{align}
+Si \(\ket j\) tiene paridad definida, entonces
+\(|\psi_j(-\vb u)|^2=|\psi_j(\vb u)|^2\). Por tanto, la integral es igual a su
+negativo:
+\begin{equation}
+  \bra j\hat{\vb r}\ket j
+  =
+  -\bra j\hat{\vb r}\ket j,
+\end{equation}
+y necesariamente
+\begin{equation}
+  \bra j\hat{\vb r}\ket j=0.
+\end{equation}
+
+Los elementos no diagonales s\'i pueden ser distintos de cero. Se define el
+dipolo de transici\'on
+\begin{equation}
+  \vb d
+  =
+  e\bra a\hat{\vb r}\ket b
+  =
+  e\int \dd^3r\,\psi_a^*(\vb r)\,\vb r\,\psi_b(\vb r),
+\end{equation}
+y su conjugado
+\begin{equation}
+  \vb d^{\,*}
+  =
+  e\bra b\hat{\vb r}\ket a.
+\end{equation}
+Entonces
+\begin{align}
+  e\hat{\vb r}
+  &=
+  e\mathbb{1}\hat{\vb r}\mathbb{1}                                            \\
+  &=
+  e\ket a\bra a\hat{\vb r}\ket a\bra a
+  +
+  e\ket a\bra a\hat{\vb r}\ket b\bra b                                      \\
+  &\quad
+  +
+  e\ket b\bra b\hat{\vb r}\ket a\bra a
+  +
+  e\ket b\bra b\hat{\vb r}\ket b\bra b                                      \\
+  &=
+  \vb d\,\ket a\bra b
+  +
+  \vb d^{\,*}\ket b\bra a.
+\end{align}
+Este operador no desplaza al \'atomo dentro del mismo nivel. Lo que hace es
+conectar los dos niveles:
+\begin{equation}
+  e\hat{\vb r}\ket b
+  =
+  \vb d\ket a,
+  \qquad
+  e\hat{\vb r}\ket a
+  =
+  \vb d^{\,*}\ket b.
+\end{equation}
+Se introducen los operadores de subida y bajada
+\begin{equation}
+  \splus
+  =
+  \ket a\bra b
+  =
+  \begin{pmatrix}
+    0&1\\
+    0&0
+  \end{pmatrix},
+  \qquad
+  \sminus
+  =
+  \ket b\bra a
+  =
+  \begin{pmatrix}
+    0&0\\
+    1&0
+  \end{pmatrix}.
+\end{equation}
+El operador \(\splus\) crea una excitaci\'on at\'omica porque lleva
+\(\ket b\) a \(\ket a\), mientras que \(\sminus\) destruye una excitaci\'on
+at\'omica porque lleva \(\ket a\) a \(\ket b\). En esta notaci\'on,
+\begin{equation}
+  \boxed{
+  e\hat{\vb r}
+  =
+  \vb d\,\splus+\vb d^{\,*}\sminus .
+  }
+\end{equation}
+
+\section{Campo de un solo modo y frecuencia de Rabi del vac\'io}
+
+Para un solo modo de la cavidad, de frecuencia \(\Omega\), el hamiltoniano del
+campo se escribe, omitiendo la energ\'ia de punto cero,
+\begin{equation}
+  \hat H_{\mathrm{campo}}
+  =
+  \hbar\Omega\,\adag\hat a.
+\end{equation}
+El campo el\'ectrico de ese modo, evaluado en la posici\'on del \'atomo, se toma
+como
+\begin{equation}
+  \hat{\vb E}(\vb R,t)
+  =
+  \Ezero\,\vb u(\vb R)\,\ii(\hat a-\adag),
+\end{equation}
+donde
+\begin{equation}
+  \Ezero
+  =
+  \sqrt{\frac{\hbar\Omega}{2\varepsilon_0V}}
+\end{equation}
+es la amplitud del campo el\'ectrico de un fot\'on, \(V\) es el volumen efectivo
+del modo y \(\vb u(\vb R)\) contiene la forma espacial y polarizaci\'on del
+modo.
+
+La interacci\'on el\'ectrico--dipolo es
+\begin{align}
+  \hat H_{\vb r\cdot\vb E}
+  &=
+  -e\hat{\vb r}\cdot\hat{\vb E}(\vb R,t)                                      \\
+  &=
+  -
+  \left(
+    \vb d\,\splus+\vb d^{\,*}\sminus
+  \right)
+  \cdot
+  \Ezero\vb u(\vb R)\,\ii(\hat a-\adag)                                      \\
+  &=
+  -\ii\Ezero
+  \left[
+    \vb d\cdot\vb u(\vb R)\,\splus
+    +
+    \vb d^{\,*}\cdot\vb u(\vb R)\,\sminus
+  \right]
+  (\hat a-\adag).
+\end{align}
+Se define la frecuencia de Rabi del vac\'io dependiente de la posici\'on:
+\begin{equation}
+  g(\vb R)
+  =
+  \frac{\Ezero}{\hbar}
+  \left|
+    \vb d\cdot\vb u(\vb R)
+  \right|.
+\end{equation}
+Si
+\begin{equation}
+  \vb d\cdot\vb u(\vb R)
+  =
+  \left|
+    \vb d\cdot\vb u(\vb R)
+  \right|
+  \ee^{\ii\varphi},
+\end{equation}
+entonces
+\begin{equation}
+  \hat H_{\vb r\cdot\vb E}
+  =
+  \hbar g(\vb R)(-\ii)
+  \left(
+    \splus\ee^{\ii\varphi}
+    +
+    \sminus\ee^{-\ii\varphi}
+  \right)
+  (\hat a-\adag).
+\end{equation}
+Escogiendo la fase \(\varphi=\pi/2\), se tiene
+\(\ee^{\ii\varphi}=\ii\) y \(\ee^{-\ii\varphi}=-\ii\). Por tanto,
+\begin{equation}
+  \hat H_{\vb r\cdot\vb E}
+  =
+  \hbar g(\vb R)
+  (\splus-\sminus)
+  (\hat a-\adag).
+\end{equation}
+Esta elecci\'on de fase no cambia la f\'isica; solo fija una convenci\'on para
+que el acoplamiento quede real.
+
+\section{Hamiltoniano total antes de la aproximaci\'on de onda rotante}
+
+Reuniendo el movimiento de centro de masa, el campo, el \'atomo de dos niveles y
+la interacci\'on, se obtiene
+\begin{equation}
+  \boxed{
+  \hat H
+  =
+  \frac{\hat{\vb P}^{\,2}}{2M}
+  +
+  \hbar\Omega\,\adag\hat a
+  +
+  \frac{\hbar\omega}{2}\hat\sigma_z
+  +
+  \hbar g(\hat{\vb R})
+  (\splus-\sminus)(\hat a-\adag).
+  }
+\end{equation}
+Si por el momento se omite la dependencia espacial de \(g\), la interacci\'on se
+desarrolla como
+\begin{align}
+  \hat H_{\vb r\cdot\vb E}
+  &=
+  \hbar g(\splus-\sminus)(\hat a-\adag)                                      \\
+  &=
+  \hbar g
+  \left(
+    \splus\hat a
+    -
+    \splus\adag
+    -
+    \sminus\hat a
+    +
+    \sminus\adag
+  \right).
+\end{align}
+Los cuatro t\'erminos tienen interpretaciones distintas:
+\begin{itemize}
+  \item \(\splus\hat a\): el campo pierde un fot\'on y el \'atomo se excita;
+  \item \(\sminus\adag\): el \'atomo decae y el campo gana un fot\'on;
+  \item \(\splus\adag\): se crea una excitaci\'on at\'omica y tambi\'en un fot\'on;
+  \item \(\sminus\hat a\): se destruye una excitaci\'on at\'omica y tambi\'en un
+  fot\'on.
+\end{itemize}
+Los dos primeros conservan el n\'umero total de excitaciones. Los dos \'ultimos
+son contra-rotantes: cambian al \'atomo y al campo en la misma direcci\'on
+energ\'etica, por lo que oscilan r\'apidamente cuando el sistema est\'a cerca
+de resonancia.
+
+\section{Cuadro de interacci\'on}
+
+Para justificar la aproximaci\'on de onda rotante de manera expl\'icita se pasa
+al cuadro de interacci\'on con respecto a
+\begin{equation}
+  \hat H_0
+  =
+  \hbar\Omega\,\adag\hat a
+  +
+  \frac{\hbar\omega}{2}\hat\sigma_z.
+\end{equation}
+Se define
+\begin{equation}
+  \ket{\Psi_I(t)}
+  =
+  \ee^{\frac{\ii}{\hbar}\hat H_0t}
+  \ket{\Psi(t)},
+  \qquad
+  \ket{\Psi(t)}
+  =
+  \ee^{-\frac{\ii}{\hbar}\hat H_0t}
+  \ket{\Psi_I(t)}.
+\end{equation}
+Sustituyendo en la ecuaci\'on de Schr\"odinger,
+\begin{equation}
+  \ii\hbar\frac{\dd}{\dd t}\ket{\Psi(t)}
+  =
+  \left(
+    \frac{\hat{\vb P}^{\,2}}{2M}
+    +
+    \hat H_0
+    +
+    \hat H_{\vb r\cdot\vb E}
+  \right)
+  \ket{\Psi(t)},
+\end{equation}
+se obtiene
+\begin{equation}
+  \ii\hbar\frac{\dd}{\dd t}\ket{\Psi_I(t)}
+  =
+  \left[
+    \frac{\hat{\vb P}^{\,2}}{2M}
+    +
+    \hat H_{\vb r\cdot\vb E}^{(I)}(t)
+  \right]
+  \ket{\Psi_I(t)}.
+\end{equation}
+El t\'ermino de centro de masa permanece igual porque conmuta con
+\(\hat H_0\). La interacci\'on en el cuadro de interacci\'on es
+\begin{equation}
+  \hat H_{\vb r\cdot\vb E}^{(I)}(t)
+  =
+  \ee^{\frac{\ii}{\hbar}\hat H_0t}
+  \hat H_{\vb r\cdot\vb E}
+  \ee^{-\frac{\ii}{\hbar}\hat H_0t}.
+\end{equation}
+Como los operadores del campo conmutan con los operadores at\'omicos, la
+transformaci\'on se separa:
+\begin{align}
+  \hat H_{\vb r\cdot\vb E}^{(I)}(t)
+  &=
+  \hbar g\,
+  \ee^{\frac{\ii}{2}\omega t\hat\sigma_z}
+  (\splus-\sminus)
+  \ee^{-\frac{\ii}{2}\omega t\hat\sigma_z}                                   \\
+  &\quad\times
+  \ee^{\ii\Omega t\adag\hat a}
+  (\hat a-\adag)
+  \ee^{-\ii\Omega t\adag\hat a}.
+\end{align}
+
+Para la parte at\'omica,
+\begin{equation}
+  \ee^{\frac{\ii}{2}\omega t\hat\sigma_z}
+  =
+  \begin{pmatrix}
+    \ee^{\ii\omega t/2}&0\\
+    0&\ee^{-\ii\omega t/2}
+  \end{pmatrix}.
+\end{equation}
+Al multiplicar matrices,
+\begin{align}
+  \ee^{\frac{\ii}{2}\omega t\hat\sigma_z}
+  \splus
+  \ee^{-\frac{\ii}{2}\omega t\hat\sigma_z}
+  &=
+  \ee^{\ii\omega t}\splus,                                                     \\
+  \ee^{\frac{\ii}{2}\omega t\hat\sigma_z}
+  \sminus
+  \ee^{-\frac{\ii}{2}\omega t\hat\sigma_z}
+  &=
+  \ee^{-\ii\omega t}\sminus.
+\end{align}
+Por tanto,
+\begin{equation}
+  \ee^{\frac{\ii}{2}\omega t\hat\sigma_z}
+  (\splus-\sminus)
+  \ee^{-\frac{\ii}{2}\omega t\hat\sigma_z}
+  =
+  \ee^{\ii\omega t}\splus
+  -
+  \ee^{-\ii\omega t}\sminus.
+\end{equation}
+
+Para el campo,
+\begin{equation}
+  \ee^{\ii\Omega t\adag\hat a}
+  \hat a
+  \ee^{-\ii\Omega t\adag\hat a}
+  =
+  \ee^{-\ii\Omega t}\hat a,
+\end{equation}
+y
+\begin{equation}
+  \ee^{\ii\Omega t\adag\hat a}
+  \adag
+  \ee^{-\ii\Omega t\adag\hat a}
+  =
+  \ee^{\ii\Omega t}\adag.
+\end{equation}
+Entonces
+\begin{equation}
+  \ee^{\ii\Omega t\adag\hat a}
+  (\hat a-\adag)
+  \ee^{-\ii\Omega t\adag\hat a}
+  =
+  \ee^{-\ii\Omega t}\hat a
+  -
+  \ee^{\ii\Omega t}\adag.
+\end{equation}
+Multiplicando ambas partes,
+\begin{align}
+  \hat H_{\vb r\cdot\vb E}^{(I)}(t)
+  &=
+  \hbar g
+  \left(
+    \ee^{\ii\omega t}\splus
+    -
+    \ee^{-\ii\omega t}\sminus
+  \right)
+  \left(
+    \ee^{-\ii\Omega t}\hat a
+    -
+    \ee^{\ii\Omega t}\adag
+  \right)                                                                    \\
+  &=
+  \hbar g
+  \left[
+    \ee^{-\ii(\Omega-\omega)t}\splus\hat a
+    -
+    \ee^{\ii(\Omega+\omega)t}\splus\adag
+    -
+    \ee^{-\ii(\Omega+\omega)t}\sminus\hat a
+    +
+    \ee^{\ii(\Omega-\omega)t}\sminus\adag
+  \right].
+\end{align}
+
+\section{Aproximaci\'on de onda rotante}
+
+Se define el desafine
+\begin{equation}
+  \Delta
+  =
+  \Omega-\omega.
+\end{equation}
+Los t\'erminos
+\(\splus\adag\) y \(\sminus\hat a\) oscilan con frecuencia
+\(\Omega+\omega\), que es grande cerca de resonancia. En integrales temporales
+su contribuci\'on se promedia porque la fase cambia muy r\'apido. Los t\'erminos
+\(\splus\hat a\) y \(\sminus\adag\) oscilan con \(\Delta\), que puede ser
+peque\~no. Por eso se conservan solo estos t\'erminos lentamente oscilantes:
+\begin{equation}
+  \boxed{
+  \hat H_{\mathrm{int}}^{(I)}(t)
+  \simeq
+  \hbar g
+  \left(
+    \ee^{-\ii\Delta t}\splus\hat a
+    +
+    \ee^{\ii\Delta t}\sminus\adag
+  \right).
+  }
+\end{equation}
+Esta es la aproximaci\'on de onda rotante. F\'isicamente conserva absorci\'on
+\(\splus\hat a\), donde el \'atomo gana una excitaci\'on y el campo pierde un
+fot\'on, y emisi\'on \(\sminus\adag\), donde el \'atomo pierde una excitaci\'on
+y el campo gana un fot\'on.
+
+Para regresar al cuadro de Schr\"odinger se usa la transformaci\'on inversa
+\begin{equation}
+  \hat H_{\vb r\cdot\vb E}^{(I)}
+  =
+  \ee^{\frac{\ii}{\hbar}\hat H_0t}
+  \hat H_{\vb r\cdot\vb E}
+  \ee^{-\frac{\ii}{\hbar}\hat H_0t},
+  \qquad
+  \hat H_{\vb r\cdot\vb E}
+  =
+  \ee^{-\frac{\ii}{\hbar}\hat H_0t}
+  \hat H_{\vb r\cdot\vb E}^{(I)}
+  \ee^{\frac{\ii}{\hbar}\hat H_0t}.
+\end{equation}
+Al hacerlo, se obtiene la interacci\'on resonante en el cuadro de
+Schr\"odinger:
+\begin{equation}
+  \hat H_{\vb r\cdot\vb E}
+  =
+  \hbar g
+  \left(
+    \sminus\adag
+    +
+    \splus\hat a
+  \right).
+\end{equation}
+Finalmente, el hamiltoniano para la interacci\'on de un \'atomo de dos niveles
+con un modo del campo de radiaci\'on es
+\begin{equation}
+  \boxed{
+  \hat H
+  =
+  \frac{\hat{\vb P}^{\,2}}{2M}
+  +
+  \hbar\Omega\,\adag\hat a
+  +
+  \frac{\hbar\omega}{2}\hat\sigma_z
+  +
+  \hbar g(\hat{\vb R})
+  \left(
+    \sminus\adag
+    +
+    \splus\hat a
+  \right).
+  }
+\end{equation}
+Si se desprecia el movimiento del centro de masa y se toma \(g\) constante, se
+recupera el hamiltoniano de Jaynes--Cummings--Paul. La estructura f\'isica queda
+clara: el campo y el \'atomo intercambian una excitaci\'on a la vez, y el
+acoplamiento efectivo depende de la amplitud del campo de un fot\'on y del
+elemento de matriz dipolar de la transici\'on.
+
+\end{document}

@@ -1,0 +1,935 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{braket}
+\usepackage{dsfont}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\adag}{\hat a^\dagger}
+\newcommand{\sigmap}{\hat\sigma_+}
+\newcommand{\sigmam}{\hat\sigma_-}
+\newcommand{\nnop}{\hat n}
+\newcommand{\Hint}{\hat H_{\mathrm{int}}}
+\newcommand{\Omn}{\tilde\Omega_n}
+
+\title{Modelo de Jaynes-Cummings-Paul}
+\author{Ricardo Del Rosal Gardu\~no \\ \small Doctorado en F\'isica, BUAP}
+\date{Notas a partir de Schleich, \emph{Quantum Optics in Phase Space}}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\bigskip
+
+\section{Introducci\'on}
+
+El modelo de Jaynes-Cummings-Paul describe la interacci\'on coherente entre un
+\'atomo de dos niveles y un \'unico modo cuantizado del campo electromagn\'etico.
+El sistema contiene el m\'inimo de ingredientes necesarios para estudiar QED de
+cavidad: un grado de libertad bos\'onico, un grado de libertad at\'omico de dos
+niveles y un acoplamiento dipolar que permite intercambiar una excitaci\'on entre
+materia y campo.
+
+Se considera un estado at\'omico excitado $\ket{a}$ y un estado base $\ket{b}$.
+El campo se expande en la base de Fock $\{\ket{n}\}_{n=0}^{\infty}$. Por tanto,
+un estado inicial factorizado se escribe como
+\begin{equation}
+  \ket{\psi(0)}
+  =
+  \ket{\psi_{\mathrm{at}}(0)}\otimes\ket{\psi_{\mathrm{c}}(0)}
+  =
+  \sum_{n=0}^{\infty} W_n
+  \bigl(C_a\ket{a}+C_b\ket{b}\bigr)\ket{n},
+\end{equation}
+donde $W_n$ son las amplitudes del campo, mientras que $C_a$ y $C_b$ son las
+amplitudes at\'omicas. La normalizaci\'on exige
+\begin{equation}
+  \sum_{n=0}^{\infty}|W_n|^2=1,
+  \qquad
+  |C_a|^2+|C_b|^2=1.
+\end{equation}
+
+El objetivo de la nota es obtener la evoluci\'on temporal de este estado. Se
+presentan tres rutas equivalentes: exponenciaci\'on directa del operador de
+evoluci\'on en resonancia, soluci\'on de las ecuaciones de Rabi fuera de
+resonancia y diagonalizaci\'on matricial por bloques. Las tres rutas llevan a la
+misma f\'isica: el sistema se descompone en subespacios bidimensionales
+$\{\ket{a,n},\ket{b,n+1}\}$ dentro de los cuales el \'atomo y el campo
+intercambian una excitaci\'on de manera reversible.
+
+\section{Hamiltoniano de interacci\'on}
+
+En el marco de interacci\'on, despu\'es de la aproximaci\'on dipolar y de la
+aproximaci\'on de onda rotante, el hamiltoniano toma la forma
+\begin{equation}
+  \boxed{
+  \Hint(t)
+  =
+  \hbar g
+  \left(
+  \ee^{\ii\Delta t}\adag\sigmam
+  +
+  \ee^{-\ii\Delta t}\sigmap \hat a
+  \right).
+  }
+\end{equation}
+Aqu\'i
+\begin{equation}
+  \Delta=\omega_a-\omega_c,
+  \qquad
+  \sigmap=\ket{a}\bra{b},
+  \qquad
+  \sigmam=\ket{b}\bra{a}.
+\end{equation}
+El operador $\adag\sigmam$ describe emisi\'on: el \'atomo baja de
+$\ket{a}$ a $\ket{b}$ y el campo gana un fot\'on. El operador
+$\sigmap\hat a$ describe absorci\'on: el campo pierde un fot\'on y el \'atomo
+sube de $\ket{b}$ a $\ket{a}$. Los t\'erminos contra-rotantes
+$\sigmap\adag$ y $\sigmam\hat a$ se descartan en la aproximaci\'on de onda
+rotante porque oscilan r\'apidamente en el marco de interacci\'on y su
+contribuci\'on promedio es despreciable cuando $g\ll \omega_a,\omega_c$ y el
+sistema est\'a cerca de resonancia.
+
+La ecuaci\'on de Schr\"odinger en este marco es
+\begin{equation}
+  \ii\hbar\frac{d}{dt}\ket{\psi(t)}
+  =
+  \Hint(t)\ket{\psi(t)}.
+\end{equation}
+
+\section{Caso resonante}
+
+En resonancia exacta, $\Delta=0$, el hamiltoniano de interacci\'on deja de
+depender expl\'icitamente del tiempo:
+\begin{equation}
+  \Hint^{(\mathrm{res})}
+  =
+  \hbar g
+  \left(\adag\sigmam+\sigmap\hat a\right).
+\end{equation}
+Por tanto, la soluci\'on formal es
+\begin{equation}
+  \ket{\psi(t)}
+  =
+  \hat U(t,0)\ket{\psi(0)},
+  \qquad
+  \hat U(t,0)
+  =
+  \exp\left[
+  -\ii gt
+  \left(\adag\sigmam+\sigmap\hat a\right)
+  \right].
+\end{equation}
+El problema consiste entonces en calcular la exponencial del operador
+\begin{equation}
+  \hat V=\adag\sigmam+\sigmap\hat a.
+\end{equation}
+
+\section{Exponenciaci\'on directa}
+
+La exponencial se desarrolla en serie de potencias:
+\begin{equation}
+  \hat U(t,0)
+  =
+  \sum_{k=0}^{\infty}\frac{(-\ii gt)^k}{k!}\hat V^k.
+\end{equation}
+Para reconocer las series de seno y coseno conviene separar potencias pares e
+impares:
+\begin{equation}
+  \hat U(t,0)
+  =
+  \sum_{k=0}^{\infty}\frac{(-\ii gt)^{2k}}{(2k)!}\hat V^{2k}
+  +
+  \sum_{k=0}^{\infty}\frac{(-\ii gt)^{2k+1}}{(2k+1)!}\hat V^{2k+1}.
+\end{equation}
+La estructura de todas las potencias se obtiene a partir de $\hat V^2$.
+
+\subsection{C\'alculo de \texorpdfstring{$\hat V^2$}{V al cuadrado}}
+
+Desarrollando el cuadrado,
+\begin{align}
+  \hat V^2
+  &=
+  \left(\adag\sigmam+\sigmap\hat a\right)
+  \left(\adag\sigmam+\sigmap\hat a\right) \notag\\
+  &=
+  \adag\sigmam\adag\sigmam
+  +
+  \adag\sigmam\sigmap\hat a
+  +
+  \sigmap\hat a\adag\sigmam
+  +
+  \sigmap\hat a\sigmap\hat a .
+\end{align}
+Los operadores at\'omicos y de campo conmutan entre s\'i porque act\'uan en
+espacios de Hilbert distintos. Adem\'as,
+\begin{equation}
+  \sigmam^2=0,
+  \qquad
+  \sigmap^2=0,
+\end{equation}
+ya que en un sistema de dos niveles no existe una doble bajada ni una doble
+subida. Por eso el primer y el \'ultimo t\'ermino se anulan. Queda
+\begin{equation}
+  \hat V^2
+  =
+  \adag\hat a\,\sigmam\sigmap
+  +
+  \hat a\adag\,\sigmap\sigmam.
+\end{equation}
+Usando
+\begin{equation}
+  \sigmap\sigmam=\ket{a}\bra{a},
+  \qquad
+  \sigmam\sigmap=\ket{b}\bra{b},
+\end{equation}
+se obtiene
+\begin{equation}
+  \hat V^2
+  =
+  \hat a\adag\,\ket{a}\bra{a}
+  +
+  \adag\hat a\,\ket{b}\bra{b}.
+\end{equation}
+En la base at\'omica ordenada $\{\ket{a},\ket{b}\}$, esto se escribe como
+\begin{equation}
+  \hat V^2
+  =
+  \begin{pmatrix}
+    \hat a\adag & 0\\
+    0 & \adag\hat a
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \nnop+1 & 0\\
+    0 & \nnop
+  \end{pmatrix},
+\end{equation}
+donde $\nnop=\adag\hat a$.
+
+\subsection{Potencias pares e impares}
+
+La forma diagonal de $\hat V^2$ permite obtener por inducci\'on
+\begin{equation}
+  \hat V^{2k}
+  =
+  \begin{pmatrix}
+    (\nnop+1)^k & 0\\
+    0 & \nnop^k
+  \end{pmatrix}.
+\end{equation}
+Para las potencias impares se multiplica por $\hat V$. Como
+\begin{equation}
+  \hat V
+  =
+  \begin{pmatrix}
+    0 & \hat a\\
+    \adag & 0
+  \end{pmatrix},
+\end{equation}
+se tiene
+\begin{equation}
+  \hat V^{2k+1}
+  =
+  \begin{pmatrix}
+    0 & \hat a\,\nnop^k\\
+    \adag(\nnop+1)^k & 0
+  \end{pmatrix}.
+\end{equation}
+La identidad
+\begin{equation}
+  \hat a\,f(\nnop)=f(\nnop+1)\hat a
+\end{equation}
+permite escribir el elemento superior derecho como
+\begin{equation}
+  \hat a\,\nnop^k=(\nnop+1)^k\hat a.
+\end{equation}
+Por tanto,
+\begin{equation}
+  \hat V^{2k+1}
+  =
+  \begin{pmatrix}
+    0 & (\nnop+1)^k\hat a\\
+    \adag(\nnop+1)^k & 0
+  \end{pmatrix}.
+\end{equation}
+
+\subsection{Suma de las series}
+
+La parte par de la exponencial es
+\begin{equation}
+  \sum_{k=0}^{\infty}
+  \frac{(-1)^k(gt)^{2k}}{(2k)!}
+  \hat V^{2k}
+  =
+  \begin{pmatrix}
+    \cos(gt\sqrt{\nnop+1}) & 0\\
+    0 & \cos(gt\sqrt{\nnop})
+  \end{pmatrix}.
+\end{equation}
+La parte impar contiene la serie del seno. Para verla, se reescribe
+$(\nnop+1)^k$ como
+$(\sqrt{\nnop+1})^{2k+1}/\sqrt{\nnop+1}$. Entonces
+\begin{equation}
+  \sum_{k=0}^{\infty}
+  \frac{(-1)^k(gt)^{2k+1}}{(2k+1)!}
+  \hat V^{2k+1}
+  =
+  \begin{pmatrix}
+    0 &
+    \dfrac{\sin(gt\sqrt{\nnop+1})}{\sqrt{\nnop+1}}\hat a\\[10pt]
+    \adag\dfrac{\sin(gt\sqrt{\nnop+1})}{\sqrt{\nnop+1}} &
+    0
+  \end{pmatrix}.
+\end{equation}
+Para el elemento inferior izquierdo se usa
+\begin{equation}
+  \adag f(\nnop+1)=f(\nnop)\adag,
+\end{equation}
+lo cual da
+\begin{equation}
+  \adag\dfrac{\sin(gt\sqrt{\nnop+1})}{\sqrt{\nnop+1}}
+  =
+  \dfrac{\sin(gt\sqrt{\nnop})}{\sqrt{\nnop}}\adag.
+\end{equation}
+La divisi\'on por $\sqrt{\nnop}$ no produce problema sobre el vac\'io porque
+siempre aparece multiplicada por $\adag$ y la funci\'on se entiende por su
+serie de potencias.
+
+Finalmente,
+\begin{equation}
+  \boxed{
+  \hat U(t,0)
+  =
+  \begin{pmatrix}
+    \cos(gt\sqrt{\nnop+1}) &
+    -\ii\,\dfrac{\sin(gt\sqrt{\nnop+1})}{\sqrt{\nnop+1}}\hat a\\[12pt]
+    -\ii\,\dfrac{\sin(gt\sqrt{\nnop})}{\sqrt{\nnop}}\adag &
+    \cos(gt\sqrt{\nnop})
+  \end{pmatrix}.
+  }
+\end{equation}
+La diagonal contiene amplitudes de permanencia. La antidiagonal contiene
+amplitudes de transici\'on acompa\~nadas de creaci\'on o destrucci\'on de un
+fot\'on. La frecuencia que aparece no es una constante \'unica, sino
+$g\sqrt{n+1}$ o $g\sqrt n$, seg\'un el subespacio considerado.
+
+\section{Acci\'on sobre estados producto}
+
+Aplicando el operador anterior a los estados de la base producto se obtiene
+\begin{equation}
+  \hat U(t,0)\ket{a,n}
+  =
+  \cos(gt\sqrt{n+1})\ket{a,n}
+  -
+  \ii\sin(gt\sqrt{n+1})\ket{b,n+1},
+\end{equation}
+\begin{equation}
+  \hat U(t,0)\ket{b,n}
+  =
+  \cos(gt\sqrt n)\ket{b,n}
+  -
+  \ii\sin(gt\sqrt n)\ket{a,n-1}.
+\end{equation}
+La primera expresi\'on muestra que $\ket{a,n}$ se acopla solamente con
+$\ket{b,n+1}$. La segunda muestra que $\ket{b,n}$ se acopla solamente con
+$\ket{a,n-1}$. Para $n=0$, el t\'ermino $\ket{a,-1}$ no existe y su coeficiente
+es cero porque $\sin(0)=0$. As\'i, $\ket{b,0}$ es un estado oscuro de la
+interacci\'on:
+\begin{equation}
+  \Hint^{(\mathrm{res})}\ket{b,0}=0.
+\end{equation}
+
+Para un estado inicial general,
+\begin{align}
+  \boxed{
+  \begin{aligned}
+  \ket{\psi(t)}
+  =
+  \sum_{n=0}^{\infty}W_n
+  \Bigl\{
+  &C_a
+  \left[
+  \cos(gt\sqrt{n+1})\ket{a,n}
+  -
+  \ii\sin(gt\sqrt{n+1})\ket{b,n+1}
+  \right]\notag\\
+  &+
+  C_b
+  \left[
+  \cos(gt\sqrt n)\ket{b,n}
+  -
+  \ii\sin(gt\sqrt n)\ket{a,n-1}
+  \right]
+  \Bigr\}.
+  \end{aligned}
+  }
+\end{align}
+Si se desea agrupar por los pares $\{\ket{a,n},\ket{b,n+1}\}$, se cambia el
+\'indice en los t\'erminos adecuados y se obtiene, para $n\geq 0$,
+\begin{equation}
+  \Psi_{a,n}(t)
+  =
+  W_n C_a\cos(gt\sqrt{n+1})
+  -
+  \ii W_{n+1}C_b\sin(gt\sqrt{n+1}),
+\end{equation}
+\begin{equation}
+  \Psi_{b,n+1}(t)
+  =
+  W_{n+1}C_b\cos(gt\sqrt{n+1})
+  -
+  \ii W_n C_a\sin(gt\sqrt{n+1}).
+\end{equation}
+Estas dos amplitudes son la forma resonante que se recupera despu\'es a partir
+de las ecuaciones de Rabi generales.
+
+\section{Campo inicial en un estado de Fock}
+
+Si el campo inicia en un estado de n\'umero definido $\ket{n_0}$, entonces
+$W_n=\delta_{n,n_0}$. Para un \'atomo inicialmente excitado, $C_a=1$ y
+$C_b=0$, la evoluci\'on queda
+\begin{equation}
+  \ket{\psi(t)}
+  =
+  \cos(gt\sqrt{n_0+1})\ket{a,n_0}
+  -
+  \ii\sin(gt\sqrt{n_0+1})\ket{b,n_0+1}.
+\end{equation}
+Las probabilidades at\'omicas son
+\begin{equation}
+  P_a(t)=\cos^2(gt\sqrt{n_0+1}),
+  \qquad
+  P_b(t)=\sin^2(gt\sqrt{n_0+1}).
+\end{equation}
+Para el vac\'io, $n_0=0$, se obtiene la oscilaci\'on de Rabi del vac\'io:
+\begin{equation}
+  \ket{\psi(t)}
+  =
+  \cos(gt)\ket{a,0}
+  -
+  \ii\sin(gt)\ket{b,1}.
+\end{equation}
+Esta es la oscilaci\'on de Rabi del vac\'io, la cual puede entenderse como
+emisi\'on espont\'anea hacia un \'unico modo resonante de la cavidad, seguida de
+reabsorci\'on coherente. A diferencia de la emisi\'on espont\'anea en espacio
+libre, la excitaci\'on no se dispersa en un continuo de modos, sino que
+permanece en el sistema \'atomo-campo y oscila entre ambos.
+
+\section{Ecuaciones de Rabi fuera de resonancia}
+
+Para $\Delta\neq0$, el hamiltoniano en el marco de interacci\'on depende del
+tiempo. Aun as\'i, cada subespacio
+\begin{equation}
+  \mathcal H_n=\mathrm{span}\{\ket{a,n},\ket{b,n+1}\}
+\end{equation}
+permanece cerrado. La acci\'on del hamiltoniano es
+\begin{equation}
+  \Hint(t)\ket{a,n}
+  =
+  \hbar g\,\ee^{\ii\Delta t}\sqrt{n+1}\ket{b,n+1},
+\end{equation}
+\begin{equation}
+  \Hint(t)\ket{b,n+1}
+  =
+  \hbar g\,\ee^{-\ii\Delta t}\sqrt{n+1}\ket{a,n}.
+\end{equation}
+Escribiendo
+\begin{equation}
+  \ket{\psi(t)}
+  =
+  \sum_{n=0}^{\infty}
+  \left[
+  \Psi_{a,n}(t)\ket{a,n}
+  +
+  \Psi_{b,n+1}(t)\ket{b,n+1}
+  \right],
+\end{equation}
+y proyectando la ecuaci\'on de Schr\"odinger, se obtiene el sistema acoplado
+\begin{equation}
+  \dot\Psi_{a,n}(t)
+  =
+  -\ii g\sqrt{n+1}\,\ee^{-\ii\Delta t}\Psi_{b,n+1}(t),
+\end{equation}
+\begin{equation}
+  \dot\Psi_{b,n+1}(t)
+  =
+  -\ii g\sqrt{n+1}\,\ee^{\ii\Delta t}\Psi_{a,n}(t).
+\end{equation}
+
+\subsection{Ecuaci\'on de segundo orden}
+
+Derivando la primera ecuaci\'on,
+\begin{align}
+  \ddot\Psi_{a,n}
+  &=
+  -\ii g\sqrt{n+1}
+  \left[
+  -\ii\Delta\,\ee^{-\ii\Delta t}\Psi_{b,n+1}
+  +
+  \ee^{-\ii\Delta t}\dot\Psi_{b,n+1}
+  \right].
+\end{align}
+El segundo t\'ermino se sustituye con la ecuaci\'on para
+$\dot\Psi_{b,n+1}$:
+\begin{equation}
+  -\ii g\sqrt{n+1}\,\ee^{-\ii\Delta t}\dot\Psi_{b,n+1}
+  =
+  -g^2(n+1)\Psi_{a,n}.
+\end{equation}
+Para el primer t\'ermino se usa de nuevo
+\begin{equation}
+  -\ii g\sqrt{n+1}\,\ee^{-\ii\Delta t}\Psi_{b,n+1}
+  =
+  \dot\Psi_{a,n}.
+\end{equation}
+As\'i se llega a
+\begin{equation}
+  \ddot\Psi_{a,n}
+  -
+  \ii\Delta\,\dot\Psi_{a,n}
+  +
+  g^2(n+1)\Psi_{a,n}
+  =
+  0.
+\end{equation}
+La ecuaci\'on para $\Psi_{b,n+1}$ es an\'aloga:
+\begin{equation}
+  \ddot\Psi_{b,n+1}
+  +
+  \ii\Delta\,\dot\Psi_{b,n+1}
+  +
+  g^2(n+1)\Psi_{b,n+1}
+  =
+  0.
+\end{equation}
+
+\subsection{Ra\'ices caracter\'isticas}
+
+Para $\Psi_{a,n}(t)=\ee^{\lambda t}$ se obtiene
+\begin{equation}
+  \lambda^2-\ii\Delta\lambda+g^2(n+1)=0.
+\end{equation}
+Las ra\'ices son
+\begin{equation}
+  \lambda_{\pm}
+  =
+  \frac{\ii\Delta}{2}
+  \pm
+  \ii\Omn,
+  \qquad
+  \boxed{
+  \Omn=\frac{1}{2}\sqrt{\Delta^2+4g^2(n+1)}.
+  }
+\end{equation}
+La cantidad $\Omn$ es la frecuencia de Rabi generalizada. El factor
+$g\sqrt{n+1}$ mide el acoplamiento efectivo en el bloque $\mathcal H_n$.
+
+\subsection{Soluci\'on completa con coeficientes iniciales}
+
+La soluci\'on para la amplitud excitada se escribe como
+\begin{equation}
+  \Psi_{a,n}(t)
+  =
+  \ee^{\ii\Delta t/2}
+  \left[
+  A_+\ee^{\ii\Omn t}
+  +
+  A_-\ee^{-\ii\Omn t}
+  \right].
+\end{equation}
+Las constantes se fijan con
+\begin{equation}
+  \Psi_{a,n}(0)=W_n C_a,
+  \qquad
+  \Psi_{b,n+1}(0)=W_{n+1}C_b,
+\end{equation}
+y con
+\begin{equation}
+  \dot\Psi_{a,n}(0)
+  =
+  -\ii g\sqrt{n+1}\,W_{n+1}C_b.
+\end{equation}
+Evaluando $\Psi_{a,n}(0)$:
+\begin{equation}
+  A_+ + A_- = W_n C_a.
+\end{equation}
+Evaluando la derivada en $t=0$:
+\begin{equation}
+  \ii\left(\frac{\Delta}{2}+\Omn\right)A_+
+  +
+  \ii\left(\frac{\Delta}{2}-\Omn\right)A_-
+  =
+  -\ii g\sqrt{n+1}\,W_{n+1}C_b.
+\end{equation}
+Resolver este sistema lineal y reordenar las exponenciales en cosenos y senos
+da
+\begin{align}
+  \boxed{
+  \Psi_{a,n}(t)
+  =
+  \ee^{\ii\Delta t/2}
+  \left[
+  \left(
+  \cos(\Omn t)
+  +
+  \frac{\ii\Delta}{2\Omn}\sin(\Omn t)
+  \right)W_n C_a
+  -
+  \ii\frac{g\sqrt{n+1}}{\Omn}\sin(\Omn t)\,W_{n+1}C_b
+  \right].
+  }
+\end{align}
+El mismo procedimiento para la amplitud del estado base produce
+\begin{align}
+  \boxed{
+  \Psi_{b,n+1}(t)
+  =
+  \ee^{-\ii\Delta t/2}
+  \left[
+  -\ii\frac{g\sqrt{n+1}}{\Omn}\sin(\Omn t)\,W_n C_a
+  +
+  \left(
+  \cos(\Omn t)
+  -
+  \frac{\ii\Delta}{2\Omn}\sin(\Omn t)
+  \right)W_{n+1}C_b
+  \right].
+  }
+\end{align}
+Estas son las expresiones que aparecen al resolver las ecuaciones de Rabi en
+las notas originales. La presencia simult\'anea de $W_n$ y $W_{n+1}$ tiene una
+interpretaci\'on directa: el estado $\ket{a,n}$ recibe contribuciones desde el
+componente inicial $\ket{a,n}$ y desde el componente inicial $\ket{b,n+1}$,
+porque ambos viven en el mismo bloque de excitaci\'on total.
+
+\subsection{Probabilidades y resonancia}
+
+Si el sistema inicia en $\ket{a,n}$, entonces $W_nC_a=1$ y
+$W_{n+1}C_b=0$. Las probabilidades son
+\begin{equation}
+  P_{a,n}(t)
+  =
+  1
+  -
+  \frac{g^2(n+1)}{\Omn^2}\sin^2(\Omn t),
+\end{equation}
+\begin{equation}
+  P_{b,n+1}(t)
+  =
+  \frac{g^2(n+1)}{\Omn^2}\sin^2(\Omn t).
+\end{equation}
+En resonancia, $\Delta=0$, se tiene $\Omn=g\sqrt{n+1}$ y se recupera
+\begin{equation}
+  P_{a,n}(t)=\cos^2(g\sqrt{n+1}\,t),
+  \qquad
+  P_{b,n+1}(t)=\sin^2(g\sqrt{n+1}\,t).
+\end{equation}
+Fuera de resonancia la transferencia ya no es completa. El factor
+$g^2(n+1)/\Omn^2$ reduce la amplitud m\'axima de oscilaci\'on y el desafine
+introduce fases relativas $\ee^{\pm \ii\Delta t/2}$.
+
+\section{R\'egimen altamente no resonante}
+
+En el caso altamente no resonante,
+\begin{equation}
+  |\Delta|\gg 2g\sqrt{n+1},
+\end{equation}
+la frecuencia generalizada se expande como
+\begin{align}
+  \Omn
+  &=
+  \frac{|\Delta|}{2}
+  \sqrt{1+\frac{4g^2(n+1)}{\Delta^2}}
+  \notag\\
+  &\approx
+  \frac{|\Delta|}{2}
+  \left[
+  1+\frac{2g^2(n+1)}{\Delta^2}
+  \right].
+\end{align}
+Si se toma $\Delta>0$ para fijar signos,
+\begin{equation}
+  \Omn\approx\frac{\Delta}{2}+\frac{g^2(n+1)}{\Delta}.
+\end{equation}
+El cociente que multiplica la transici\'on entre $\ket{a,n}$ y
+$\ket{b,n+1}$ es
+\begin{equation}
+  \frac{g\sqrt{n+1}}{\Omn}\ll1.
+\end{equation}
+Por tanto, la transferencia real de poblaci\'on queda suprimida. Lo que queda
+dominante es una fase dependiente de $n$. A segundo orden en $g/\Delta$, el
+hamiltoniano efectivo puede escribirse como
+\begin{equation}
+  \boxed{
+  \hat H_{\mathrm{eff}}
+  =
+  \frac{\hbar g^2}{\Delta}
+  \left(
+  \adag\hat a\,\sigmap\sigmam
+  -
+  \hat a\adag\,\sigmam\sigmap
+  \right).
+  }
+\end{equation}
+Aplicado a los estados producto,
+\begin{equation}
+  \hat H_{\mathrm{eff}}\ket{a,n}
+  =
+  \frac{\hbar g^2}{\Delta}n\ket{a,n},
+\end{equation}
+\begin{equation}
+  \hat H_{\mathrm{eff}}\ket{b,n}
+  =
+  -\frac{\hbar g^2}{\Delta}(n+1)\ket{b,n}.
+\end{equation}
+El \'atomo y el campo ya no intercambian excitaciones, pero sus niveles se
+desplazan dependiendo del n\'umero de fotones. Esta es la versi\'on cu\'antica
+del desplazamiento ac-Stark. En QED de cavidad, este l\'imite permite leer el
+estado del campo o del \'atomo mediante fases sin absorber necesariamente un
+fot\'on.
+
+\section{M\'etodo matricial y estados vestidos}
+
+La tercera ruta consiste en diagonalizar el hamiltoniano completo en el marco
+de Schr\"odinger:
+\begin{equation}
+  \hat H
+  =
+  \hbar\omega_c\adag\hat a
+  +
+  \frac{\hbar\omega_a}{2}\hat\sigma_z
+  +
+  \hbar g
+  \left(\sigmap\hat a+\sigmam\adag\right),
+\end{equation}
+con
+\begin{equation}
+  \hat\sigma_z=\ket{a}\bra{a}-\ket{b}\bra{b}.
+\end{equation}
+
+\subsection{Conservaci\'on del n\'umero total de excitaciones}
+
+Se define
+\begin{equation}
+  \hat N
+  =
+  \adag\hat a+\sigmap\sigmam
+  =
+  \adag\hat a+\ket{a}\bra{a}.
+\end{equation}
+La parte libre del hamiltoniano conmuta con $\hat N$ porque ambas son
+diagonales en la base producto. Para la interacci\'on,
+\begin{equation}
+  [\sigmap\hat a,\hat N]
+  =
+  [\sigmap\hat a,\adag\hat a]
+  +
+  [\sigmap\hat a,\sigmap\sigmam].
+\end{equation}
+Como
+\begin{equation}
+  [\hat a,\adag\hat a]=\hat a,
+  \qquad
+  [\sigmap,\sigmap\sigmam]=-\sigmap,
+\end{equation}
+se obtiene
+\begin{equation}
+  [\sigmap\hat a,\adag\hat a]=\sigmap\hat a,
+  \qquad
+  [\sigmap\hat a,\sigmap\sigmam]=-\sigmap\hat a.
+\end{equation}
+La suma se cancela. Del mismo modo,
+$[\sigmam\adag,\hat N]=0$. Por tanto,
+\begin{equation}
+  \boxed{[\hat H,\hat N]=0.}
+\end{equation}
+El n\'umero total de excitaciones es constante y el hamiltoniano se separa en
+bloques independientes.
+
+\subsection{Bloques de excitaci\'on fija}
+
+El sector $N=0$ contiene solamente $\ket{b,0}$. Para $N=n+1\geq1$, una base
+natural es
+\begin{equation}
+  \{\ket{a,n},\ket{b,n+1}\}.
+\end{equation}
+En esta base,
+\begin{equation}
+  \bra{a,n}\hat H\ket{a,n}
+  =
+  \hbar\omega_c n+\frac{\hbar\omega_a}{2},
+\end{equation}
+\begin{equation}
+  \bra{b,n+1}\hat H\ket{b,n+1}
+  =
+  \hbar\omega_c(n+1)-\frac{\hbar\omega_a}{2},
+\end{equation}
+\begin{equation}
+  \bra{a,n}\hat H\ket{b,n+1}
+  =
+  \bra{b,n+1}\hat H\ket{a,n}
+  =
+  \hbar g\sqrt{n+1}.
+\end{equation}
+Separando un t\'ermino proporcional a la identidad,
+\begin{equation}
+  \hat H^{(n)}
+  =
+  \hbar\omega_c\left(n+\frac{1}{2}\right)\mathds{1}
+  +
+  \hbar
+  \begin{pmatrix}
+    -\Delta_c/2 & g\sqrt{n+1}\\
+    g\sqrt{n+1} & \Delta_c/2
+  \end{pmatrix},
+\end{equation}
+donde en esta secci\'on se us\'o
+\begin{equation}
+  \Delta_c=\omega_c-\omega_a=-\Delta.
+\end{equation}
+El cambio de convenci\'on de signo solo afecta la forma de escribir los
+eigenvectores, no la frecuencia $\Omn$.
+
+\subsection{Eigenvalores}
+
+La parte no trivial del bloque satisface
+\begin{equation}
+  \det
+  \begin{pmatrix}
+    -\hbar\Delta_c/2-\lambda & \hbar g\sqrt{n+1}\\
+    \hbar g\sqrt{n+1} & \hbar\Delta_c/2-\lambda
+  \end{pmatrix}
+  =
+  0.
+\end{equation}
+Entonces
+\begin{equation}
+  \lambda^2
+  -
+  \frac{\hbar^2\Delta_c^2}{4}
+  -
+  \hbar^2g^2(n+1)
+  =
+  0,
+\end{equation}
+y
+\begin{equation}
+  \lambda_\pm=\pm\hbar\Omn,
+  \qquad
+  \Omn=\frac{1}{2}\sqrt{\Delta_c^2+4g^2(n+1)}.
+\end{equation}
+Los eigenvalores completos son
+\begin{equation}
+  \boxed{
+  E_\pm^{(n)}
+  =
+  \hbar\omega_c\left(n+\frac{1}{2}\right)
+  \pm
+  \hbar\Omn.
+  }
+\end{equation}
+
+\subsection{Eigenvectores}
+
+Los eigenvectores se escriben como superposiciones de los estados desnudos
+$\ket{a,n}$ y $\ket{b,n+1}$. Se define un \'angulo de mezcla $\theta_n$ por
+\begin{equation}
+  \tan(2\theta_n)
+  =
+  \frac{2g\sqrt{n+1}}{\Delta_c}.
+\end{equation}
+De aqu\'i,
+\begin{equation}
+  \cos(2\theta_n)=\frac{\Delta_c}{2\Omn},
+  \qquad
+  \sin(2\theta_n)=\frac{g\sqrt{n+1}}{\Omn}.
+\end{equation}
+Una convenci\'on usual para los estados vestidos es
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+    \ket{+,n}
+    &=
+    \sin\theta_n\ket{a,n}
+    +
+    \cos\theta_n\ket{b,n+1},
+    \\
+    \ket{-,n}
+    &=
+    \cos\theta_n\ket{a,n}
+    -
+    \sin\theta_n\ket{b,n+1}.
+  \end{aligned}
+  }
+\end{equation}
+Estos estados ya no son puramente at\'omicos ni puramente fot\'onicos. Son
+excitaciones h\'ibridas de materia y campo. En resonancia,
+$\Delta_c=0$, de modo que $\theta_n=\pi/4$ y
+\begin{equation}
+  \ket{\pm,n}
+  =
+  \frac{1}{\sqrt2}
+  \left(\ket{a,n}\pm\ket{b,n+1}\right),
+\end{equation}
+salvo una convenci\'on de signo. La separaci\'on de energ\'ia es
+\begin{equation}
+  E_+^{(n)}-E_-^{(n)}
+  =
+  2\hbar g\sqrt{n+1},
+\end{equation}
+que corresponde al desdoblamiento de Rabi cu\'antico.
+
+\section{Evoluci\'on en la base vestida}
+
+Una vez diagonalizado el bloque, la evoluci\'on es inmediata:
+\begin{equation}
+  \hat U^{(n)}(t)
+  =
+  \ee^{-\ii\omega_c(n+1/2)t}
+  \left[
+  \ee^{-\ii\Omn t}\ket{+,n}\bra{+,n}
+  +
+  \ee^{\ii\Omn t}\ket{-,n}\bra{-,n}
+  \right].
+\end{equation}
+Al regresar a la base producto y descartar la fase global, se obtiene
+\begin{equation}
+  \hat U_{\mathrm{prod}}^{(n)}(t)
+  =
+  \begin{pmatrix}
+    \cos(\Omn t)+\ii\dfrac{\Delta}{2\Omn}\sin(\Omn t) &
+    -\ii\dfrac{g\sqrt{n+1}}{\Omn}\sin(\Omn t)\\[10pt]
+    -\ii\dfrac{g\sqrt{n+1}}{\Omn}\sin(\Omn t) &
+    \cos(\Omn t)-\ii\dfrac{\Delta}{2\Omn}\sin(\Omn t)
+  \end{pmatrix},
+\end{equation}
+donde se volvi\'o a la convenci\'on $\Delta=\omega_a-\omega_c$. Esta matriz
+coincide con la soluci\'on obtenida por las ecuaciones de Rabi. En resonancia
+se reduce a la rotaci\'on simple con frecuencia $g\sqrt{n+1}$.
+
+\section{Conexi\'on con la tesis doctoral}
+
+El modelo de Jaynes-Cummings-Paul es el primer bloque de construcci\'on para
+la QED de cavidad usada en modelos moleculares. En el modelo de
+Tavis-Cummings se reemplaza un \'atomo por muchos emisores acoplados al mismo
+modo de cavidad. En el modelo de Holstein-Tavis-Cummings se a\~naden modos
+vibracionales internos y acoplamiento electr\'on-fon\'on. Aun cuando el espacio
+de Hilbert crece, las ideas de esta nota siguen siendo las mismas: identificar
+cantidades conservadas, ordenar la base por sectores de excitaci\'on,
+diagonalizar bloques cuando sea posible e interpretar las frecuencias de Rabi
+como intercambio coherente entre grados de libertad.
+
+Para el trabajo doctoral, esta nota fija la base conceptual de la interacci\'on
+coherente luz-materia. El siguiente paso consiste en preguntar qu\'e queda
+cuando hay varios emisores, fonones y disipaci\'on. La respuesta ya no suele ser
+un operador de evoluci\'on cerrado tan simple como el JCP, pero la estructura
+por bloques y la interpretaci\'on de los estados vestidos siguen siendo la gu\'ia.
+
+\end{document}

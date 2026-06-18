@@ -1,0 +1,1746 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{braket}
+\usepackage{dsfont}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\emergencystretch=2em
+\allowdisplaybreaks
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\adag}{\hat a^\dagger}
+\newcommand{\bdag}{\hat b^\dagger}
+\newcommand{\Id}{\mathds{1}}
+\newcommand{\Omeff}{\Omega_{nm}^{\mathrm{ef}}}
+
+\title{Din\'amica del modelo HC}
+\author{Ricardo Del Rosal Gardu\~no \\ \small Doctorado en F\'isica, BUAP}
+\date{Notas de doctorado}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\bigskip
+
+\section{Objetivo y punto de partida}
+
+La nota sobre el modelo de Holstein-Cummings construy\'o el hamiltoniano de una
+mol\'ecula con una transici\'on electr\'onica, un modo cuantizado de cavidad y
+un modo vibracional intramolecular. Despu\'es de trabajar en resonancia
+electr\'on-fot\'on, introducir los polaritones y aplicar una aproximaci\'on de
+onda rotante al intercambio polarit\'on-fon\'on, el hamiltoniano efectivo del
+bloque con $n>0$ excitaciones \'opticas qued\'o escrito como
+\begin{equation}
+  \boxed{
+  \tilde H_{\mathrm{ef}}^{(n)}
+  =
+  \hbar
+  \left[
+  \Omega n+\frac{\nu\lambda^2}{4}
+  +
+  \nu\bdag\hat b
+  \right]\Id
+  +
+  \hbar g\sqrt n\,\hat S_z^{(n)}
+  -
+  \frac{\hbar\nu\lambda}{2}
+  \left(
+  \hat b\hat S^{(n)\dagger}
+  +
+  \bdag\hat S^{(n)}
+  \right).
+  }
+\end{equation}
+Aqu\'i, $\Omega$ es la frecuencia com\'un del modo de cavidad y de la
+transici\'on electr\'onica en resonancia, $\nu$ es la frecuencia vibracional,
+$g$ es el acoplamiento electr\'on-fot\'on y $\lambda$ es el par\'ametro de
+Huang--Rhys. Los operadores $\hat S^{(n)}$ y $\hat S^{(n)\dagger}$ bajan y
+suben, respectivamente, entre los dos polaritones del bloque $n$.
+
+La interacci\'on conserva el n\'umero efectivo polarit\'on-fon\'on
+\begin{equation}
+  \boxed{
+  \hat M^{(n)}
+  =
+  \bdag\hat b+\hat S^{(n)\dagger}\hat S^{(n)},
+  \qquad
+  [\tilde H_{\mathrm{ef}}^{(n)},\hat M^{(n)}]=0.
+  }
+\end{equation}
+Por esta raz\'on, para cada $n>0$ y $m>0$ la din\'amica ocurre dentro del
+doblete
+\begin{equation}
+  \boxed{
+  \mathcal H_{nm}
+  =
+  \operatorname{span}
+  \left\{
+  \ket{+,n,m-1},
+  \ket{-,n,m}
+  \right\}.
+  }
+\end{equation}
+El estado $\ket{+,n,m-1}$ contiene al polarit\'on superior y $m-1$ fonones,
+mientras que $\ket{-,n,m}$ contiene al polarit\'on inferior y $m$ fonones.
+Ambos estados tienen el mismo valor $m$ de $\hat M^{(n)}$. La interacci\'on
+convierte uno en el otro sin abandonar el doblete.
+
+El objetivo de esta nota es construir la evoluci\'on temporal desde un estado
+inicial general, obtener las amplitudes exactas de cada doblete, reunir todos
+los sectores en el estado completo y estudiar una aproximaci\'on especialmente
+\'util cuando la vibraci\'on comienza en un estado coherente con un n\'umero
+medio grande de fonones.
+
+\section{Estado inicial tripartito}
+
+Se considera inicialmente un estado producto entre el campo, la parte
+electr\'onica de la mol\'ecula y su vibraci\'on:
+\begin{equation}
+  \boxed{
+  \ket{\Psi(0)}
+  =
+  \ket{\alpha}\otimes\ket{\phi}\otimes\ket{\beta}.
+  }
+\end{equation}
+Cada factor se escribe en su base natural. Para el campo,
+\begin{equation}
+  \ket{\alpha}
+  =
+  \sum_{n=0}^{\infty}c_n\ket n,
+  \qquad
+  \sum_{n=0}^{\infty}|c_n|^2=1.
+\end{equation}
+Para la mol\'ecula de dos niveles,
+\begin{equation}
+  \ket{\phi}
+  =
+  c_g\ket g+c_e\ket e,
+  \qquad
+  |c_g|^2+|c_e|^2=1.
+\end{equation}
+Finalmente, para la vibraci\'on,
+\begin{equation}
+  \ket{\beta}
+  =
+  \sum_{m=0}^{\infty}c_m^{(v)}\ket m,
+  \qquad
+  \sum_{m=0}^{\infty}|c_m^{(v)}|^2=1.
+\end{equation}
+Se ha escrito $c_m^{(v)}$ para no confundir los coeficientes vibracionales con
+los coeficientes fot\'onicos $c_n$.
+
+\subsection{Estado vibracional en el espacio desplazado}
+
+El hamiltoniano efectivo fue obtenido despu\'es de desplazar la coordenada
+vibracional. Por ello, para evolucionar con $\tilde H_{\mathrm{ef}}$ tambi\'en
+debe expresarse el estado inicial en el espacio desplazado. En la convenci\'on
+empleada en el manuscrito de din\'amica se define
+\begin{equation}
+  \boxed{
+  \ket{\tilde\beta}
+  =
+  \hat D\!\left(\frac{\lambda}{2}\right)\ket{\beta},
+  \qquad
+  \hat D(\gamma)
+  =
+  \exp\!\left(\gamma\bdag-\gamma^*\hat b\right).
+  }
+\end{equation}
+Si el estado vibracional inicial es coherente,
+$\ket{\beta}=\hat D(\beta)\ket0$, se utiliza la regla de composici\'on
+\begin{equation}
+  \hat D(\alpha)\hat D(\beta)
+  =
+  \exp\!\left[
+  \frac{\alpha\beta^*-\alpha^*\beta}{2}
+  \right]
+  \hat D(\alpha+\beta).
+\end{equation}
+Tomando $\alpha=\lambda/2$,
+\begin{align}
+  \ket{\tilde\beta}
+  &=
+  \hat D\!\left(\frac{\lambda}{2}\right)
+  \hat D(\beta)\ket0
+  \notag\\
+  &=
+  \exp\!\left[
+  \frac{1}{2}
+  \left(
+  \frac{\lambda}{2}\beta^*
+  -
+  \frac{\lambda^*}{2}\beta
+  \right)
+  \right]
+  \hat D\!\left(\beta+\frac{\lambda}{2}\right)\ket0.
+\end{align}
+Por tanto,
+\begin{equation}
+  \boxed{
+  \ket{\tilde\beta}
+  =
+  \exp\!\left[
+  \frac{\lambda\beta^*-\lambda^*\beta}{4}
+  \right]
+  \ket{\beta+\lambda/2}.
+  }
+\end{equation}
+Para $\lambda\in\mathbb R$, la exponencial anterior es una fase global:
+\begin{equation}
+  \exp\!\left[
+  \frac{\lambda}{4}(\beta^*-\beta)
+  \right]
+  =
+  \exp\!\left[
+  -\ii\frac{\lambda}{2}\operatorname{Im}\beta
+  \right].
+\end{equation}
+Si adem\'as $\beta$ es real, esa fase es igual a uno y simplemente
+\begin{equation}
+  \boxed{
+  \ket{\tilde\beta}
+  =
+  \ket{\beta+\lambda/2}
+  \qquad
+  (\lambda,\beta\in\mathbb R).
+  }
+\end{equation}
+
+La nota de construcci\'on del hamiltoniano usa de manera equivalente la
+convenci\'on
+$\ket{\tilde\Psi}=\hat D^\dagger(\lambda/2)\ket{\Psi}$. En esa convenci\'on,
+el estado coherente desplazado tiene amplitud $\beta-\lambda/2$. Ambas
+convenciones describen la misma f\'isica si el signo del desplazamiento se
+mantiene de forma consistente. En lo que sigue, toda la dependencia del
+estado vibracional inicial se encapsula en los coeficientes
+\begin{equation}
+  \boxed{
+  \ket{\tilde\beta}
+  =
+  \sum_{m=0}^{\infty}\tilde c_m\ket m,
+  \qquad
+  \sum_{m=0}^{\infty}|\tilde c_m|^2=1.
+  }
+\end{equation}
+De este modo, las expresiones de la din\'amica no dependen de ocultar una
+elecci\'on de signo.
+
+El estado inicial que debe evolucionarse con el hamiltoniano efectivo es
+\begin{equation}
+  \boxed{
+  \ket{\tilde\Psi(0)}
+  =
+  \left(\sum_{n=0}^{\infty}c_n\ket n\right)
+  \left(c_g\ket g+c_e\ket e\right)
+  \left(\sum_{m=0}^{\infty}\tilde c_m\ket m\right).
+  }
+\end{equation}
+
+\section{Parte \'optico-electr\'onica en la base polarit\'onica}
+
+Antes de incorporar la vibraci\'on, se reorganiza el producto entre el campo y
+el estado electr\'onico:
+\begin{align}
+  \ket{\Psi_{\mathrm{op-el}}(0)}
+  &=
+  \left(\sum_{n=0}^{\infty}c_n\ket n\right)
+  \left(c_g\ket g+c_e\ket e\right)
+  \notag\\
+  &=
+  \sum_{n=0}^{\infty}c_nc_g\ket{g,n}
+  +
+  \sum_{n=0}^{\infty}c_nc_e\ket{e,n}.
+\end{align}
+Los polaritones del bloque con $n$ excitaciones \'opticas se construyen a
+partir de $\ket{e,n-1}$ y $\ket{g,n}$. Por ello, la segunda suma se reindexa
+para que ambos estados lleven la misma etiqueta $n$. Sustituyendo
+$n\mapsto n-1$,
+\begin{equation}
+  \sum_{n=0}^{\infty}c_nc_e\ket{e,n}
+  =
+  \sum_{n=1}^{\infty}c_{n-1}c_e\ket{e,n-1}.
+\end{equation}
+La suma asociada al estado base contiene adem\'as el estado especial
+$\ket{g,0}$, que no tiene pareja electr\'onica dentro del sector de cero
+excitaciones. Separ\'andolo,
+\begin{equation}
+  \sum_{n=0}^{\infty}c_nc_g\ket{g,n}
+  =
+  c_0c_g\ket{g,0}
+  +
+  \sum_{n=1}^{\infty}c_nc_g\ket{g,n}.
+\end{equation}
+Por tanto,
+\begin{equation}
+  \boxed{
+  \ket{\Psi_{\mathrm{op-el}}(0)}
+  =
+  c_0c_g\ket{g,0}
+  +
+  \sum_{n=1}^{\infty}
+  \left(
+  c_{n-1}c_e\ket{e,n-1}
+  +
+  c_nc_g\ket{g,n}
+  \right).
+  }
+\end{equation}
+
+Para $n>0$, los polaritones resonantes son
+\begin{equation}
+  \boxed{
+  \ket{\pm,n}
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \ket{e,n-1}\pm\ket{g,n}
+  \right).
+  }
+\end{equation}
+Sumando y restando estas definiciones se obtienen las relaciones inversas:
+\begin{equation}
+  \ket{e,n-1}
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \ket{+,n}+\ket{-,n}
+  \right),
+\end{equation}
+\begin{equation}
+  \ket{g,n}
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \ket{+,n}-\ket{-,n}
+  \right).
+\end{equation}
+Sustituyendo dentro de cada bloque,
+\begin{align}
+  &c_{n-1}c_e\ket{e,n-1}
+  +
+  c_nc_g\ket{g,n}
+  \notag\\
+  &\quad=
+  \frac{c_{n-1}c_e}{\sqrt2}
+  \left(\ket{+,n}+\ket{-,n}\right)
+  +
+  \frac{c_nc_g}{\sqrt2}
+  \left(\ket{+,n}-\ket{-,n}\right)
+  \notag\\
+  &\quad=
+  \frac{c_{n-1}c_e+c_nc_g}{\sqrt2}\ket{+,n}
+  +
+  \frac{c_{n-1}c_e-c_nc_g}{\sqrt2}\ket{-,n}.
+\end{align}
+Se definen entonces las amplitudes polarit\'onicas iniciales
+\begin{equation}
+  \boxed{
+  d_n^\pm
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  c_{n-1}c_e\pm c_nc_g
+  \right),
+  \qquad n\geq1.
+  }
+\end{equation}
+Con esta notaci\'on, la parte \'optico-electr\'onica queda
+\begin{equation}
+  \boxed{
+  \ket{\Psi_{\mathrm{op-el}}(0)}
+  =
+  c_0c_g\ket{g,0}
+  +
+  \sum_{n=1}^{\infty}
+  \left(
+  d_n^+\ket{+,n}
+  +
+  d_n^-\ket{-,n}
+  \right).
+  }
+\end{equation}
+La amplitud $d_n^+$ mide cu\'anto del estado inicial ocupa el polarit\'on
+sim\'etrico, mientras que $d_n^-$ mide la ocupaci\'on del polarit\'on
+antisim\'etrico. Estas amplitudes ya contienen tanto la distribuci\'on
+fot\'onica como la superposici\'on electr\'onica inicial.
+
+\section{Organizaci\'on del estado inicial en dobletes din\'amicos}
+
+Al recuperar la vibraci\'on desplazada, el estado inicial completo toma la
+forma
+\begin{align}
+  \ket{\tilde\Psi(0)}
+  &=
+  c_0c_g
+  \sum_{m=0}^{\infty}
+  \tilde c_m\ket{g,0,m}
+  \notag\\
+  &\quad+
+  \sum_{n=1}^{\infty}\sum_{m=0}^{\infty}
+  \tilde c_m
+  \left(
+  d_n^+\ket{+,n,m}
+  +
+  d_n^-\ket{-,n,m}
+  \right).
+\end{align}
+Sin embargo, el hamiltoniano efectivo no acopla
+$\ket{+,n,m}$ con $\ket{-,n,m}$. Acopla
+$\ket{+,n,m-1}$ con $\ket{-,n,m}$. Para exhibir esta estructura se reindexa la
+contribuci\'on del polarit\'on superior:
+\begin{equation}
+  \sum_{m=0}^{\infty}
+  \tilde c_md_n^+\ket{+,n,m}
+  =
+  \sum_{m=1}^{\infty}
+  \tilde c_{m-1}d_n^+\ket{+,n,m-1}.
+\end{equation}
+En el lado derecho, el nuevo \'indice comienza en $m=1$ porque el estado
+original con cero fonones corresponde ahora a $m-1=0$.
+
+Para el polarit\'on inferior se separa el t\'ermino $m=0$:
+\begin{equation}
+  \sum_{m=0}^{\infty}
+  \tilde c_md_n^-\ket{-,n,m}
+  =
+  \tilde c_0d_n^-\ket{-,n,0}
+  +
+  \sum_{m=1}^{\infty}
+  \tilde c_md_n^-\ket{-,n,m}.
+\end{equation}
+El estado $\ket{-,n,0}$ es aislado: no puede transformarse en
+$\ket{+,n,-1}$ porque ese estado no existe. Reuniendo los t\'erminos,
+\begin{align}
+  \ket{\tilde\Psi(0)}
+  &=
+  c_0c_g
+  \sum_{m=0}^{\infty}
+  \tilde c_m\ket{g,0,m}
+  +
+  \sum_{n=1}^{\infty}
+  \tilde c_0d_n^-\ket{-,n,0}
+  \notag\\
+  &\quad+
+  \sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+  \left(
+  \tilde c_{m-1}d_n^+\ket{+,n,m-1}
+  +
+  \tilde c_md_n^-\ket{-,n,m}
+  \right).
+\end{align}
+Los dos primeros t\'erminos son sectores desacoplados. Toda la transferencia
+coherente polarit\'on-fon\'on ocurre en la tercera contribuci\'on:
+\begin{equation}
+  \boxed{
+  \ket{\tilde\Psi_{\mathrm{din}}(0)}
+  =
+  \sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+  \left(
+  a_{nm}\ket{+,n,m-1}
+  +
+  b_{nm}\ket{-,n,m}
+  \right),
+  }
+\end{equation}
+donde se han definido, de manera expl\'icita,
+\begin{equation}
+  \boxed{
+  a_{nm}
+  =
+  \tilde c_{m-1}d_n^+,
+  \qquad
+  b_{nm}
+  =
+  \tilde c_md_n^-.
+  }
+\end{equation}
+Para un doblete fijo $(n,m)$,
+\begin{equation}
+  \boxed{
+  \ket{\psi_{nm}(0)}
+  =
+  a_{nm}\ket{+,n,m-1}
+  +
+  b_{nm}\ket{-,n,m}.
+  }
+\end{equation}
+La amplitud $a_{nm}$ combina la probabilidad inicial de encontrar el
+polarit\'on superior en el bloque $n$ con la amplitud vibracional de tener
+$m-1$ fonones. De manera an\'aloga, $b_{nm}$ combina el polarit\'on inferior
+con $m$ fonones.
+
+\section{Eigenestados de cada doblete}
+
+La diagonalizaci\'on del hamiltoniano efectivo produce, para cada $n>0$ y
+$m>0$, las cantidades
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  A_{nm}
+  &=
+  \Omega n+\frac{\nu\lambda^2}{4}
+  +
+  \nu\left(m-\frac12\right),
+  \\
+  \delta_n
+  &=
+  2g\sqrt n-\nu,
+  \\
+  k_m
+  &=
+  \nu\lambda\sqrt m,
+  \\
+  \Omega_{nm}^{\mathrm{ef}}
+  &=
+  \sqrt{\delta_n^2+k_m^2}
+  =
+  \sqrt{(2g\sqrt n-\nu)^2+\nu^2\lambda^2m}.
+  \end{aligned}
+  }
+\end{equation}
+La frecuencia $A_{nm}$ es el centro energ\'etico com\'un del doblete.
+La desintonizaci\'on $\delta_n$ compara la separaci\'on polarit\'onica
+$2g\sqrt n$ con la frecuencia vibracional $\nu$. La cantidad $k_m$ es la
+intensidad del acoplamiento dentro del doblete y crece como $\sqrt m$, como es
+caracter\'istico de un operador bos\'onico. Finalmente,
+$\Omega_{nm}^{\mathrm{ef}}$ es la frecuencia de Rabi efectiva que combina
+desintonizaci\'on y acoplamiento.
+
+Los coeficientes del \'angulo de mezcla son
+\begin{equation}
+  \boxed{
+  C_{nm}
+  =
+  \sqrt{
+  \frac{\Omega_{nm}^{\mathrm{ef}}+\delta_n}
+  {2\Omega_{nm}^{\mathrm{ef}}}
+  }
+  =
+  \cos\frac{\theta_{nm}}{2},
+  \qquad
+  S_{nm}
+  =
+  \sqrt{
+  \frac{\Omega_{nm}^{\mathrm{ef}}-\delta_n}
+  {2\Omega_{nm}^{\mathrm{ef}}}
+  }
+  =
+  \sin\frac{\theta_{nm}}{2}.
+  }
+\end{equation}
+De estas definiciones se siguen inmediatamente las identidades
+\begin{equation}
+  C_{nm}^2+S_{nm}^2=1,
+\end{equation}
+\begin{equation}
+  \boxed{
+  C_{nm}^2-S_{nm}^2
+  =
+  \frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}},
+  \qquad
+  2C_{nm}S_{nm}
+  =
+  \frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}.
+  }
+\end{equation}
+Los eigenestados normalizados son
+\begin{equation}
+  \boxed{
+  \ket{E_{nm}^{+}}
+  =
+  C_{nm}\ket{+,n,m-1}
+  -
+  S_{nm}\ket{-,n,m},
+  }
+\end{equation}
+\begin{equation}
+  \boxed{
+  \ket{E_{nm}^{-}}
+  =
+  S_{nm}\ket{+,n,m-1}
+  +
+  C_{nm}\ket{-,n,m}.
+  }
+\end{equation}
+Sus energ\'ias son
+\begin{equation}
+  \boxed{
+  E_{nm}^{\pm}
+  =
+  \hbar
+  \left(
+  A_{nm}
+  \pm
+  \frac{\Omega_{nm}^{\mathrm{ef}}}{2}
+  \right).
+  }
+\end{equation}
+
+Para obtener las relaciones inversas se escriben las dos ecuaciones anteriores
+en forma matricial:
+\begin{equation}
+  \begin{pmatrix}
+  \ket{E_{nm}^{+}}\\
+  \ket{E_{nm}^{-}}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  C_{nm} & -S_{nm}\\
+  S_{nm} & C_{nm}
+  \end{pmatrix}
+  \begin{pmatrix}
+  \ket{+,n,m-1}\\
+  \ket{-,n,m}
+  \end{pmatrix}.
+\end{equation}
+La matriz de mezcla es ortogonal, por lo que su inversa es su transpuesta.
+Entonces,
+\begin{equation}
+  \boxed{
+  \ket{+,n,m-1}
+  =
+  C_{nm}\ket{E_{nm}^{+}}
+  +
+  S_{nm}\ket{E_{nm}^{-}},
+  }
+\end{equation}
+\begin{equation}
+  \boxed{
+  \ket{-,n,m}
+  =
+  -S_{nm}\ket{E_{nm}^{+}}
+  +
+  C_{nm}\ket{E_{nm}^{-}}.
+  }
+\end{equation}
+
+\section{Evoluci\'on exacta de un doblete}
+
+Sustituyendo las relaciones inversas en el estado inicial del doblete,
+\begin{align}
+  \ket{\psi_{nm}(0)}
+  &=
+  a_{nm}
+  \left(
+  C_{nm}\ket{E_{nm}^{+}}
+  +
+  S_{nm}\ket{E_{nm}^{-}}
+  \right)
+  \notag\\
+  &\quad+
+  b_{nm}
+  \left(
+  -S_{nm}\ket{E_{nm}^{+}}
+  +
+  C_{nm}\ket{E_{nm}^{-}}
+  \right).
+\end{align}
+Agrupando los coeficientes de cada eigenestado,
+\begin{equation}
+  \boxed{
+  \ket{\psi_{nm}(0)}
+  =
+  \left(a_{nm}C_{nm}-b_{nm}S_{nm}\right)\ket{E_{nm}^{+}}
+  +
+  \left(a_{nm}S_{nm}+b_{nm}C_{nm}\right)\ket{E_{nm}^{-}}.
+  }
+\end{equation}
+
+El operador de evoluci\'on del doblete es
+\begin{equation}
+  \hat U_{nm}(t)
+  =
+  \exp\!\left[
+  -\frac{\ii}{\hbar}
+  \tilde H_{\mathrm{ef}}^{(n,m)}t
+  \right].
+\end{equation}
+Como $\ket{E_{nm}^{\pm}}$ son eigenestados,
+\begin{equation}
+  \hat U_{nm}(t)\ket{E_{nm}^{\pm}}
+  =
+  \exp\!\left(
+  -\frac{\ii}{\hbar}E_{nm}^{\pm}t
+  \right)
+  \ket{E_{nm}^{\pm}}.
+\end{equation}
+Por ello,
+\begin{align}
+  \ket{\psi_{nm}(t)}
+  &=
+  \ee^{-\ii(A_{nm}+\Omega_{nm}^{\mathrm{ef}}/2)t}
+  \left(a_{nm}C_{nm}-b_{nm}S_{nm}\right)
+  \ket{E_{nm}^{+}}
+  \notag\\
+  &\quad+
+  \ee^{-\ii(A_{nm}-\Omega_{nm}^{\mathrm{ef}}/2)t}
+  \left(a_{nm}S_{nm}+b_{nm}C_{nm}\right)
+  \ket{E_{nm}^{-}}.
+\end{align}
+El factor $\ee^{-\ii A_{nm}t}$ es com\'un a las dos ramas y representa la fase
+debida al centro energ\'etico del doblete:
+\begin{align}
+  \ket{\psi_{nm}(t)}
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Big[
+  \ee^{-\ii\Omega_{nm}^{\mathrm{ef}}t/2}
+  \left(a_{nm}C_{nm}-b_{nm}S_{nm}\right)
+  \ket{E_{nm}^{+}}
+  \notag\\
+  &\hspace{3.3cm}+
+  \ee^{+\ii\Omega_{nm}^{\mathrm{ef}}t/2}
+  \left(a_{nm}S_{nm}+b_{nm}C_{nm}\right)
+  \ket{E_{nm}^{-}}
+  \Big].
+\end{align}
+
+\subsection{Regreso a la base polarit\'on-fon\'on}
+
+Se define
+\begin{equation}
+  \boxed{
+  \ket{\psi_{nm}(t)}
+  =
+  p_{nm}^{+}(t)\ket{+,n,m-1}
+  +
+  p_{nm}^{-}(t)\ket{-,n,m}.
+  }
+\end{equation}
+Para calcular $p_{nm}^{+}(t)$ y $p_{nm}^{-}(t)$ se sustituyen nuevamente los
+eigenestados en t\'erminos de la base polarit\'on-fon\'on:
+\begin{align}
+  p_{nm}^{+}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Big[
+  C_{nm}\ee^{-\ii\Omega_{nm}^{\mathrm{ef}}t/2}
+  \left(a_{nm}C_{nm}-b_{nm}S_{nm}\right)
+  \notag\\
+  &\hspace{3.2cm}+
+  S_{nm}\ee^{+\ii\Omega_{nm}^{\mathrm{ef}}t/2}
+  \left(a_{nm}S_{nm}+b_{nm}C_{nm}\right)
+  \Big],
+\end{align}
+\begin{align}
+  p_{nm}^{-}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Big[
+  -S_{nm}\ee^{-\ii\Omega_{nm}^{\mathrm{ef}}t/2}
+  \left(a_{nm}C_{nm}-b_{nm}S_{nm}\right)
+  \notag\\
+  &\hspace{3.2cm}+
+  C_{nm}\ee^{+\ii\Omega_{nm}^{\mathrm{ef}}t/2}
+  \left(a_{nm}S_{nm}+b_{nm}C_{nm}\right)
+  \Big].
+\end{align}
+
+Para simplificar la primera amplitud se agrupan por separado los t\'erminos
+proporcionales a $a_{nm}$ y a $b_{nm}$:
+\begin{align}
+  p_{nm}^{+}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Big[
+  a_{nm}
+  \left(
+  C_{nm}^2\ee^{-\ii x}
+  +
+  S_{nm}^2\ee^{+\ii x}
+  \right)
+  \notag\\
+  &\hspace{3.2cm}+
+  b_{nm}C_{nm}S_{nm}
+  \left(
+  \ee^{+\ii x}-\ee^{-\ii x}
+  \right)
+  \Big],
+\end{align}
+donde se defini\'o temporalmente
+\begin{equation}
+  x=\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}.
+\end{equation}
+Usando
+\begin{equation}
+  \ee^{+\ii x}+\ee^{-\ii x}=2\cos x,
+  \qquad
+  \ee^{+\ii x}-\ee^{-\ii x}=2\ii\sin x,
+\end{equation}
+se obtiene
+\begin{align}
+  C_{nm}^2\ee^{-\ii x}+S_{nm}^2\ee^{+\ii x}
+  &=
+  (C_{nm}^2+S_{nm}^2)\cos x
+  \notag\\
+  &\quad
+  -\ii(C_{nm}^2-S_{nm}^2)\sin x
+  \notag\\
+  &=
+  \cos x
+  -
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}\sin x,
+\end{align}
+y
+\begin{equation}
+  C_{nm}S_{nm}
+  \left(\ee^{+\ii x}-\ee^{-\ii x}\right)
+  =
+  \ii\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}\sin x.
+\end{equation}
+El mismo procedimiento para $p_{nm}^{-}(t)$ produce el resultado exacto
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  p_{nm}^{+}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Bigg[
+  \left(
+  \cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  -
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)a_{nm}
+  \\
+  &\hspace{2.3cm}+
+  \ii\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \,b_{nm}
+  \Bigg],
+  \\
+  p_{nm}^{-}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Bigg[
+  \ii\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \,a_{nm}
+  \\
+  &\hspace{2.3cm}+
+  \left(
+  \cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  +
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)b_{nm}
+  \Bigg].
+  \end{aligned}
+  }
+\end{equation}
+Al sustituir $a_{nm}$ y $b_{nm}$, las amplitudes quedan directamente en
+t\'erminos del estado inicial:
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  p_{nm}^{+}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Bigg[
+  \left(
+  \cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  -
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)
+  \tilde c_{m-1}d_n^+
+  \\
+  &\hspace{2.1cm}+
+  \ii\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \tilde c_md_n^-
+  \Bigg],
+  \\
+  p_{nm}^{-}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Bigg[
+  \ii\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \tilde c_{m-1}d_n^+
+  \\
+  &\hspace{2.1cm}+
+  \left(
+  \cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  +
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)
+  \tilde c_md_n^-
+  \Bigg].
+  \end{aligned}
+  }
+\end{equation}
+Estas dos amplitudes muestran las dos partes de la evoluci\'on. Los t\'erminos
+con coseno y con $\delta_n/\Omega_{nm}^{\mathrm{ef}}$ describen la amplitud
+que permanece en la misma rama polarit\'onica. Los t\'erminos con
+$k_m/\Omega_{nm}^{\mathrm{ef}}$ describen la transferencia entre las dos
+ramas acompa\~nada por la absorci\'on o emisi\'on de un fon\'on.
+
+\section{Evoluci\'on exacta del estado completo}
+
+La parte din\'amica del estado se obtiene sumando todos los dobletes:
+\begin{equation}
+  \boxed{
+  \ket{\tilde\Psi_{\mathrm{din}}(t)}
+  =
+  \sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+  \left[
+  p_{nm}^{+}(t)\ket{+,n,m-1}
+  +
+  p_{nm}^{-}(t)\ket{-,n,m}
+  \right].
+  }
+\end{equation}
+Sin embargo, esta suma no contiene los sectores desacoplados que estaban
+presentes en el estado inicial.
+
+Para $n=0$, los estados $\ket{g,0,m}$ tienen energ\'ia
+\begin{equation}
+  E_{g,0,m}=\hbar\nu m.
+\end{equation}
+Por tanto, su evoluci\'on es
+\begin{equation}
+  c_0c_g
+  \sum_{m=0}^{\infty}
+  \tilde c_m
+  \ee^{-\ii\nu mt}
+  \ket{g,0,m}.
+\end{equation}
+Para $n>0$ y $m=0$, el estado aislado $\ket{-,n,0}$ tiene energ\'ia
+\begin{equation}
+  E_{n,0}^{-}
+  =
+  \hbar
+  \left(
+  \Omega n+\frac{\nu\lambda^2}{4}-g\sqrt n
+  \right),
+\end{equation}
+por lo que solo acumula la fase
+$\exp(-\ii E_{n,0}^{-}t/\hbar)$.
+
+Reuniendo los tres tipos de sectores se obtiene el estado completo:
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  \ket{\tilde\Psi(t)}
+  &=
+  c_0c_g
+  \sum_{m=0}^{\infty}
+  \tilde c_m
+  \ee^{-\ii\nu mt}
+  \ket{g,0,m}
+  \\
+  &\quad+
+  \sum_{n=1}^{\infty}
+  \tilde c_0d_n^-
+  \ee^{-\ii E_{n,0}^{-}t/\hbar}
+  \ket{-,n,0}
+  \\
+  &\quad+
+  \sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+  \left[
+  p_{nm}^{+}(t)\ket{+,n,m-1}
+  +
+  p_{nm}^{-}(t)\ket{-,n,m}
+  \right].
+  \end{aligned}
+  }
+\end{equation}
+Esta es la expresi\'on exacta que conserva toda la informaci\'on del estado
+inicial. Los dos primeros renglones evolucionan mediante fases porque no
+disponen de un estado compa\~nero permitido. El tercer rengl\'on contiene la
+din\'amica no trivial.
+
+\subsection{Diccionario completo de las cantidades del resultado}
+
+Para que la soluci\'on anterior pueda utilizarse sin regresar a secciones
+previas, todas sus definiciones se re\'unen a continuaci\'on:
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  d_n^\pm
+  &=
+  \frac{c_{n-1}c_e\pm c_nc_g}{\sqrt2},
+  \\
+  a_{nm}
+  &=
+  \tilde c_{m-1}d_n^+,
+  \qquad
+  b_{nm}
+  =
+  \tilde c_md_n^-,
+  \\
+  A_{nm}
+  &=
+  \Omega n+\frac{\nu\lambda^2}{4}
+  +
+  \nu\left(m-\frac12\right),
+  \\
+  \delta_n
+  &=
+  2g\sqrt n-\nu,
+  \qquad
+  k_m
+  =
+  \nu\lambda\sqrt m,
+  \\
+  \Omega_{nm}^{\mathrm{ef}}
+  &=
+  \sqrt{\delta_n^2+k_m^2},
+  \\
+  C_{nm}
+  &=
+  \sqrt{
+  \frac{\Omega_{nm}^{\mathrm{ef}}+\delta_n}
+  {2\Omega_{nm}^{\mathrm{ef}}}
+  },
+  \qquad
+  S_{nm}
+  =
+  \sqrt{
+  \frac{\Omega_{nm}^{\mathrm{ef}}-\delta_n}
+  {2\Omega_{nm}^{\mathrm{ef}}}
+  },
+  \\
+  E_{nm}^{\pm}
+  &=
+  \hbar
+  \left(
+  A_{nm}\pm\frac{\Omega_{nm}^{\mathrm{ef}}}{2}
+  \right).
+  \end{aligned}
+  }
+\end{equation}
+
+\section{Regreso a la base electr\'onica}
+
+Los polaritones mezclan la mol\'ecula y el campo. Para calcular cantidades como
+la poblaci\'on electr\'onica es conveniente regresar a la base
+$\{\ket g,\ket e\}$. Recordando
+\begin{equation}
+  \ket{+,n}
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \ket{e,n-1}+\ket{g,n}
+  \right),
+\end{equation}
+\begin{equation}
+  \ket{-,n}
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \ket{e,n-1}-\ket{g,n}
+  \right),
+\end{equation}
+al incluir los fonones se tiene
+\begin{equation}
+  \ket{+,n,m-1}
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \ket{n-1,m-1}\ket e
+  +
+  \ket{n,m-1}\ket g
+  \right),
+\end{equation}
+\begin{equation}
+  \ket{-,n,m}
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \ket{n-1,m}\ket e
+  -
+  \ket{n,m}\ket g
+  \right),
+\end{equation}
+donde $\ket{n,m}$ representa ahora el estado conjunto de campo y vibraci\'on.
+
+Al sustituir en la parte din\'amica,
+\begin{align}
+  \ket{\tilde\Psi_{\mathrm{din}}(t)}
+  &=
+  \frac{1}{\sqrt2}
+  \sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+  \Big[
+  p_{nm}^{+}(t)
+  \left(
+  \ket{n-1,m-1}\ket e+\ket{n,m-1}\ket g
+  \right)
+  \notag\\
+  &\hspace{3.4cm}+
+  p_{nm}^{-}(t)
+  \left(
+  \ket{n-1,m}\ket e-\ket{n,m}\ket g
+  \right)
+  \Big].
+\end{align}
+Agrupando seg\'un el estado electr\'onico,
+\begin{equation}
+  \boxed{
+  \ket{\tilde\Psi_{\mathrm{din}}(t)}
+  =
+  \ket{\chi_g(t)}\ket g
+  +
+  \ket{\chi_e(t)}\ket e,
+  }
+\end{equation}
+con
+\begin{equation}
+  \boxed{
+  \ket{\chi_g(t)}
+  =
+  \frac{1}{\sqrt2}
+  \sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+  \left[
+  p_{nm}^{+}(t)\ket{n,m-1}
+  -
+  p_{nm}^{-}(t)\ket{n,m}
+  \right],
+  }
+\end{equation}
+\begin{equation}
+  \boxed{
+  \ket{\chi_e(t)}
+  =
+  \frac{1}{\sqrt2}
+  \sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+  \left[
+  p_{nm}^{+}(t)\ket{n-1,m-1}
+  +
+  p_{nm}^{-}(t)\ket{n-1,m}
+  \right].
+  }
+\end{equation}
+Los estados $\ket{\chi_g(t)}$ y $\ket{\chi_e(t)}$ no son, en general,
+estados normalizados. Sus normas son las probabilidades de encontrar a la
+mol\'ecula en $\ket g$ o $\ket e$ dentro del sector din\'amico. Adem\'as,
+cada uno conserva toda la correlaci\'on residual entre el campo y la
+vibraci\'on condicionada al resultado electr\'onico.
+
+\section{Vibraci\'on inicial coherente}
+
+Se considera ahora el caso en que el estado vibracional desplazado es
+coherente:
+\begin{equation}
+  \boxed{
+  \ket{\tilde\beta}
+  =
+  \sum_{m=0}^{\infty}
+  \tilde c_m\ket m,
+  \qquad
+  \tilde c_m
+  =
+  \ee^{-|\tilde\beta|^2/2}
+  \frac{\tilde\beta^m}{\sqrt{m!}}.
+  }
+\end{equation}
+La distribuci\'on de fonones es de Poisson:
+\begin{equation}
+  P_m
+  =
+  |\tilde c_m|^2
+  =
+  \ee^{-M}\frac{M^m}{m!},
+  \qquad
+  \boxed{M=|\tilde\beta|^2}.
+\end{equation}
+Su media y su varianza son
+\begin{equation}
+  \langle m\rangle=M,
+  \qquad
+  (\Delta m)^2=M,
+  \qquad
+  \Delta m=\sqrt M.
+\end{equation}
+Cuando $M\gg1$, la distribuci\'on est\'a concentrada alrededor de $m=M$ y su
+anchura relativa es peque\~na:
+\begin{equation}
+  \frac{\Delta m}{M}
+  =
+  \frac{1}{\sqrt M}
+  \ll1.
+\end{equation}
+Esto permite aproximar las cantidades que cambian lentamente con $m$ por su
+valor cerca del centro de la distribuci\'on.
+
+\subsection{Relaci\'on entre coeficientes vecinos}
+
+Para un estado coherente,
+\begin{align}
+  \frac{\tilde c_m}{\tilde c_{m-1}}
+  &=
+  \frac{
+  \ee^{-|\tilde\beta|^2/2}
+  \tilde\beta^m/\sqrt{m!}
+  }{
+  \ee^{-|\tilde\beta|^2/2}
+  \tilde\beta^{m-1}/\sqrt{(m-1)!}
+  }
+  \notag\\
+  &=
+  \tilde\beta
+  \sqrt{\frac{(m-1)!}{m!}}
+  =
+  \frac{\tilde\beta}{\sqrt m}.
+\end{align}
+Para los valores dominantes $m\simeq M=|\tilde\beta|^2$,
+\begin{equation}
+  \frac{\tilde c_m}{\tilde c_{m-1}}
+  \simeq
+  \frac{\tilde\beta}{|\tilde\beta|}.
+\end{equation}
+Si $\tilde\beta$ es real y positivo, la fase anterior es uno y
+\begin{equation}
+  \boxed{
+  \tilde c_m\simeq\tilde c_{m-1}
+  \qquad
+  (m\simeq M,\ \tilde\beta>0).
+  }
+\end{equation}
+Esta aproximaci\'on permite reemplazar las amplitudes vibracionales de los dos
+estados de cada doblete por un mismo coeficiente local. Si $\tilde\beta$ es
+complejo, debe conservarse la fase
+$\tilde\beta/|\tilde\beta|$.
+
+\section{Linealizaci\'on de la frecuencia efectiva}
+
+La frecuencia de Rabi efectiva depende de $m$ como
+\begin{equation}
+  \Omega_{nm}^{\mathrm{ef}}
+  =
+  \sqrt{\delta_n^2+\nu^2\lambda^2m}.
+\end{equation}
+Para linealizarla alrededor de $m=M$ se escribe su expansi\'on de Taylor de
+primer orden:
+\begin{equation}
+  \Omega_{nm}^{\mathrm{ef}}
+  \simeq
+  \Omega_{nM}^{\mathrm{ef}}
+  +
+  (m-M)
+  \left.
+  \frac{\partial\Omega_{nm}^{\mathrm{ef}}}{\partial m}
+  \right|_{m=M}.
+\end{equation}
+La derivada se calcula paso a paso:
+\begin{align}
+  \frac{\partial\Omega_{nm}^{\mathrm{ef}}}{\partial m}
+  &=
+  \frac{\partial}{\partial m}
+  \left(\delta_n^2+\nu^2\lambda^2m\right)^{1/2}
+  \notag\\
+  &=
+  \frac12
+  \left(\delta_n^2+\nu^2\lambda^2m\right)^{-1/2}
+  \nu^2\lambda^2
+  \notag\\
+  &=
+  \frac{\nu^2\lambda^2}
+  {2\Omega_{nm}^{\mathrm{ef}}}.
+\end{align}
+Se define
+\begin{equation}
+  \boxed{
+  \Omega_{nM}^{\mathrm{ef}\prime}
+  =
+  \left.
+  \frac{\partial\Omega_{nm}^{\mathrm{ef}}}{\partial m}
+  \right|_{m=M}
+  =
+  \frac{\nu^2\lambda^2}
+  {2\Omega_{nM}^{\mathrm{ef}}}.
+  }
+\end{equation}
+Entonces,
+\begin{align}
+  \Omega_{nm}^{\mathrm{ef}}
+  &\simeq
+  \Omega_{nM}^{\mathrm{ef}}
+  +(m-M)\Omega_{nM}^{\mathrm{ef}\prime}
+  \notag\\
+  &=
+  \left(
+  \Omega_{nM}^{\mathrm{ef}}
+  -
+  M\Omega_{nM}^{\mathrm{ef}\prime}
+  \right)
+  +
+  m\Omega_{nM}^{\mathrm{ef}\prime}.
+\end{align}
+Definiendo
+\begin{equation}
+  \boxed{
+  \varphi_{nM}
+  =
+  \Omega_{nM}^{\mathrm{ef}}
+  -
+  M\Omega_{nM}^{\mathrm{ef}\prime},
+  }
+\end{equation}
+la linealizaci\'on adopta la forma
+\begin{equation}
+  \boxed{
+  \Omega_{nm}^{\mathrm{ef}}
+  \simeq
+  \varphi_{nM}
+  +
+  m\Omega_{nM}^{\mathrm{ef}\prime}.
+  }
+\end{equation}
+La primera cantidad produce una fase global para cada rama del doblete,
+mientras que el t\'ermino lineal en $m$ rota la amplitud del estado coherente
+en el espacio de fase.
+
+En la misma regi\'on estrecha de valores de $m$, los eigenvectores var\'ian
+lentamente y se aproximan por
+\begin{equation}
+  \boxed{
+  C_{nm}\simeq C_{nM}\equiv C,
+  \qquad
+  S_{nm}\simeq S_{nM}\equiv S.
+  }
+\end{equation}
+La notaci\'on abreviada $C$ y $S$ debe entenderse dentro de un bloque $n$
+fijo; sus valores todav\'ia pueden depender de $n$ y de la media $M$.
+
+\section{Evoluci\'on aproximada para un paquete coherente}
+
+Usando $\tilde c_{m-1}\simeq\tilde c_m$, el estado inicial de un doblete se
+aproxima por
+\begin{equation}
+  \ket{\psi_{nm}(0)}
+  \simeq
+  \tilde c_m
+  \left(
+  d_n^+\ket{+,n,m-1}
+  +
+  d_n^-\ket{-,n,m}
+  \right).
+\end{equation}
+En la base de energ\'ia,
+\begin{equation}
+  \boxed{
+  \ket{\psi_{nm}(0)}
+  \simeq
+  \tilde c_m
+  \left(d_n^+C-d_n^-S\right)\ket{E_{nm}^{+}}
+  +
+  \tilde c_m
+  \left(d_n^+S+d_n^-C\right)\ket{E_{nm}^{-}}.
+  }
+\end{equation}
+Despu\'es de evolucionar,
+\begin{align}
+  \ket{\psi_{nm}(t)}
+  &\simeq
+  \tilde c_m\ee^{-\ii A_{nM}t}
+  \Big[
+  \left(d_n^+C-d_n^-S\right)
+  \ee^{-\ii\Omega_{nm}^{\mathrm{ef}}t/2}
+  \ket{E_{nm}^{+}}
+  \notag\\
+  &\hspace{3.1cm}+
+  \left(d_n^+S+d_n^-C\right)
+  \ee^{+\ii\Omega_{nm}^{\mathrm{ef}}t/2}
+  \ket{E_{nm}^{-}}
+  \Big],
+\end{align}
+donde
+\begin{equation}
+  \boxed{
+  A_{nM}
+  =
+  \Omega n+\frac{\nu\lambda^2}{4}
+  +
+  \nu\left(M-\frac12\right).
+  }
+\end{equation}
+Al usar la frecuencia linealizada,
+\begin{equation}
+  \ee^{-\ii\Omega_{nm}^{\mathrm{ef}}t/2}
+  \simeq
+  \ee^{-\ii\varphi_{nM}t/2}
+  \ee^{-\ii m\Omega_{nM}^{\mathrm{ef}\prime}t/2},
+\end{equation}
+\begin{equation}
+  \ee^{+\ii\Omega_{nm}^{\mathrm{ef}}t/2}
+  \simeq
+  \ee^{+\ii\varphi_{nM}t/2}
+  \ee^{+\ii m\Omega_{nM}^{\mathrm{ef}\prime}t/2}.
+\end{equation}
+
+\subsection{Conversi\'on de las sumas en estados coherentes rotados}
+
+Para cualquier \'angulo $\gamma$,
+\begin{align}
+  \sum_{m=0}^{\infty}
+  \tilde c_m\ee^{-\ii m\gamma}\ket m
+  &=
+  \ee^{-|\tilde\beta|^2/2}
+  \sum_{m=0}^{\infty}
+  \frac{
+  \left(\tilde\beta\ee^{-\ii\gamma}\right)^m
+  }{\sqrt{m!}}
+  \ket m
+  \notag\\
+  &=
+  \ket{\tilde\beta\ee^{-\ii\gamma}}.
+\end{align}
+Por tanto,
+\begin{equation}
+  \boxed{
+  \sum_{m=0}^{\infty}
+  \tilde c_m\ee^{\mp\ii m\gamma}\ket m
+  =
+  \ket{\tilde\beta\ee^{\mp\ii\gamma}}.
+  }
+\end{equation}
+Para una suma que contiene $\ket{m-1}$, se cambia la variable
+$r=m-1$:
+\begin{align}
+  \sum_{m=1}^{\infty}
+  \tilde c_m\ee^{-\ii m\gamma}\ket{m-1}
+  &=
+  \sum_{r=0}^{\infty}
+  \tilde c_{r+1}\ee^{-\ii(r+1)\gamma}\ket r
+  \notag\\
+  &\simeq
+  \ee^{-\ii\gamma}
+  \sum_{r=0}^{\infty}
+  \tilde c_r\ee^{-\ii r\gamma}\ket r
+  \notag\\
+  &=
+  \ee^{-\ii\gamma}
+  \ket{\tilde\beta\ee^{-\ii\gamma}}.
+\end{align}
+An\'alogamente,
+\begin{equation}
+  \boxed{
+  \sum_{m=1}^{\infty}
+  \tilde c_m\ee^{\mp\ii m\gamma}\ket{m-1}
+  \simeq
+  \ee^{\mp\ii\gamma}
+  \ket{\tilde\beta\ee^{\mp\ii\gamma}}.
+  }
+\end{equation}
+La fase adicional aparece porque el estado vibracional del polarit\'on
+superior contiene un fon\'on menos.
+
+\subsection{Estado aproximado completo del sector din\'amico}
+
+Tomando
+\begin{equation}
+  \gamma_{nM}(t)
+  =
+  \frac{\Omega_{nM}^{\mathrm{ef}\prime}t}{2},
+\end{equation}
+y sumando sobre $m$, se obtiene
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  \ket{\tilde\Psi_{\mathrm{din}}(t)}
+  &\simeq
+  \sum_{n=1}^{\infty}
+  \ee^{-\ii A_{nM}t}
+  \Bigg\{
+  \left(d_n^+C-d_n^-S\right)
+  \ee^{-\ii\varphi_{nM}t/2}
+  \ket{\tilde\beta\ee^{-\ii\gamma_{nM}(t)}}
+  \\
+  &\qquad\qquad\otimes
+  \left[
+  C\ee^{-\ii\gamma_{nM}(t)}\ket{+,n}
+  -
+  S\ket{-,n}
+  \right]
+  \\
+  &\quad+
+  \left(d_n^+S+d_n^-C\right)
+  \ee^{+\ii\varphi_{nM}t/2}
+  \ket{\tilde\beta\ee^{+\ii\gamma_{nM}(t)}}
+  \\
+  &\qquad\qquad\otimes
+  \left[
+  S\ee^{+\ii\gamma_{nM}(t)}\ket{+,n}
+  +
+  C\ket{-,n}
+  \right]
+  \Bigg\}.
+  \end{aligned}
+  }
+\end{equation}
+El resultado muestra una separaci\'on f\'isica muy clara. El paquete
+vibracional coherente inicial se divide en dos componentes que giran en
+sentidos opuestos en el espacio de fase, con amplitudes
+$\tilde\beta\exp[\mp\ii\gamma_{nM}(t)]$. Cada componente queda correlacionada
+con una superposici\'on polarit\'onica distinta. La din\'amica efectiva crea,
+por tanto, entrelazamiento entre polaritones y vibraci\'on.
+
+La separaci\'on angular entre los dos paquetes vibracionales es
+\begin{equation}
+  \boxed{
+  \Delta\vartheta_{nM}(t)
+  =
+  2\gamma_{nM}(t)
+  =
+  \Omega_{nM}^{\mathrm{ef}\prime}t.
+  }
+\end{equation}
+Mientras los dos paquetes permanecen superpuestos, las ramas polarit\'onicas
+pueden interferir. Cuando se separan en el espacio de fase, la vibraci\'on
+almacena informaci\'on sobre la rama polarit\'onica y reduce su interferencia.
+
+\section{Variables din\'amicas}
+
+El hamiltoniano efectivo describe un intercambio entre polaritones y fonones,
+\begin{equation}
+  -\frac{\hbar\nu\lambda}{2}
+  \left(
+  \hat b\hat S^{(n)\dagger}
+  +
+  \bdag\hat S^{(n)}
+  \right).
+\end{equation}
+Sin embargo, pueden estudiarse dos niveles distintos de din\'amica. En la base
+desnuda interesa la transferencia entre $\ket g$ y $\ket e$. En la base
+vestida interesa la transferencia entre $\ket{+,n}$ y $\ket{-,n}$.
+
+\subsection{Inversi\'on electr\'onica}
+
+La inversi\'on electr\'onica se define como
+\begin{equation}
+  \boxed{
+  W(t)
+  =
+  \langle\hat\sigma_z(t)\rangle
+  =
+  \bra{\tilde\Psi(t)}
+  \hat\sigma_z
+  \ket{\tilde\Psi(t)}
+  =
+  P_e(t)-P_g(t),
+  }
+\end{equation}
+donde
+\begin{equation}
+  \hat\sigma_z
+  =
+  \ket e\bra e-\ket g\bra g.
+\end{equation}
+Las poblaciones se calculan con los proyectores
+\begin{equation}
+  \boxed{
+  P_e(t)
+  =
+  \bra{\tilde\Psi(t)}
+  \left(
+  \ket e\bra e
+  \otimes\Id_{\mathrm{cav}}
+  \otimes\Id_{\mathrm{vib}}
+  \right)
+  \ket{\tilde\Psi(t)},
+  }
+\end{equation}
+\begin{equation}
+  \boxed{
+  P_g(t)
+  =
+  \bra{\tilde\Psi(t)}
+  \left(
+  \ket g\bra g
+  \otimes\Id_{\mathrm{cav}}
+  \otimes\Id_{\mathrm{vib}}
+  \right)
+  \ket{\tilde\Psi(t)}.
+  }
+\end{equation}
+Si se usa la descomposici\'on
+$\ket{\tilde\Psi(t)}=\ket{\chi_g(t)}\ket g+\ket{\chi_e(t)}\ket e$,
+incluyendo en $\ket{\chi_g}$ y $\ket{\chi_e}$ los sectores desacoplados
+correspondientes, entonces
+\begin{equation}
+  \boxed{
+  W(t)
+  =
+  \braket{\chi_e(t)|\chi_e(t)}
+  -
+  \braket{\chi_g(t)|\chi_g(t)}.
+  }
+\end{equation}
+Los valores extremos tienen una interpretaci\'on directa:
+\begin{equation}
+  W(t)=1
+  \quad\Longleftrightarrow\quad
+  P_e(t)=1,
+\end{equation}
+\begin{equation}
+  W(t)=-1
+  \quad\Longleftrightarrow\quad
+  P_g(t)=1,
+\end{equation}
+\begin{equation}
+  W(t)=0
+  \quad\Longleftrightarrow\quad
+  P_e(t)=P_g(t)=\frac12.
+\end{equation}
+Aunque $W(t)$ no depende directamente de la coherencia electr\'onica
+$\ket e\bra g$, las normas de $\ket{\chi_e(t)}$ y $\ket{\chi_g(t)}$ contienen
+la interferencia y las correlaciones creadas con el campo y la vibraci\'on.
+
+\subsection{Inversi\'on polarit\'onica}
+
+Para medir el intercambio que aparece de forma directa en el hamiltoniano
+efectivo se define
+\begin{equation}
+  \hat S_z
+  =
+  \sum_{n=1}^{\infty}
+  \hat S_z^{(n)}
+  \otimes\Id_{\mathrm{vib}},
+\end{equation}
+con
+\begin{equation}
+  \hat S_z^{(n)}
+  =
+  \ket{+,n}\bra{+,n}
+  -
+  \ket{-,n}\bra{-,n}.
+\end{equation}
+La inversi\'on polarit\'onica es
+\begin{equation}
+  \boxed{
+  \mathcal W(t)
+  =
+  \langle\hat S_z(t)\rangle
+  =
+  \bra{\tilde\Psi(t)}
+  \hat S_z
+  \ket{\tilde\Psi(t)}.
+  }
+\end{equation}
+Definiendo las probabilidades totales de cada polarit\'on, sumadas sobre los
+fonones,
+\begin{equation}
+  P_{+,n}(t)
+  =
+  \sum_{m=0}^{\infty}
+  \left|
+  \braket{+,n,m|\tilde\Psi(t)}
+  \right|^2,
+\end{equation}
+\begin{equation}
+  P_{-,n}(t)
+  =
+  \sum_{m=0}^{\infty}
+  \left|
+  \braket{-,n,m|\tilde\Psi(t)}
+  \right|^2,
+\end{equation}
+se obtiene
+\begin{equation}
+  \boxed{
+  \mathcal W(t)
+  =
+  \sum_{n=1}^{\infty}
+  \left[
+  P_{+,n}(t)-P_{-,n}(t)
+  \right].
+  }
+\end{equation}
+$\mathcal W(t)$ observa directamente si la excitaci\'on efectiva se encuentra
+preferentemente en la rama polarit\'onica superior o en la inferior.
+
+\subsection{Fidelidad del modelo efectivo}
+
+La evoluci\'on obtenida en esta nota corresponde al hamiltoniano efectivo,
+despu\'es del desplazamiento y de la aproximaci\'on de onda rotante
+polarit\'on-fon\'on. Para cuantificar cu\'an bien reproduce la din\'amica del
+hamiltoniano HC completo se comparan ambos estados mediante la fidelidad.
+Escribiendo $\ket{\Psi_{\mathrm{HC}}(t)}$ para la evoluci\'on del hamiltoniano
+completo y $\ket{\Psi_{\mathrm{ef}}(t)}$ para la evoluci\'on efectiva,
+\begin{equation}
+  \boxed{
+  F(t)
+  =
+  \left|
+  \braket{\Psi_{\mathrm{HC}}(t)|\Psi_{\mathrm{ef}}(t)}
+  \right|^2.
+  }
+\end{equation}
+Esta expresi\'on corresponde a la notaci\'on
+$|\braket{\Psi(t)|\tilde\Psi(t)}|^2$ del manuscrito, pero las etiquetas
+expl\'icitas evitan confundir el estado efectivo con el estado desplazado.
+La fidelidad satisface
+\begin{equation}
+  0\leq F(t)\leq1.
+\end{equation}
+Si $F(t)\simeq1$, el hamiltoniano efectivo reproduce tanto las poblaciones como
+las fases relativas relevantes del estado completo. Una fidelidad peque\~na
+indica que los t\'erminos descartados han acumulado efectos importantes.
+
+\section{Lectura f\'isica de la soluci\'on}
+
+La soluci\'on exacta muestra que la din\'amica del modelo HC efectivo no es una
+oscilaci\'on \'unica. Cada par $(n,m)$ tiene su propia frecuencia
+\begin{equation}
+  \Omega_{nm}^{\mathrm{ef}}
+  =
+  \sqrt{(2g\sqrt n-\nu)^2+\nu^2\lambda^2m}.
+\end{equation}
+La distribuci\'on fot\'onica selecciona varios valores de $n$ y la
+distribuci\'on vibracional selecciona varios valores de $m$. El estado total
+es la superposici\'on coherente de todas esas oscilaciones.
+
+En resonancia polarit\'on-fon\'on, $\delta_n=0$, la frecuencia se reduce a
+\begin{equation}
+  \boxed{
+  \Omega_{nm}^{\mathrm{ef}}
+  =
+  |k_m|
+  =
+  \nu|\lambda|\sqrt m,
+  \qquad
+  \delta_n=0.
+  }
+\end{equation}
+En este caso la mezcla es m\'axima,
+$C_{nm}=S_{nm}=1/\sqrt2$, y la transferencia entre
+$\ket{+,n,m-1}$ y $\ket{-,n,m}$ puede ser completa.
+
+Lejos de resonancia, $|\delta_n|\gg|k_m|$,
+\begin{equation}
+  \Omega_{nm}^{\mathrm{ef}}
+  \simeq|\delta_n|,
+  \qquad
+  \frac{|k_m|}{\Omega_{nm}^{\mathrm{ef}}}\ll1.
+\end{equation}
+La amplitud de transferencia queda suprimida y los estados del doblete
+principalmente acumulan fases distintas.
+
+La aproximaci\'on coherente a\'nade una imagen geom\'etrica. Las dos ramas de
+energ\'ia efectiva correlacionan los polaritones con dos paquetes
+vibracionales que rotan en direcciones opuestas. Esta separaci\'on convierte a
+la vibraci\'on en un registro de la historia polarit\'onica. Precisamente por
+eso, al extender el modelo a dos mol\'eculas, la din\'amica vibracional puede
+participar en la generaci\'on, almacenamiento o degradaci\'on de correlaciones
+entre excitaciones moleculares mediadas por la cavidad.
+
+\bigskip
+
+La organizaci\'on por dobletes permite conservar una lectura simple incluso
+cuando el estado inicial contiene muchas excitaciones fot\'onicas y
+vibracionales: primero se determina qu\'e amplitud inicial entra a cada
+doblete mediante $a_{nm}$ y $b_{nm}$; despu\'es cada doblete evoluciona con
+$A_{nm}$, $\delta_n$, $k_m$ y $\Omega_{nm}^{\mathrm{ef}}$; finalmente, todas
+las contribuciones se suman para reconstruir el estado completo y sus
+observables.
+
+\end{document}

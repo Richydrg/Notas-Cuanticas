@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estados Coherentes · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams',
+    macros: {
+      Real: '\\operatorname{Re}',
+      Imag: '\\operatorname{Im}',
+      ii: '\\mathrm{i}',
+      ee: '\\mathrm{e}',
+      adag: '\\hat a^\\dagger'
+    }
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Estados coherentes
+</div>
+
+<div class="container">
+<article class="note">
+
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <radialGradient id="cohGradHero" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ffd6ec"/>
+          <stop offset="100%" stop-color="#e98ab8"/>
+        </radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#cohGradHero)" stroke="#8a3a6b" stroke-width="2"/>
+      <ellipse cx="32" cy="32" rx="11" ry="11" fill="rgba(255,255,255,0.7)"/>
+      <circle cx="46" cy="18" r="3" fill="#fff" opacity="0.9"/>
+      <circle cx="18" cy="46" r="2" fill="#fff" opacity="0.7"/>
+    </svg>
+    <h1>Estados Coherentes</h1>
+    <div class="author">Schleich · Quantum Optics in Phase Space</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Estados%20Coherentes.pdf" target="_blank">📄 PDF original</a>
+      <a href="estados-coherentes.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="estados-coherentes.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#motivacion">Motivación física</a></li>
+      <li><a href="#definicion">Definición y construcción</a></li>
+      <li><a href="#poisson">Distribución de Poisson</a></li>
+      <li><a href="#cuadraturas">Cuadraturas e interpretación</a></li>
+      <li><a href="#evolucion">Evolución temporal</a></li>
+      <li><a href="#onda-x">Función de onda en posición</a></li>
+      <li><a href="#husimi">Solape y función Q</a></li>
+      <li><a href="#desplazamiento">Operador de desplazamiento</a></li>
+      <li><a href="#incertidumbre">Incertidumbre mínima</a></li>
+      <li><a href="#onda-p">Función de onda en momento</a></li>
+      <li><a href="#wigner">Función de Wigner</a></li>
+      <li><a href="#gato">Estado gato coherente</a></li>
+      <li><a href="#ejercicios">Ejercicios resueltos</a></li>
+    </ol>
+  </div>
+
+  <h2 id="motivacion">1. Motivación física</h2>
+  <p>
+    Los estados coherentes fueron introducidos por Roy J. Glauber en 1963 para describir,
+    dentro de la teoría cuántica, los estados del campo electromagnético que más se
+    parecen a una onda clásica. Esta idea es central en óptica cuántica: un láser
+    ideal no se describe como un estado de número fijo, sino como un estado con
+    amplitud y fase bien definidas en el espacio fase.
+  </p>
+  <p>
+    La intuición clásica del campo electromagnético es la de un oscilador. Una
+    cuadratura se comporta como posición y la otra como momento. En un oscilador
+    clásico, el punto del espacio fase gira sin cambiar su forma. La pregunta
+    cuántica es entonces qué estado mantiene una forma gaussiana, rota en el
+    espacio fase y minimiza la incertidumbre. La respuesta son los estados
+    coherentes.
+  </p>
+
+  <h2 id="definicion">2. Definición y construcción en la base de número</h2>
+  <div class="boxed def">
+    <p><strong>Definición.</strong> Un estado coherente $\ket{\alpha}$ es un eigenestado derecho del operador de aniquilación:</p>
+    $$\hat a\ket{\alpha}=\alpha\ket{\alpha},\qquad \alpha\in\mathbb C.$$
+  </div>
+  <p>
+    La base natural para resolver esta ecuación es la base de Fock. Se escribe
+  </p>
+  $$\ket{\alpha}=\sum_{n=0}^{\infty}c_n\ket n,\qquad c_n=\braket{n|\alpha}.$$
+  <p>
+    Usando $\hat a\ket n=\sqrt n\ket{n-1}$,
+  </p>
+  $$\hat a\ket{\alpha}=\sum_{n=1}^{\infty}c_n\sqrt n\,\ket{n-1}.$$
+  <p>
+    Se cambia el índice mediante $m=n-1$:
+  </p>
+  $$\hat a\ket{\alpha}=\sum_{m=0}^{\infty}c_{m+1}\sqrt{m+1}\ket m.$$
+  <p>
+    Por otro lado,
+  </p>
+  $$\alpha\ket{\alpha}=\sum_{m=0}^{\infty}\alpha c_m\ket m.$$
+  <p>
+    Igualando coeficiente a coeficiente,
+  </p>
+  $$c_{m+1}\sqrt{m+1}=\alpha c_m,\qquad c_{m+1}=\frac{\alpha}{\sqrt{m+1}}c_m.$$
+  <p>
+    Iterando la recurrencia desde $c_0$,
+  </p>
+  $$c_1=\alpha c_0,\qquad c_2=\frac{\alpha^2}{\sqrt{2!}}c_0,\qquad c_3=\frac{\alpha^3}{\sqrt{3!}}c_0,$$
+  $$c_n=\frac{\alpha^n}{\sqrt{n!}}c_0.$$
+  <p>
+    La normalización fija $c_0$. Como $\braket{\alpha|\alpha}=1$,
+  </p>
+  $$1=\sum_{n=0}^{\infty}|c_n|^2=|c_0|^2\sum_{n=0}^{\infty}\frac{|\alpha|^{2n}}{n!}
+    =|c_0|^2 e^{|\alpha|^2}.$$
+  <p>
+    Escogiendo la fase global de modo que $c_0$ sea real positiva,
+  </p>
+  $$c_0=e^{-|\alpha|^2/2}.$$
+  <div class="boxed result">
+    $$\boxed{\ket{\alpha}=e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket n.}$$
+  </div>
+  <p>
+    Esta expresión muestra que un estado coherente no tiene un número definido
+    de fotones. Es una superposición de todos los estados $\ket n$, con pesos
+    determinados por la amplitud compleja $\alpha$.
+  </p>
+
+  <h2 id="poisson">3. Distribución de Poisson</h2>
+  <p>
+    La amplitud de probabilidad de encontrar $n$ fotones es
+  </p>
+  $$\braket{n|\alpha}=e^{-|\alpha|^2/2}\frac{\alpha^n}{\sqrt{n!}}.$$
+  <p>
+    La probabilidad correspondiente es
+  </p>
+  $$P_n=|\braket{n|\alpha}|^2=e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}.$$
+  <p>
+    Esta es una distribución de Poisson con parámetro $\bar n=|\alpha|^2$:
+  </p>
+  $$P_n=e^{-\bar n}\frac{\bar n^n}{n!}.$$
+  <p>
+    El valor medio del operador de número confirma esta interpretación:
+  </p>
+  $$\langle\hat n\rangle_\alpha=\bra{\alpha}\hat a^\dagger\hat a\ket{\alpha}=|\alpha|^2.$$
+  <p>
+    Para la varianza,
+  </p>
+  $$\hat n^2=\hat a^\dagger\hat a\hat a^\dagger\hat a
+  =\hat a^\dagger(\hat a^\dagger\hat a+1)\hat a
+  =(\hat a^\dagger)^2\hat a^2+\hat a^\dagger\hat a.$$
+  <p>
+    Entonces
+  </p>
+  $$\langle \hat n^2\rangle_\alpha=|\alpha|^4+|\alpha|^2,$$
+  $$(\Delta n)^2=\langle\hat n^2\rangle-\langle\hat n\rangle^2=|\alpha|^2.$$
+  <div class="boxed result">
+    $$\boxed{\langle\hat n\rangle=|\alpha|^2,\qquad(\Delta n)^2=|\alpha|^2.}$$
+  </div>
+  <p>
+    Media y varianza coinciden. Esa igualdad es el sello de la estadística
+    poissoniana asociada a la luz coherente ideal.
+  </p>
+
+  <h2 id="cuadraturas">4. Cuadraturas e interpretación de $\alpha$</h2>
+  <p>
+    Las variables dimensionales de posición y momento del oscilador se escriben como
+  </p>
+  $$\hat x=\sqrt{\frac{\hbar}{2m\omega}}(\hat a+\hat a^\dagger),\qquad
+    \hat p=i\sqrt{\frac{\hbar m\omega}{2}}(\hat a^\dagger-\hat a).$$
+  <p>
+    Las cuadraturas adimensionales son
+  </p>
+  $$\hat X=\sqrt{\frac{m\omega}{\hbar}}\hat x
+  =\frac{\hat a+\hat a^\dagger}{\sqrt2},\qquad
+  \hat P=\frac{\hat p}{\sqrt{\hbar m\omega}}
+  =\frac{i}{\sqrt2}(\hat a^\dagger-\hat a).$$
+  <p>
+    Usando $\hat a\ket{\alpha}=\alpha\ket{\alpha}$ y
+    $\bra{\alpha}\hat a^\dagger=\alpha^*\bra{\alpha}$,
+  </p>
+  $$\langle\hat X\rangle_\alpha
+  =\frac{1}{\sqrt2}(\alpha+\alpha^*)=\sqrt2\,\Real(\alpha),$$
+  $$\langle\hat P\rangle_\alpha
+  =\frac{i}{\sqrt2}(\alpha^*-\alpha)=\sqrt2\,\Imag(\alpha).$$
+  <p>
+    Si $\alpha=|\alpha|e^{i\phi}$,
+  </p>
+  $$\langle\hat X\rangle_\alpha=\sqrt2|\alpha|\cos\phi,\qquad
+    \langle\hat P\rangle_\alpha=\sqrt2|\alpha|\sin\phi.$$
+  <div class="boxed result">
+    $$\boxed{x_0=\sqrt{\frac{2\hbar}{m\omega}}\,\Real(\alpha),\qquad
+    p_0=\sqrt{2\hbar m\omega}\,\Imag(\alpha).}$$
+  </div>
+  <p>
+    La parte real de $\alpha$ fija el centro del paquete en posición; la parte
+    imaginaria fija el centro en momento. El número complejo $\alpha$ es,
+    físicamente, la coordenada del estado en el espacio fase.
+  </p>
+
+  <h2 id="evolucion">5. Evolución temporal</h2>
+  <p>
+    Tomando el hamiltoniano $\hat H_0=\hbar\omega\hat a^\dagger\hat a$, donde se
+    omite la energía de punto cero porque sólo produce una fase global,
+  </p>
+  $$\hat U(t)=e^{-i\omega t\hat a^\dagger\hat a}.$$
+  <p>
+    Aplicando $\hat U(t)$ al estado coherente,
+  </p>
+  $$\ket{\psi(t)}=e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}
+    \frac{\alpha^n e^{-in\omega t}}{\sqrt{n!}}\ket n
+    =e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}
+    \frac{(\alpha e^{-i\omega t})^n}{\sqrt{n!}}\ket n.$$
+  <p>
+    Esta es la expansión de un estado coherente con parámetro
+    $\alpha(t)=\alpha(0)e^{-i\omega t}$.
+  </p>
+  <div class="boxed result">
+    $$\boxed{\ket{\psi(t)}=\ket{\alpha(0)e^{-i\omega t}}.}$$
+  </div>
+  <p>
+    Por tanto, un estado coherente permanece coherente bajo la evolución libre
+    del oscilador. Lo que cambia es la fase de $\alpha$, de modo que el punto
+    en el espacio fase gira:
+  </p>
+  $$\langle\hat X(t)\rangle=\sqrt2\,\Real[\alpha(0)e^{-i\omega t}],\qquad
+    \langle\hat P(t)\rangle=\sqrt2\,\Imag[\alpha(0)e^{-i\omega t}].$$
+  <p>
+    Para $\alpha(0)=|\alpha|e^{i\phi}$,
+  </p>
+  $$\langle\hat X(t)\rangle=\sqrt2|\alpha|\cos(\phi-\omega t),\qquad
+    \langle\hat P(t)\rangle=\sqrt2|\alpha|\sin(\phi-\omega t).$$
+
+  <h2 id="onda-x">6. Función de onda en posición</h2>
+  <p>
+    Se calcula $\psi_\alpha(x)=\braket{x|\alpha}$ usando las funciones de onda
+    del oscilador armónico en unidades adimensionales:
+  </p>
+  $$\psi_n(x)=\braket{x|n}=
+  \frac{1}{\sqrt{2^n n!\sqrt\pi}}e^{-x^2/2}H_n(x).$$
+  <p>
+    Insertando la expansión en Fock,
+  </p>
+  $$\psi_\alpha(x)=e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}
+  \frac{\alpha^n}{\sqrt{n!}}\psi_n(x),$$
+  $$\psi_\alpha(x)=\pi^{-1/4}e^{-|\alpha|^2/2}e^{-x^2/2}
+  \sum_{n=0}^{\infty}\frac{1}{n!}\left(\frac{\alpha}{\sqrt2}\right)^nH_n(x).$$
+  <p>
+    Se usa la función generatriz de Hermite,
+  </p>
+  $$\sum_{n=0}^{\infty}\frac{t^n}{n!}H_n(x)=e^{2tx-t^2},\qquad
+  t=\frac{\alpha}{\sqrt2}.$$
+  <p>
+    Entonces
+  </p>
+  $$\sum_{n=0}^{\infty}\frac{1}{n!}\left(\frac{\alpha}{\sqrt2}\right)^nH_n(x)
+  =e^{\sqrt2\alpha x-\alpha^2/2},$$
+  $$\psi_\alpha(x)=\pi^{-1/4}
+  \exp\left[-\frac{x^2}{2}+\sqrt2\alpha x-\frac{\alpha^2}{2}-\frac{|\alpha|^2}{2}\right].$$
+  <p>
+    Para interpretar esta forma se escribe $\alpha=\alpha_R+i\alpha_I$ y se
+    define $X_0=\sqrt2\alpha_R$, $P_0=\sqrt2\alpha_I$. Como
+  </p>
+  $$\sqrt2\alpha x=X_0x+iP_0x,$$
+  $$\alpha^2+|\alpha|^2=X_0^2+iX_0P_0,$$
+  <p>
+    el exponente se transforma en
+  </p>
+  $$-\frac12(x-X_0)^2+iP_0x-\frac{i}{2}X_0P_0.$$
+  <div class="boxed result">
+    $$\boxed{\psi_\alpha(x)=\pi^{-1/4}
+    \exp\left[-\frac12(x-X_0)^2+iP_0x-\frac{i}{2}X_0P_0\right].}$$
+  </div>
+  <p>
+    La densidad de probabilidad es
+  </p>
+  $$|\psi_\alpha(x)|^2=\pi^{-1/2}e^{-(x-X_0)^2}.$$
+  <p>
+    Es una gaussiana centrada en $X_0$, con anchura fija. La fase lineal
+    $e^{iP_0x}$ codifica el momento medio.
+  </p>
+  <p>
+    Para el estado evolucionado se sustituye $\beta=\alpha(0)e^{-i\omega t}$:
+  </p>
+  $$\boxed{\psi_\alpha(x,t)=\pi^{-1/4}
+  \exp\left[-\frac{x^2}{2}+\sqrt2\,x\,\alpha(0)e^{-i\omega t}
+  -\frac{\alpha(0)^2e^{-2i\omega t}}{2}
+  -\frac{|\alpha(0)|^2}{2}\right].}$$
+
+  <h2 id="husimi">7. Solape entre estados coherentes y función Q</h2>
+  <p>
+    El solape entre dos estados coherentes se obtiene multiplicando sus
+    expansiones en Fock:
+  </p>
+  $$\braket{\beta|\alpha}=e^{-(|\alpha|^2+|\beta|^2)/2}
+  \sum_{n=0}^{\infty}\frac{(\beta^*\alpha)^n}{n!}.$$
+  <p>
+    La suma es una exponencial, por lo que
+  </p>
+  <div class="boxed result">
+    $$\boxed{\braket{\beta|\alpha}
+    =\exp\left[-\frac12(|\alpha|^2+|\beta|^2)+\beta^*\alpha\right].}$$
+  </div>
+  <p>
+    El módulo cuadrado queda
+  </p>
+  $$|\braket{\beta|\alpha}|^2=e^{-|\beta-\alpha|^2}.$$
+  <p>
+    Así, dos estados coherentes distintos no son estrictamente ortogonales.
+    Su solape decae con la distancia en el plano complejo, pero no se anula de
+    manera exacta.
+  </p>
+  <p>
+    La función $Q$ de Husimi de $\rho=\ket{\alpha}\bra{\alpha}$ es
+  </p>
+  $$Q(\beta)=\frac1\pi\bra{\beta}\rho\ket{\beta}
+  =\frac1\pi|\braket{\beta|\alpha}|^2.$$
+  <div class="boxed result">
+    $$\boxed{Q(\beta)=\frac1\pi e^{-|\beta-\alpha|^2}.}$$
+  </div>
+  <p>
+    Es una gaussiana positiva en el plano complejo, centrada en el punto
+    $\beta=\alpha$.
+  </p>
+
+  <h2 id="desplazamiento">8. Operador de desplazamiento</h2>
+  <p>
+    Se define
+  </p>
+  $$\hat D(\alpha)=\exp(\alpha\hat a^\dagger-\alpha^*\hat a).$$
+  <p>
+    Para factorizarlo se usa Baker-Campbell-Hausdorff. Con
+    $\hat A=\alpha\hat a^\dagger$ y $\hat B=-\alpha^*\hat a$,
+  </p>
+  $$[\hat A,\hat B]=|\alpha|^2.$$
+  <p>
+    Entonces
+  </p>
+  $$\hat D(\alpha)=e^{-|\alpha|^2/2}e^{\alpha\hat a^\dagger}e^{-\alpha^*\hat a}.$$
+  <p>
+    Aplicando al vacío,
+  </p>
+  $$e^{-\alpha^*\hat a}\ket0=\ket0,$$
+  $$\hat D(\alpha)\ket0=e^{-|\alpha|^2/2}e^{\alpha\hat a^\dagger}\ket0
+  =e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{n!}(\hat a^\dagger)^n\ket0.$$
+  <p>
+    Como $(\hat a^\dagger)^n\ket0=\sqrt{n!}\ket n$,
+  </p>
+  $$\hat D(\alpha)\ket0=e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}
+  \frac{\alpha^n}{\sqrt{n!}}\ket n=\ket{\alpha}.$$
+  <div class="boxed result">
+    $$\boxed{\ket{\alpha}=\hat D(\alpha)\ket0.}$$
+  </div>
+  <p>
+    Un estado coherente es el vacío desplazado en el espacio fase. El
+    operador no elimina las fluctuaciones del vacío; sólo mueve el centro de
+    la gaussiana.
+  </p>
+
+  <h2 id="incertidumbre">9. Incertidumbre mínima</h2>
+  <p>
+    En variables dimensionales, la densidad de probabilidad del estado
+    coherente en posición es
+  </p>
+  $$|\psi_\alpha(x)|^2=\sqrt{\frac{m\omega}{\pi\hbar}}
+  \exp\left[-\frac{m\omega}{\hbar}(x-x_0)^2\right].$$
+  <p>
+    Comparándola con
+  </p>
+  $$f(x)=\frac{1}{\sigma\sqrt{2\pi}}
+  \exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right],$$
+  <p>
+    se obtiene
+  </p>
+  $$\sigma_x^2=\frac{\hbar}{2m\omega}.$$
+  <p>
+    La distribución en momento es
+  </p>
+  $$|\psi_\alpha(p)|^2=\frac{1}{\sqrt{\pi\hbar m\omega}}
+  \exp\left[-\frac{(p-p_0)^2}{\hbar m\omega}\right],$$
+  <p>
+    de donde
+  </p>
+  $$\sigma_p^2=\frac{\hbar m\omega}{2}.$$
+  <div class="boxed result">
+    $$\boxed{\sigma_x\sigma_p=
+    \sqrt{\frac{\hbar}{2m\omega}}\sqrt{\frac{\hbar m\omega}{2}}
+    =\frac{\hbar}{2}.}$$
+  </div>
+  <p>
+    Los estados coherentes saturan la desigualdad de Heisenberg. No hacen que
+    $x$ y $p$ sean simultáneamente exactos, sino que distribuyen la
+    incertidumbre mínima de manera simétrica.
+  </p>
+
+  <h2 id="onda-p">10. Función de onda en momento</h2>
+  <p>
+    Con la convención
+  </p>
+  $$\psi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+  \psi(x)e^{-ipx/\hbar}\,dx,$$
+  <p>
+    se transforma la gaussiana dimensional
+  </p>
+  $$\psi_\alpha(x)=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+  \exp\left[-\frac{m\omega}{2\hbar}(x-x_0)^2+\frac{i}{\hbar}p_0x
+  -\frac{i}{2\hbar}x_0p_0\right].$$
+  <p>
+    La integral central es
+  </p>
+  $$I=\int_{-\infty}^{\infty}e^{-a(x-x_0)^2-ikx}\,dx,\qquad
+  a=\frac{m\omega}{2\hbar},\quad k=\frac{p-p_0}{\hbar}.$$
+  <p>
+    Completando el cuadrado,
+  </p>
+  $$I=\sqrt{\frac{\pi}{a}}e^{-ikx_0-k^2/(4a)}.$$
+  <div class="boxed result">
+    $$\boxed{\psi_\alpha(p)=
+    \left(\frac{1}{\pi\hbar m\omega}\right)^{1/4}
+    \exp\left[-\frac{(p-p_0)^2}{2\hbar m\omega}
+    -\frac{i}{\hbar}x_0p+\frac{i}{2\hbar}x_0p_0\right].}$$
+  </div>
+  <p>
+    De nuevo aparece una gaussiana, ahora centrada en $p_0$.
+  </p>
+
+  <h2 id="wigner">11. Función de Wigner de un estado coherente</h2>
+  <p>
+    Para un estado puro con función de onda $\psi(x)$,
+  </p>
+  $$W(x,p)=\frac{1}{\pi\hbar}\int_{-\infty}^{\infty}
+  \psi^*(x+y)\psi(x-y)e^{2ipy/\hbar}\,dy.$$
+  <p>
+    Sustituyendo la función de onda gaussiana del estado coherente se obtiene
+  </p>
+  <div class="boxed result">
+    $$\boxed{W_\alpha(x,p)=\frac{1}{\pi\hbar}
+    \exp\left[-\frac{m\omega}{\hbar}(x-x_0)^2
+    -\frac{(p-p_0)^2}{\hbar m\omega}\right].}$$
+  </div>
+  <p>
+    En variables adimensionales, con $\beta=(x+ip)/\sqrt2$,
+  </p>
+  $$\boxed{W_\alpha(\beta)=\frac{2}{\pi}e^{-2|\beta-\alpha|^2}.}$$
+  <p>
+    La función de Wigner de un estado coherente es positiva y gaussiana. Por
+    eso estos estados son el punto de referencia clásico dentro de la óptica
+    cuántica.
+  </p>
+
+  <h2 id="gato">12. Superposición de estados coherentes: estado gato</h2>
+  <p>
+    Se considera, para $\alpha\in\mathbb R$,
+  </p>
+  $$\ket{\psi}=\frac{1}{\sqrt N}\left(\ket{\alpha}+\ket{-\alpha}\right),
+  \qquad N=2(1+e^{-2\alpha^2}).$$
+  <p>
+    El factor de normalización se obtiene de
+    $\braket{\alpha|-\alpha}=e^{-2\alpha^2}$. Como $\alpha$ es real, los dos
+    paquetes tienen momento medio cero y centros opuestos:
+  </p>
+  $$x_0=\sqrt{\frac{2\hbar}{m\omega}}\alpha.$$
+  <p>
+    La función de onda es
+  </p>
+  $$\psi(x)=\frac{1}{\sqrt N}\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+  \left[
+  e^{-\frac{m\omega}{2\hbar}(x-x_0)^2}
+  +e^{-\frac{m\omega}{2\hbar}(x+x_0)^2}
+  \right].$$
+  <p>
+    Al sustituir en la definición de Wigner aparecen cuatro términos: dos
+    gaussianas individuales y dos términos cruzados de interferencia. La forma
+    real dimensional es
+  </p>
+  $$W(x,p)=\frac{1}{2\pi\hbar(1+e^{-2\alpha^2})}
+  \left[
+  e^{-\frac{m\omega}{\hbar}(x-x_0)^2-\frac{p^2}{m\omega\hbar}}
+  +e^{-\frac{m\omega}{\hbar}(x+x_0)^2-\frac{p^2}{m\omega\hbar}}
+  +2e^{-\frac{m\omega}{\hbar}x^2-\frac{p^2}{m\omega\hbar}}
+  \cos\left(\frac{2x_0p}{\hbar}\right)
+  \right].$$
+  <p>
+    En unidades adimensionales:
+  </p>
+  <div class="boxed result">
+    $$\boxed{W(x,p)=\frac{e^{-p^2}}{2\pi(1+e^{-2\alpha^2})}
+    \left[
+    e^{-(x-\sqrt2\alpha)^2}
+    +e^{-(x+\sqrt2\alpha)^2}
+    +2e^{-x^2}\cos(2\sqrt2\alpha p)
+    \right].}$$
+  </div>
+  <p>
+    Los dos primeros términos son dos picos gaussianos centrados en
+    $x=\pm\sqrt2\alpha$. El tercer término es la interferencia. Como el coseno
+    puede ser negativo, la función de Wigner puede tomar valores negativos,
+    señal inequívoca de no clasicidad.
+  </p>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/wigner_gato_alpha2.png" alt="Función de Wigner de una superposición de estados coherentes con alfa igual a dos.">
+    <figcaption>Función de Wigner para una superposición de estados coherentes con $\alpha=2$. Los picos corresponden a los estados coherentes separados y la región central muestra las franjas de interferencia.</figcaption>
+  </figure>
+
+  <h2 id="ejercicios">13. Ejercicios resueltos</h2>
+  <p>
+    En esta parte se reúnen las derivaciones de ejercicios que aparecen al
+    final del manuscrito. La idea es que la nota principal quede como teoría
+    continua y que las aplicaciones técnicas queden juntas como referencia.
+  </p>
+
+  <h3>Ejercicio 1: producto interno entre posición y momento</h3>
+  <p>
+    Se parte de $[\hat x,\hat p]=i\hbar$ y se proyecta entre $\bra{x}$ y
+    $\ket{x'}$:
+  </p>
+  $$\bra{x}[\hat x,\hat p]\ket{x'}=i\hbar\delta(x-x').$$
+  <p>
+    El lado izquierdo también es
+  </p>
+  $$x\bra{x}\hat p\ket{x'}-x'\bra{x}\hat p\ket{x'}
+  =(x-x')\bra{x}\hat p\ket{x'}.$$
+  <p>
+    Por tanto
+  </p>
+  $$(x-x')\bra{x}\hat p\ket{x'}=i\hbar\delta(x-x').$$
+  <p>
+    En sentido distribucional,
+  </p>
+  $$\bra{x}\hat p\ket{x'}=-i\hbar\delta'(x-x').$$
+  <p>
+    Para un estado arbitrario,
+  </p>
+  $$\bra{x}\hat p\ket{\psi}=\int dx'\,\bra{x}\hat p\ket{x'}\psi(x')
+  =-i\hbar\frac{d\psi(x)}{dx}.$$
+  <p>
+    Entonces, si $\hat p\ket p=p\ket p$,
+  </p>
+  $$-i\hbar\frac{d}{dx}\braket{x|p}=p\braket{x|p}.$$
+  <p>
+    La solución es $A e^{ipx/\hbar}$. Normalizando con
+    $\braket{p|p'}=\delta(p-p')$,
+  </p>
+  $$|A|^2\int_{-\infty}^{\infty}e^{i(p'-p)x/\hbar}\,dx
+  =|A|^2\,2\pi\hbar\,\delta(p-p'),$$
+  $$A=\frac{1}{\sqrt{2\pi\hbar}}.$$
+  <div class="boxed result">
+    $$\boxed{\braket{x|p}=\frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}.}$$
+  </div>
+
+  <h3>Ejercicio 2: construcción de $\hat a$, $\hat a^\dagger$ y el estado base</h3>
+  <p>
+    Se propone $\hat O=c_x\hat x+ic_p\hat p$ y
+    $\hat O^\dagger=c_x\hat x-ic_p\hat p$. Entonces
+  </p>
+  $$\hat O^\dagger\hat O
+  =c_x^2\hat x^2+c_p^2\hat p^2+ic_xc_p[\hat x,\hat p]
+  =c_x^2\hat x^2+c_p^2\hat p^2-c_xc_p\hbar.$$
+  <p>
+    Comparando con
+    $\hat H=\hat p^2/(2m)+m\omega^2\hat x^2/2$ e imponiendo
+    $[\hat O,\hat O^\dagger]=1$, se obtiene
+  </p>
+  $$c_x=\sqrt{\frac{m\omega}{2\hbar}},\qquad
+    c_p=\frac{1}{\sqrt{2m\omega\hbar}}.$$
+  <div class="boxed result">
+    $$\boxed{\hat a=\sqrt{\frac{m\omega}{2\hbar}}
+    \left(\hat x+\frac{i}{m\omega}\hat p\right),\qquad
+    \hat a^\dagger=\sqrt{\frac{m\omega}{2\hbar}}
+    \left(\hat x-\frac{i}{m\omega}\hat p\right).}$$
+  </div>
+  <p>
+    El vacío satisface $\hat a\ket0=0$. En representación de posición:
+  </p>
+  $$\left(x+\frac{\hbar}{m\omega}\frac{d}{dx}\right)\psi_0(x)=0,$$
+  $$\frac{d\psi_0}{dx}=-\frac{m\omega}{\hbar}x\psi_0.$$
+  <p>
+    Separando variables e integrando,
+  </p>
+  $$\psi_0(x)=A e^{-m\omega x^2/(2\hbar)}.$$
+  <p>
+    La normalización da
+  </p>
+  $$A=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}.$$
+  <div class="boxed result">
+    $$\boxed{\psi_0(x)=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+    e^{-m\omega x^2/(2\hbar)}.}$$
+  </div>
+
+  <h3>Ejercicio 3: traslación espacial del vacío</h3>
+  <p>
+    Como $\hat p=-i\hbar\,d/dx$,
+  </p>
+  $$e^{-i\hat p\Delta/\hbar}=e^{-\Delta\,d/dx}.$$
+  <p>
+    La exponencial de una derivada traslada funciones:
+  </p>
+  $$e^{-\Delta d/dx}f(x)=f(x-\Delta).$$
+  <p>
+    Por tanto
+  </p>
+  $$\bra{x}e^{-i\hat p\Delta/\hbar}\ket0
+  =\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+  \exp\left[-\frac{m\omega}{2\hbar}(x-\Delta)^2\right].$$
+  <p>
+    Además, usando
+  </p>
+  $$\hat p=i\sqrt{\frac{\hbar m\omega}{2}}(\hat a^\dagger-\hat a),$$
+  <p>
+    se obtiene
+  </p>
+  $$e^{-i\hat p\Delta/\hbar}
+  =\exp\left[\Delta\sqrt{\frac{m\omega}{2\hbar}}(\hat a^\dagger-\hat a)\right]
+  =\hat D(\alpha_\Delta),$$
+  $$\alpha_\Delta=\Delta\sqrt{\frac{m\omega}{2\hbar}}\in\mathbb R.$$
+  <p>
+    Así, una traslación espacial del vacío es un estado coherente con
+    $\alpha$ real.
+  </p>
+
+  <h3>Ejercicio 4: forma normal y desplazamiento</h3>
+  <p>
+    Para
+  </p>
+  $$\ket{\beta}=e^{-|\beta|^2/2}\sum_{n=0}^{\infty}
+  \frac{\beta^n}{\sqrt{n!}}\ket n,$$
+  <p>
+    se verifica
+  </p>
+  $$\hat a\ket{\beta}
+  =e^{-|\beta|^2/2}\sum_{n=1}^{\infty}
+  \frac{\beta^n}{\sqrt{n!}}\sqrt n\,\ket{n-1}.$$
+  <p>
+    Con $m=n-1$,
+  </p>
+  $$\hat a\ket{\beta}
+  =\beta e^{-|\beta|^2/2}\sum_{m=0}^{\infty}
+  \frac{\beta^m}{\sqrt{m!}}\ket m=\beta\ket{\beta}.$$
+  <p>
+    También,
+  </p>
+  $$e^{\beta\hat a^\dagger}\ket0
+  =\sum_{k=0}^{\infty}\frac{\beta^k}{k!}(\hat a^\dagger)^k\ket0
+  =\sum_{k=0}^{\infty}\frac{\beta^k}{\sqrt{k!}}\ket k,$$
+  <p>
+    de modo que
+  </p>
+  $$\ket{\beta}=e^{-|\beta|^2/2}e^{\beta\hat a^\dagger}\ket0.$$
+  <p>
+    Como $e^{-\beta^*\hat a}\ket0=\ket0$,
+  </p>
+  $$\ket{\beta}=e^{-|\beta|^2/2}e^{\beta\hat a^\dagger}e^{-\beta^*\hat a}\ket0.$$
+  <p>
+    Con BCH y $[\beta\hat a^\dagger,-\beta^*\hat a]=|\beta|^2$,
+  </p>
+  $$e^{-|\beta|^2/2}e^{\beta\hat a^\dagger}e^{-\beta^*\hat a}
+  =e^{\beta\hat a^\dagger-\beta^*\hat a}=\hat D(\beta).$$
+  <div class="boxed result">
+    $$\boxed{\ket{\beta}=\hat D(\beta)\ket0.}$$
+  </div>
+
+  <h3>Ejercicio 5: impulso de momento sobre el vacío</h3>
+  <p>
+    El estado
+  </p>
+  $$e^{-i\hat p x_0/\hbar}\ket0$$
+  <p>
+    se escribe como
+  </p>
+  $$e^{-i\hat p x_0/\hbar}
+  =\exp\left[x_0\sqrt{\frac{m\omega}{2\hbar}}(\hat a^\dagger-\hat a)\right]
+  =\hat D(\beta),$$
+  <p>
+    con
+  </p>
+  $$\boxed{\beta=x_0\sqrt{\frac{m\omega}{2\hbar}}.}$$
+  <p>
+    Por tanto,
+  </p>
+  $$e^{-i\hat p x_0/\hbar}\ket0=\ket{\beta}.$$
+  <p>
+    Su evolución temporal bajo el oscilador armónico es
+  </p>
+  $$e^{-i\hat Ht/\hbar}\ket{\beta}
+  =e^{-i\omega t/2}\ket{\beta e^{-i\omega t}}.$$
+  <p>
+    La fase global no cambia observables. El centro del estado gira en espacio
+    fase como $\beta(t)=\beta e^{-i\omega t}$.
+  </p>
+
+  <blockquote>
+    Los estados coherentes son el puente entre la descripción clásica de la
+    luz y el formalismo cuántico. Toda la óptica cuántica posterior usa estos
+    estados como referencia para distinguir qué tan clásico o no clásico es
+    un estado del campo.
+  </blockquote>
+
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 4 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

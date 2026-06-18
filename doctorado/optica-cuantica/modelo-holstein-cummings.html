@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelo de Holstein-Cummings · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams',
+    macros: {
+      Real: '\\operatorname{Re}',
+      Imag: '\\operatorname{Im}'
+    }
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Modelo de Holstein-Cummings
+</div>
+
+<div class="container">
+<article class="note">
+
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <ellipse cx="30" cy="34" rx="22" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2.4" transform="rotate(-18 30 34)"/>
+      <ellipse cx="34" cy="30" rx="22" ry="8" fill="none" stroke="#d4453a" stroke-width="2.4" transform="rotate(22 34 30)"/>
+      <circle cx="20" cy="34" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.8"/>
+      <circle cx="44" cy="30" r="5" fill="#fff3d8" stroke="#6b48a6" stroke-width="1.8"/>
+      <path d="M20 46 C28 54 40 54 48 46" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M18 18 C28 8 42 8 52 18" stroke="#d4453a" stroke-width="2" fill="none"/>
+    </svg>
+    <h1>Modelo de Holstein-Cummings</h1>
+    <div class="author">Una molécula · Construcción y diagonalización por bloques</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Modelo%20de%20Holstein-Cummings.pdf" target="_blank">📄 PDF original</a>
+      <a href="modelo-holstein-cummings.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="modelo-holstein-cummings.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#idea">Idea física</a></li>
+      <li><a href="#superficies">Superficies de energía potencial</a></li>
+      <li><a href="#molecular">Hamiltoniano molecular de Holstein</a></li>
+      <li><a href="#cavidad">Acoplamiento con la cavidad</a></li>
+      <li><a href="#aproximaciones">Aproximaciones físicas</a></li>
+      <li><a href="#modos">Coordenada efectiva y modos vibracionales</a></li>
+      <li><a href="#conservacion">Número de excitaciones conservado</a></li>
+      <li><a href="#bloques">Bloques electrón-fotón</a></li>
+      <li><a href="#desplazamiento">Desplazamiento vibracional del bloque</a></li>
+      <li><a href="#polaritones">Base polaritónica</a></li>
+      <li><a href="#rwa">JCP efectivo polaritón-fonón</a></li>
+      <li><a href="#dobletes">Diagonalización de dobletes</a></li>
+      <li><a href="#sectores">Sectores del modelo</a></li>
+      <li><a href="#validez">Validez del modelo efectivo</a></li>
+      <li><a href="#observables">Valores esperados</a></li>
+      <li><a href="#tesis">Conexión con la tesis</a></li>
+    </ol>
+  </div>
+
+  <h2 id="idea">1. Idea física</h2>
+  <p>
+    El modelo de Holstein-Cummings describe una molécula con tres grados de
+    libertad relevantes: una transición electrónica efectiva de dos niveles,
+    un modo vibracional intramolecular y un modo cuantizado de cavidad. La idea
+    central es que la excitación electrónica no solo cambia la energía interna
+    de la molécula. También cambia la distribución electrónica y, por eso,
+    cambia la superficie de energía potencial que sienten los núcleos.
+  </p>
+  <p>
+    En el estado electrónico base $\ket{g}$, la geometría nuclear de equilibrio
+    se toma como origen de una coordenada efectiva $q$. En el estado excitado
+    $\ket{e}$, la superficie sigue siendo aproximadamente armónica, pero su
+    mínimo está desplazado. Este desplazamiento produce el acoplamiento de
+    Holstein: el estado electrónico decide cuál es la posición de equilibrio
+    del oscilador vibracional.
+  </p>
+  <p>
+    Para la tesis, este modelo es el punto de partida porque muestra cómo pasar
+    de una molécula aislada a una estructura por bloques que puede
+    diagonalizarse. La extensión a dos moléculas mantiene la misma lógica, pero
+    el espacio de Hilbert crece y aparecen sectores donde la cavidad puede
+    mediar correlaciones entre moléculas distintas.
+  </p>
+
+  <h2 id="superficies">2. Superficies de energía potencial</h2>
+  <p>
+    Se aproxima la vibración nuclear por un oscilador armónico con masa efectiva
+    $m$ y frecuencia vibracional $\nu$. Si la molécula está en el estado
+    electrónico base, se elige el mínimo en $q=0$:
+  </p>
+  $$V_g(q)=\frac{1}{2}m\nu^2q^2.$$
+  <p>
+    La coordenada $q$ mide la deformación respecto de la geometría de equilibrio.
+    Para una molécula diatómica puede tomarse como $q=R-R_g$, donde $R$ es la
+    distancia internuclear y $R_g$ la distancia de equilibrio en el estado base.
+    Si $q>0$, la molécula está elongada; si $q<0$, está comprimida respecto de
+    esa geometría.
+  </p>
+  <p>
+    En el estado electrónico excitado, la energía electrónica aumenta en
+    $\hbar\omega$ y el mínimo vibracional se desplaza a $q=q_0$:
+  </p>
+  $$V_e(q)=\hbar\omega+\frac{1}{2}m\nu^2(q-q_0)^2.$$
+  <p>
+    Si $q_0=0$, excitar la molécula no cambia su geometría de equilibrio y no
+    aparece acoplamiento electrónico-vibracional. Si $q_0\neq0$, la excitación
+    electrónica crea una fuerza efectiva sobre la coordenada nuclear.
+  </p>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/superficies_de_energia.png" alt="Superficies de energía potencial en el modelo de Holstein para una molécula.">
+    <figcaption>Superficies de energía potencial en el modelo de Holstein: transición vertical de Franck-Condon, desplazamiento del mínimo excitado y energía de reorganización $E_R$.</figcaption>
+  </figure>
+
+  <p>
+    La energía de reorganización se obtiene comparando la energía de la
+    superficie excitada en $q=0$ con la energía en su mínimo $q=q_0$:
+  </p>
+  $$V_e(0)=\hbar\omega+\frac{1}{2}m\nu^2q_0^2,\qquad
+  V_e(q_0)=\hbar\omega,$$
+  <div class="boxed result">
+    $$\boxed{\;E_R=V_e(0)-V_e(q_0)=\frac{1}{2}m\nu^2q_0^2.\;}$$
+  </div>
+  <p>
+    Esta energía responde a una pregunta física concreta: después de excitar
+    electrónicamente la molécula sin mover los núcleos todavía, ¿cuánta energía
+    puede liberar la molécula al relajar su geometría desde $q=0$ hasta
+    $q=q_0$? Si $q_0$ es grande, la excitación deforma mucho la molécula y
+    $E_R$ es grande. Si $q_0=0$, ambas superficies tienen el mismo mínimo y
+    $E_R=0$.
+  </p>
+  <p>
+    La cantidad $\hbar\omega$ es la diferencia de energía entre mínimos. La
+    absorción vertical de Franck-Condon desde $q=0$ hasta $q=0$ en la superficie
+    excitada cuesta
+  </p>
+  $$V_e(0)-V_g(0)=\hbar\omega+E_R.$$
+  <p>
+    Por eso la frecuencia efectiva de la transición vertical se escribirá como
+  </p>
+  <div class="boxed def">
+    $$\boxed{\;\omega_0=\omega+\nu\lambda^2,\;}$$
+  </div>
+  <p>
+    una vez que se introduzca el parámetro adimensional de Huang-Rhys
+    $\lambda$.
+  </p>
+
+  <h2 id="molecular">3. Hamiltoniano molecular de Holstein</h2>
+  <p>
+    Para una molécula aislada, el espacio de Hilbert se separa como
+  </p>
+  $$\mathcal H_{\text{mol}}=\mathcal H_{\text{el}}\otimes\mathcal H_{\text{vib}},$$
+  <p>
+    donde $\mathcal H_{\text{el}}$ está generado por $\{\ket{g},\ket{e}\}$ y
+    $\mathcal H_{\text{vib}}$ por los estados de número vibracionales
+    $\{\ket{m}_v\}_{m=0}^{\infty}$. Se definen los operadores electrónicos
+  </p>
+  $$\hat\sigma^\dagger=\ket{e}\bra{g},\qquad
+  \hat\sigma=\ket{g}\bra{e},\qquad
+  \hat\sigma^\dagger\hat\sigma=\ket{e}\bra{e}.$$
+  <p>
+    Tomando la energía electrónica del estado base como cero y la diferencia
+    entre mínimos como $\hbar\omega$, el hamiltoniano electrónico aislado es
+  </p>
+  $$\hat H_{\text{el}}=\hbar\omega\,\ket{e}\bra{e}
+  =\hbar\omega\,\hat\sigma^\dagger\hat\sigma.$$
+  <p>
+    Al añadir la vibración nuclear, el hamiltoniano vibracional condicionado al
+    estado electrónico es
+  </p>
+  $$\hat H_{\text{vib}}=
+  \left[\frac{\hat p^2}{2m}+\frac{1}{2}m\nu^2\hat q^2\right]\ket{g}\bra{g}
+  +
+  \left[\frac{\hat p^2}{2m}+\frac{1}{2}m\nu^2(\hat q-q_0)^2\right]\ket{e}\bra{e}.$$
+  <p>
+    Sumando la parte electrónica,
+  </p>
+  $$\hat H_{\text{mol}}=
+  \left[\frac{\hat p^2}{2m}+\frac{1}{2}m\nu^2\hat q^2\right]\ket{g}\bra{g}
+  +
+  \left[\hbar\omega+\frac{\hat p^2}{2m}+\frac{1}{2}m\nu^2(\hat q-q_0)^2\right]\ket{e}\bra{e}.$$
+  <p>
+    Al expandir $(\hat q-q_0)^2=\hat q^2+q_0^2-2q_0\hat q$ se obtiene
+  </p>
+  $$\hat H_{\text{mol}}=
+  \left(\frac{\hat p^2}{2m}+\frac{1}{2}m\nu^2\hat q^2\right)\mathbf{1}_{\text{el}}
+  +\hbar\omega\,\hat\sigma^\dagger\hat\sigma
+  -m\nu^2q_0\hat q\,\hat\sigma^\dagger\hat\sigma
+  +\frac{1}{2}m\nu^2q_0^2\,\hat\sigma^\dagger\hat\sigma.$$
+  <p>
+    Los términos tienen una lectura directa. El primero es la vibración
+    armónica común. El segundo es la energía electrónica. El tercero dice que
+    cuando la molécula está excitada aparece una fuerza que desplaza la
+    coordenada nuclear. El último es una constante energética asociada solo a
+    la superficie excitada.
+  </p>
+  <p>
+    Se cuantiza el oscilador vibracional con operadores bosónicos $\hat b$ y
+    $\hat b^\dagger$ que satisfacen
+  </p>
+  $$[\hat b,\hat b^\dagger]=1,\qquad
+  \hat b^\dagger\ket{m}_v=\sqrt{m+1}\ket{m+1}_v,\qquad
+  \hat b\ket{m}_v=\sqrt{m}\ket{m-1}_v.$$
+  <p>
+    Las variables canónicas se escriben como
+  </p>
+  $$\hat q=\sqrt{\frac{\hbar}{2m\nu}}\left(\hat b^\dagger+\hat b\right),\qquad
+  \hat p=i\sqrt{\frac{\hbar m\nu}{2}}\left(\hat b^\dagger-\hat b\right).$$
+  <p>
+    Sustituyendo estas expresiones,
+  </p>
+  $$\frac{\hat p^2}{2m}+\frac{1}{2}m\nu^2\hat q^2
+  =\hbar\nu\left(\hat b^\dagger\hat b+\frac{1}{2}\right).$$
+  <p>
+    La energía de punto cero $\hbar\nu/2$ es constante y se descarta porque no
+    afecta la dinámica.
+  </p>
+  <p>
+    El término lineal se convierte en
+  </p>
+  $$-m\nu^2q_0\hat q\,\hat\sigma^\dagger\hat\sigma
+  =
+  -m\nu^2q_0\sqrt{\frac{\hbar}{2m\nu}}
+  \left(\hat b^\dagger+\hat b\right)\hat\sigma^\dagger\hat\sigma.$$
+  <p>
+    Se introduce el parámetro adimensional de Huang-Rhys:
+  </p>
+  <div class="boxed def">
+    $$\boxed{\;\lambda^2=\frac{m\nu q_0^2}{2\hbar},\qquad
+    \lambda=q_0\sqrt{\frac{m\nu}{2\hbar}}.\;}$$
+  </div>
+  <p>
+    Con esta definición,
+  </p>
+  $$m\nu^2q_0\sqrt{\frac{\hbar}{2m\nu}}=\hbar\nu\lambda,$$
+  <p>
+    y el término de Holstein queda
+  </p>
+  $$-\hbar\nu\lambda(\hat b^\dagger+\hat b)\hat\sigma^\dagger\hat\sigma.$$
+  <p>
+    Además,
+  </p>
+  $$\frac{1}{2}m\nu^2q_0^2=\hbar\nu\lambda^2,$$
+  <p>
+    por lo que $E_R=\hbar\nu\lambda^2$. El hamiltoniano molecular toma la forma
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\hat H_{\text{mol}}=
+    \hbar\omega_0\,\hat\sigma^\dagger\hat\sigma
+    +\hbar\nu\,\hat b^\dagger\hat b
+    -\hbar\nu\lambda(\hat b^\dagger+\hat b)\hat\sigma^\dagger\hat\sigma,\qquad
+    \omega_0=\omega+\nu\lambda^2.\;}$$
+  </div>
+
+  <h2 id="cavidad">4. Acoplamiento con la cavidad</h2>
+  <p>
+    Para llegar al modelo de Holstein-Cummings se añade un modo cuantizado de
+    cavidad. El espacio total es
+  </p>
+  $$\mathcal H=\mathcal H_{\text{cav}}\otimes\mathcal H_{\text{el}}\otimes\mathcal H_{\text{vib}},$$
+  <p>
+    con base natural
+  </p>
+  $$\ket{n}_c\otimes\ket{\alpha}\otimes\ket{m}_v,\qquad
+  \alpha\in\{g,e\}.$$
+  <p>
+    El hamiltoniano libre de cavidad, después de quitar su energía de punto
+    cero, es
+  </p>
+  $$\hat H_{\text{cav}}=\hbar\Omega\,\hat a^\dagger\hat a,$$
+  <p>
+    donde $\Omega$ es la frecuencia del modo de cavidad y
+    $[\hat a,\hat a^\dagger]=1$. Si hay $n$ fotones,
+    $\hat a^\dagger\hat a\ket{n}_c=n\ket{n}_c$, y la energía fotónica es
+    $\hbar\Omega n$.
+  </p>
+  <p>
+    La molécula se acopla al campo mediante el momento dipolar de la transición
+    electrónica. Aplicando la aproximación dipolar y la aproximación de onda
+    rotante al acoplamiento $-\hat{\mathbf d}\cdot\hat{\mathbf E}$, queda el
+    término análogo al de Jaynes-Cummings:
+  </p>
+  $$\hat H_{\text{int}}=\hbar g\left(\hat\sigma^\dagger\hat a+\hat\sigma\hat a^\dagger\right).$$
+  <p>
+    Así, el hamiltoniano de Holstein-Cummings para una sola molécula es
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\hat H_{\text{HC}}=
+    \hbar\Omega\hat a^\dagger\hat a
+    +\hbar\omega_0\hat\sigma^\dagger\hat\sigma
+    +\hbar\nu\hat b^\dagger\hat b
+    -\hbar\nu\lambda(\hat b^\dagger+\hat b)\hat\sigma^\dagger\hat\sigma
+    +\hbar g\left(\hat\sigma^\dagger\hat a+\hat\sigma\hat a^\dagger\right).\;}$$
+  </div>
+  <p>
+    Este modelo acopla la transición electrónica molecular con la vibración y
+    con la cavidad. No incluye un acoplamiento directo cavidad-vibración. Un
+    término de ese tipo tendría la forma
+  </p>
+  $$\hat H_{\text{cav-vib}}=\hbar\eta(\hat a+\hat a^\dagger)(\hat b+\hat b^\dagger)
+  \simeq \hbar\eta(\hat a\hat b^\dagger+\hat a^\dagger\hat b),$$
+  <p>
+    después de una RWA apropiada. Físicamente no aparece porque la frecuencia
+    electrónica efectiva $\omega_0$ suele estar en el visible o ultravioleta,
+    mientras que la frecuencia vibracional $\nu$ suele estar en el infrarrojo.
+    Un único modo de cavidad con frecuencia $\Omega$ no puede estar
+    simultáneamente en resonancia con $\omega_0$ y con $\nu$ en moléculas
+    reales.
+  </p>
+  <p>
+    Si se pidiera $\Omega\simeq\omega_0\simeq\nu$, entonces
+  </p>
+  $$\omega+\nu\lambda^2\simeq\nu
+  \quad\Rightarrow\quad
+  \lambda\simeq\sqrt{1-\frac{\omega}{\nu}}.$$
+  <p>
+    Para que $\lambda$ sea real se requeriría $\omega<\nu$, pero usualmente
+    $\omega\gg\nu$. Por eso no hay un parámetro real que haga resonantes, al
+    mismo tiempo, los tres subsistemas.
+  </p>
+
+  <h2 id="aproximaciones">5. Aproximaciones físicas</h2>
+  <p>
+    La construcción anterior usa varias aproximaciones:
+  </p>
+  <ul>
+    <li>
+      <strong>Born-Oppenheimer.</strong> Las superficies electrónicas dependen
+      de las coordenadas nucleares porque los núcleos son mucho más pesados que
+      los electrones. La dinámica electrónica se ajusta mucho más rápido que la
+      nuclear.
+    </li>
+    <li>
+      <strong>Aproximación armónica.</strong> Cerca de cada mínimo, las
+      superficies de energía potencial se aproximan por parábolas.
+    </li>
+    <li>
+      <strong>Dos niveles electrónicos efectivos.</strong> Aunque una molécula
+      real tiene muchos estados electrónicos, se retiene una transición
+      dominante $\ket{g}\leftrightarrow\ket{e}$.
+    </li>
+    <li>
+      <strong>Aproximación dipolar y RWA óptica.</strong> El acoplamiento con la
+      cavidad se reduce a
+      $\hbar g(\hat\sigma^\dagger\hat a+\hat\sigma\hat a^\dagger)$.
+    </li>
+  </ul>
+
+  <h2 id="modos">6. Coordenada efectiva y modos vibracionales</h2>
+  <p>
+    Para una molécula de $N_a$ átomos hay $3N_a$ coordenadas nucleares. Si la
+    molécula no es lineal, tres corresponden a traslaciones globales y tres a
+    rotaciones. Esas seis coordenadas no cambian la geometría interna, solo
+    mueven o giran la molécula completa. Por eso quedan $3N_a-6$ modos
+    vibracionales internos. Para una molécula lineal quedan $3N_a-5$, porque
+    una rotación alrededor del eje molecular no cambia la configuración.
+  </p>
+  <p>
+    En principio las superficies dependen de todas las coordenadas normales,
+  </p>
+  $$V=V(Q_1,Q_2,\ldots,Q_{3N_a-6}).$$
+  <p>
+    Si el proceso relevante ocurre principalmente a lo largo de una dirección,
+    se introduce una coordenada de reacción efectiva
+  </p>
+  $$q=c_1Q_1+c_2Q_2+\cdots+c_{3N_a-6}Q_{3N_a-6}.$$
+  <p>
+    Esta coordenada representa la combinación de desplazamientos nucleares que
+    más se acopla a la transición electrónica. Para una molécula diatómica,
+    puede coincidir con la distancia internuclear.
+  </p>
+
+  <h2 id="conservacion">7. Número de excitaciones conservado</h2>
+  <p>
+    Comparando con Jaynes-Cummings,
+  </p>
+  $$\hat H_{\text{JC}}=
+  \hbar\Omega\hat a^\dagger\hat a
+  +\frac{1}{2}\hbar\omega\,\hat\sigma_z
+  +\hbar g(\hat\sigma^\dagger\hat a+\hat\sigma\hat a^\dagger),$$
+  <p>
+    se observa que el HC contiene el mismo intercambio resonante
+    electrón-fotón, pero añade el modo vibracional y el acoplamiento de
+    Holstein. Por eso se pregunta si el número de excitaciones ópticas
+  </p>
+  $$\hat N=\hat a^\dagger\hat a+\hat\sigma^\dagger\hat\sigma$$
+  <p>
+    sigue siendo constante de movimiento. El término vibracional
+    $\hbar\nu\hat b^\dagger\hat b$ conmuta con $\hat N$ porque actúa en otro
+    espacio de Hilbert. El término de Holstein también conmuta con $\hat N$:
+    contiene $\hat b^\dagger+\hat b$, que solo cambia fonones, y
+    $\hat\sigma^\dagger\hat\sigma$, que proyecta sobre el estado excitado pero
+    no cambia el número de excitaciones electrónicas.
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;[\hat H_{\text{HC}},\hat N]=0.\;}$$
+  </div>
+  <p>
+    Los fonones no entran en $\hat N$ porque cambian el desplazamiento
+    vibracional, pero no crean ni destruyen excitaciones electrónicas ni
+    fotones. Esta conservación permite dividir el hamiltoniano en bloques de
+    excitación electrónica-fotónica fija.
+  </p>
+
+  <h2 id="bloques">8. Bloques electrón-fotón</h2>
+  <p>
+    Para $n\geq1$ excitaciones ópticas, los estados electrón-fotón relevantes son
+  </p>
+  $$\ket{e,n-1},\qquad \ket{g,n},$$
+  <p>
+    porque ambos tienen el mismo valor de $\hat N$: el primero tiene una
+    excitación electrónica y $n-1$ fotones, mientras que el segundo tiene cero
+    excitaciones electrónicas y $n$ fotones. El hamiltoniano no mezcla este
+    bloque con otro valor de $n$.
+  </p>
+  <p>
+    Se calcula la matriz de bloque en la base ordenada
+    $\{\ket{e,n-1},\ket{g,n}\}$, dejando los operadores vibracionales
+    $\hat b,\hat b^\dagger$ sin diagonalizar. Los elementos diagonales son
+  </p>
+  $$\bra{e,n-1}\hat H_{\text{HC}}\ket{e,n-1}
+  =
+  \hbar\left[\Omega(n-1)+\omega_0+\nu\hat b^\dagger\hat b
+  -\nu\lambda(\hat b^\dagger+\hat b)\right],$$
+  $$\bra{g,n}\hat H_{\text{HC}}\ket{g,n}
+  =
+  \hbar\left[\Omega n+\nu\hat b^\dagger\hat b\right].$$
+  <p>
+    La diferencia aparece porque solo la rama excitada
+    $\ket{e,n-1}$ siente el desplazamiento de Holstein. Los términos fuera de
+    la diagonal provienen del acoplamiento Cummings:
+  </p>
+  $$\bra{e,n-1}\hat H_{\text{HC}}\ket{g,n}
+  =
+  \bra{g,n}\hat H_{\text{HC}}\ket{e,n-1}
+  =
+  \hbar g\sqrt n.$$
+  <p>
+    Por tanto,
+  </p>
+  $$\hat H_{\text{HC}}^{(n)}
+  =
+  \hbar
+  \begin{pmatrix}
+  \Omega(n-1)+\omega_0+\nu\hat b^\dagger\hat b-\nu\lambda(\hat b^\dagger+\hat b)
+  &
+  g\sqrt n\\
+  g\sqrt n
+  &
+  \Omega n+\nu\hat b^\dagger\hat b
+  \end{pmatrix}.$$
+  <p>
+    Factorizando $\Omega n+\nu\hat b^\dagger\hat b$, común a la diagonal, y
+    definiendo
+  </p>
+  $$\Delta=\omega_0-\Omega,$$
+  <p>
+    se obtiene
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\hat H_{\text{HC}}^{(n)}
+    =
+    \hbar\left(\Omega n+\nu\hat b^\dagger\hat b\right)\mathbf{1}_{2\times2}
+    +
+    \hbar
+    \begin{pmatrix}
+    \Delta-\nu\lambda(\hat b^\dagger+\hat b) & g\sqrt n\\
+    g\sqrt n & 0
+    \end{pmatrix}.\;}$$
+  </div>
+  <p>
+    Esta forma todavía no es la forma simétrica típica de un modelo de Rabi,
+    porque el acoplamiento vibracional aparece solo en la entrada superior.
+  </p>
+
+  <h2 id="desplazamiento">9. Desplazamiento vibracional del bloque</h2>
+  <p>
+    Para manipular el bloque se introducen operadores auxiliares que actúan
+    dentro del subespacio $\{\ket{e,n-1},\ket{g,n}\}$:
+  </p>
+  $$\hat\tau^{(n)\dagger}=\ket{e,n-1}\bra{g,n},\qquad
+  \hat\tau^{(n)}=\ket{g,n}\bra{e,n-1},$$
+  $$\hat\tau_z^{(n)}=\ket{e,n-1}\bra{e,n-1}-\ket{g,n}\bra{g,n},\qquad
+  \hat\tau_x^{(n)}=\hat\tau^{(n)\dagger}+\hat\tau^{(n)}.$$
+  <p>
+    Estos operadores de subida y bajada no son los operadores electrónicos
+    físicos $\hat\sigma^\dagger$ y $\hat\sigma$. Cambian simultáneamente el
+    estado electrónico y el número de fotones para permanecer dentro del bloque
+    $n$.
+  </p>
+  <p>
+    El proyector sobre la rama excitada del bloque es
+  </p>
+  $$\hat P_e^{(n)}=\ket{e,n-1}\bra{e,n-1}
+  =\frac{\mathbf{1}_{2\times2}+\hat\tau_z^{(n)}}{2}.$$
+  <p>
+    Con esto,
+  </p>
+  $$\hat H_{\text{HC}}^{(n)}
+  =
+  \hbar\left(\Omega n+\nu\hat b^\dagger\hat b\right)\mathbf{1}
+  +\hbar\left[\Delta-\nu\lambda(\hat b^\dagger+\hat b)\right]\hat P_e^{(n)}
+  +\hbar g\sqrt n\,\hat\tau_x^{(n)}.$$
+  <p>
+    Sustituyendo $\hat P_e^{(n)}$,
+  </p>
+  $$\hat H_{\text{HC}}^{(n)}
+  =
+  \hbar\left[\Omega n+\nu\hat b^\dagger\hat b
+  +\frac{\Delta}{2}
+  -\frac{\nu\lambda}{2}(\hat b+\hat b^\dagger)\right]\mathbf{1}
+  +\frac{\hbar}{2}\left[\Delta-\nu\lambda(\hat b+\hat b^\dagger)\right]\hat\tau_z^{(n)}
+  +\hbar g\sqrt n\,\hat\tau_x^{(n)}.$$
+  <p>
+    El término lineal proporcional a
+    $\hat b+\hat b^\dagger$ en la parte identidad representa una fuerza
+    uniforme sobre el oscilador vibracional. Se elimina desplazando el origen
+    del oscilador en el espacio de fase con
+  </p>
+  $$\hat D(\alpha)=e^{\alpha\hat b^\dagger-\alpha^*\hat b}.$$
+  <p>
+    Para $\alpha$ real,
+  </p>
+  $$\hat D^\dagger(\alpha)\hat b\,\hat D(\alpha)=\hat b+\alpha,\qquad
+  \hat D^\dagger(\alpha)\hat b^\dagger\hat D(\alpha)=\hat b^\dagger+\alpha.$$
+  <p>
+    Con $\alpha=\lambda/2$ se define
+  </p>
+  $$\tilde H_{\text{HC}}^{(n)}=
+  \hat D^\dagger\!\left(\frac{\lambda}{2}\right)
+  \hat H_{\text{HC}}^{(n)}
+  \hat D\!\left(\frac{\lambda}{2}\right).$$
+  <p>
+    Esto equivale a sustituir
+    $\hat b\to\hat b+\lambda/2$ y
+    $\hat b^\dagger\to\hat b^\dagger+\lambda/2$. Al hacerlo,
+  </p>
+  $$\nu\left(\hat b^\dagger+\frac{\lambda}{2}\right)
+  \left(\hat b+\frac{\lambda}{2}\right)
+  -\frac{\nu\lambda}{2}\left(\hat b+\hat b^\dagger+\lambda\right)
+  =
+  \nu\hat b^\dagger\hat b-\frac{\nu\lambda^2}{4}.$$
+  <p>
+    Por tanto,
+  </p>
+  $$\tilde H_{\text{HC}}^{(n)}
+  =
+  \hbar\left[\Omega n+\nu\hat b^\dagger\hat b
+  +\frac{\Delta}{2}-\frac{\nu\lambda^2}{4}\right]\mathbf{1}
+  +\frac{\hbar}{2}\left[\Delta-\nu\lambda^2-\nu\lambda(\hat b+\hat b^\dagger)\right]\hat\tau_z^{(n)}
+  +\hbar g\sqrt n\,\hat\tau_x^{(n)}.$$
+  <p>
+    Se impone la condición
+  </p>
+  $$\Delta=\nu\lambda^2.$$
+  <p>
+    Como $\Delta=\omega_0-\Omega$ y $\omega_0=\omega+\nu\lambda^2$, esta
+    condición implica
+  </p>
+  $$\omega+\nu\lambda^2-\Omega=\nu\lambda^2
+  \quad\Rightarrow\quad
+  \Omega=\omega.$$
+  <p>
+    Es decir, la cavidad queda sintonizada con la transición electrónica natural
+    entre mínimos, no con la transición vertical $\omega_0$. Con esta elección,
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\tilde H_{\text{HC}}^{(n)}
+    =
+    \hbar\left[\Omega n+\frac{\nu\lambda^2}{4}
+    +\nu\hat b^\dagger\hat b\right]\mathbf{1}
+    +\frac{\hbar}{2}
+    \begin{pmatrix}
+    -\nu\lambda(\hat b+\hat b^\dagger) & 2g\sqrt n\\
+    2g\sqrt n & \nu\lambda(\hat b+\hat b^\dagger)
+    \end{pmatrix}.\;}$$
+  </div>
+
+  <h2 id="polaritones">10. Base polaritónica</h2>
+  <p>
+    El término Cummings que falta por diagonalizar es proporcional a
+    $\hat\tau_x^{(n)}$. Sus eigenestados son las combinaciones simétrica y
+    antisimétrica:
+  </p>
+  <div class="boxed def">
+    $$\boxed{\;\ket{\pm,n}=\frac{\ket{e,n-1}\pm\ket{g,n}}{\sqrt2}.\;}$$
+  </div>
+  <p>
+    Estos son los polaritones del bloque resonante: ya no son molécula excitada
+    con $n-1$ fotones o molécula base con $n$ fotones por separado, sino
+    superposiciones coherentes de ambas posibilidades. En resonancia, cada
+    polaritón tiene mitad carácter material y mitad carácter fotónico.
+  </p>
+  <p>
+    En esta base se definen operadores de subida y bajada polaritónicos:
+  </p>
+  $$\hat S^{(n)\dagger}=\ket{+,n}\bra{-,n},\qquad
+  \hat S^{(n)}=\ket{-,n}\bra{+,n},$$
+  $$\hat S_z^{(n)}=\hat S^{(n)\dagger}\hat S^{(n)}-\hat S^{(n)}\hat S^{(n)\dagger},\qquad
+  \hat S_x^{(n)}=\hat S^{(n)\dagger}+\hat S^{(n)}.$$
+  <p>
+    Una cuenta directa da
+  </p>
+  $$\hat S_z^{(n)}=\hat\tau_x^{(n)},\qquad
+  \hat S_x^{(n)}=\hat\tau_z^{(n)}.$$
+  <p>
+    Por eso el hamiltoniano desplazado se reescribe como
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\tilde H_{\text{HC}}^{(n)}
+    =
+    \hbar\left[\Omega n+\frac{\nu\lambda^2}{4}
+    +\nu\hat b^\dagger\hat b\right]\mathbf{1}
+    +\hbar g\sqrt n\,\hat S_z^{(n)}
+    -\frac{\hbar\nu\lambda}{2}(\hat b+\hat b^\dagger)\hat S_x^{(n)}.\;}$$
+  </div>
+  <p>
+    En esta forma, cada bloque corresponde a un modelo de Rabi cuántico donde
+    el sistema de dos niveles efectivo no es la molécula desnuda, sino el
+    doblete polaritónico $\{\ket{+,n},\ket{-,n}\}$. El modo bosónico que se
+    acopla a ese pseudoespín no es la cavidad, sino la vibración molecular.
+  </p>
+
+  <h2 id="rwa">11. JCP efectivo polaritón-fonón</h2>
+  <p>
+    El acoplamiento polaritón-vibración se expande como
+  </p>
+  $$(\hat b+\hat b^\dagger)\hat S_x^{(n)}
+  =
+  \hat b\hat S^{(n)\dagger}
+  +\hat b^\dagger\hat S^{(n)}
+  +\hat b\hat S^{(n)}
+  +\hat b^\dagger\hat S^{(n)\dagger}.$$
+  <p>
+    Los primeros dos términos conservan energía cerca de la resonancia
+    polaritón-fonón: $\hat b\hat S^{(n)\dagger}$ destruye un fonón y sube el
+    polaritón, mientras que $\hat b^\dagger\hat S^{(n)}$ crea un fonón y baja
+    el polaritón. Los otros dos términos son contra-rotantes: bajan ambos
+    subsistemas o suben ambos subsistemas simultáneamente.
+  </p>
+  <p>
+    Aplicando una RWA análoga a la de Jaynes-Cummings se obtiene
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\tilde H_{\text{ef}}^{(n)}
+    =
+    \hbar\left[\Omega n+\frac{\nu\lambda^2}{4}
+    +\nu\hat b^\dagger\hat b\right]\mathbf{1}
+    +\hbar g\sqrt n\,\hat S_z^{(n)}
+    -\frac{\hbar\nu\lambda}{2}
+    \left(\hat b\hat S^{(n)\dagger}
+    +\hat b^\dagger\hat S^{(n)}\right).\;}$$
+  </div>
+  <p>
+    Este hamiltoniano es del tipo Jaynes-Cummings-Paul, pero ahora el modo
+    bosónico es el fonón y el pseudoátomo es el doblete polaritónico.
+  </p>
+  <p>
+    La constante de movimiento del hamiltoniano efectivo es el número
+    polaritón-fonón
+  </p>
+  <div class="boxed def">
+    $$\boxed{\;\hat M^{(n)}=\hat b^\dagger\hat b+\hat S^{(n)\dagger}\hat S^{(n)},\qquad
+    [\tilde H_{\text{ef}}^{(n)},\hat M^{(n)}]=0.\;}$$
+  </div>
+  <p>
+    Esto ocurre porque $\hat b\hat S^{(n)\dagger}$ destruye un fonón y sube el
+    polaritón, mientras que $\hat b^\dagger\hat S^{(n)}$ crea un fonón y baja
+    el polaritón. En ambos casos, la suma total se conserva.
+  </p>
+
+  <h2 id="dobletes">12. Diagonalización de dobletes</h2>
+  <p>
+    Para $m>0$, la base relevante con número $\hat M^{(n)}=m$ es
+  </p>
+  $$\ket{+,n,m-1},\qquad \ket{-,n,m}.$$
+  <p>
+    El primer estado tiene $m-1$ fonones y una excitación polaritónica superior.
+    El segundo tiene $m$ fonones y el polaritón inferior. Ambos tienen el mismo
+    valor de $\hat M^{(n)}$.
+  </p>
+  <p>
+    Se usan las acciones
+  </p>
+  $$\hat S_z^{(n)}\ket{+,n,m}=+\ket{+,n,m},\qquad
+  \hat S_z^{(n)}\ket{-,n,m}=-\ket{-,n,m},$$
+  $$\hat S^{(n)\dagger}\ket{-,n,m}=\ket{+,n,m},\qquad
+  \hat S^{(n)}\ket{+,n,m}=\ket{-,n,m},$$
+  $$\hat b^\dagger\ket{\pm,n,m}=\sqrt{m+1}\ket{\pm,n,m+1},\qquad
+  \hat b\ket{\pm,n,m}=\sqrt m\,\ket{\pm,n,m-1}.$$
+  <p>
+    Los elementos diagonales son
+  </p>
+  $$\bra{+,n,m-1}\tilde H_{\text{ef}}^{(n)}\ket{+,n,m-1}
+  =
+  \hbar\left[\Omega n+\frac{\nu\lambda^2}{4}+\nu(m-1)+g\sqrt n\right],$$
+  $$\bra{-,n,m}\tilde H_{\text{ef}}^{(n)}\ket{-,n,m}
+  =
+  \hbar\left[\Omega n+\frac{\nu\lambda^2}{4}+\nu m-g\sqrt n\right].$$
+  <p>
+    Los términos fuera de la diagonal provienen de
+    $-\hbar\nu\lambda(\hat b\hat S^\dagger+\hat b^\dagger\hat S)/2$:
+  </p>
+  $$\bra{+,n,m-1}\tilde H_{\text{ef}}^{(n)}\ket{-,n,m}
+  =
+  \bra{-,n,m}\tilde H_{\text{ef}}^{(n)}\ket{+,n,m-1}
+  =
+  -\frac{\hbar\nu\lambda}{2}\sqrt m.$$
+  <p>
+    Así, en la base ordenada
+    $\{\ket{+,n,m-1},\ket{-,n,m}\}$,
+  </p>
+  $$\tilde H_{\text{ef}}^{(n,m)}
+  =
+  \hbar
+  \begin{pmatrix}
+  \Omega n+\frac{\nu\lambda^2}{4}+\nu(m-1)+g\sqrt n
+  &
+  -\frac{\nu\lambda}{2}\sqrt m\\
+  -\frac{\nu\lambda}{2}\sqrt m
+  &
+  \Omega n+\frac{\nu\lambda^2}{4}+\nu m-g\sqrt n
+  \end{pmatrix}.$$
+  <p>
+    El promedio de la diagonal es
+  </p>
+  $$A_{nm}=\Omega n+\frac{\nu\lambda^2}{4}+\nu\left(m-\frac{1}{2}\right),$$
+  <p>
+    y la diferencia entre las dos entradas diagonales es
+  </p>
+  $$2g\sqrt n-\nu.$$
+  <p>
+    Se define la desintonización polaritón-fonón
+  </p>
+  $$\delta_n=2g\sqrt n-\nu.$$
+  <p>
+    Entonces
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\tilde H_{\text{ef}}^{(n,m)}
+    =
+    \hbar A_{nm}\mathbf{1}_{2\times2}
+    +
+    \frac{\hbar}{2}
+    \begin{pmatrix}
+    \delta_n & -\nu\lambda\sqrt m\\
+    -\nu\lambda\sqrt m & -\delta_n
+    \end{pmatrix}.\;}$$
+  </div>
+  <p>
+    La resonancia efectiva ocurre cuando
+  </p>
+  $$\delta_n=0\quad\Rightarrow\quad \nu=2g\sqrt n,$$
+  <p>
+    es decir, cuando la separación entre los polaritones del bloque $n$ coincide
+    con la frecuencia vibracional.
+  </p>
+  <p>
+    Para simplificar la diagonalización se define
+  </p>
+  $$k_m=\nu\lambda\sqrt m.$$
+  <p>
+    Entonces el hamiltoniano del doblete puede escribirse como
+  </p>
+  $$\tilde H_{\text{ef}}^{(n,m)}
+  =
+  \hbar A_{nm}\mathbf{1}_{2\times2}
+  +
+  \frac{\hbar}{2}
+  \begin{pmatrix}
+  \delta_n & -k_m\\
+  -k_m & -\delta_n
+  \end{pmatrix}.$$
+  <p>
+    El primer término suma la misma energía a los dos estados del doblete. Al
+    ser proporcional a la identidad, desplaza los eigenvalores pero no modifica
+    los eigenvectores. Por eso basta con diagonalizar la matriz del segundo
+    término.
+  </p>
+  <p>
+    Para diagonalizar la parte no trivial se resuelve
+  </p>
+  $$\det
+  \begin{pmatrix}
+  \delta_n-\epsilon & -k_m\\
+  -k_m & -\delta_n-\epsilon
+  \end{pmatrix}=0.$$
+  <p>
+    Esto da
+  </p>
+  $$-(\delta_n^2-\epsilon^2)-k_m^2=0
+  \quad\Rightarrow\quad
+  \epsilon^2=\delta_n^2+k_m^2.$$
+  <p>
+    Se define la frecuencia de Rabi efectiva del doblete $(n,m)$:
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\Omega_{nm}^{\text{ef}}=
+    \sqrt{\delta_n^2+k_m^2}
+    =
+    \sqrt{\delta_n^2+\nu^2\lambda^2m}
+    =
+    \sqrt{(2g\sqrt n-\nu)^2+\nu^2\lambda^2m}.\;}$$
+  </div>
+  <p>
+    Los eigenvalores son
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;E_{nm}^{\pm}=
+    \hbar\left[
+    \Omega n+\frac{\nu\lambda^2}{4}
+    +\nu\left(m-\frac{1}{2}\right)
+    \pm\frac{1}{2}\Omega_{nm}^{\text{ef}}
+    \right].\;}$$
+  </div>
+  <p>
+    Para obtener los eigenvectores se trabaja con la parte no trivial
+  </p>
+  $$M_{nm}=
+  \begin{pmatrix}
+  \delta_n & -k_m\\
+  -k_m & -\delta_n
+  \end{pmatrix},$$
+  <p>
+    porque el término $\hbar A_{nm}\mathbf{1}_{2\times2}$ solo desplaza la
+    energía. En la base ordenada
+    $\{\ket{+,n,m-1},\ket{-,n,m}\}$, un vector arbitrario se escribe como
+  </p>
+  $$\ket{u}=u\ket{+,n,m-1}+v\ket{-,n,m}
+  \quad\Longleftrightarrow\quad
+  \begin{pmatrix}u\\v\end{pmatrix}.$$
+  <p>
+    Primero se toma el eigenvalor positivo de $M_{nm}$,
+    $\epsilon=+\Omega_{nm}^{\text{ef}}$. Entonces
+  </p>
+  $$
+  \begin{pmatrix}
+  \delta_n & -k_m\\
+  -k_m & -\delta_n
+  \end{pmatrix}
+  \begin{pmatrix}u\\v\end{pmatrix}
+  =
+  \Omega_{nm}^{\text{ef}}
+  \begin{pmatrix}u\\v\end{pmatrix}.
+  $$
+  <p>
+    Multiplicando la matriz se obtiene el sistema
+  </p>
+  $$
+  u\delta_n-vk_m=\Omega_{nm}^{\text{ef}}u,\qquad
+  -uk_m-v\delta_n=\Omega_{nm}^{\text{ef}}v.
+  $$
+  <p>
+    De la primera ecuación,
+  </p>
+  $$
+  -vk_m=(\Omega_{nm}^{\text{ef}}-\delta_n)u
+  \quad\Rightarrow\quad
+  -\frac{v}{u}=
+  \frac{\Omega_{nm}^{\text{ef}}-\delta_n}{k_m}.
+  $$
+  <p>
+    Se elige entonces
+  </p>
+  $$u=C_{nm},\qquad v=-S_{nm},$$
+  <p>
+    con lo cual
+  </p>
+  $$
+  \ket{E_{nm}^{+}}
+  =
+  C_{nm}\ket{+,n,m-1}-S_{nm}\ket{-,n,m},
+  \qquad
+  \frac{S_{nm}}{C_{nm}}=
+  \frac{\Omega_{nm}^{\text{ef}}-\delta_n}{k_m}.
+  $$
+  <p>
+    Para normalizar se impone $\braket{E_{nm}^{+}|E_{nm}^{+}}=1$. Como la base
+    es ortonormal, resulta
+  </p>
+  $$C_{nm}^2+S_{nm}^2=1.$$
+  <p>
+    Tomando $C_{nm},S_{nm}\in\mathbb{R}^{+}$ y definiendo
+    $r=S_{nm}/C_{nm}$, se tiene
+  </p>
+  $$
+  C_{nm}^2+S_{nm}^2
+  =
+  C_{nm}^2+C_{nm}^2r^2
+  =
+  C_{nm}^2(1+r^2)=1,
+  $$
+  $$
+  \Rightarrow\qquad
+  C_{nm}^2=\frac{1}{1+r^2}.
+  $$
+  <p>
+    Además,
+  </p>
+  $$
+  (\Omega_{nm}^{\text{ef}})^2=\delta_n^2+k_m^2
+  \quad\Rightarrow\quad
+  k_m^2=(\Omega_{nm}^{\text{ef}})^2-\delta_n^2
+  =
+  (\Omega_{nm}^{\text{ef}}-\delta_n)(\Omega_{nm}^{\text{ef}}+\delta_n).
+  $$
+  <p>
+    Por tanto,
+  </p>
+  $$
+  r^2=
+  \left(\frac{\Omega_{nm}^{\text{ef}}-\delta_n}{k_m}\right)^2
+  =
+  \frac{\Omega_{nm}^{\text{ef}}-\delta_n}
+  {\Omega_{nm}^{\text{ef}}+\delta_n}.
+  $$
+  <p>
+    Al sustituir este resultado en la normalización,
+  </p>
+  $$
+  C_{nm}^2=
+  \frac{1}{1+\dfrac{\Omega_{nm}^{\text{ef}}-\delta_n}
+  {\Omega_{nm}^{\text{ef}}+\delta_n}}
+  =
+  \frac{\Omega_{nm}^{\text{ef}}+\delta_n}
+  {2\Omega_{nm}^{\text{ef}}},
+  $$
+  $$
+  S_{nm}^2=1-C_{nm}^2
+  =
+  \frac{\Omega_{nm}^{\text{ef}}-\delta_n}
+  {2\Omega_{nm}^{\text{ef}}}.
+  $$
+  <p>
+    Así,
+  </p>
+  $$
+  C_{nm}=
+  \sqrt{\frac{\Omega_{nm}^{\text{ef}}+\delta_n}
+  {2\Omega_{nm}^{\text{ef}}}},
+  \qquad
+  S_{nm}=
+  \sqrt{\frac{\Omega_{nm}^{\text{ef}}-\delta_n}
+  {2\Omega_{nm}^{\text{ef}}}}.
+  $$
+  <p>
+    Para el eigenvalor negativo, $\epsilon=-\Omega_{nm}^{\text{ef}}$, se tiene
+  </p>
+  $$
+  \begin{pmatrix}
+  \delta_n & -k_m\\
+  -k_m & -\delta_n
+  \end{pmatrix}
+  \begin{pmatrix}u\\v\end{pmatrix}
+  =
+  -\Omega_{nm}^{\text{ef}}
+  \begin{pmatrix}u\\v\end{pmatrix}.
+  $$
+  <p>
+    De nuevo, al multiplicar la matriz,
+  </p>
+  $$
+  u\delta_n-vk_m=-\Omega_{nm}^{\text{ef}}u,\qquad
+  -uk_m-v\delta_n=-\Omega_{nm}^{\text{ef}}v.
+  $$
+  <p>
+    De la segunda ecuación se obtiene
+  </p>
+  $$
+  uk_m=(\Omega_{nm}^{\text{ef}}-\delta_n)v
+  \quad\Rightarrow\quad
+  \frac{u}{v}=
+  \frac{\Omega_{nm}^{\text{ef}}-\delta_n}{k_m}.
+  $$
+  <p>
+    Por eso se escoge
+  </p>
+  $$u=S_{nm},\qquad v=C_{nm},$$
+  <p>
+    y el eigenvector negativo queda
+  </p>
+  $$
+  \ket{E_{nm}^{-}}
+  =
+  S_{nm}\ket{+,n,m-1}+C_{nm}\ket{-,n,m}.
+  $$
+  <p>
+    De esta forma los dos eigenvectores son ortogonales:
+  </p>
+  $$
+  \braket{E_{nm}^{+}|E_{nm}^{-}}
+  =
+  C_{nm}S_{nm}-S_{nm}C_{nm}
+  =
+  0.
+  $$
+  <p>
+    Ahora se construye el ángulo de mezcla. Como
+  </p>
+  $$
+  (\Omega_{nm}^{\text{ef}})^2=\delta_n^2+k_m^2
+  \quad\Rightarrow\quad
+  1=
+  \left(\frac{\delta_n}{\Omega_{nm}^{\text{ef}}}\right)^2
+  +
+  \left(\frac{k_m}{\Omega_{nm}^{\text{ef}}}\right)^2,
+  $$
+  <p>
+    se puede definir
+  </p>
+  $$\cos\theta_{nm}=\frac{\delta_n}{\Omega_{nm}^{\text{ef}}},
+  \qquad
+  \sin\theta_{nm}=\frac{k_m}{\Omega_{nm}^{\text{ef}}}
+  =
+  \frac{\nu\lambda\sqrt m}{\Omega_{nm}^{\text{ef}}}.$$
+  <p>
+    Con estas dos relaciones se fija el cuadrante del ángulo. En particular,
+    cuando la razón está bien definida,
+  </p>
+  $$\tan\theta_{nm}=\frac{k_m}{\delta_n}.$$
+  <p>
+    Las identidades de medio ángulo dan
+  </p>
+  $$
+  \cos^2\left(\frac{\theta_{nm}}{2}\right)
+  =
+  \frac{1+\cos\theta_{nm}}{2}
+  =
+  \frac{1}{2}\left(1+\frac{\delta_n}{\Omega_{nm}^{\text{ef}}}\right)
+  =
+  \frac{\Omega_{nm}^{\text{ef}}+\delta_n}
+  {2\Omega_{nm}^{\text{ef}}},
+  $$
+  $$
+  \sin^2\left(\frac{\theta_{nm}}{2}\right)
+  =
+  \frac{1-\cos\theta_{nm}}{2}
+  =
+  \frac{1}{2}\left(1-\frac{\delta_n}{\Omega_{nm}^{\text{ef}}}\right)
+  =
+  \frac{\Omega_{nm}^{\text{ef}}-\delta_n}
+  {2\Omega_{nm}^{\text{ef}}}.
+  $$
+  <p>
+    Comparando con las constantes de normalización,
+  </p>
+  $$C_{nm}=\cos\left(\frac{\theta_{nm}}{2}\right),\qquad
+  S_{nm}=\sin\left(\frac{\theta_{nm}}{2}\right).$$
+  <p>
+    De esta manera, los eigenvectores son
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\ket{E_{nm}^{+}}=
+    \cos\left(\frac{\theta_{nm}}{2}\right)\ket{+,n,m-1}
+    -
+    \sin\left(\frac{\theta_{nm}}{2}\right)\ket{-,n,m},\;}$$
+    $$\boxed{\;\ket{E_{nm}^{-}}=
+    \sin\left(\frac{\theta_{nm}}{2}\right)\ket{+,n,m-1}
+    +
+    \cos\left(\frac{\theta_{nm}}{2}\right)\ket{-,n,m}.\;}$$
+  </div>
+  <p>
+    Si $\delta_n=0$, entonces $\theta_{nm}=\pi/2$ y los eigenestados son
+    superposiciones equilibradas de $\ket{+,n,m-1}$ y $\ket{-,n,m}$. Por otro
+    lado, si $|\delta_n|\gg |k_m|$, el acoplamiento mezcla débilmente los dos
+    estados. En particular, para $\delta_n>0$ se tiene $\theta_{nm}\ll1$ y los
+    eigenestados se parecen mucho a los estados desnudos de la base efectiva.
+  </p>
+
+  <h2 id="sectores">13. Sectores del modelo</h2>
+  <p>
+    La base diagonal del hamiltoniano efectivo se organiza en tres sectores.
+  </p>
+  <h3>13.1. Sector $n=0$</h3>
+  <p>
+    Si $n=0$, no hay fotones en el campo y la molécula está en el estado base.
+    El único estado electrón-fotón posible es $\ket{g,0}$, porque
+    $\ket{e,-1}$ requeriría un número negativo de fotones. Los estados de este
+    sector son
+  </p>
+  $$\ket{g,0,m},\qquad m=0,1,2,\ldots.$$
+  <p>
+    En este caso solo contribuye la energía vibracional:
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;E_{g,0,m}=\hbar\nu m.\;}$$
+  </div>
+
+  <h3>13.2. Sector $n>0$, $m=0$</h3>
+  <p>
+    Si $n>0$ pero $m=0$, no existe el estado
+    $\ket{+,n,-1}$ porque tendría $-1$ fonones. Solo queda
+    $\ket{-,n,0}$. Este sector es un bloque unidimensional con energía
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;E_{n,0}^{-}=
+    \hbar\left(\Omega n+\frac{\nu\lambda^2}{4}-g\sqrt n\right).\;}$$
+  </div>
+  <p>
+    Este estado tiene el modo vibracional en el vacío.
+  </p>
+
+  <h3>13.3. Sector dinámico $n>0$, $m>0$</h3>
+  <p>
+    Este es el sector verdaderamente dinámico. Para cada par $(n,m)$ hay dos
+    estados con el mismo número polaritón-fonón:
+  </p>
+  $$\ket{+,n,m-1},\qquad \ket{-,n,m}.$$
+  <p>
+    El primer estado tiene $m-1$ fonones y una excitación polaritónica superior;
+    el segundo tiene $m$ fonones y el polaritón inferior. La interacción
+    efectiva produce oscilaciones coherentes entre un fonón vibracional y una
+    excitación polaritónica. Si $\delta_n=0$, ambos estados están en resonancia
+    y se mezclan fuertemente. Si $|\delta_n|$ es grande comparado con
+    $\nu|\lambda|\sqrt m$, la mezcla es débil.
+  </p>
+  <p>
+    En este sector los eigenestados son $\ket{E_{nm}^{\pm}}$ y las energías son
+    $E_{nm}^{\pm}$.
+  </p>
+
+  <h2 id="validez">14. Validez del modelo efectivo</h2>
+  <p>
+    Los pasos que llevan del hamiltoniano HC original al hamiltoniano efectivo
+    $\tilde H_{\text{ef}}^{(n,m)}$ requieren varias condiciones físicas.
+  </p>
+  <p>
+    Primero, el acoplamiento vibracional efectivo debe ser débil frente a la
+    frecuencia vibracional:
+  </p>
+  $$\nu\gg\frac{\nu|\lambda|}{2}
+  \quad\Rightarrow\quad
+  |\lambda|\ll 2.$$
+  <p>
+    Esto impide que el desplazamiento entre superficies sea tan grande que los
+    términos contra-rotantes del modelo de Rabi fonónico se vuelvan importantes.
+    Como $\lambda^2$ es el factor de Huang-Rhys, esta condición corresponde a un
+    régimen vibro-electrónico débil o moderado.
+  </p>
+  <p>
+    Segundo, debe cumplirse la resonancia fonón-polaritón:
+  </p>
+  $$\nu\simeq 2g\sqrt n
+  \quad\Rightarrow\quad
+  \delta_n\simeq0.$$
+  <p>
+    Después de pasar a polaritones, la separación energética entre
+    $\ket{+,n}$ y $\ket{-,n}$ es $2\hbar g\sqrt n$. Para que el fonón intercambie
+    energía de manera eficiente con el pseudoespín polaritónico, su frecuencia
+    debe coincidir aproximadamente con esa separación.
+  </p>
+  <p>
+    Tercero, se impuso
+  </p>
+  $$\Delta=\nu\lambda^2,\qquad \Delta=\omega_0-\Omega,\qquad
+  \omega_0=\omega+\nu\lambda^2.$$
+  <p>
+    Por tanto,
+  </p>
+  $$\Omega=\omega.$$
+  <p>
+    Físicamente, la cavidad queda sintonizada con la transición electrónica
+    natural entre mínimos. Esta condición elimina el término estático residual
+    que quedaría en el pseudoespín después del desplazamiento.
+  </p>
+  <p>
+    Un conjunto típico de escalas, tomando $g$ como unidad, puede organizarse
+    como
+  </p>
+  $$\Omega=1000g,\qquad \nu=\alpha g,\qquad
+  \nu\lambda\simeq0.01g,\qquad \omega_0=\Omega+\nu\lambda^2.$$
+  <p>
+    De $\nu\lambda\simeq0.01g$ se sigue
+  </p>
+  $$\alpha g\,\lambda\simeq0.01g
+  \quad\Rightarrow\quad
+  \lambda^2\simeq\frac{10^{-4}}{\alpha^2}.$$
+  <p>
+    La energía de reorganización es entonces
+  </p>
+  $$\nu\lambda^2\simeq\frac{10^{-4}}{\alpha}g.$$
+  <p>
+    La resonancia fonón-polaritón exige $\alpha\simeq2\sqrt n$. Para $n=1$,
+    $\alpha\simeq2$, de modo que $\lambda\simeq0.005$ y
+    $\nu\lambda^2\simeq5\times10^{-5}g$. Estas escalas son físicamente posibles,
+    aunque describen un acoplamiento vibro-electrónico extremadamente débil.
+  </p>
+  <p>
+    La conclusión de validez es
+  </p>
+  <div class="boxed result">
+    $$\boxed{\;\Omega,\omega,\omega_0\gg g,\nu,\nu|\lambda|.\;}$$
+  </div>
+  <p>
+    La escala óptica debe ser mucho más rápida que la dinámica efectiva
+    polaritón-fonón.
+  </p>
+
+  <h2 id="observables">15. Valores esperados</h2>
+  <p>
+    La diagonalización se hizo en un espacio desplazado. Si
+  </p>
+  $$\ket{\tilde\Psi(t)}
+  =
+  \hat D^\dagger\!\left(\frac{\lambda}{2}\right)\ket{\Psi(t)},$$
+  <p>
+    entonces cualquier valor esperado físico debe calcularse como
+  </p>
+  <div class="boxed def">
+    $$\boxed{\;\langle\hat O\rangle
+    =
+    \bra{\Psi(t)}\hat O\ket{\Psi(t)}
+    =
+    \bra{\tilde\Psi(t)}
+    \hat D^\dagger\!\left(\frac{\lambda}{2}\right)
+    \hat O
+    \hat D\!\left(\frac{\lambda}{2}\right)
+    \ket{\tilde\Psi(t)}.\;}$$
+  </div>
+  <p>
+    Si $\hat O$ actúa solo en el espacio electrónico o fotónico, conmuta con
+    $\hat D(\lambda/2)$ porque el desplazamiento actúa únicamente sobre el modo
+    vibracional. En ese caso, el valor esperado es igual en el espacio físico y
+    en el espacio desplazado.
+  </p>
+  <p>
+    Si $\hat O$ depende de $\hat b$, $\hat b^\dagger$, $\hat q$, $\hat p$ o
+    $\hat b^\dagger\hat b$, entonces el operador sí debe transformarse. Por
+    ejemplo,
+  </p>
+  $$\hat D^\dagger\!\left(\frac{\lambda}{2}\right)\hat b\,
+  \hat D\!\left(\frac{\lambda}{2}\right)=\hat b+\frac{\lambda}{2},$$
+  $$\hat D^\dagger\!\left(\frac{\lambda}{2}\right)\hat b^\dagger\hat b\,
+  \hat D\!\left(\frac{\lambda}{2}\right)
+  =
+  \left(\hat b^\dagger+\frac{\lambda}{2}\right)
+  \left(\hat b+\frac{\lambda}{2}\right).$$
+  <p>
+    Solo los observables que no "ven" el desplazamiento son invariantes.
+  </p>
+
+  <h2 id="tesis">16. Conexión con la tesis</h2>
+  <p>
+    El resultado central de esta nota es que el hamiltoniano de
+    Holstein-Cummings para una molécula puede reducirse, bajo condiciones
+    físicas claras, a dobletes efectivos del tipo Jaynes-Cummings-Paul entre
+    polaritones y fonones. La diagonalización ocurre en dos niveles. Primero se
+    forman polaritones a partir de la mezcla coherente entre molécula y cavidad.
+    Después, el acoplamiento de Holstein mezcla esos polaritones con el modo
+    vibracional.
+  </p>
+  <p>
+    Para dos moléculas, la estrategia natural será conservar esta organización:
+    construir el hamiltoniano completo, identificar el número de excitaciones
+    ópticas conservado, elegir una base por sectores y analizar cómo los modos
+    vibracionales intramoleculares modifican la estructura polaritónica. La
+    dificultad nueva es que habrá más ramas electrónicas y más caminos de
+    intercambio mediado por la cavidad. El caso de una molécula fija la notación
+    y el criterio físico para no perderse en esa extensión.
+  </p>
+
+  <blockquote>
+    El modelo HC muestra que la vibración molecular no se acopla directamente a
+    la cavidad. Entra al problema porque el carácter electrónico de los
+    polaritones hereda el desplazamiento de Holstein. Esa es la pieza que se
+    debe rastrear con cuidado al pasar de una molécula a dos.
+  </blockquote>
+
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 1 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

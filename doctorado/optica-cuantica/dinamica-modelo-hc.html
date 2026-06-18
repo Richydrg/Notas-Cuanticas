@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dinámica del modelo HC · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams',
+    macros: {
+      Real: '\\operatorname{Re}',
+      Imag: '\\operatorname{Im}'
+    }
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Dinámica del modelo HC
+</div>
+
+<div class="container">
+<article class="note">
+
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <ellipse cx="30" cy="34" rx="22" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2.4" transform="rotate(-18 30 34)"/>
+      <ellipse cx="34" cy="30" rx="22" ry="8" fill="none" stroke="#d4453a" stroke-width="2.4" transform="rotate(22 34 30)"/>
+      <circle cx="20" cy="34" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.8"/>
+      <circle cx="44" cy="30" r="5" fill="#fff3d8" stroke="#6b48a6" stroke-width="1.8"/>
+      <path d="M17 50 C27 57 40 56 49 47" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M45 44 l5 3 -2 -6" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M51 16 C41 8 28 9 19 18" stroke="#d4453a" stroke-width="2" fill="none"/>
+      <path d="M23 21 l-5 -3 2 6" stroke="#d4453a" stroke-width="2" fill="none"/>
+    </svg>
+    <h1>Dinámica del modelo HC</h1>
+    <div class="author">Evolución exacta por dobletes · Paquetes vibracionales coherentes</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Dina%CC%81mica%20del%20Modelo%20HC.pdf" target="_blank">📄 PDF original</a>
+      <a href="dinamica-modelo-hc.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="dinamica-modelo-hc.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#objetivo">Objetivo y punto de partida</a></li>
+      <li><a href="#inicial">Estado inicial tripartito</a></li>
+      <li><a href="#polaritones">Base polaritónica</a></li>
+      <li><a href="#dobletes">Dobletes dinámicos</a></li>
+      <li><a href="#eigenestados">Eigenestados del doblete</a></li>
+      <li><a href="#evolucion-doblete">Evolución exacta de un doblete</a></li>
+      <li><a href="#estado-completo">Estado completo</a></li>
+      <li><a href="#base-electronica">Regreso a la base electrónica</a></li>
+      <li><a href="#coherente">Vibración coherente</a></li>
+      <li><a href="#linealizacion">Linealización</a></li>
+      <li><a href="#paquete">Paquete coherente evolucionado</a></li>
+      <li><a href="#variables">Variables dinámicas</a></li>
+      <li><a href="#lectura">Lectura física</a></li>
+    </ol>
+  </div>
+
+  <h2 id="objetivo">1. Objetivo y punto de partida</h2>
+  <p>
+    La construcción del modelo de Holstein-Cummings condujo a un hamiltoniano
+    efectivo en el que un doblete polaritónico intercambia una excitación con
+    el modo vibracional. Para el bloque con $n>0$ excitaciones ópticas,
+  </p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    \tilde H_{\mathrm{ef}}^{(n)}
+    &=
+    \hbar\left[\Omega n+\frac{\nu\lambda^2}{4}
+    +\nu\hat b^\dagger\hat b\right]\mathbb{1}
+    +\hbar g\sqrt n\,\hat S_z^{(n)}
+    \\
+    &\quad-\frac{\hbar\nu\lambda}{2}
+    \left(\hat b\hat S^{(n)\dagger}
+    +\hat b^\dagger\hat S^{(n)}\right).
+    \end{aligned}}$$
+  </div>
+  <p>
+    La interacción conserva el número efectivo polaritón-fonón:
+  </p>
+  <div class="boxed def">
+    $$\boxed{\hat M^{(n)}
+    =\hat b^\dagger\hat b+\hat S^{(n)\dagger}\hat S^{(n)},
+    \qquad[\tilde H_{\mathrm{ef}}^{(n)},\hat M^{(n)}]=0.}$$
+  </div>
+  <p>
+    Por ello, para cada $n>0$ y $m>0$, la evolución queda confinada al doblete
+  </p>
+  <div class="boxed result">
+    $$\boxed{\mathcal H_{nm}
+    =\operatorname{span}\{\ket{+,n,m-1},\ket{-,n,m}\}.}$$
+  </div>
+  <p>
+    El primer estado tiene al polaritón superior y $m-1$ fonones; el segundo,
+    al polaritón inferior y $m$ fonones. Ambos poseen el mismo valor $m$ de
+    $\hat M^{(n)}$. El objetivo será determinar la amplitud inicial de cada
+    doblete, evolucionarlo exactamente y reconstruir el estado completo.
+  </p>
+
+  <h2 id="inicial">2. Estado inicial tripartito</h2>
+  <p>
+    Se parte de un estado producto entre el campo, la parte electrónica de la
+    molécula y su vibración:
+  </p>
+  <div class="boxed result">
+    $$\boxed{\ket{\Psi(0)}=\ket{\alpha}\otimes\ket{\phi}\otimes\ket{\beta}.}$$
+  </div>
+  $$\ket{\alpha}=\sum_{n=0}^{\infty}c_n\ket n,\qquad
+  \ket{\phi}=c_g\ket g+c_e\ket e,\qquad
+  \ket{\beta}=\sum_{m=0}^{\infty}c_m^{(v)}\ket m.$$
+  <p>
+    Los coeficientes están normalizados. Se escribe $c_m^{(v)}$ para distinguir
+    la distribución vibracional de la distribución fotónica $c_n$.
+  </p>
+
+  <h3>Estado vibracional desplazado</h3>
+  <p>
+    El hamiltoniano efectivo actúa en una coordenada vibracional desplazada. En
+    la convención del manuscrito de dinámica se introduce
+  </p>
+  <div class="boxed def">
+    $$\boxed{\ket{\tilde\beta}
+    =\hat D\!\left(\frac{\lambda}{2}\right)\ket{\beta},
+    \qquad
+    \hat D(\gamma)=e^{\gamma\hat b^\dagger-\gamma^*\hat b}.}$$
+  </div>
+  <p>
+    Si $\ket{\beta}=\hat D(\beta)\ket0$, se usa
+  </p>
+  $$\hat D(\alpha)\hat D(\beta)=
+  \exp\!\left[\frac{\alpha\beta^*-\alpha^*\beta}{2}\right]
+  \hat D(\alpha+\beta).$$
+  <p>
+    Tomando $\alpha=\lambda/2$,
+  </p>
+  $$\ket{\tilde\beta}
+  =\exp\!\left[\frac{\lambda\beta^*-\lambda^*\beta}{4}\right]
+  \ket{\beta+\lambda/2}.$$
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\beta}=\ket{\beta+\lambda/2}
+    \qquad(\lambda,\beta\in\mathbb R).}$$
+  </div>
+  <p>
+    Para $\lambda$ real y $\beta$ complejo, el factor que acompaña al estado es
+    únicamente una fase global. La nota de construcción del hamiltoniano usa
+    también la convención opuesta
+    $\ket{\tilde\Psi}=\hat D^\dagger(\lambda/2)\ket{\Psi}$, que produce
+    $\beta-\lambda/2$. Ambas convenciones son equivalentes si se mantiene
+    consistente el signo del desplazamiento. Toda la dinámica se expresará en
+    términos de los coeficientes del estado transformado:
+  </p>
+  <div class="boxed def">
+    $$\boxed{\ket{\tilde\beta}
+    =\sum_{m=0}^{\infty}\tilde c_m\ket m,
+    \qquad\sum_{m=0}^{\infty}|\tilde c_m|^2=1.}$$
+  </div>
+  <p>Así, el estado que se evoluciona con $\tilde H_{\mathrm{ef}}$ es</p>
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\Psi(0)}
+    =\left(\sum_{n=0}^{\infty}c_n\ket n\right)
+    (c_g\ket g+c_e\ket e)
+    \left(\sum_{m=0}^{\infty}\tilde c_m\ket m\right).}$$
+  </div>
+
+  <h2 id="polaritones">3. Parte óptico-electrónica en la base polaritónica</h2>
+  <p>Primero se reorganiza el producto entre el campo y la molécula:</p>
+  $$\ket{\Psi_{\mathrm{op-el}}(0)}
+  =\sum_{n=0}^{\infty}c_nc_g\ket{g,n}
+  +\sum_{n=0}^{\infty}c_nc_e\ket{e,n}.$$
+  <p>
+    Los dos estados que forman el bloque de $n$ excitaciones son
+    $\ket{e,n-1}$ y $\ket{g,n}$. Se reindexa la suma excitada,
+  </p>
+  $$\sum_{n=0}^{\infty}c_nc_e\ket{e,n}
+  =\sum_{n=1}^{\infty}c_{n-1}c_e\ket{e,n-1},$$
+  <p>y se separa el estado especial $\ket{g,0}$:</p>
+  $$\sum_{n=0}^{\infty}c_nc_g\ket{g,n}
+  =c_0c_g\ket{g,0}+\sum_{n=1}^{\infty}c_nc_g\ket{g,n}.$$
+  <div class="boxed result">
+    $$\boxed{\ket{\Psi_{\mathrm{op-el}}(0)}
+    =c_0c_g\ket{g,0}
+    +\sum_{n=1}^{\infty}
+    \left(c_{n-1}c_e\ket{e,n-1}+c_nc_g\ket{g,n}\right).}$$
+  </div>
+  <p>En resonancia, los polaritones son</p>
+  <div class="boxed def">
+    $$\boxed{\ket{\pm,n}
+    =\frac{1}{\sqrt2}\left(\ket{e,n-1}\pm\ket{g,n}\right).}$$
+  </div>
+  <p>Las relaciones inversas se obtienen sumando y restando:</p>
+  $$\ket{e,n-1}=\frac{\ket{+,n}+\ket{-,n}}{\sqrt2},\qquad
+  \ket{g,n}=\frac{\ket{+,n}-\ket{-,n}}{\sqrt2}.$$
+  <p>Al sustituirlas dentro de cada bloque,</p>
+  $$c_{n-1}c_e\ket{e,n-1}+c_nc_g\ket{g,n}
+  =\frac{c_{n-1}c_e+c_nc_g}{\sqrt2}\ket{+,n}
+  +\frac{c_{n-1}c_e-c_nc_g}{\sqrt2}\ket{-,n}.$$
+  <div class="boxed def">
+    $$\boxed{d_n^\pm=\frac{c_{n-1}c_e\pm c_nc_g}{\sqrt2},
+    \qquad n\geq1.}$$
+  </div>
+  <div class="boxed result">
+    $$\boxed{\ket{\Psi_{\mathrm{op-el}}(0)}
+    =c_0c_g\ket{g,0}
+    +\sum_{n=1}^{\infty}\left(d_n^+\ket{+,n}+d_n^-\ket{-,n}\right).}$$
+  </div>
+  <p>
+    Las amplitudes $d_n^\pm$ reúnen la distribución fotónica y la
+    superposición electrónica inicial: indican cuánto del bloque $n$ ocupa
+    cada rama polaritónica.
+  </p>
+
+  <h2 id="dobletes">4. Organización en dobletes dinámicos</h2>
+  <p>Al recuperar la vibración desplazada,</p>
+  $$\begin{aligned}
+  \ket{\tilde\Psi(0)}
+  &=
+  c_0c_g\sum_{m=0}^{\infty}\tilde c_m\ket{g,0,m}
+  \\
+  &\quad+\sum_{n=1}^{\infty}\sum_{m=0}^{\infty}
+  \tilde c_m\left(d_n^+\ket{+,n,m}+d_n^-\ket{-,n,m}\right).
+  \end{aligned}$$
+  <p>
+    El hamiltoniano acopla $\ket{+,n,m-1}$ con $\ket{-,n,m}$. Por eso se
+    reindexa la contribución del polaritón superior:
+  </p>
+  $$\sum_{m=0}^{\infty}\tilde c_md_n^+\ket{+,n,m}
+  =\sum_{m=1}^{\infty}\tilde c_{m-1}d_n^+\ket{+,n,m-1}.$$
+  <p>En la rama inferior se separa el estado sin fonones:</p>
+  $$\sum_{m=0}^{\infty}\tilde c_md_n^-\ket{-,n,m}
+  =\tilde c_0d_n^-\ket{-,n,0}
+  +\sum_{m=1}^{\infty}\tilde c_md_n^-\ket{-,n,m}.$$
+  <p>
+    El estado $\ket{-,n,0}$ está aislado porque su posible compañero
+    $\ket{+,n,-1}$ no existe. Por tanto,
+  </p>
+  $$\begin{aligned}
+  \ket{\tilde\Psi(0)}
+  &=
+  c_0c_g\sum_{m=0}^{\infty}\tilde c_m\ket{g,0,m}
+  +\sum_{n=1}^{\infty}\tilde c_0d_n^-\ket{-,n,0}
+  \\
+  &\quad+\sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+  \left(\tilde c_{m-1}d_n^+\ket{+,n,m-1}
+  +\tilde c_md_n^-\ket{-,n,m}\right).
+  \end{aligned}$$
+  <p>La parte que intercambia excitaciones es</p>
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\Psi_{\mathrm{din}}(0)}
+    =\sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+    \left(a_{nm}\ket{+,n,m-1}+b_{nm}\ket{-,n,m}\right),}$$
+  </div>
+  <div class="boxed def">
+    $$\boxed{a_{nm}=\tilde c_{m-1}d_n^+,\qquad
+    b_{nm}=\tilde c_md_n^-.}$$
+  </div>
+  <p>Para un doblete fijo,</p>
+  <div class="boxed result">
+    $$\boxed{\ket{\psi_{nm}(0)}
+    =a_{nm}\ket{+,n,m-1}+b_{nm}\ket{-,n,m}.}$$
+  </div>
+  <p>
+    $a_{nm}$ combina la amplitud del polaritón superior con la de tener
+    $m-1$ fonones; $b_{nm}$ combina la amplitud del polaritón inferior con la
+    de tener $m$ fonones.
+  </p>
+
+  <h2 id="eigenestados">5. Eigenestados de cada doblete</h2>
+  <p>La diagonalización previa proporciona el siguiente conjunto de cantidades:</p>
+  <div class="boxed def">
+    $$\boxed{\begin{aligned}
+    A_{nm}&=\Omega n+\frac{\nu\lambda^2}{4}+\nu\left(m-\frac12\right),\\
+    \delta_n&=2g\sqrt n-\nu,\\
+    k_m&=\nu\lambda\sqrt m,\\
+    \Omega_{nm}^{\mathrm{ef}}
+    &=\sqrt{\delta_n^2+k_m^2}
+    =\sqrt{(2g\sqrt n-\nu)^2+\nu^2\lambda^2m}.
+    \end{aligned}}$$
+  </div>
+  <p>
+    $A_{nm}$ fija el centro energético del doblete. $\delta_n$ compara la
+    separación polaritónica con la frecuencia vibracional. $k_m$ es el
+    acoplamiento dentro del doblete y $\Omega_{nm}^{\mathrm{ef}}$ es su
+    frecuencia de Rabi efectiva.
+  </p>
+  <div class="boxed def">
+    $$\boxed{\begin{aligned}
+    C_{nm}&=\sqrt{\frac{\Omega_{nm}^{\mathrm{ef}}+\delta_n}
+    {2\Omega_{nm}^{\mathrm{ef}}}}
+    =\cos\frac{\theta_{nm}}{2},\\
+    S_{nm}&=\sqrt{\frac{\Omega_{nm}^{\mathrm{ef}}-\delta_n}
+    {2\Omega_{nm}^{\mathrm{ef}}}}
+    =\sin\frac{\theta_{nm}}{2}.
+    \end{aligned}}$$
+  </div>
+  $$C_{nm}^2+S_{nm}^2=1,$$
+  <div class="boxed def">
+    $$\boxed{C_{nm}^2-S_{nm}^2
+    =\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}},
+    \qquad
+    2C_{nm}S_{nm}=\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}.}$$
+  </div>
+  <div class="boxed result">
+    $$\boxed{\ket{E_{nm}^{+}}
+    =C_{nm}\ket{+,n,m-1}-S_{nm}\ket{-,n,m},}$$
+    $$\boxed{\ket{E_{nm}^{-}}
+    =S_{nm}\ket{+,n,m-1}+C_{nm}\ket{-,n,m}.}$$
+  </div>
+  <div class="boxed result">
+    $$\boxed{E_{nm}^{\pm}
+    =\hbar\left(A_{nm}\pm\frac{\Omega_{nm}^{\mathrm{ef}}}{2}\right).}$$
+  </div>
+  <p>
+    La matriz de mezcla es ortogonal, de modo que su inversa es su transpuesta:
+  </p>
+  <div class="boxed def">
+    $$\boxed{\ket{+,n,m-1}
+    =C_{nm}\ket{E_{nm}^{+}}+S_{nm}\ket{E_{nm}^{-}},}$$
+    $$\boxed{\ket{-,n,m}
+    =-S_{nm}\ket{E_{nm}^{+}}+C_{nm}\ket{E_{nm}^{-}}.}$$
+  </div>
+
+  <h2 id="evolucion-doblete">6. Evolución exacta de un doblete</h2>
+  <p>Al sustituir las relaciones inversas en el estado inicial,</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    \ket{\psi_{nm}(0)}
+    &=(a_{nm}C_{nm}-b_{nm}S_{nm})\ket{E_{nm}^{+}}\\
+    &\quad+(a_{nm}S_{nm}+b_{nm}C_{nm})\ket{E_{nm}^{-}}.
+    \end{aligned}}$$
+  </div>
+  <p>Como los eigenestados únicamente acumulan sus fases dinámicas,</p>
+  $$\hat U_{nm}(t)\ket{E_{nm}^{\pm}}
+  =e^{-iE_{nm}^{\pm}t/\hbar}\ket{E_{nm}^{\pm}}.$$
+  <p>La evolución en la base de energía es</p>
+  $$\begin{aligned}
+  \ket{\psi_{nm}(t)}
+  &=e^{-iA_{nm}t}\Big[
+  e^{-i\Omega_{nm}^{\mathrm{ef}}t/2}
+  (a_{nm}C_{nm}-b_{nm}S_{nm})\ket{E_{nm}^{+}}
+  \\
+  &\qquad+
+  e^{+i\Omega_{nm}^{\mathrm{ef}}t/2}
+  (a_{nm}S_{nm}+b_{nm}C_{nm})\ket{E_{nm}^{-}}
+  \Big].
+  \end{aligned}$$
+
+  <h3>Regreso a la base polaritón-fonón</h3>
+  <div class="boxed def">
+    $$\boxed{\ket{\psi_{nm}(t)}
+    =p_{nm}^{+}(t)\ket{+,n,m-1}+p_{nm}^{-}(t)\ket{-,n,m}.}$$
+  </div>
+  <p>Antes de simplificar, las amplitudes son</p>
+  $$\begin{aligned}
+  p_{nm}^{+}(t)
+  &=e^{-iA_{nm}t}\Big[
+  C_{nm}e^{-i\Omega_{nm}^{\mathrm{ef}}t/2}(a_{nm}C_{nm}-b_{nm}S_{nm})\\
+  &\qquad+S_{nm}e^{+i\Omega_{nm}^{\mathrm{ef}}t/2}
+  (a_{nm}S_{nm}+b_{nm}C_{nm})\Big],
+  \end{aligned}$$
+  $$\begin{aligned}
+  p_{nm}^{-}(t)
+  &=e^{-iA_{nm}t}\Big[
+  -S_{nm}e^{-i\Omega_{nm}^{\mathrm{ef}}t/2}(a_{nm}C_{nm}-b_{nm}S_{nm})\\
+  &\qquad+C_{nm}e^{+i\Omega_{nm}^{\mathrm{ef}}t/2}
+  (a_{nm}S_{nm}+b_{nm}C_{nm})\Big].
+  \end{aligned}$$
+  <p>
+    Definiendo $x=\Omega_{nm}^{\mathrm{ef}}t/2$ y agrupando términos,
+  </p>
+  $$C_{nm}^2e^{-ix}+S_{nm}^2e^{ix}
+  =\cos x-i\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}\sin x,$$
+  $$C_{nm}S_{nm}(e^{ix}-e^{-ix})
+  =i\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}\sin x.$$
+  <p>Por tanto, las amplitudes exactas del doblete son</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    p_{nm}^{+}(t)
+    &=e^{-iA_{nm}t}\Bigg[
+    \left(\cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+    -i\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\right)a_{nm}\\
+    &\qquad+i\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\,b_{nm}
+    \Bigg],
+    \end{aligned}}$$
+    $$\boxed{\begin{aligned}
+    p_{nm}^{-}(t)
+    &=e^{-iA_{nm}t}\Bigg[
+    i\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\,a_{nm}\\
+    &\qquad+
+    \left(\cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+    +i\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\right)b_{nm}
+    \Bigg].
+    \end{aligned}}$$
+  </div>
+  <p>Escribiéndolas directamente en términos del estado inicial,</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    p_{nm}^{+}(t)
+    &=e^{-iA_{nm}t}\Bigg[
+    \left(\cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+    -i\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\right)\tilde c_{m-1}d_n^+\\
+    &\qquad+i\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\tilde c_md_n^-
+    \Bigg],
+    \end{aligned}}$$
+    $$\boxed{\begin{aligned}
+    p_{nm}^{-}(t)
+    &=e^{-iA_{nm}t}\Bigg[
+    i\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\tilde c_{m-1}d_n^+\\
+    &\qquad+
+    \left(\cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+    +i\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\right)\tilde c_md_n^-
+    \Bigg].
+    \end{aligned}}$$
+  </div>
+  <p>
+    Los términos diagonales describen la amplitud que permanece en la misma
+    rama. Los términos proporcionales a $k_m/\Omega_{nm}^{\mathrm{ef}}$
+    describen la transferencia entre ramas acompañada por la absorción o
+    emisión de un fonón.
+  </p>
+
+  <h2 id="estado-completo">7. Evolución exacta del estado completo</h2>
+  <p>La suma de todos los dobletes dinámicos es</p>
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\Psi_{\mathrm{din}}(t)}
+    =\sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+    \left[p_{nm}^{+}(t)\ket{+,n,m-1}
+    +p_{nm}^{-}(t)\ket{-,n,m}\right].}$$
+  </div>
+  <p>
+    Esta expresión aún no contiene los sectores desacoplados. Para $n=0$,
+    $\ket{g,0,m}$ tiene energía $E_{g,0,m}=\hbar\nu m$. Para $n>0$ y $m=0$,
+    el estado aislado $\ket{-,n,0}$ tiene energía
+  </p>
+  $$E_{n,0}^{-}
+  =\hbar\left(\Omega n+\frac{\nu\lambda^2}{4}-g\sqrt n\right).$$
+  <p>La evolución completa, incluyendo todos los sectores, es</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    \ket{\tilde\Psi(t)}
+    &=
+    c_0c_g\sum_{m=0}^{\infty}
+    \tilde c_me^{-i\nu mt}\ket{g,0,m}\\
+    &\quad+\sum_{n=1}^{\infty}
+    \tilde c_0d_n^-e^{-iE_{n,0}^{-}t/\hbar}\ket{-,n,0}\\
+    &\quad+\sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+    \left[p_{nm}^{+}(t)\ket{+,n,m-1}
+    +p_{nm}^{-}(t)\ket{-,n,m}\right].
+    \end{aligned}}$$
+  </div>
+  <p>
+    Los dos primeros renglones solo acumulan fases porque no tienen un estado
+    compañero permitido. El tercer renglón contiene toda la dinámica de
+    intercambio polaritón-fonón.
+  </p>
+
+  <h3>Diccionario completo del resultado</h3>
+  <p>
+    Todas las cantidades necesarias para usar la evolución completa se reúnen
+    aquí:
+  </p>
+  <div class="boxed def">
+    $$\boxed{\begin{aligned}
+    d_n^\pm&=\frac{c_{n-1}c_e\pm c_nc_g}{\sqrt2},\\
+    a_{nm}&=\tilde c_{m-1}d_n^+,\qquad
+    b_{nm}=\tilde c_md_n^-,\\
+    A_{nm}&=\Omega n+\frac{\nu\lambda^2}{4}
+    +\nu\left(m-\frac12\right),\\
+    \delta_n&=2g\sqrt n-\nu,\qquad
+    k_m=\nu\lambda\sqrt m,\\
+    \Omega_{nm}^{\mathrm{ef}}&=\sqrt{\delta_n^2+k_m^2},\\
+    C_{nm}&=\sqrt{\frac{\Omega_{nm}^{\mathrm{ef}}+\delta_n}
+    {2\Omega_{nm}^{\mathrm{ef}}}},\qquad
+    S_{nm}=\sqrt{\frac{\Omega_{nm}^{\mathrm{ef}}-\delta_n}
+    {2\Omega_{nm}^{\mathrm{ef}}}},\\
+    E_{nm}^{\pm}&=\hbar\left(A_{nm}
+    \pm\frac{\Omega_{nm}^{\mathrm{ef}}}{2}\right).
+    \end{aligned}}$$
+  </div>
+
+  <h2 id="base-electronica">8. Regreso a la base electrónica</h2>
+  <p>
+    Para calcular poblaciones electrónicas se escriben los polaritones en la
+    base desnuda:
+  </p>
+  $$\ket{+,n,m-1}=\frac{1}{\sqrt2}
+  \left(\ket{n-1,m-1}\ket e+\ket{n,m-1}\ket g\right),$$
+  $$\ket{-,n,m}=\frac{1}{\sqrt2}
+  \left(\ket{n-1,m}\ket e-\ket{n,m}\ket g\right).$$
+  <p>
+    Aquí $\ket{n,m}$ representa el estado conjunto del campo y la vibración.
+    Sustituyendo y agrupando según el estado electrónico,
+  </p>
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\Psi_{\mathrm{din}}(t)}
+    =\ket{\chi_g(t)}\ket g+\ket{\chi_e(t)}\ket e,}$$
+  </div>
+  <div class="boxed def">
+    $$\boxed{\ket{\chi_g(t)}
+    =\frac{1}{\sqrt2}\sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+    \left[p_{nm}^{+}(t)\ket{n,m-1}
+    -p_{nm}^{-}(t)\ket{n,m}\right],}$$
+    $$\boxed{\ket{\chi_e(t)}
+    =\frac{1}{\sqrt2}\sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+    \left[p_{nm}^{+}(t)\ket{n-1,m-1}
+    +p_{nm}^{-}(t)\ket{n-1,m}\right].}$$
+  </div>
+  <p>
+    Estos estados condicionales no están normalizados en general. Sus normas
+    representan las poblaciones electrónicas del sector dinámico y cada uno
+    conserva las correlaciones entre campo y vibración condicionadas al estado
+    electrónico.
+  </p>
+
+  <h2 id="coherente">9. Vibración inicial coherente</h2>
+  <p>Si el estado vibracional desplazado es coherente,</p>
+  <div class="boxed def">
+    $$\boxed{\ket{\tilde\beta}
+    =\sum_{m=0}^{\infty}\tilde c_m\ket m,\qquad
+    \tilde c_m=e^{-|\tilde\beta|^2/2}
+    \frac{\tilde\beta^m}{\sqrt{m!}}.}$$
+  </div>
+  <p>La distribución de fonones es de Poisson:</p>
+  <div class="boxed def">
+    $$\boxed{P_m=|\tilde c_m|^2=e^{-M}\frac{M^m}{m!},
+    \qquad M=|\tilde\beta|^2.}$$
+  </div>
+  $$\langle m\rangle=M,\qquad
+  \Delta m=\sqrt M,\qquad
+  \frac{\Delta m}{M}=\frac{1}{\sqrt M}.$$
+  <p>
+    Cuando $M\gg1$, la distribución está concentrada alrededor de $m=M$ y las
+    cantidades que varían lentamente con $m$ pueden evaluarse cerca de ese
+    centro.
+  </p>
+
+  <h3>Relación entre coeficientes vecinos</h3>
+  $$\frac{\tilde c_m}{\tilde c_{m-1}}
+  =\frac{\tilde\beta}{\sqrt m}.$$
+  <p>
+    Para los términos dominantes $m\simeq M=|\tilde\beta|^2$,
+  </p>
+  $$\frac{\tilde c_m}{\tilde c_{m-1}}
+  \simeq\frac{\tilde\beta}{|\tilde\beta|}.$$
+  <div class="boxed result">
+    $$\boxed{\tilde c_m\simeq\tilde c_{m-1}
+    \qquad(m\simeq M,\ \tilde\beta>0).}$$
+  </div>
+  <p>
+    Si $\tilde\beta$ es complejo debe conservarse la fase
+    $\tilde\beta/|\tilde\beta|$.
+  </p>
+
+  <h2 id="linealizacion">10. Linealización de la frecuencia efectiva</h2>
+  <p>La frecuencia depende de $m$ mediante</p>
+  $$\Omega_{nm}^{\mathrm{ef}}
+  =\sqrt{\delta_n^2+\nu^2\lambda^2m}.$$
+  <p>Su expansión de Taylor de primer orden alrededor de $m=M$ es</p>
+  $$\Omega_{nm}^{\mathrm{ef}}
+  \simeq\Omega_{nM}^{\mathrm{ef}}
+  +(m-M)\left.\frac{\partial\Omega_{nm}^{\mathrm{ef}}}{\partial m}\right|_{m=M}.$$
+  <p>La derivada se obtiene como</p>
+  $$\frac{\partial\Omega_{nm}^{\mathrm{ef}}}{\partial m}
+  =\frac12(\delta_n^2+\nu^2\lambda^2m)^{-1/2}\nu^2\lambda^2
+  =\frac{\nu^2\lambda^2}{2\Omega_{nm}^{\mathrm{ef}}}.$$
+  <div class="boxed def">
+    $$\boxed{\Omega_{nM}^{\mathrm{ef}\prime}
+    =\frac{\nu^2\lambda^2}{2\Omega_{nM}^{\mathrm{ef}}}.}$$
+  </div>
+  <p>Definiendo</p>
+  <div class="boxed def">
+    $$\boxed{\varphi_{nM}
+    =\Omega_{nM}^{\mathrm{ef}}
+    -M\Omega_{nM}^{\mathrm{ef}\prime},}$$
+  </div>
+  <p>la frecuencia linealizada es</p>
+  <div class="boxed result">
+    $$\boxed{\Omega_{nm}^{\mathrm{ef}}
+    \simeq\varphi_{nM}+m\Omega_{nM}^{\mathrm{ef}\prime}.}$$
+  </div>
+  <p>
+    $\varphi_{nM}$ produce una fase común para cada rama; el término lineal en
+    $m$ rota el estado coherente en el espacio de fase. Dentro de la misma
+    región estrecha de la distribución se toma
+  </p>
+  <div class="boxed def">
+    $$\boxed{C_{nm}\simeq C_{nM}\equiv C,\qquad
+    S_{nm}\simeq S_{nM}\equiv S.}$$
+  </div>
+
+  <h2 id="paquete">11. Evolución aproximada del paquete coherente</h2>
+  <p>
+    Usando $\tilde c_{m-1}\simeq\tilde c_m$, el estado inicial de un doblete en
+    la base de energía es
+  </p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    \ket{\psi_{nm}(0)}
+    &\simeq\tilde c_m(d_n^+C-d_n^-S)\ket{E_{nm}^{+}}\\
+    &\quad+\tilde c_m(d_n^+S+d_n^-C)\ket{E_{nm}^{-}}.
+    \end{aligned}}$$
+  </div>
+  <p>Después de evolucionar,</p>
+  $$\begin{aligned}
+  \ket{\psi_{nm}(t)}
+  &\simeq\tilde c_me^{-iA_{nM}t}\Big[
+  (d_n^+C-d_n^-S)e^{-i\Omega_{nm}^{\mathrm{ef}}t/2}\ket{E_{nm}^{+}}\\
+  &\qquad+(d_n^+S+d_n^-C)e^{+i\Omega_{nm}^{\mathrm{ef}}t/2}\ket{E_{nm}^{-}}
+  \Big],
+  \end{aligned}$$
+  <div class="boxed def">
+    $$\boxed{A_{nM}
+    =\Omega n+\frac{\nu\lambda^2}{4}+\nu\left(M-\frac12\right).}$$
+  </div>
+  <p>La linealización separa las fases:</p>
+  $$e^{\mp i\Omega_{nm}^{\mathrm{ef}}t/2}
+  \simeq e^{\mp i\varphi_{nM}t/2}
+  e^{\mp im\Omega_{nM}^{\mathrm{ef}\prime}t/2}.$$
+
+  <h3>Sumas como estados coherentes rotados</h3>
+  <p>Para cualquier ángulo $\gamma$,</p>
+  <div class="boxed result">
+    $$\boxed{\sum_{m=0}^{\infty}
+    \tilde c_me^{\mp im\gamma}\ket m
+    =\ket{\tilde\beta e^{\mp i\gamma}}.}$$
+  </div>
+  <p>
+    Para los estados con un fonón menos se cambia $r=m-1$ y se usa
+    $\tilde c_{r+1}\simeq\tilde c_r$:
+  </p>
+  $$\begin{aligned}
+  \sum_{m=1}^{\infty}\tilde c_me^{-im\gamma}\ket{m-1}
+  &=\sum_{r=0}^{\infty}\tilde c_{r+1}e^{-i(r+1)\gamma}\ket r\\
+  &\simeq e^{-i\gamma}\ket{\tilde\beta e^{-i\gamma}}.
+  \end{aligned}$$
+  <div class="boxed result">
+    $$\boxed{\sum_{m=1}^{\infty}
+    \tilde c_me^{\mp im\gamma}\ket{m-1}
+    \simeq e^{\mp i\gamma}\ket{\tilde\beta e^{\mp i\gamma}}.}$$
+  </div>
+
+  <h3>Estado aproximado completo del sector dinámico</h3>
+  <p>Definiendo</p>
+  $$\gamma_{nM}(t)=\frac{\Omega_{nM}^{\mathrm{ef}\prime}t}{2},$$
+  <p>la suma sobre todos los fonones produce</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    \ket{\tilde\Psi_{\mathrm{din}}(t)}
+    &\simeq\sum_{n=1}^{\infty}e^{-iA_{nM}t}\Bigg\{
+    (d_n^+C-d_n^-S)e^{-i\varphi_{nM}t/2}
+    \ket{\tilde\beta e^{-i\gamma_{nM}(t)}}\\
+    &\qquad\otimes
+    \left[Ce^{-i\gamma_{nM}(t)}\ket{+,n}-S\ket{-,n}\right]\\
+    &\quad+(d_n^+S+d_n^-C)e^{+i\varphi_{nM}t/2}
+    \ket{\tilde\beta e^{+i\gamma_{nM}(t)}}\\
+    &\qquad\otimes
+    \left[Se^{+i\gamma_{nM}(t)}\ket{+,n}+C\ket{-,n}\right]
+    \Bigg\}.
+    \end{aligned}}$$
+  </div>
+  <p>
+    El paquete vibracional se divide en dos componentes que giran en sentidos
+    opuestos en el espacio de fase. Cada componente queda correlacionada con
+    una superposición polaritónica diferente, por lo que la evolución genera
+    entrelazamiento polaritón-vibración.
+  </p>
+  <div class="boxed result">
+    $$\boxed{\Delta\vartheta_{nM}(t)
+    =2\gamma_{nM}(t)=\Omega_{nM}^{\mathrm{ef}\prime}t.}$$
+  </div>
+  <p>
+    Mientras los paquetes permanecen superpuestos pueden interferir. Cuando se
+    separan, la vibración almacena información sobre la rama polaritónica y
+    reduce su interferencia.
+  </p>
+
+  <h2 id="variables">12. Variables dinámicas</h2>
+  <p>
+    La interacción efectiva describe un intercambio entre polaritones y
+    fonones. Aun así, pueden estudiarse dos niveles: la dinámica electrónica
+    desnuda $\ket g\leftrightarrow\ket e$ y la dinámica polaritónica
+    $\ket{+,n}\leftrightarrow\ket{-,n}$.
+  </p>
+
+  <h3>Inversión electrónica</h3>
+  <div class="boxed result">
+    $$\boxed{W(t)=\langle\hat\sigma_z(t)\rangle
+    =\bra{\tilde\Psi(t)}\hat\sigma_z\ket{\tilde\Psi(t)}
+    =P_e(t)-P_g(t),}$$
+  </div>
+  $$\hat\sigma_z=\ket e\bra e-\ket g\bra g.$$
+  <div class="boxed def">
+    $$\boxed{P_e(t)=\bra{\tilde\Psi(t)}
+    \left(\ket e\bra e\otimes\mathbb1_{\mathrm{cav}}
+    \otimes\mathbb1_{\mathrm{vib}}\right)\ket{\tilde\Psi(t)},}$$
+    $$\boxed{P_g(t)=\bra{\tilde\Psi(t)}
+    \left(\ket g\bra g\otimes\mathbb1_{\mathrm{cav}}
+    \otimes\mathbb1_{\mathrm{vib}}\right)\ket{\tilde\Psi(t)}.}$$
+  </div>
+  <p>En términos de las ramas condicionadas,</p>
+  <div class="boxed result">
+    $$\boxed{W(t)=\braket{\chi_e(t)|\chi_e(t)}
+    -\braket{\chi_g(t)|\chi_g(t)}.}$$
+  </div>
+  <p>
+    $W=1$ corresponde a la molécula excitada, $W=-1$ al estado base y $W=0$ a
+    poblaciones iguales. Aunque la inversión no depende directamente de la
+    coherencia $\ket e\bra g$, las normas de las ramas contienen las
+    correlaciones creadas con el campo y la vibración.
+  </p>
+
+  <h3>Inversión polaritónica</h3>
+  $$\hat S_z=\sum_{n=1}^{\infty}
+  \left(\ket{+,n}\bra{+,n}-\ket{-,n}\bra{-,n}\right)
+  \otimes\mathbb1_{\mathrm{vib}}.$$
+  <div class="boxed result">
+    $$\boxed{\mathcal W(t)
+    =\langle\hat S_z(t)\rangle
+    =\bra{\tilde\Psi(t)}\hat S_z\ket{\tilde\Psi(t)}.}$$
+  </div>
+  <p>Si $P_{\pm,n}$ es la probabilidad total de cada polaritón sumada sobre fonones,</p>
+  <div class="boxed result">
+    $$\boxed{\mathcal W(t)=\sum_{n=1}^{\infty}
+    \left[P_{+,n}(t)-P_{-,n}(t)\right].}$$
+  </div>
+
+  <h3>Fidelidad del modelo efectivo</h3>
+  <p>
+    Para comparar la evolución del hamiltoniano HC completo con la del modelo
+    efectivo se usa
+  </p>
+  <div class="boxed result">
+    $$\boxed{F(t)=
+    \left|\braket{\Psi_{\mathrm{HC}}(t)|\Psi_{\mathrm{ef}}(t)}\right|^2.}$$
+  </div>
+  <p>
+    Esta notación hace explícita la comparación que el manuscrito escribe como
+    $|\braket{\Psi(t)|\tilde\Psi(t)}|^2$. Si $F(t)\simeq1$, el modelo efectivo
+    reproduce las poblaciones y fases relativas relevantes; una fidelidad baja
+    indica que los términos descartados han acumulado efectos apreciables.
+  </p>
+
+  <h2 id="lectura">13. Lectura física de la solución</h2>
+  <p>
+    La dinámica no posee una única frecuencia. Cada doblete $(n,m)$ evoluciona
+    con
+  </p>
+  <div class="boxed result">
+    $$\boxed{\Omega_{nm}^{\mathrm{ef}}
+    =\sqrt{(2g\sqrt n-\nu)^2+\nu^2\lambda^2m}.}$$
+  </div>
+  <p>
+    La distribución fotónica selecciona distintos valores de $n$ y la
+    distribución vibracional selecciona distintos valores de $m$. El estado
+    total es la superposición coherente de todas esas oscilaciones.
+  </p>
+  <p>En resonancia polaritón-fonón, $\delta_n=0$,</p>
+  <div class="boxed result">
+    $$\boxed{\Omega_{nm}^{\mathrm{ef}}=|k_m|
+    =\nu|\lambda|\sqrt m,\qquad C_{nm}=S_{nm}=\frac{1}{\sqrt2}.}$$
+  </div>
+  <p>
+    La mezcla es máxima y la transferencia entre
+    $\ket{+,n,m-1}$ y $\ket{-,n,m}$ puede ser completa. Lejos de resonancia,
+    $|\delta_n|\gg|k_m|$, la transferencia queda suprimida y los estados
+    acumulan principalmente fases distintas.
+  </p>
+  <blockquote>
+    La solución se organiza en tres pasos: las amplitudes $a_{nm}$ y $b_{nm}$
+    determinan cuánto entra inicialmente a cada doblete; $A_{nm}$,
+    $\delta_n$, $k_m$ y $\Omega_{nm}^{\mathrm{ef}}$ determinan su evolución;
+    finalmente, la suma de todos los sectores reconstruye el estado completo y
+    sus observables.
+  </blockquote>
+
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 4 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

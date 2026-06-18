@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estados del Campo · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams'
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Estados del campo
+</div>
+
+<div class="container">
+<article class="note">
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="26" fill="#fff3d8" stroke="#f3c623" stroke-width="2"/>
+      <path d="M10 40 Q22 28 32 40 T54 40" stroke="#d4453a" stroke-width="2" fill="none"/>
+      <path d="M10 28 Q22 16 32 28 T54 28" stroke="#2b5fb3" stroke-width="2" fill="none"/>
+      <circle cx="32" cy="32" r="4" fill="#2a2a2a"/>
+    </svg>
+    <h1>Estados del Campo Electromagnético</h1>
+    <div class="author">Schleich · Quantum Optics in Phase Space</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Estados%20del%20Campo.pdf" target="_blank">📄 PDF original</a>
+      <a href="estados-campo.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="estados-campo.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#modo">Convención de un solo modo</a></li>
+      <li><a href="#fock">Estados de número de fotones</a></li>
+      <li><a href="#eigenestados">Eigenestados del campo de radiación</a></li>
+      <li><a href="#verificacion">Verificación de la ecuación de eigenvalores</a></li>
+      <li><a href="#incertidumbre">Por qué un eigenestado de campo no es clásico</a></li>
+      <li><a href="#desplazado">Estados coherentes como vacío desplazado</a></li>
+      <li><a href="#poisson">Estadística de fotones del estado coherente</a></li>
+      <li><a href="#distribucion-campo">Distribución del campo eléctrico</a></li>
+      <li><a href="#sobrecompletitud">Sobre-completitud</a></li>
+      <li><a href="#expansion">Expansión en estados coherentes</a></li>
+      <li><a href="#campo-esperado">Valores esperados del campo eléctrico</a></li>
+      <li><a href="#gato">Estados gato de Schrödinger</a></li>
+      <li><a href="#wigner-gato">Función de Wigner del estado gato</a></li>
+      <li><a href="#fotones-gato">Estadística de fotones del estado gato</a></li>
+    </ol>
+  </div>
+
+  <h2 id="modo">1. Convención de un solo modo</h2>
+  <p>
+    Después de cuantizar el campo electromagnético, cada modo normal queda
+    descrito como un oscilador armónico cuántico. En esta nota se considera un
+    solo modo del campo, por lo que se omite el índice $\lambda$. Así se puede
+    estudiar la estructura de los estados del campo sin cargar la notación con
+    sumas sobre modos y polarizaciones.
+  </p>
+  <p>
+    Para un solo modo, el operador de campo eléctrico puede escribirse como
+  </p>
+  $$\hat{\mathbf E}(\mathbf r,t)
+  =
+  \mathcal E_0\mathbf u(\mathbf r)
+  \frac{i}{\sqrt2}
+  \left[
+  \hat a(0)e^{-i\omega t}
+  -
+  \hat a^\dagger(0)e^{i\omega t}
+  \right].$$
+  <p>
+    Si se introduce la cuadratura de momento del campo,
+  </p>
+  $$\hat\Pi(t)=
+  \frac{i}{\sqrt2}
+  \left[
+  \hat a^\dagger(0)e^{i\omega t}
+  -
+  \hat a(0)e^{-i\omega t}
+  \right],$$
+  <p>
+    entonces
+  </p>
+  $$\hat{\mathbf E}(\mathbf r,t)=-\mathcal E_0\mathbf u(\mathbf r)\hat\Pi(t).$$
+  <p>
+    La constante $\mathcal E_0$ fija la escala del campo de un fotón y
+    $\mathbf u(\mathbf r)$ contiene la forma espacial del modo. La estadística
+    cuántica queda en los operadores $\hat a$ y $\hat a^\dagger$.
+  </p>
+
+  <h2 id="fock">2. Estados de número de fotones</h2>
+  <p>
+    Los estados de número, o estados de Fock, son eigenestados del operador
+    número:
+  </p>
+  $$\hat n=\hat a^\dagger\hat a,\qquad \hat n\ket n=n\ket n.$$
+  <p>
+    Sus reglas de escalera son
+  </p>
+  $$\hat a\ket n=\sqrt n\,\ket{n-1},
+  \qquad
+  \hat a^\dagger\ket n=\sqrt{n+1}\,\ket{n+1}.$$
+  <p>
+    El valor esperado del campo eléctrico en $\ket n$ es
+  </p>
+  $$\begin{aligned}
+  \langle\hat{\mathbf E}(\mathbf r,t)\rangle_n
+  &=
+  \mathcal E_0\mathbf u(\mathbf r)\frac{i}{\sqrt2}
+  \left[
+  \bra n\hat a(0)\ket n e^{-i\omega t}
+  -
+  \bra n\hat a^\dagger(0)\ket n e^{i\omega t}
+  \right].
+  \end{aligned}$$
+  <p>
+    Al usar las reglas de escalera,
+  </p>
+  $$\bra n\hat a\ket n=\sqrt n\,\braket{n|n-1}=0,
+  \qquad
+  \bra n\hat a^\dagger\ket n=\sqrt{n+1}\,\braket{n|n+1}=0.$$
+  <p>
+    Por tanto,
+  </p>
+  <div class="boxed result">
+    $$\boxed{\langle\hat{\mathbf E}(\mathbf r,t)\rangle_n=0.}$$
+  </div>
+  <p>
+    Esto no significa que el campo no tenga energía. Significa que un estado
+    de número tiene energía bien definida, pero no fase bien definida. Por eso
+    el campo promedio se anula.
+  </p>
+  <p>
+    La intensidad del campo está gobernada por $\hat{\mathbf E}^{\,2}$. Se
+    calcula
+  </p>
+  $$\begin{aligned}
+  \hat{\mathbf E}^{\,2}
+  &=
+  -\frac12\mathcal E_0^2\mathbf u^2(\mathbf r)
+  \left(\hat a e^{-i\omega t}-\hat a^\dagger e^{i\omega t}\right)^2\\
+  &=
+  -\frac12\mathcal E_0^2\mathbf u^2(\mathbf r)
+  \left[
+  \hat a^2e^{-2i\omega t}
+  -
+  \hat a\hat a^\dagger
+  -
+  \hat a^\dagger\hat a
+  +
+  \hat a^{\dagger 2}e^{2i\omega t}
+  \right].
+  \end{aligned}$$
+  <p>
+    Los términos $\hat a^2$ y $\hat a^{\dagger2}$ conectan $\ket n$ con
+    $\ket{n-2}$ y $\ket{n+2}$, que son ortogonales a $\ket n$. Por ello no
+    contribuyen al valor esperado. Los términos restantes se evalúan con
+    $\hat a\hat a^\dagger=\hat a^\dagger\hat a+1=\hat n+1$:
+  </p>
+  $$\begin{aligned}
+  \langle\hat{\mathbf E}^{\,2}\rangle_n
+  &=
+  \frac12\mathcal E_0^2\mathbf u^2(\mathbf r)
+  \bra n(\hat a\hat a^\dagger+\hat a^\dagger\hat a)\ket n\\
+  &=
+  \frac12\mathcal E_0^2\mathbf u^2(\mathbf r)[(n+1)+n].
+  \end{aligned}$$
+  <div class="boxed result">
+    $$\boxed{
+    \langle\hat{\mathbf E}^{\,2}(\mathbf r,t)\rangle_n
+    =
+    \mathcal E_0^2\mathbf u^2(\mathbf r)\left(n+\frac12\right).
+    }$$
+  </div>
+  <p>
+    La intensidad crece linealmente con el número de fotones. Para $n=0$,
+  </p>
+  $$\langle0|\hat{\mathbf E}^{\,2}|0\rangle
+  =
+  \frac12\mathcal E_0^2\mathbf u^2(\mathbf r).$$
+  <p>
+    Aunque $\langle\hat{\mathbf E}\rangle_0=0$, el vacío presenta
+    fluctuaciones. El campo efectivo del vacío por unidad de amplitud espacial
+    es
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \frac{E_{\mathrm{ef}}}{|\mathbf u(\mathbf r)|}
+    =
+    \left[
+    \frac{\langle0|\hat{\mathbf E}^{\,2}|0\rangle}{\mathbf u^2(\mathbf r)}
+    \right]^{1/2}
+    =
+    \frac{\mathcal E_0}{\sqrt2}.}$$
+  </div>
+  <p>
+    Estas son las fluctuaciones cuánticas del vacío: no corresponden a una
+    onda clásica, sino al ruido inevitable de la cuadratura del modo.
+  </p>
+
+  <h2 id="eigenestados">3. Eigenestados del campo de radiación</h2>
+  <p>
+    Sea $\theta=\omega t$. Se definen las cuadraturas adimensionales
+  </p>
+  $$\hat X=\frac{1}{\sqrt2}(\hat a+\hat a^\dagger),
+  \qquad
+  \hat\Pi=\frac{i}{\sqrt2}(\hat a^\dagger-\hat a),$$
+  <p>
+    con $[\hat X,\hat\Pi]=i$. La cuadratura rotada es
+  </p>
+  $$\hat\varepsilon_\theta=\hat X\cos\theta+\hat\Pi\sin\theta.$$
+  <p>
+    Sustituyendo $\hat X$ y $\hat\Pi$:
+  </p>
+  $$\begin{aligned}
+  \hat\varepsilon_\theta
+  &=
+  \frac{1}{\sqrt2}(\hat a^\dagger+\hat a)\cos\theta
+  +
+  \frac{i}{\sqrt2}(\hat a^\dagger-\hat a)\sin\theta\\
+  &=
+  \frac{1}{\sqrt2}
+  \left[
+  \hat a^\dagger(\cos\theta+i\sin\theta)
+  +
+  \hat a(\cos\theta-i\sin\theta)
+  \right]\\
+  &=
+  \frac{1}{\sqrt2}
+  \left(\hat a^\dagger e^{i\theta}+\hat a e^{-i\theta}\right).
+  \end{aligned}$$
+  <p>
+    Para $\theta=0$ se obtiene $\hat\varepsilon_0=\hat X$; para
+    $\theta=\pi/2$, $\hat\varepsilon_{\pi/2}=\hat\Pi$. Los eigenestados se
+    definen por
+  </p>
+  $$\hat\varepsilon_\theta\ket{\varepsilon_\theta}
+  =
+  \varepsilon_\theta\ket{\varepsilon_\theta}.$$
+  <p>
+    Para $\theta=0$, los coeficientes en la base de número son las funciones
+    propias del oscilador armónico:
+  </p>
+  $$\braket{n|\varepsilon_0}
+  =
+  \pi^{-1/4}
+  \frac{H_n(\varepsilon_0)}{\sqrt{2^n n!}}
+  e^{-\varepsilon_0^2/2}.$$
+  <p>
+    Para una cuadratura rotada aparece una fase $e^{in\theta}$ en cada
+    componente:
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \ket{\varepsilon_\theta}
+    =
+    \pi^{-1/4}e^{-\varepsilon_\theta^2/2}
+    \sum_{n=0}^{\infty}
+    \frac{H_n(\varepsilon_\theta)e^{in\theta}}{\sqrt{2^n n!}}\ket n.
+    }$$
+  </div>
+
+  <h2 id="verificacion">4. Verificación de la ecuación de eigenvalores</h2>
+  <p>
+    La acción de $\hat\varepsilon_\theta$ sobre $\ket n$ es
+  </p>
+  $$\hat\varepsilon_\theta\ket n
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \sqrt{n+1}e^{i\theta}\ket{n+1}
+  +
+  \sqrt n e^{-i\theta}\ket{n-1}
+  \right).$$
+  <p>
+    Aplicando esto a la expansión de $\ket{\varepsilon_\theta}$ y cambiando
+    índices, ambas sumas se escriben en la base $\ket m$:
+  </p>
+  $$\begin{aligned}
+  \hat\varepsilon_\theta\ket{\varepsilon_\theta}
+  &=
+  \pi^{-1/4}e^{-\varepsilon_\theta^2/2}
+  \sum_{m=0}^{\infty}
+  \frac{e^{im\theta}}{\sqrt{2^m m!}}
+  \left[
+  \frac12H_{m+1}(\varepsilon_\theta)
+  +
+  mH_{m-1}(\varepsilon_\theta)
+  \right]\ket m.
+  \end{aligned}$$
+  <p>
+    Usando la recurrencia de Hermite,
+  </p>
+  $$H_{m+1}(z)=2zH_m(z)-2mH_{m-1}(z),$$
+  <p>
+    se tiene
+  </p>
+  $$\frac12H_{m+1}(\varepsilon_\theta)
+  =
+  \varepsilon_\theta H_m(\varepsilon_\theta)
+  -
+  mH_{m-1}(\varepsilon_\theta).$$
+  <p>
+    Al sustituir, los términos $mH_{m-1}$ se cancelan:
+  </p>
+  $$\hat\varepsilon_\theta\ket{\varepsilon_\theta}
+  =
+  \varepsilon_\theta
+  \pi^{-1/4}e^{-\varepsilon_\theta^2/2}
+  \sum_{m=0}^{\infty}
+  \frac{H_m(\varepsilon_\theta)e^{im\theta}}{\sqrt{2^m m!}}\ket m.$$
+  <div class="boxed result">
+    $$\boxed{
+    \hat\varepsilon_\theta\ket{\varepsilon_\theta}
+    =
+    \varepsilon_\theta\ket{\varepsilon_\theta}.}$$
+  </div>
+
+  <h2 id="incertidumbre">5. Por qué un eigenestado de campo no es clásico</h2>
+  <p>
+    Un eigenestado $\ket{\varepsilon_\theta}$ tiene una cuadratura
+    perfectamente definida. Sin embargo, como
+  </p>
+  $$[\hat X,\hat\Pi]=i,$$
+  <p>
+    las incertidumbres satisfacen
+  </p>
+  $$\Delta X\,\Delta\Pi\ge\frac12.$$
+  <p>
+    Al fijar una cuadratura se pierde la información de la conjugada. Como el
+    campo eléctrico y el magnético de un modo son proporcionales a cuadraturas
+    conjugadas, aparece una relación del tipo
+  </p>
+  $$\Delta\hat E\,\Delta\hat H\ge I,$$
+  <p>
+    donde $I$ depende de las constantes de normalización del modo. Por eso un
+    eigenestado exacto del campo de radiación no se comporta como una onda
+    clásica: una onda clásica requiere amplitud y fase simultáneamente bien
+    definidas.
+  </p>
+
+  <h2 id="desplazado">6. Estados coherentes como vacío desplazado</h2>
+  <p>
+    Los estados coherentes proporcionan el compromiso cuántico más cercano al
+    comportamiento clásico. Se definen mediante el operador de desplazamiento:
+  </p>
+  $$\hat D(\alpha)=e^{\alpha\hat a^\dagger-\alpha^*\hat a},
+  \qquad
+  \ket\alpha=\hat D(\alpha)\ket0.$$
+  <p>
+    Para obtener la expansión en estados de número se usa la fórmula de
+    Baker-Campbell-Hausdorff:
+  </p>
+  $$e^{\hat A+\hat B}=e^{\hat A}e^{\hat B}e^{-[\hat A,\hat B]/2},$$
+  <p>
+    cuando el conmutador conmuta con $\hat A$ y $\hat B$. Tomando
+    $\hat A=\alpha\hat a^\dagger$ y $\hat B=-\alpha^*\hat a$,
+  </p>
+  $$[\hat A,\hat B]=|\alpha|^2.$$
+  <p>
+    Por tanto,
+  </p>
+  $$\hat D(\alpha)=
+  e^{-|\alpha|^2/2}e^{\alpha\hat a^\dagger}e^{-\alpha^*\hat a}.$$
+  <p>
+    Como $\hat a\ket0=0$,
+  </p>
+  $$e^{-\alpha^*\hat a}\ket0=
+  \left(1-\alpha^*\hat a+\frac{\alpha^{*2}}{2!}\hat a^2-\cdots\right)\ket0
+  =
+  \ket0.$$
+  <p>
+    Entonces
+  </p>
+  $$\begin{aligned}
+  \ket\alpha
+  &=
+  e^{-|\alpha|^2/2}e^{\alpha\hat a^\dagger}\ket0\\
+  &=
+  e^{-|\alpha|^2/2}
+  \sum_{n=0}^{\infty}\frac{\alpha^n}{n!}\hat a^{\dagger n}\ket0.
+  \end{aligned}$$
+  <p>
+    Usando $\hat a^{\dagger n}\ket0=\sqrt{n!}\ket n$,
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \ket\alpha
+    =
+    e^{-|\alpha|^2/2}
+    \sum_{n=0}^{\infty}
+    \frac{\alpha^n}{\sqrt{n!}}\ket n.}$$
+  </div>
+
+  <h2 id="poisson">7. Estadística de fotones del estado coherente</h2>
+  <p>
+    La probabilidad de encontrar $n$ fotones en $\ket\alpha$ es
+  </p>
+  $$W_n=|\braket{n|\alpha}|^2=
+  e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}.$$
+  <p>
+    Esta es una distribución de Poisson. El número promedio de fotones es
+  </p>
+  $$\begin{aligned}
+  \langle\hat n\rangle
+  &=
+  \sum_{n=0}^{\infty}nW_n\\
+  &=
+  |\alpha|^2
+  \sum_{m=0}^{\infty}\frac{|\alpha|^{2m}}{m!}e^{-|\alpha|^2}\\
+  &=
+  |\alpha|^2.
+  \end{aligned}$$
+  <p>
+    Para el segundo momento,
+  </p>
+  $$\begin{aligned}
+  \langle\hat n^2\rangle
+  &=
+  \sum_{n=0}^{\infty}
+  n^2\frac{|\alpha|^{2n}}{n!}e^{-|\alpha|^2}\\
+  &=
+  |\alpha|^4
+  \sum_{m=0}^{\infty}\frac{|\alpha|^{2m}}{m!}e^{-|\alpha|^2}
+  +
+  |\alpha|^2
+  \sum_{m=0}^{\infty}\frac{|\alpha|^{2m}}{m!}e^{-|\alpha|^2}\\
+  &=
+  |\alpha|^4+|\alpha|^2.
+  \end{aligned}$$
+  <div class="boxed result">
+    $$\boxed{
+    \langle\hat n\rangle=|\alpha|^2,
+    \qquad
+    \sigma^2=\langle\hat n^2\rangle-\langle\hat n\rangle^2=|\alpha|^2.}$$
+  </div>
+  <p>
+    La desviación estándar es $\sigma=\sqrt{\langle\hat n\rangle}$. El ancho
+    absoluto crece con la intensidad, pero el ancho relativo decrece:
+  </p>
+  $$\frac{\sigma}{\langle\hat n\rangle}
+  =
+  \frac{1}{\sqrt{\langle\hat n\rangle}}
+  \xrightarrow{\langle\hat n\rangle\to\infty}0.$$
+  <p>
+    También puede verse directamente por operadores:
+  </p>
+  $$\langle\hat n\rangle
+  =
+  \bra\alpha\hat a^\dagger\hat a\ket\alpha=|\alpha|^2,$$
+  $$\begin{aligned}
+  \langle\hat n^2\rangle
+  &=
+  \bra\alpha\hat a^\dagger\hat a\hat a^\dagger\hat a\ket\alpha\\
+  &=
+  \bra\alpha\hat a^\dagger(\hat a^\dagger\hat a+1)\hat a\ket\alpha\\
+  &=
+  |\alpha|^4+|\alpha|^2.
+  \end{aligned}$$
+  <p>
+    El término adicional $|\alpha|^2$ aparece por el conmutador
+    $[\hat a,\hat a^\dagger]=1$.
+  </p>
+
+  <h2 id="distribucion-campo">8. Distribución del campo eléctrico en un estado coherente</h2>
+  <p>
+    La probabilidad de medir el valor $\varepsilon_\theta$ de la cuadratura del
+    campo cuando el modo está en $\ket\beta$ es
+  </p>
+  $$W_{\ket\beta}(\varepsilon_\theta)
+  =
+  |\braket{\varepsilon_\theta|\beta}|^2.$$
+  <p>
+    Usando la expansión de $\bra{\varepsilon_\theta}$ y la de $\ket\beta$,
+  </p>
+  $$\begin{aligned}
+  \braket{\varepsilon_\theta|\beta}
+  &=
+  \pi^{-1/4}e^{-\varepsilon_\theta^2/2}e^{-|\beta|^2/2}
+  \sum_{n=0}^{\infty}
+  \frac{H_n(\varepsilon_\theta)}{n!}
+  \left(\frac{\beta e^{-i\theta}}{\sqrt2}\right)^n.
+  \end{aligned}$$
+  <p>
+    La función generatriz
+  </p>
+  $$\sum_{n=0}^{\infty}\frac{z^n}{n!}H_n(\xi)=e^{-z^2+2\xi z}$$
+  <p>
+    con $z=\beta e^{-i\theta}/\sqrt2$ produce
+  </p>
+  $$\braket{\varepsilon_\theta|\beta}
+  =
+  \pi^{-1/4}
+  \exp\left[
+  -\frac12\varepsilon_\theta^2
+  -\frac12(\beta e^{-i\theta})^2
+  +\sqrt2\,\varepsilon_\theta\beta e^{-i\theta}
+  -\frac12|\beta|^2
+  \right].$$
+  <p>
+    Para $\theta=0$ y $\beta$ real,
+  </p>
+  $$\braket{x|\beta}
+  =
+  \pi^{-1/4}
+  e^{\frac12(\beta^2-|\beta|^2)}
+  e^{-\frac12(x-\sqrt2\beta)^2}.$$
+  <p>
+    Si $\beta$ es real, el prefactor se cancela; si $\beta$ es complejo, la
+    fase asociada es esencial en superposiciones coherentes. Tomando el módulo
+    cuadrado de la amplitud general se obtiene
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    W_{\ket\beta}(\varepsilon_\theta)
+    =
+    \pi^{-1/2}
+    \exp\left[
+    -\left(
+    \varepsilon_\theta
+    -
+    \frac{1}{\sqrt2}
+    \left(
+    \beta e^{-i\theta}+\beta^*e^{i\theta}
+    \right)
+    \right)^2
+    \right].}$$
+  </div>
+  <p>
+    Es una gaussiana centrada en
+  </p>
+  $$\varepsilon_\theta^{(0)}
+  =
+  \frac{1}{\sqrt2}\left(\beta e^{-i\theta}+\beta^*e^{i\theta}\right)
+  =
+  \sqrt2\,\operatorname{Re}(\beta e^{-i\theta}).$$
+  <p>
+    El estado coherente desplaza el centro de la distribución del vacío sin
+    cambiar su anchura.
+  </p>
+
+  <h2 id="sobrecompletitud">9. Sobre-completitud de los estados coherentes</h2>
+  <p>
+    Los estados coherentes forman un conjunto completo pero no ortogonal. La
+    resolución de la identidad es
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \hat I=\frac1\pi\int d^2\alpha\,\ket\alpha\bra\alpha.}$$
+  </div>
+  <p>
+    Escribiendo $\alpha=|\alpha|e^{i\theta}$, el elemento de área es
+  </p>
+  $$d^2\alpha=d(\operatorname{Re}\alpha)d(\operatorname{Im}\alpha)
+  =
+  |\alpha|\,d|\alpha|\,d\theta.$$
+  <p>
+    Sustituyendo la expansión en estados de número:
+  </p>
+  $$\begin{aligned}
+  \frac1\pi\int d^2\alpha\,\ket\alpha\bra\alpha
+  &=
+  \sum_{n,m=0}^{\infty}
+  \frac{\ket n\bra m}{\sqrt{n!m!}}
+  \int_0^\infty
+  |\alpha|^{n+m+1}e^{-|\alpha|^2}d|\alpha|\\
+  &\hspace{1.8cm}\times
+  \frac1\pi\int_0^{2\pi}e^{i(n-m)\theta}d\theta.
+  \end{aligned}$$
+  <p>
+    La integral angular da $2\pi\delta_{nm}$, de modo que sólo sobreviven los
+    términos diagonales. Con $u=|\alpha|^2$,
+  </p>
+  $$2\int_0^\infty|\alpha|^{2n+1}e^{-|\alpha|^2}d|\alpha|
+  =
+  \int_0^\infty u^ne^{-u}du
+  =
+  \Gamma(n+1)=n!.$$
+  <p>
+    Por tanto,
+  </p>
+  $$\frac1\pi\int d^2\alpha\,\ket\alpha\bra\alpha
+  =
+  \sum_{n=0}^{\infty}\ket n\bra n
+  =
+  \hat I.$$
+  <p>
+    La no ortogonalidad se ve en el traslape:
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \braket{\alpha|\beta}
+    =
+    \exp\left[-\frac12(|\alpha|^2+|\beta|^2)+\alpha^*\beta\right],
+    \qquad
+    |\braket{\alpha|\beta}|^2=e^{-|\alpha-\beta|^2}.}$$
+  </div>
+  <p>
+    El traslape entre dos estados coherentes es una gaussiana en la separación
+    entre sus puntos del espacio fase.
+  </p>
+
+  <h2 id="expansion">10. Expansión en estados coherentes</h2>
+  <p>
+    Por sobre-completitud, un estado coherente puede expandirse en otros
+    estados coherentes:
+  </p>
+  $$\begin{aligned}
+  \ket\alpha
+  &=
+  \frac1\pi\int d^2\beta\,\ket\beta\braket{\beta|\alpha}\\
+  &=
+  \frac1\pi\int d^2\beta\,
+  \exp\left[-\frac12(|\alpha|^2+|\beta|^2)+\beta^*\alpha\right]\ket\beta.
+  \end{aligned}$$
+  <p>
+    El peso se separa como
+  </p>
+  $$\exp\left[-\frac12|\alpha-\beta|^2\right]e^{i\Phi(\beta;\alpha)},
+  \qquad
+  \Phi(\beta;\alpha)=\operatorname{Im}(\alpha\beta^*).$$
+  <p>
+    La parte gaussiana mide la separación y la fase contiene el área orientada
+    asociada al triángulo formado por el origen y los puntos complejos
+    $\alpha$ y $\beta$.
+  </p>
+  <p>
+    También un estado de número puede escribirse usando estados coherentes de
+    módulo fijo. Para
+  </p>
+  $$\ket{|\beta|e^{i\theta}}
+  =
+  e^{-|\beta|^2/2}
+  \sum_{m=0}^{\infty}
+  \frac{|\beta|^m e^{im\theta}}{\sqrt{m!}}\ket m,$$
+  <p>
+    multiplicando por $e^{-in\theta}$ e integrando sobre $\theta$:
+  </p>
+  $$\begin{aligned}
+  \frac1{2\pi}\int_0^{2\pi}
+  e^{-in\theta}\ket{|\beta|e^{i\theta}}d\theta
+  &=
+  e^{-|\beta|^2/2}
+  \frac{|\beta|^n}{\sqrt{n!}}\ket n.
+  \end{aligned}$$
+  <div class="boxed result">
+    $$\boxed{
+    \ket n
+    =
+    e^{|\beta|^2/2}
+    \frac{\sqrt{n!}}{|\beta|^n}
+    \frac1{2\pi}
+    \int_0^{2\pi}
+    e^{-in\theta}\ket{|\beta|e^{i\theta}}d\theta.}$$
+  </div>
+  <p>
+    Es decir, un estado de número se obtiene como una superposición continua
+    de estados coherentes distribuidos sobre un círculo de radio fijo.
+  </p>
+
+  <h2 id="campo-esperado">11. Valores esperados del campo eléctrico en estados coherentes</h2>
+  <p>
+    Para un solo modo,
+  </p>
+  $$\hat{\mathbf E}
+  =
+  \mathcal E_0\mathbf u(\mathbf r)\frac{i}{\sqrt2}
+  [\hat a(t)-\hat a^\dagger(t)].$$
+  <p>
+    En un estado coherente $\hat a(t)\ket\alpha=\alpha(t)\ket\alpha$, con
+    $\alpha(t)=\alpha(0)e^{-i\omega t}$. Por tanto,
+  </p>
+  $$\begin{aligned}
+  \langle\hat{\mathbf E}\rangle_\alpha
+  &=
+  \mathcal E_0\mathbf u(\mathbf r)\frac{i}{\sqrt2}
+  [\alpha(t)-\alpha^*(t)]\\
+  &=
+  -\sqrt2\,\mathcal E_0\mathbf u(\mathbf r)\operatorname{Im}[\alpha(t)].
+  \end{aligned}$$
+  <div class="boxed result">
+    $$\boxed{
+    \langle\hat{\mathbf E}\rangle_\alpha
+    =
+    -\sqrt2\,\mathcal E_0\mathbf u(\mathbf r)|\alpha|\sin\Theta(t).}$$
+  </div>
+  <p>
+    Esta es la forma de un campo eléctrico clásico monocromático, con amplitud
+    proporcional a $\sqrt2\,\mathcal E_0|\alpha|$.
+  </p>
+  <p>
+    Para el segundo momento,
+  </p>
+  $$\begin{aligned}
+  \langle\hat{\mathbf E}^{\,2}\rangle_\alpha
+  &=
+  -\frac12\mathcal E_0^2\mathbf u^2(\mathbf r)
+  \bra\alpha(\hat a-\hat a^\dagger)^2\ket\alpha\\
+  &=
+  -\frac12\mathcal E_0^2\mathbf u^2(\mathbf r)
+  [\alpha^2+\alpha^{*2}-2|\alpha|^2-1]\\
+  &=
+  -\frac12\mathcal E_0^2\mathbf u^2(\mathbf r)[(\alpha-\alpha^*)^2-1].
+  \end{aligned}$$
+  <p>
+    Como
+  </p>
+  $$\langle\hat{\mathbf E}\rangle_\alpha^2
+  =
+  -\frac12\mathcal E_0^2\mathbf u^2(\mathbf r)(\alpha-\alpha^*)^2,$$
+  <p>
+    la varianza es
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    \sigma_E^2
+    =
+    \langle\hat{\mathbf E}^{\,2}\rangle_\alpha
+    -
+    \langle\hat{\mathbf E}\rangle_\alpha^2
+    =
+    \frac12\mathcal E_0^2\mathbf u^2(\mathbf r).}$$
+  </div>
+  <p>
+    Las fluctuaciones del campo eléctrico en un estado coherente son
+    independientes de $\alpha$ e iguales a las del vacío. En cambio, en un
+    estado de número son proporcionales a $n+1/2$. Por eso los estados
+    coherentes son los estados del campo más cercanos al caso clásico.
+  </p>
+
+  <h2 id="gato">12. Estados gato de Schrödinger</h2>
+  <p>
+    Un estado gato de Schrödinger de un solo modo es una superposición de dos
+    estados coherentes macroscópicamente distinguibles:
+  </p>
+  $$\ket\psi
+  =
+  N\frac{1}{\sqrt2}
+  \left(
+  \ket{\alpha e^{i\varphi}}
+  +
+  \ket{\alpha e^{-i\varphi}}
+  \right),$$
+  <p>
+    donde $\alpha$ se toma real y positiva. En el plano de cuadraturas, ambos
+    estados tienen el mismo módulo, pero fases opuestas:
+  </p>
+  $$\langle x\rangle=\sqrt2\,\alpha\cos\varphi,
+  \qquad
+  \langle p\rangle=\pm\sqrt2\,\alpha\sin\varphi.$$
+  <p>
+    La constante $N$ no es uno porque los estados coherentes no son
+    ortogonales. Usando el traslape coherente,
+  </p>
+  $$\begin{aligned}
+  1
+  &=
+  \braket{\psi|\psi}\\
+  &=
+  N^2
+  \left[
+  1+
+  \operatorname{Re}
+  \left(
+  e^{-\alpha^2+\alpha^2e^{-2i\varphi}}
+  \right)
+  \right].
+  \end{aligned}$$
+  <p>
+    Además,
+  </p>
+  $$\operatorname{Re}
+  \left(
+  e^{-\alpha^2+\alpha^2e^{-2i\varphi}}
+  \right)
+  =
+  e^{-2\alpha^2\sin^2\varphi}
+  \cos(\alpha^2\sin2\varphi).$$
+  <p>
+    Definiendo $P_\varphi=|\sqrt2\,\alpha\sin\varphi|$,
+  </p>
+  <div class="boxed result">
+    $$\boxed{
+    N^2(\varphi)
+    =
+    \frac{1}
+    {1+e^{-P_\varphi^2}\cos(\alpha^2\sin2\varphi)}.}$$
+  </div>
+
+  <h2 id="wigner-gato">13. Función de Wigner del estado gato</h2>
+  <p>
+    La función de Wigner de un estado puro es
+  </p>
+  $$W_\psi(x,p)
+  =
+  \frac1\pi
+  \int_{-\infty}^{\infty}
+  dy\,e^{2ipy}\psi^*(x+y)\psi(x-y).$$
+  <p>
+    Si
+  </p>
+  $$\psi(x)=\frac{N}{\sqrt2}[\psi_+(x)+\psi_-(x)],$$
+  <p>
+    entonces aparecen cuatro términos:
+  </p>
+  $$W_\psi
+  =
+  \frac{N^2}{2}
+  (W_{++}+W_{+-}+W_{-+}+W_{--}).$$
+  <p>
+    Los términos diagonales corresponden a las dos gaussianas coherentes; los
+    cruzados producen la interferencia. Para calcularlos se usa
+  </p>
+  $$\braket{x|\alpha}
+  =
+  \pi^{-1/4}
+  \exp\left[
+  -\frac12(x-x_0)^2+ixp_0-\frac{i}{2}x_0p_0
+  \right],$$
+  <p>
+    con $x_0=\sqrt2\,\alpha\cos\varphi$ y
+    $p_0=\sqrt2\,\alpha\sin\varphi$. Un término cruzado queda
+  </p>
+  $$\begin{aligned}
+  W_{+-}
+  &=
+  \int_{-\infty}^{\infty}dy\,e^{2ipy}\psi_+(x+y)\psi_-^*(x-y)\\
+  &=
+  \pi^{-1/2}
+  \int_{-\infty}^{\infty}dy\,
+  \exp[
+  2ipy-(x-x_0)^2-y^2+2ip_0x-i\alpha^2\sin2\varphi]\\
+  &=
+  e^{-(x-x_0)^2-p^2}
+  e^{i(-\alpha^2\sin2\varphi+2p_0x)}.
+  \end{aligned}$$
+  <p>
+    El otro término cruzado es el complejo conjugado,
+    $W_{-+}=W_{+-}^*$. Al sumarlos aparece un coseno. Los términos diagonales
+    son
+  </p>
+  $$W_{++}=e^{-(x-x_0)^2-(p+p_0)^2},
+  \qquad
+  W_{--}=e^{-(x-x_0)^2-(p-p_0)^2}.$$
+  <div class="boxed result">
+    $$\boxed{
+    \begin{aligned}
+    W_\psi(x,p)
+    &=
+    \frac{N^2}{2\pi}
+    \left[
+    e^{-(x-x_0)^2-(p+p_0)^2}
+    +
+    e^{-(x-x_0)^2-(p-p_0)^2}
+    \right.\\
+    &\qquad\left.
+    +
+    2e^{-(x-x_0)^2-p^2}
+    \cos(2p_0x-\alpha^2\sin2\varphi)
+    \right].
+    \end{aligned}}$$
+  </div>
+  <p>
+    En términos de $\alpha$ y $\varphi$, el argumento del coseno es
+  </p>
+  $$2p_0x-\alpha^2\sin2\varphi
+  =
+  2\sqrt2\,\alpha\sin\varphi
+  \left(
+  x-\frac{\alpha}{\sqrt2}\cos\varphi
+  \right).$$
+  <p>
+    La función puede escribirse como
+  </p>
+  $$W_\psi(x,p)=
+  \frac{N^2}{2}
+  \left(
+  W_{\ket{\alpha e^{i\varphi}}}
+  +
+  W_{\ket{\alpha e^{-i\varphi}}}
+  +
+  W_{\mathrm{int}}
+  \right),$$
+  <p>
+    donde
+  </p>
+  $$W_{\ket{\alpha e^{\pm i\varphi}}}
+  =
+  \frac1\pi
+  e^{-(x-\sqrt2\alpha\cos\varphi)^2
+  -(p\pm\sqrt2\alpha\sin\varphi)^2},$$
+  $$W_{\mathrm{int}}
+  =
+  \frac{2}{\pi}
+  e^{-(x-\sqrt2\alpha\cos\varphi)^2-p^2}
+  \cos\left[
+  2\sqrt2\,\alpha\sin\varphi
+  \left(
+  x-\frac{\alpha}{\sqrt2}\cos\varphi
+  \right)
+  \right].$$
+  <p>
+    Si no existieran los términos cruzados, el resultado sería una mezcla
+    estadística de dos gaussianas. El término de interferencia aparece por la
+    bilinealidad de la función de Wigner y produce franjas que pueden hacerla
+    negativa.
+  </p>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/wigner_gato_alpha2.png" alt="Función de Wigner de una superposición de estados coherentes.">
+    <figcaption>Función de Wigner de una superposición de estados coherentes. Los dos picos corresponden a las componentes coherentes y las franjas centrales al término de interferencia.</figcaption>
+  </figure>
+
+  <h2 id="fotones-gato">14. Estadística de fotones del estado gato</h2>
+  <p>
+    Se estudia ahora la probabilidad $W_m$ de hallar $m$ fotones en el estado
+    gato. A diferencia de la distribución de Poisson de un solo estado
+    coherente, la superposición introduce interferencia dependiente de la
+    diferencia de fase $2\varphi$:
+  </p>
+  $$\begin{aligned}
+  W_m(\psi)
+  &=
+  |\braket{m|\psi}|^2\\
+  &=
+  \frac{N^2}{2}
+  \left|
+  \braket{m|\alpha e^{i\varphi}}
+  +
+  \braket{m|\alpha e^{-i\varphi}}
+  \right|^2.
+  \end{aligned}$$
+  <p>
+    Como
+  </p>
+  $$\braket{m|\beta}=\frac{\beta^m}{\sqrt{m!}}e^{-|\beta|^2/2},$$
+  <p>
+    entonces
+  </p>
+  $$\begin{aligned}
+  W_m(\psi)
+  &=
+  \frac{N^2}{2}
+  \left|
+  \frac{\alpha^m}{\sqrt{m!}}e^{-\alpha^2/2}e^{im\varphi}
+  +
+  \frac{\alpha^m}{\sqrt{m!}}e^{-\alpha^2/2}e^{-im\varphi}
+  \right|^2\\
+  &=
+  2N^2
+  \frac{\alpha^{2m}}{m!}e^{-\alpha^2}\cos^2(m\varphi).
+  \end{aligned}$$
+  <div class="boxed result">
+    $$\boxed{
+    W_m(\psi)
+    =
+    2N^2
+    \frac{\alpha^{2m}}{m!}e^{-\alpha^2}\cos^2(m\varphi).}$$
+  </div>
+  <p>
+    Hasta normalización, aparece la distribución de Poisson de un estado
+    coherente modulada por $\cos^2(m\varphi)$. Esta modulación puede estrechar
+    o ensanchar la distribución respecto a una Poisson ordinaria.
+  </p>
+  <p>
+    Para caracterizar el efecto se usa la varianza normalizada:
+  </p>
+  $$\sigma^2
+  =
+  \frac{\langle m^2\rangle}{\langle m\rangle}
+  -
+  \langle m\rangle,
+  \qquad
+  \langle m\rangle=\sum_{m=0}^{\infty}mW_m,
+  \qquad
+  \langle m^2\rangle=\sum_{m=0}^{\infty}m^2W_m.$$
+  <p>
+    Con esta convención, $\sigma<1$ indica estadística sub-poissoniana,
+    $\sigma>1$ indica estadística súper-poissoniana y $\sigma=1$ corresponde
+    a Poisson. La interferencia entre las dos componentes coherentes no sólo
+    se observa en Wigner; también modifica la estadística discreta de fotones.
+  </p>
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 4 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

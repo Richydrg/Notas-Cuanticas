@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctorado · Notas Cuánticas</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body data-root="../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../maestria/index.html">Maestría</a>
+      <a href="../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../NotasCuanticas.html">Inicio</a><span class="sep">›</span> Doctorado
+</div>
+
+<div class="container hero compact">
+  <div class="text">
+    <h1 class="huge">Doctorado</h1>
+    <p class="lead">
+      Óptica cuántica, sistemas cuánticos abiertos y modelo
+      Holstein-Tavis-Cummings.
+    </p>
+  </div>
+  <div class="hero-illus">
+    <img src="../assets/img/charmander.png" alt="Charmander" class="floaty">
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <h2 class="section">Notas <span class="pill">8 temas</span></h2>
+
+    <div class="notes">
+
+      <a class="note-card" href="optica-cuantica/estados-coherentes.html">
+        <div class="top">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+            <defs>
+              <radialGradient id="cohGradDoctorado" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffd6ec"/>
+                <stop offset="100%" stop-color="#e98ab8"/>
+              </radialGradient>
+            </defs>
+            <circle cx="32" cy="32" r="26" fill="url(#cohGradDoctorado)" stroke="#8a3a6b" stroke-width="2"/>
+            <ellipse cx="32" cy="32" rx="10" ry="10" fill="rgba(255,255,255,0.7)"/>
+            <circle cx="44" cy="20" r="3" fill="#fff" opacity="0.9"/>
+            <circle cx="20" cy="44" r="2" fill="#fff" opacity="0.7"/>
+          </svg>
+          <h3>Estados Coherentes</h3>
+        </div>
+        <p class="summary">
+          Construcción detallada de los estados más cercanos a la luz clásica:
+          expansión en Fock, cuadraturas, desplazamiento, funciones de fase
+          espacio y ejercicios resueltos.
+        </p>
+        <div class="results">
+          <strong>Resultados clave</strong>
+          Distribución de Poisson, $D(\alpha)\ket{0}=\ket{\alpha}$,
+          $Q(\beta)=\pi^{-1}e^{-|\beta-\alpha|^2}$, Wigner gaussiana y estado
+          gato con franjas de interferencia.
+        </div>
+        <div class="footer">
+          <span>18 páginas</span>
+          <span class="arrow">Leer →</span>
+        </div>
+      </a>
+
+      <a class="note-card" href="optica-cuantica/estados-apachurrados.html">
+        <div class="top">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+            <defs>
+              <radialGradient id="sqGradDoctorado" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#cfe6ff"/>
+                <stop offset="100%" stop-color="#5d8fd6"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="32" cy="32" rx="22" ry="8" fill="url(#sqGradDoctorado)" stroke="#2b5fb3" stroke-width="2" transform="rotate(-25 32 32)"/>
+            <line x1="6" y1="32" x2="58" y2="32" stroke="#222" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="32" y1="6" x2="32" y2="58" stroke="#222" stroke-width="1" stroke-dasharray="3 3"/>
+          </svg>
+          <h3>Estados Apachurrados</h3>
+        </div>
+        <p class="summary">
+          Construcción detallada del vacío apachurrado a partir de un cambio
+          de frecuencia del oscilador, su Wigner, la proyección en la base de
+          energía y la evolución temporal.
+        </p>
+        <div class="results">
+          <strong>Resultados clave</strong>
+          $\hat S(s)\psi(x)=s^{1/4}\psi(\sqrt{s}\,x)$,
+          $\Delta x\Delta p=\hbar/2$, $W_m$ con polinomios de Hermite y
+          rotación de la elipse en espacio fase.
+        </div>
+        <div class="footer">
+          <span>10 páginas</span>
+          <span class="arrow">Leer →</span>
+        </div>
+      </a>
+
+      <a class="note-card" href="optica-cuantica/cuantizacion-campo.html">
+        <div class="top">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="8" y="8" width="48" height="48" rx="6" fill="#e8eefb" stroke="#2b5fb3" stroke-width="2"/>
+            <circle cx="20" cy="20" r="3" fill="#2b5fb3"/>
+            <circle cx="44" cy="20" r="3" fill="#2b5fb3"/>
+            <circle cx="20" cy="44" r="3" fill="#2b5fb3"/>
+            <circle cx="44" cy="44" r="3" fill="#2b5fb3"/>
+            <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="2"/>
+            <path d="M14 32 Q23 24 32 32 T 50 32" stroke="#d4453a" stroke-width="2" fill="none"/>
+          </svg>
+          <h3>Cuantización del Campo</h3>
+        </div>
+        <p class="summary">
+          Construcción desde Maxwell hasta el campo cuantizado: potenciales,
+          gauges, modos de cavidad, energía de Poynting, Casimir y estados de
+          número del campo.
+        </p>
+        <div class="results">
+          <strong>Resultados clave</strong>
+          $\mathcal H=\sum_\lambda(\dot q_\lambda^2+\omega_\lambda^2q_\lambda^2)/2$,
+          $[\hat a_\lambda,\hat a_{\lambda'}^\dagger]=\delta_{\lambda\lambda'}$,
+          $V(a)=-\hbar c\pi^2A/(720a^3)$ y operadores $\hat{\mathbf A}$,
+          $\hat{\mathbf E}$, $\hat{\mathbf B}$.
+        </div>
+        <div class="footer">
+          <span>18 páginas</span>
+          <span class="arrow">Leer →</span>
+        </div>
+      </a>
+
+      <a class="note-card" href="optica-cuantica/estados-campo.html">
+        <div class="top">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="26" fill="#fff3d8" stroke="#f3c623" stroke-width="2"/>
+            <path d="M10 40 Q22 28 32 40 T54 40" stroke="#d4453a" stroke-width="2" fill="none"/>
+            <path d="M10 28 Q22 16 32 28 T54 28" stroke="#2b5fb3" stroke-width="2" fill="none"/>
+            <circle cx="32" cy="32" r="4" fill="#2a2a2a"/>
+          </svg>
+          <h3>Estados del Campo</h3>
+        </div>
+        <p class="summary">
+          Estados de número, eigenestados de cuadratura, coherentes como vacío
+          desplazado, sobre-completitud y estados gato de Schrödinger.
+        </p>
+        <div class="results">
+          <strong>Resultados clave</strong>
+          $\langle\hat{\mathbf E}^{2}\rangle_n=\mathcal E_0^2\mathbf u^2(n+1/2)$,
+          $\ket{\alpha}=e^{-|\alpha|^2/2}\sum_n\alpha^n\ket n/\sqrt{n!}$ y
+          $W_m(\psi)=2N^2e^{-\alpha^2}\alpha^{2m}\cos^2(m\varphi)/m!$.
+        </div>
+        <div class="footer">
+          <span>13 páginas</span>
+          <span class="arrow">Leer →</span>
+        </div>
+      </a>
+
+      <a class="note-card" href="optica-cuantica/interaccion-atomo-campo.html">
+        <div class="top">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse cx="32" cy="32" rx="24" ry="8" fill="none" stroke="#6b48a6" stroke-width="2"/>
+            <ellipse cx="32" cy="32" rx="24" ry="8" fill="none" stroke="#d4453a" stroke-width="2" transform="rotate(60 32 32)"/>
+            <ellipse cx="32" cy="32" rx="24" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2" transform="rotate(-60 32 32)"/>
+            <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="2"/>
+            <path d="M50 50 Q56 56 60 52" stroke="#d4453a" stroke-width="2" fill="none"/>
+          </svg>
+          <h3>Interacción Átomo-Campo</h3>
+        </div>
+        <p class="summary">
+          Derivación completa del acoplamiento átomo-campo: fuerza de Lorentz,
+          acoplamiento mínimo, coordenadas de centro de masa, gauge, forma
+          eléctrico-dipolo y RWA.
+        </p>
+        <div class="results">
+          <strong>Resultados clave</strong>
+          $H_{\mathbf A\cdot\mathbf p}=-(e/\mu)\mathbf A\cdot\mathbf p$,
+          $H_{\mathbf r\cdot\mathbf E}=-e\mathbf r\cdot\mathbf E$,
+          $g(\mathbf R)=\mathcal E_0|\mathbf d\cdot\mathbf u|/\hbar$ y
+          hamiltoniano JCP con RWA.
+        </div>
+        <div class="footer">
+          <span>17 páginas</span>
+          <span class="arrow">Leer →</span>
+        </div>
+      </a>
+
+      <a class="note-card" href="optica-cuantica/jaynes-cummings-paul.html">
+        <div class="top">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="20" cy="32" r="10" fill="#fff3d8" stroke="#f3c623" stroke-width="2"/>
+            <circle cx="20" cy="32" r="3" fill="#2a2a2a"/>
+            <path d="M32 32 Q40 22 48 32 T60 32" stroke="#d4453a" stroke-width="2.5" fill="none"/>
+            <path d="M32 32 Q40 42 48 32 T60 32" stroke="#2b5fb3" stroke-width="2.5" fill="none"/>
+            <text x="20" y="56" text-anchor="middle" font-size="9" fill="#6b48a6">|e⟩|g⟩</text>
+          </svg>
+          <h3>Modelo de Jaynes-Cummings-Paul</h3>
+        </div>
+        <p class="summary">
+          El modelo exactamente solucionable para un átomo de dos niveles
+          acoplado a un modo del campo. Oscilaciones de Rabi cuánticas y
+          estructura por bloques.
+        </p>
+        <div class="results">
+          <strong>Resultados clave</strong>
+          Diagonalización por bloques, frecuencia de Rabi
+          $\Omega_n = 2g\sqrt{n+1}$, estados vestidos y conexión con
+          Tavis-Cummings.
+        </div>
+        <div class="footer">
+          <span>11 páginas</span>
+          <span class="arrow">Leer →</span>
+        </div>
+      </a>
+
+      <a class="note-card" href="optica-cuantica/preparacion-estados-entrelazamiento.html">
+        <div class="top">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="20" cy="32" r="10" fill="#fff3d8" stroke="#f3c623" stroke-width="2"/>
+            <circle cx="20" cy="32" r="3" fill="#2a2a2a"/>
+            <path d="M32 32 C38 18 48 18 54 30" stroke="#d4453a" stroke-width="2.5" fill="none"/>
+            <path d="M32 32 C38 46 48 46 54 34" stroke="#2b5fb3" stroke-width="2.5" fill="none"/>
+            <path d="M30 24 C38 28 45 28 56 22" stroke="#6b48a6" stroke-width="2" fill="none"/>
+            <path d="M30 40 C38 36 45 36 56 42" stroke="#6b48a6" stroke-width="2" fill="none"/>
+          </svg>
+          <h3>Preparación de estados y entrelazamiento</h3>
+        </div>
+        <p class="summary">
+          Uso del entrelazamiento átomo-campo como herramienta de medición y
+          preparación: proyecciones condicionales, colapsos, revivals, función
+          Q de Husimi e ingeniería de estados del campo.
+        </p>
+        <div class="results">
+          <strong>Resultados clave</strong>
+          Probabilidades conjuntas y marginales, estados condicionales por
+          postselección, inversión atómica para $\bar n=25$, gatos coherentes
+          y recurrencia para ingeniería finita de Fock.
+        </div>
+        <div class="footer">
+          <span>10 páginas</span>
+          <span class="arrow">Leer →</span>
+        </div>
+      </a>
+
+      <a class="note-card" href="optica-cuantica/modelo-holstein-cummings.html">
+        <div class="top">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse cx="30" cy="34" rx="22" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2.4" transform="rotate(-18 30 34)"/>
+            <ellipse cx="34" cy="30" rx="22" ry="8" fill="none" stroke="#d4453a" stroke-width="2.4" transform="rotate(22 34 30)"/>
+            <circle cx="20" cy="34" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.8"/>
+            <circle cx="44" cy="30" r="5" fill="#fff3d8" stroke="#6b48a6" stroke-width="1.8"/>
+            <path d="M20 46 C28 54 40 54 48 46" stroke="#6b48a6" stroke-width="2" fill="none"/>
+            <path d="M18 18 C28 8 42 8 52 18" stroke="#d4453a" stroke-width="2" fill="none"/>
+          </svg>
+          <h3>Modelo de Holstein-Cummings</h3>
+        </div>
+        <p class="summary">
+          Construcción del hamiltoniano para una molécula con transición
+          electrónica, modo vibracional intramolecular y cavidad, hasta su
+          reducción por bloques a un JCP efectivo polaritón-fonón.
+        </p>
+        <div class="results">
+          <strong>Resultados clave</strong>
+          Energía de reorganización $E_R=\hbar\nu\lambda^2$, hamiltoniano HC,
+          conservación de $\hat N$, polaritones $\ket{\pm,n}$, frecuencia
+          $\Omega_{nm}^{\mathrm{ef}}$ y sectores dinámicos.
+        </div>
+        <div class="footer">
+          <span>14 páginas</span>
+          <span class="arrow">Leer →</span>
+        </div>
+      </a>
+
+      <a class="note-card" href="optica-cuantica/dinamica-modelo-hc.html">
+        <div class="top">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse cx="30" cy="34" rx="22" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2.4" transform="rotate(-18 30 34)"/>
+            <ellipse cx="34" cy="30" rx="22" ry="8" fill="none" stroke="#d4453a" stroke-width="2.4" transform="rotate(22 34 30)"/>
+            <circle cx="20" cy="34" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.8"/>
+            <circle cx="44" cy="30" r="5" fill="#fff3d8" stroke="#6b48a6" stroke-width="1.8"/>
+            <path d="M17 50 C27 57 40 56 49 47" stroke="#6b48a6" stroke-width="2" fill="none"/>
+            <path d="M45 44 l5 3 -2 -6" stroke="#6b48a6" stroke-width="2" fill="none"/>
+            <path d="M51 16 C41 8 28 9 19 18" stroke="#d4453a" stroke-width="2" fill="none"/>
+            <path d="M23 21 l-5 -3 2 6" stroke="#d4453a" stroke-width="2" fill="none"/>
+          </svg>
+          <h3>Dinámica del modelo HC</h3>
+        </div>
+        <p class="summary">
+          Evolución temporal exacta del modelo efectivo de Holstein-Cummings:
+          preparación del estado inicial, dinámica por dobletes y
+          reconstrucción del estado completo.
+        </p>
+        <div class="results">
+          <strong>Resultados clave</strong>
+          Amplitudes $a_{nm}$, $b_{nm}$ y $p_{nm}^{\pm}(t)$, evolución exacta
+          de todos los sectores, paquetes vibracionales coherentes, inversión
+          electrónica, inversión polaritónica y fidelidad.
+        </div>
+        <div class="footer">
+          <span>16 páginas</span>
+          <span class="arrow">Leer →</span>
+        </div>
+      </a>
+
+      <a class="note-card" href="optica-cuantica/un-fonon-bloque-polaritonico.html">
+        <div class="top">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse cx="31" cy="32" rx="22" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2.4" transform="rotate(-18 31 32)"/>
+            <ellipse cx="34" cy="31" rx="22" ry="8" fill="none" stroke="#d4453a" stroke-width="2.4" transform="rotate(22 34 31)"/>
+            <circle cx="19" cy="35" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.8"/>
+            <circle cx="45" cy="29" r="5" fill="#fff3d8" stroke="#6b48a6" stroke-width="1.8"/>
+            <path d="M20 47 C29 55 42 53 49 44" stroke="#6b48a6" stroke-width="2" fill="none"/>
+            <path d="M47 44 l5 1 -3 -5" stroke="#6b48a6" stroke-width="2" fill="none"/>
+            <path d="M15 18 h34" stroke="#d4453a" stroke-width="2" fill="none"/>
+            <path d="M49 18 l-5 -4 v8 z" fill="#d4453a"/>
+          </svg>
+          <h3>Un fonón en un bloque polaritónico</h3>
+        </div>
+        <p class="summary">
+          Reducción de la dinámica HC efectiva a un único doblete
+          polaritón-fonón, tomando el bloque $n=9,m=9$ y el estado inicial
+          $\ket{-,9,9}$.
+        </p>
+        <div class="results">
+          <strong>Resultados clave</strong>
+          Amplitudes $p_{99}^{\pm}(t)$, probabilidades $P_\pm(t)$, inversión
+          polaritónica $\mathcal W(t)$, resultado resonante
+          $\mathcal W_R(t)=-\cos(k_9t)$, inversión electrónica nula y
+          comparaciones numéricas.
+        </div>
+        <div class="footer">
+          <span>14 páginas</span>
+          <span class="arrow">Leer →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 4 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/search.js"></script>
+</body>
+</html>

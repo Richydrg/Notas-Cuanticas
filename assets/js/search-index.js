@@ -1,0 +1,378 @@
+window.SEARCH_INDEX = {
+  "version": 2,
+  "lastUpdated": "2026-06-04",
+  "notes": [
+    {
+      "id": "cuantizacion-campo",
+      "title": "Cuantización del Campo",
+      "url": "doctorado/optica-cuantica/cuantizacion-campo.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "campo electromagnético",
+        "Maxwell",
+        "gauge de Lorenz",
+        "gauge de Coulomb",
+        "modos normales",
+        "condiciones de frontera",
+        "Poynting",
+        "fotones",
+        "vacío",
+        "Hamiltoniano",
+        "Helmholtz",
+        "Casimir",
+        "Euler-Maclaurin",
+        "potencial vectorial",
+        "operadores de campo",
+        "estados de número",
+        "presión de Casimir"
+      ],
+      "content": "Cuantización del campo electromagnético reconstruida desde las ecuaciones de Maxwell. Ley de Gauss a partir de Coulomb, superposición de cargas, distribución continua rho(r), ángulo sólido y teorema de Gauss. Ley de Gauss magnética, Faraday-Lenz y Ampere-Maxwell con corriente de desplazamiento. Potenciales electromagnéticos B = rotacional A y E = -grad Phi - dA/dt. Libertad de gauge A' = A + grad Lambda, Phi' = Phi - dLambda/dt. Gauge de Lorenz div A + c^{-2} dPhi/dt = 0, desacoplamiento de ecuaciones de onda para Phi y A. Gauge de Coulomb div A = 0, vacío sin cargas ni corrientes, Phi = 0 y ecuación de onda para el potencial vectorial. Separación de variables A(r,t)=gamma q(t) v(r). Ecuación de Helmholtz nabla^2 v + k^2 v = 0 y ecuación del oscilador q doble punto + omega^2 q = 0 con omega = c k. Condiciones de frontera en paredes conductoras: E paralelo igual cero y B perpendicular igual cero. Uso de Stokes para ver que la condición magnética se sigue de la eléctrica en la frontera. Resonador rectangular con modos coseno seno: v_x = N e_x cos(kx x) sin(ky y) sin(kz z), v_y y v_z análogos. Gauge de Coulomb implica transversalidad e dot k = 0 y dos polarizaciones lineales independientes. Discretización geométrica k_x = ell_x pi/L_x, k_y = ell_y pi/L_y, k_z = ell_z pi/L_z. Ortogonalidad de modos con integrales de senos y cosenos, normalización N = raíz(8/V), volumen efectivo V_lambda y funciones adimensionales u_lambda. Expansión modal A = sum q_lambda u_lambda / raíz(epsilon0 V_lambda), E = -sum qdot_lambda u_lambda / raíz(epsilon0 V_lambda), H = sum q_lambda rot u_lambda /(mu0 raíz(epsilon0 V_lambda)). Teorema de Poynting desde fuerza de Lorentz, potencia E dot J, identidad vectorial y conservación de energía. Densidad u = epsilon0 E^2/2 + mu0 H^2/2 y vector de Poynting S = E x H. Energía del campo en cavidad conductora sin cargas ni corrientes. Reducción del campo a osciladores armónicos independientes: H = sum_lambda 1/2 qdot_lambda^2 + 1/2 omega_lambda^2 q_lambda^2. Variables canónicas q_lambda y p_lambda = qdot_lambda. Cuantización con [q_lambda,p_lambda'] = i hbar delta_lambda lambda'. Operadores de aniquilación y creación a_lambda, a_lambda dagger. Conmutador [a_lambda,a_lambda' dagger] = delta_lambda lambda'. Hamiltoniano cuantizado H = sum hbar omega_lambda a_lambda dagger a_lambda + H0, H0 = sum 1/2 hbar omega_lambda. Energía de punto cero, geometría de dos placas paralelas, modos densos en y,z, variables xi zeta, coordenadas polares y jacobiano. Resta de energía del vacío libre. Fórmula de Euler-Maclaurin aplicada a I(lambda)=integral sqrt(lambda^2+u) du, derivadas finitas I'=-2 lambda^2, I'''=-4, resultado Itilde=-1/180. Energía de Casimir por área v(a)=-hbar c pi^2/(720 a^3), potencial V(a)=-hbar c pi^2 A/(720 a^3), fuerza por unidad de área F/A=-hbar c pi^2/(240 a^4). Operador potencial vectorial Ahat(r,t), evolución de Heisenberg a_lambda(t)=a_lambda(0)e^{-i omega t}, partes de frecuencia positiva y negativa. Operador de campo eléctrico Ehat y campo magnético Bhat con operadores de creación y aniquilación. Operador número n_lambda = a_lambda dagger a_lambda, estados de Fock multimodo |n1,n2,...>, energía esperada sum hbar omega_lambda n_lambda, superposiciones, estados coherentes, apachurrados y estados entrelazados del campo."
+    },
+    {
+      "id": "estados-apachurrados",
+      "title": "Estados Apachurrados",
+      "url": "doctorado/optica-cuantica/estados-apachurrados.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "squeezing",
+        "apachurramiento",
+        "Wigner",
+        "incertidumbre",
+        "Heisenberg",
+        "Hermite",
+        "Fock",
+        "estado coherente apachurrado",
+        "estado base",
+        "factor s",
+        "puntos de retorno",
+        "rotación espacio fase",
+        "metrología"
+      ],
+      "content": "Estados apachurrados squeezed states construidos al cambiar la frecuencia natural del oscilador Omega -> Omega/s con s > 0. Estado base u_0(x) = (K^2/pi)^{1/4} exp(-K^2 x^2/2), K = raíz(M Omega/hbar). Al cambiar la frecuencia se obtiene K' = K/raíz s y el estado inicial deja de ser el vacío del nuevo potencial cuando s distinto de 1. Operador de apachurramiento S(s) definido por S(s) psi(x) = s^{1/4} psi(raíz s x). El factor s^{1/4} conserva la normalización mediante el cambio u = raíz s x. Densidad de posición del vacío apachurrado |psi_s(x)|^2 = (s K^2/pi)^{1/2} exp(-s K^2 x^2), anchura sigma_x = 1/(raíz(2s) K). Distribución de momento |psi_s(p)|^2 = 1/(raíz(pi s) hbar K) exp(-p^2/(hbar^2 s K^2)), anchura sigma_p = raíz(s/2) hbar K. Producto sigma_x sigma_p = hbar/2: el estado sigue siendo de mínima incertidumbre, pero la incertidumbre se redistribuye entre cuadraturas. Función de Wigner del vacío apachurrado derivada con integral gaussiana: W_s(x,p) = 1/(pi hbar) exp(-s K^2 x^2 - p^2/(hbar^2 s K^2)). Para s > 1 la distribución se comprime en posición y se dilata en momento; para s < 1 ocurre lo contrario. Estado coherente apachurrado para alpha real D(alpha) S(s) u_0(x) = (s K^2/pi)^{1/4} exp[-s(Kx - raíz 2 alpha)^2/2]. El orden de operadores no conmuta: S(s) D(alpha) u_0(x) = D(alpha/raíz s) S(s) u_0(x), para esta convención y alpha real. La diferencia expresa que desplazar antes de apachurrar también escala la distancia al origen. Proyección en la base de energía: w_m = integral u_m(x) psi_s(x) dx, con u_m = N_m H_m(Kx) exp[-(Kx)^2/2]. Se cambia a xi = Kx, se completa el cuadrado en xi^2 + s(xi - raíz 2 alpha)^2 y se usa la identidad gaussiana con polinomios de Hermite. Amplitud final w_m proporcional a (2 raíz s/(s+1))^{1/2} ((s-1)/(s+1))^{m/2} exp[-s alpha^2/(s+1)] H_m(s raíz 2 alpha/raíz(s^2-1))/raíz(2^m m!). Distribución W_m = |w_m|^2. En el límite s -> 1, el argumento del Hermite es grande y H_m(y) ~ (2y)^m, recuperando la distribución de Poisson e^{-alpha^2} alpha^{2m}/m! del estado coherente. Para s muy grande la función de onda se aproxima a una delta de Dirac en X = raíz 2 alpha/K, de modo que w_m muestrea u_m en ese punto. Puntos clásicos de retorno del oscilador: X_t = ± raíz(2m+1)/K. Si m < alpha^2 el punto está fuera de la región permitida y la probabilidad es pequeña; cerca de m = alpha^2 aparece un máximo; para m > alpha^2 aparecen oscilaciones asociadas a la región clásica permitida. Evolución temporal mediante flujo clásico del oscilador armónico: x(t)=x_0 cos omega t + p_0/(hbar K^2) sin omega t, p(t)=-hbar K^2 x_0 sin omega t + p_0 cos omega t. Despejando x_0 y p_0 se obtiene la Wigner evolucionada como una elipse que rota rígidamente en espacio fase sin cambiar área. Interpretación física: squeezing es redistribución de ruido cuántico y es útil en mediciones de precisión, interferometría y metrología cuántica."
+    },
+    {
+      "id": "estados-campo",
+      "title": "Estados del Campo",
+      "url": "doctorado/optica-cuantica/estados-campo.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "Fock",
+        "cuadraturas",
+        "eigenestados del campo",
+        "fluctuaciones del vacío",
+        "coherentes",
+        "Poisson",
+        "Hermite",
+        "sobrecompleto",
+        "Schrodinger cat",
+        "gato de Schrodinger",
+        "Wigner",
+        "sub-poissoniano",
+        "super-poissoniano"
+      ],
+      "content": "Estados del campo electromagnetico en un solo modo. Operador de campo electrico Ehat = E0 u i/sqrt2 (a e^{-i omega t} - a dagger e^{i omega t}). Estados de numero de fotones Fock, reglas de escalera, valor esperado del campo electrico igual cero y segundo momento <E^2>_n = E0^2 u^2 (n + 1/2). Fluctuaciones del vacio y campo efectivo E0/sqrt2. Cuadraturas X y Pi, cuadratura rotada epsilon_theta = X cos theta + Pi sin theta = (a dagger e^{i theta} + a e^{-i theta})/sqrt2. Eigenestados del campo de radiacion |epsilon_theta> expandidos en base de numero con polinomios de Hermite H_n(epsilon_theta) y fase e^{i n theta}. Verificacion usando reglas de escalera, cambios de indice y recurrencia H_{m+1}=2zH_m-2mH_{m-1}. Incertidumbre Delta X Delta Pi >= 1/2 y relacion entre campos electrico y magnetico. Estados coherentes como vacio desplazado D(alpha)|0>, Baker-Campbell-Hausdorff, expansion |alpha> = exp(-|alpha|^2/2) sum alpha^n/sqrt(n!) |n>. Estadistica de fotones de Poisson W_n = exp(-|alpha|^2)|alpha|^{2n}/n!, promedio y varianza iguales a |alpha|^2. Distribucion de la cuadratura del campo en un estado coherente |beta>, funcion generatriz de Hermite, gaussiana centrada en sqrt2 Re(beta e^{-i theta}). Sobre-completitud de estados coherentes, identidad I = 1/pi integral d^2 alpha |alpha><alpha|, prueba con coordenadas polares y gamma(n+1). Traslape <alpha|beta> = exp[-(|alpha|^2+|beta|^2)/2 + alpha* beta], modulo cuadrado exp(-|alpha-beta|^2). Expansion de estados coherentes y de estados numero sobre un circulo de radio fijo. Valor esperado del campo electrico en un estado coherente como campo clasico y varianza independiente de alpha igual a fluctuaciones del vacio. Estado gato de Schrodinger N/sqrt2(|alpha e^{i phi}> + |alpha e^{-i phi}>), normalizacion N^2(phi), funcion de Wigner con dos gaussianas y termino de interferencia, estadistica de fotones W_m = 2N^2 exp(-alpha^2) alpha^{2m} cos^2(m phi)/m!, varianza normalizada, sub-poissoniano y super-poissoniano."
+    },
+    {
+      "id": "estados-coherentes",
+      "title": "Estados Coherentes",
+      "url": "doctorado/optica-cuantica/estados-coherentes.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "Glauber",
+        "Poisson",
+        "cuadraturas",
+        "Wigner",
+        "Husimi",
+        "desplazamiento",
+        "Heisenberg",
+        "gato",
+        "Schrodinger",
+        "Hermite",
+        "Baker-Campbell-Hausdorff",
+        "BCH",
+        "sobrecompleto",
+        "Fourier",
+        "traslacion"
+      ],
+      "content": "Estados coherentes Glauber campo electromagnetico luz laser oscilador armonico espacio fase amplitud fase. Definicion como eigenestado del operador de aniquilacion a ket alpha = alpha ket alpha. Expansion en base de Fock estados de numero ket n, relacion de recurrencia c_{m+1} sqrt(m+1)=alpha c_m, coeficientes c_n=alpha^n/sqrt(n!) c_0, normalizacion c_0=exp(-|alpha|^2/2). Estado coherente normalizado exp(-|alpha|^2/2) suma alpha^n/sqrt(n!) ket n. Distribucion de Poisson de fotones P_n=exp(-|alpha|^2)|alpha|^{2n}/n!, numero promedio nbar=|alpha|^2, varianza igual a media. Cuadraturas dimensionales x=sqrt(hbar/2momega)(a+a daga), p=i sqrt(hbar m omega/2)(a daga-a). Cuadraturas adimensionales X=(a+a daga)/sqrt2, P=i(a daga-a)/sqrt2. Valores esperados X=sqrt2 Re alpha, P=sqrt2 Im alpha, x0=sqrt(2hbar/momega) Re alpha, p0=sqrt(2 hbar m omega) Im alpha. Evolucion temporal del oscilador armonico alpha(t)=alpha(0) exp(-i omega t), estado coherente permanece coherente y gira en espacio fase. Funcion de onda en posicion usando polinomios de Hermite y funcion generatriz, psi_alpha(x)=pi^{-1/4} exp[-1/2(x-X0)^2+i P0 x-i X0 P0/2]. Funcion evolucionada psi_alpha(x,t). Solape entre estados coherentes braket beta alpha = exp[-(|alpha|^2+|beta|^2)/2+beta* alpha], modulo cuadrado exp(-|beta-alpha|^2), conjunto sobrecompleto. Funcion Q de Husimi Q(beta)=1/pi exp(-|beta-alpha|^2). Operador de desplazamiento de Glauber D(alpha)=exp(alpha a daga-alpha* a), BCH Baker Campbell Hausdorff, D(alpha)=exp(-|alpha|^2/2) exp(alpha a daga) exp(-alpha* a), D(alpha)|0>=|alpha>. Incertidumbre minima, densidad gaussiana en posicion y momento, sigma_x^2=hbar/(2momega), sigma_p^2=hbar m omega/2, Delta x Delta p=hbar/2. Transformada de Fourier, funcion de onda en momento psi_alpha(p) gaussiana centrada en p0. Funcion de Wigner de estado coherente W_alpha(x,p)=1/(pi hbar) exp[-momega(x-x0)^2/hbar-(p-p0)^2/(hbar m omega)], en variables beta W=2/pi exp(-2|beta-alpha|^2). Estado gato coherente superposicion |alpha>+|-alpha>, normalizacion N=2(1+exp(-2 alpha^2)), funcion Wigner con dos picos gaussianos y termino de interferencia cos(2 sqrt2 alpha p), negatividad de Wigner no clasicidad. Ejercicios resueltos: producto interno posicion momento <x|p>=1/sqrt(2 pi hbar) exp(i p x/hbar), p=-i hbar d/dx, construccion de a y a daga desde el Hamiltoniano, estado base del oscilador armonico, traslacion espacial del vacio, e^{-i p Delta/hbar}|0> como estado coherente con alpha real, forma normal del desplazamiento, impulso de momento sobre el vacio y evolucion beta(t)=beta exp(-i omega t)."
+    },
+    {
+      "id": "interaccion-atomo-campo",
+      "title": "Interacción Átomo-Campo",
+      "url": "doctorado/optica-cuantica/interaccion-atomo-campo.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "fuerza de Lorentz",
+        "acoplamiento mínimo",
+        "gauge de Coulomb",
+        "aproximación dipolar",
+        "A dot p",
+        "r dot E",
+        "operador dipolar",
+        "RWA",
+        "átomo de dos niveles",
+        "frecuencia de Rabi del vacío",
+        "Jaynes-Cummings-Paul"
+      ],
+      "content": "Interacción átomo-campo derivación detallada desde la fuerza de Lorentz y el lagrangiano L = m rdot^2/2 + e rdot dot A - e phi. Ecuaciones de Euler Lagrange reproducen F = e(E + v cross B) usando B = curl A, E = -grad phi - dA/dt e identidades de Levi Civita. Momento canónico p_e = m_e rdot_e + e A, momento mecánico p_e - e A y acoplamiento mínimo. Transformada de Legendre H = (p_e - e A)^2/2m_e + e phi. Gauge de Coulomb div A = 0 implica p dot A = A dot p. Término lineal H_Ap = - e/m_e A(r_e,t) dot p_e y término A^2. Átomo de hidrógeno electrón protón, coordenadas de centro de masa R y relativa r, momentos P y p, masa reducida mu = m_e m_p/M. Inversión r_e = R + m_p r/M, r_p = R - m_e r/M, p_e = m_e P/M + p, p_p = m_p P/M - p. Energía cinética separada P^2/2M + p^2/2mu. Aproximación dipolar porque a0 mucho menor que lambda, Taylor A(R + delta r) y corrección 2 pi tamaño atomico / longitud de onda. En orden dipolar A(r_e) aproximadamente A(r_p) aproximadamente A(R) y se cancelan los términos con P. Resultado H_Ap = - e/mu A(R,t) dot p. Hamiltoniano hidrogenoide H0 = P^2/2M + p^2/2mu - e^2/(4 pi epsilon0 |r|) - e/mu A dot p + e^2 A^2/2mu. Potencial ponderomotriz U(R)=e^2 A^2/2mu. Invariancia local de gauge con psi tilde = exp(i e Lambda/hbar) psi, transformaciones A' = A + grad Lambda, phi' = phi - d Lambda/dt, campos E y B invariantes, ecuación de Schrödinger covariante con p - e A. Forma eléctrico dipolo con d = e r, H_rE = - e r dot E(R,t) = - d dot E. Equivalencia clásica porque los lagrangianos difieren por derivada total e d(r dot A)/dt; con centro de masa fijo dA/dt = partial_t A = -E. Equivalencia cuántica con transformación exp(i e r dot A/hbar), A' = 0 y phi' = - r dot E. Elementos de matriz: H_Ap y H_rE no coinciden en la misma base sin transformar estados; usando Heisenberg p/mu = i[H_atom,r]/hbar se obtiene <j|p|j'>/mu = i omega_jj' <j|r|j'>. Subsistemas centro de masa, átomo y campo generan entrelazamiento. Modelo de dos niveles |a>, |b>, H_atom = hbar omega sigma_z/2. Paridad anula elementos diagonales de r. Dipolo de transición d = e<a|r|b>, operador e r = d sigma+ + d* sigma-. Campo de un modo H_campo = hbar Omega a dagger a, E(R)=E0 u(R) i(a - a dagger), E0 = sqrt(hbar Omega/2 epsilon0 V). Frecuencia de Rabi del vacío g(R)=E0 |d dot u(R)|/hbar. Hamiltoniano antes de RWA H = P^2/2M + hbar Omega a dagger a + hbar omega sigma_z/2 + hbar g(R)(sigma+ - sigma-)(a - a dagger). En cuadro de interacción aparecen fases exp[-i(Omega-omega)t] sigma+ a, exp[i(Omega-omega)t] sigma- a dagger y términos contra-rotantes con Omega+omega. Aproximación de onda rotante conserva H_int^I = hbar g(exp[-i Delta t] sigma+ a + exp[i Delta t] sigma- a dagger), Delta = Omega - omega. Hamiltoniano final JCP con movimiento de centro de masa H = P^2/2M + hbar Omega a dagger a + hbar omega sigma_z/2 + hbar g(R)(sigma- a dagger + sigma+ a)."
+    },
+    {
+      "id": "jaynes-cummings-paul",
+      "title": "Modelo de Jaynes-Cummings-Paul",
+      "url": "doctorado/optica-cuantica/jaynes-cummings-paul.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "Rabi",
+        "cavidad",
+        "Tavis-Cummings",
+        "Holstein-Tavis-Cummings",
+        "HTC",
+        "QED cavidad",
+        "dressed states",
+        "estados vestidos",
+        "RWA",
+        "dispersivo",
+        "Stark shift",
+        "vacuum Rabi splitting",
+        "exponenciación",
+        "polaritónico",
+        "frecuencia de Rabi generalizada"
+      ],
+      "content": "Modelo de Jaynes-Cummings-Paul JCP átomo de dos niveles acoplado a un único modo cuantizado del campo electromagnético dentro de una cavidad. Exactamente solucionable QED de cavidad. Oscilaciones de Rabi cuánticas intercambio coherente de excitaciones régimen dispersivo estados vestidos dressed states. Sistema cerrado ecuación de Schrödinger. Hamiltoniano de interacción marco de interacción aproximación dipolar onda rotante RWA. H_int = hbar g (exp(i Delta t) a daga sigma- + exp(-i Delta t) sigma+ a). Constante de acoplamiento g. Desafine detuning Delta = omega_a - omega_c. Operadores atómicos sigma+ = |a><b|, sigma- = |b><a|. Estado excitado a estado base b. Emisión absorción. Procesos contra-rotantes descartados. Caso resonante Delta = 0 hamiltoniano independiente del tiempo. Operador de evolución U(t,0) = exp(-i g t (a daga sigma- + sigma+ a)). Estado inicial factorizado entre átomo y campo W_n C_a C_b. Exponenciación directa expansión en serie. V = a daga sigma- + sigma+ a. V^2 = a daga a sigma- sigma+ + a a daga sigma+ sigma-. Identidades atómicas sigma+ sigma+ = 0, sigma- sigma- = 0. Proyector sobre excitado |a><a| = sigma+ sigma-. Proyector sobre base |b><b| = sigma- sigma+. V^2 diagonal en base atómica con a a daga = n + 1 y a daga a = n. Operador número n. Potencias pares e impares por inducción. V^{2n+1} antidiagonal. Identidad a (a daga a)^n = (a a daga)^n a. Series coseno seno. Operador de evolución forma matricial cos(g t raíz n+1) y cos(g t raíz n) en la diagonal, -i sin(g t raíz n+1)/raíz n+1 a y -i sin(g t raíz n)/raíz n a daga en antidiagonal. Aplicación a estado inicial general U|a,n> = cos(g t raíz n+1) |a,n> - i sin(g t raíz n+1) |b,n+1>. Estados producto |a,n> oscila con |b,n+1> frecuencia g raíz n+1. Estado |b,0> aniquilado por interacción no transiciona. Campo en estado de Fock |n_0>. W_n = delta_{n,n_0}. Vacío n_0 = 0. Oscilación de Rabi del vacío psi(t) = cos(g t) |a,0> - i sin(g t) |b,1>. Probabilidad atómica P_a = cos^2(gt), P_b = sin^2(gt). Periodo pi/g. Emisión espontánea hacia un único modo resonante de la cavidad seguida de reabsorción coherente. A diferencia de espacio libre la excitación no se dispersa en un continuo de modos. Ecuaciones de Rabi. H_int |a,n> = hbar g exp(-i Delta t) raíz n+1 |b,n+1>. Cadena de subespacios bidimensionales invariantes parametrizados por n. Sistema de ODE acopladas Psi_{a,n} y Psi_{b,n+1}. Ecuación de segundo orden Psi doble punto - i Delta Psi punto + g^2 (n+1) Psi = 0. Coeficientes constantes. Solución exponencial lambda^2 - i Delta lambda + g^2 (n+1) = 0. Frecuencia de Rabi generalizada Omega tilde n = (1/2) raíz(Delta^2 + 4 g^2 (n+1)). lambda_pm = i Delta / 2 pm i Omega tilde n. Solución general con condiciones iniciales Psi_{a,n}(0) = W_n C_a, Psi_{b,n+1}(0) = W_{n+1} C_b. Amplitudes de probabilidad mezcla coseno y seno con desfases. Probabilidades fuera de resonancia P_a = 1 - g^2(n+1)/Omega_tilde_n^2 sin^2(Omega_tilde_n t), P_b = g^2(n+1)/Omega_tilde_n^2 sin^2(Omega_tilde_n t). Caso resonante recupera g raíz n+1 = Omega_n/2 frecuencia de Rabi Omega_n = 2 g raíz n+1. Régimen dispersivo |Delta| >> 2 g raíz n+1. Expansión Omega tilde n aproximada Delta/2 + g^2 (n+1) / Delta. Mezcla suprimida átomo no transiciona acumula fase dependiente del número de fotones. Hamiltoniano efectivo H_eff = hbar g^2 / Delta. Stark shift cuántico ac-Stark dependiente del número de fotones. Lectura no-demolición arquitectura dispersiva QED de cavidad superconductora. Diagonalización por bloques método polaritónico estados vestidos. Hamiltoniano completo H = hbar omega_c a daga a + (1/2) hbar omega_a sigma_z + hbar g (sigma+ a + sigma- a daga). Operador número total de excitaciones N = a daga a + sigma+ sigma-. Conmutador [H, N] = 0 cantidad conservada. Estructura de bloques diagonal por bloques. Sector N = 0 contiene |b,0> eigenvalor -(1/2) hbar omega_a. Sector N = n+1 base {|a,n>, |b,n+1>}. Matriz Hamiltoniano 2x2 con offset hbar omega_c (n + 1/2). Parte no trivial con -Delta/2, Delta/2 en diagonal y g raíz n+1 fuera. Diagonalización determinante. Eigenvalores E_pm = hbar omega_c (n+1/2) pm hbar Omega tilde n. Ángulo de mezcla theta_n tangente 2 theta_n = 2 g raíz n+1 / Delta. Eigenestados vestidos dressed states. |+, n> = sin theta_n |a,n> + cos theta_n |b,n+1>. |-, n> = cos theta_n |a,n> - sin theta_n |b,n+1>. Resonancia Delta = 0 theta_n = pi/4 estados simétricos antisimétricos con separación 2 hbar g raíz n+1 desdoblamiento de Rabi cuántico vacuum Rabi splitting espectroscopía. Operador de evolución base vestida diagonal exponenciales de eigenvalores. Volver a la base producto identidades trigonométricas. Coincide con exponenciación directa en resonancia. Conexión con tesis Tavis-Cummings N átomos superradiancia g raíz N. Holstein modos fonónicos. Holstein-Tavis-Cummings HTC fotón electrón fonón triple interacción. Bloques de excitaciones conservadas. Generaliza a sistemas con disipación ecuación maestra Lindblad."
+    },
+    {
+      "id": "modelo-holstein-cummings",
+      "title": "Modelo de Holstein-Cummings",
+      "url": "doctorado/optica-cuantica/modelo-holstein-cummings.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "Holstein-Cummings",
+        "Holstein",
+        "Cummings",
+        "Huang-Rhys",
+        "energía de reorganización",
+        "Franck-Condon",
+        "polaritones",
+        "fonones",
+        "cavidad",
+        "Jaynes-Cummings-Paul",
+        "modelo efectivo",
+        "diagonalización por bloques",
+        "tesis doctoral"
+      ],
+      "summary": "Construcción detallada del modelo de Holstein-Cummings para una molécula: superficies de energía potencial, acoplamiento Holstein, cavidad, conservación de excitaciones, polaritones y diagonalización del JCP efectivo polaritón-fonón.",
+      "results": [
+        "E_R = hbar nu lambda^2",
+        "H_HC = hbar Omega a†a + hbar omega_0 sigma†sigma + hbar nu b†b - hbar nu lambda (b†+b) sigma†sigma + hbar g(sigma†a + sigma a†)",
+        "[H_HC,N]=0 con N=a†a+sigma†sigma",
+        "|±,n>=(|e,n-1>±|g,n>)/sqrt(2)",
+        "Omega_nm^ef=sqrt((2g sqrt(n)-nu)^2+nu^2 lambda^2 m)"
+      ],
+      "content": "Modelo de Holstein-Cummings una molécula. Construcción del hamiltoniano molecular a partir de superficies de energía potencial desplazadas. Estado electrónico base g y excitado e. Coordenada nuclear efectiva q. Potencial base V_g(q)=1/2 m nu^2 q^2. Potencial excitado V_e(q)=hbar omega + 1/2 m nu^2 (q-q0)^2. La excitación electrónica cambia la geometría de equilibrio. Transición vertical de Franck-Condon. Energía de reorganización E_R=V_e(0)-V_e(q0)=1/2 m nu^2 q0^2=hbar nu lambda^2. Parámetro de Huang-Rhys lambda^2=m nu q0^2/(2 hbar). Frecuencia vertical efectiva omega_0=omega+nu lambda^2. Espacio de Hilbert molecular H_el tensor H_vib. Operadores sigma dagger=|e><g|, sigma=|g><e|. Oscilador vibracional con b, b dagger y [b,b dagger]=1. Coordenada q=sqrt(hbar/(2m nu))(b dagger+b), momento p=i sqrt(hbar m nu/2)(b dagger-b). Hamiltoniano molecular de Holstein H_mol=hbar omega_0 sigma dagger sigma + hbar nu b dagger b - hbar nu lambda (b dagger+b) sigma dagger sigma. Cavity mode hbar Omega a dagger a. Interacción dipolar y aproximación de onda rotante H_int=hbar g(sigma dagger a + sigma a dagger). Hamiltoniano Holstein-Cummings H_HC=hbar Omega a dagger a + hbar omega_0 sigma dagger sigma + hbar nu b dagger b - hbar nu lambda(b dagger+b)sigma dagger sigma + hbar g(sigma dagger a + sigma a dagger). No hay acoplamiento directo cavidad vibración porque omega_0 visible o ultravioleta y nu infrarrojo. Aproximaciones: Born-Oppenheimer, armónica, dos niveles electrónicos, único electrón activo, aproximación dipolar, RWA. Coordenada efectiva de reacción q como combinación de modos normales nucleares. Número de excitaciones ópticas N=a dagger a + sigma dagger sigma conservado. Fonones no entran en N. Bloques para n>=1 con base |e,n-1>, |g,n>. Matriz de bloque H_HC^(n)=hbar(Omega n + nu b dagger b)I + hbar[[Delta-nu lambda(b dagger+b), g sqrt n],[g sqrt n,0]], Delta=omega_0-Omega. Operadores tau del bloque, tau_z, tau_x y proyector P_e=(I+tau_z)/2. Desplazamiento vibracional D(alpha)=exp(alpha b dagger-alpha* b), D dagger b D=b+alpha. Con alpha=lambda/2 se elimina la fuerza uniforme. Hamiltoniano desplazado. Condición Delta=nu lambda^2 implica Omega=omega. Forma desplazada con matriz simétrica. Base polaritónica |±,n>=(|e,n-1>±|g,n>)/sqrt2. Operadores S dagger, S, S_z, S_x. Hamiltoniano de Rabi polaritón vibración: H tilde = hbar[n Omega + nu lambda^2/4 + nu b dagger b]I + hbar g sqrt n S_z - hbar nu lambda/2 (b+b dagger) S_x. RWA polaritón-fonón. Hamiltoniano efectivo JCP H_eff=hbar[n Omega + nu lambda^2/4 + nu b dagger b]I + hbar g sqrt n S_z - hbar nu lambda/2 (b S dagger + b dagger S). Número polaritón-fonón M=b dagger b + S dagger S conservado. Bloques con base |+,n,m-1>, |-,n,m>. Matriz efectiva H_eff^(n,m)=hbar A_nm I + hbar/2 [[delta_n, -k_m],[-k_m, -delta_n]], A_nm=n Omega+nu lambda^2/4+nu(m-1/2), k_m=nu lambda sqrt m, delta_n=2g sqrt n - nu. Resonancia efectiva cuando delta_n=0, es decir nu=2g sqrt n. Frecuencia de Rabi efectiva Omega_nm^ef=sqrt(delta_n^2+k_m^2)=sqrt((2g sqrt n-nu)^2+nu^2 lambda^2 m). Eigenvalores E_nm^±=hbar[A_nm ± Omega_nm^ef/2]. Eigenvectores por componentes u y v. Para epsilon positivo se elige u=C_nm y v=-S_nm con S_nm/C_nm=(Omega_eff-delta_n)/k_m. Normalización C_nm^2+S_nm^2=1. Identidad k_m^2=(Omega_eff-delta_n)(Omega_eff+delta_n). C_nm=sqrt((Omega_eff+delta_n)/(2 Omega_eff)), S_nm=sqrt((Omega_eff-delta_n)/(2 Omega_eff)). Para epsilon negativo se elige u=S_nm y v=C_nm. Ortogonalidad <E+|E->=C_nm S_nm-S_nm C_nm=0. Ángulo de mezcla theta_nm con cos theta=delta/Omega_eff, sin theta=k_m/Omega_eff. Identidades de medio ángulo: C_nm=cos(theta_nm/2), S_nm=sin(theta_nm/2). Sectores del modelo: n=0 estados |g,0,m> con energía hbar nu m; n>0,m=0 estado |-,n,0> con energía hbar(n Omega+nu lambda^2/4-g sqrt n); sector dinámico n>0,m>0 con dobletes mezclados. Condiciones de validez: |lambda|<<2, resonancia fonón polaritón nu≈2g sqrt n, Delta=nu lambda^2, Omega=omega, escalas ópticas Omega, omega, omega_0 mucho mayores que g, nu y nu lambda. Valores esperados en espacio desplazado requieren transformar observables vibracionales con D dagger O D; observables electrónicos y fotónicos conmutan con el desplazamiento. Conexión tesis: extensión a dos moléculas del Holstein-Tavis-Cummings, construcción de bloques y diagonalización."
+    },
+    {
+      "id": "dinamica-modelo-hc",
+      "title": "Dinámica del modelo HC",
+      "url": "doctorado/optica-cuantica/dinamica-modelo-hc.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "Holstein-Cummings",
+        "dinámica",
+        "polaritones",
+        "fonones",
+        "dobletes",
+        "estado coherente vibracional",
+        "inversión electrónica",
+        "inversión polaritónica",
+        "fidelidad",
+        "tesis doctoral"
+      ],
+      "summary": "Evolución temporal detallada del modelo efectivo de Holstein-Cummings: preparación del estado inicial, dinámica exacta por dobletes, reconstrucción del estado completo y aproximación para un paquete vibracional coherente.",
+      "results": [
+        "a_nm=tilde c_(m-1) d_n^+ y b_nm=tilde c_m d_n^-",
+        "Omega_nm^ef=sqrt(delta_n^2+k_m^2)",
+        "|tilde Psi(t)> como suma de sectores desacoplados y dobletes dinámicos",
+        "p_nm^+(t) y p_nm^-(t) exactas",
+        "W(t)=P_e(t)-P_g(t), inversión polaritónica y fidelidad"
+      ],
+      "content": "Dinámica del modelo Holstein-Cummings HC efectivo para una molécula acoplada a una cavidad y una vibración intramolecular. Estado inicial tripartito campo electrónico vibración. Campo |alpha>=sum c_n|n>, molécula c_g|g>+c_e|e>, vibración desplazada |tilde beta>=sum tilde c_m|m>. Base polaritónica |±,n>=(|e,n-1>±|g,n>)/sqrt(2). Amplitudes polaritónicas d_n^±=(c_(n-1)c_e±c_n c_g)/sqrt(2). Organización por dobletes dinámicos {|+,n,m-1>,|-,n,m>}. Amplitudes iniciales a_nm=tilde c_(m-1)d_n^+ y b_nm=tilde c_m d_n^-. Sectores desacoplados n=0 y m=0. Definiciones A_nm=Omega n+nu lambda^2/4+nu(m-1/2), delta_n=2g sqrt(n)-nu, k_m=nu lambda sqrt(m), Omega_nm^ef=sqrt(delta_n^2+k_m^2). Coeficientes de mezcla C_nm y S_nm. Eigenestados E_nm^+ y E_nm^-. Evolución exacta por fases en la base de energía. Amplitudes p_nm^+(t) y p_nm^-(t) en la base polaritón-fonón con cos(Omega_nm^ef t/2), sin(Omega_nm^ef t/2), delta_n/Omega_nm^ef y k_m/Omega_nm^ef. Estado completo suma sector |g,0,m>, estados aislados |-,n,0> y dobletes dinámicos. Regreso a base electrónica mediante ramas chi_g(t) y chi_e(t). Vibración inicial coherente con distribución de Poisson M=|tilde beta|^2. Aproximación tilde c_m aproximadamente tilde c_(m-1). Linealización Omega_nm^ef aproximadamente varphi_nM+m Omega_nM^ef prima. Evolución como dos paquetes vibracionales coherentes que giran en sentidos opuestos y se correlacionan con ramas polaritónicas. Inversión electrónica W(t)=P_e-P_g. Inversión polaritónica mathcal W. Fidelidad entre evolución HC completa y efectiva."
+    },
+    {
+      "id": "un-fonon-bloque-polaritonico",
+      "title": "Un fonón en un bloque polaritónico",
+      "url": "doctorado/optica-cuantica/un-fonon-bloque-polaritonico.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "Holstein-Cummings",
+        "bloque polaritónico",
+        "fonón",
+        "polaritón",
+        "inversión polaritónica",
+        "inversión electrónica",
+        "fidelidad",
+        "hamiltoniano efectivo",
+        "doblete",
+        "tesis doctoral"
+      ],
+      "summary": "Dinámica de un único fonón en el bloque polaritónico n=9,m=9 del modelo HC efectivo: amplitudes del doblete, probabilidades, inversión polaritónica, inversión electrónica nula y comparación con la evolución numérica completa.",
+      "results": [
+        "H_eff^(9,9) con delta_9=6g-nu y k_9=3 eta",
+        "p_99^+(t)=exp(-i A_99 t) i k_9/Omega_99^ef sin(Omega_99^ef t/2)",
+        "P_+(t)=(k_9/Omega_99^ef)^2 sin^2(Omega_99^ef t/2)",
+        "W_polaritonica(t)=-1+2(k_9/Omega_99^ef)^2 sin^2(Omega_99^ef t/2)",
+        "W_R(t)=-cos(k_9 t) en resonancia y W_electronica(t)=0"
+      ],
+      "content": "Un fonón en un bloque polaritónico dinámica del modelo Holstein-Cummings HC. Bloque n=9 m=9. Subespacio {|+,9,8>, |-,9,9>}. Estado inicial |-,9,9> preparado con a_99=0 y b_99=1. Hamiltoniano efectivo polaritón fonón con A_99=9 Omega+nu lambda^2/4+17nu/2, delta_9=6g-nu, k_9=3nu lambda=3 eta. Frecuencia de Rabi efectiva Omega_99^ef=sqrt((6g-nu)^2+9 eta^2). Resonancia del bloque n=9 cuando nu=6g. Amplitudes exactas p_99^+(t) y p_99^-(t). Probabilidades P_+(t) y P_-(t). Inversión polaritónica mathcal W(t)=P_+(t)-P_-(t)=-1+2(k_9/Omega_99^ef)^2 sin^2(Omega_99^ef t/2). Caso resonante mathcal W_R(t)=-cos(k_9 t). Inversión electrónica W(t)=0 porque cada polaritón tiene mitad de población excitada y mitad base, y las coherencias cruzadas llevan fonones ortogonales. Gráficas: InversionPolaritonica, Comparacion-IP-R, Comparacion-IE, Comparacion-IP-NR1, Comparacion-IP-NR2, Fidelidad-R, Fidelidad-NR1, Fidelidad-NR2. Comparación entre hamiltoniano completo y efectivo, casos resonante y no resonante con eta=0.01g, nu=5.99g, nu=5.9g, nu=6g, bloque n=10."
+    },
+    {
+      "id": "preparacion-estados-entrelazamiento",
+      "title": "Preparación de estados y entrelazamiento",
+      "url": "doctorado/optica-cuantica/preparacion-estados-entrelazamiento.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "entrelazamiento",
+        "preparación de estados",
+        "Jaynes-Cummings-Paul",
+        "medición",
+        "postselección",
+        "inversión atómica",
+        "colapsos",
+        "revivals",
+        "Husimi Q",
+        "estados gato",
+        "Fock"
+      ],
+      "summary": "Mediciones conjuntas y marginales en el sistema átomo-campo, estados condicionales por postselección, inversión atómica, colapsos y revivals, función Q de Husimi y preparación de estados del campo.",
+      "results": [
+        "W(t;F_at,F_c)=|<F_c|<F_at|psi(t)>|^2",
+        "I(t)=-sum_n P_n cos(2gt sqrt(n)) para átomo inicialmente en el estado base",
+        "Q(beta,t)=pi^{-1}<beta|rho_c(t)|beta>",
+        "Recurrencia de postselección para ingeniería finita de estados de Fock"
+      ],
+      "content": "Preparación de estados y entrelazamiento en el modelo de Jaynes-Cummings-Paul. Medición conjunta átomo campo. Probabilidad W(t; F_at, F_c) igual al módulo cuadrado de la amplitud <F_c|<F_at|psi(t)>. Ansatz psi(t)=sum_n psi_{a,n}|a,n> + psi_{b,n}|b,n>. Interferencia cuántica al sumar amplitudes antes de tomar módulo cuadrado. Medición del estado interno del átomo trazando sobre estados de Fock del campo. Probabilidad W(t; F_at)=sum_n |<n|<F_at|psi(t)>|^2. Casos W(t;a)=sum_n |psi_{a,n}|^2 y W(t;b)=sum_n |psi_{b,n}|^2. Medición del estado del campo trazando sobre los estados atómicos a y b. Estados condicionales tras la medición. Estado del campo condicionado a detectar el átomo en F_at. Estado atómico condicionado a detectar el campo en F_c. Setup experimental. Medición de poblaciones atómicas por ionización selectiva con campo eléctrico externo. Potencial Coulombiano inclinado por V_E=-d dot E. Corriente de ionización I(t). Proyección sobre superposiciones atómicas mediante pulso clásico resonante. Inversión atómica I(t)=W(t;a)-W(t;b). Caso resonante con átomo inicialmente en estado base y campo coherente. Evolución |b,n> a cos(gt sqrt n)|b,n> - i sin(gt sqrt n)|a,n-1>. P_a=sum P_n sin^2(gt sqrt n), P_b=sum P_n cos^2(gt sqrt n), I(t)=-sum P_n cos(2gt sqrt n). Distribución de Poisson. Colapso por desfasamiento de frecuencias. Revival por realineación de fases. Expansión sqrt(nbar+m). Tiempo de revival T_R aproximadamente 2 pi sqrt(nbar)/g y en la figura 2 pi sqrt(nbar+1)/g para nbar=25, gt=32.038. Señal compleja S(t)=sum P_n exp(i 2gt sqrt n), I=-Re S. Función Q de Husimi Q(beta,t)=1/pi <beta|rho_c(t)|beta>. Campo reducido rho_c=|phi_b><phi_b|+|phi_a><phi_a|. Preparación de superposiciones coherentes estados gato en régimen dispersivo altamente desintonizado. Fases condicionadas al estado atómico lineales en n proporcionales a g^2 t / Delta. Postselección atómica produce campo con fases dependientes de n. Para estado coherente inicial, factores e^{i n theta} rotan alpha y producen superposición A|alpha e^{i theta_a}> + B|alpha e^{i theta_b}>. Ingeniería de estados finitos de Fock. Objetivo |psi_target>=sum d_n |n>. Secuencia de átomos resonantes en superposiciones alpha_k|a>+beta_k|b>, interacción tiempo tau_k, postselección en estado base b. Recurrencia no normalizada c_n^(k)=beta_k cos(g tau_k sqrt n)c_n^(k-1)-i alpha_k sin(g tau_k sqrt n)c_{n-1}^{(k-1)}. Primer átomo produce beta_1|0>-i alpha_1 sin(g tau_1)|1>. Segundo átomo produce superposición de |0>, |1>, |2>. Dos caminos indistinguibles hacia |1>."
+    },
+    {
+      "stage": "Maestría",
+      "area": "Tesis de maestría",
+      "id": "maestria-1-tls",
+      "title": "1 TLS",
+      "url": "notas-maestria/1%20TLS.pdf",
+      "tags": [
+        "TLS",
+        "sistema de dos niveles",
+        "qubit",
+        "maestría"
+      ],
+      "content": "1 TLS sistema de dos niveles modelo base dinámica coherente poblaciones amplitudes de probabilidad notas de maestría tesis."
+    },
+    {
+      "stage": "Maestría",
+      "area": "Tesis de maestría",
+      "id": "maestria-1-tls-forzamiento",
+      "title": "1 TLS con Forzamiento",
+      "url": "notas-maestria/1%20TLS%20con%20Forzamiento.pdf",
+      "tags": [
+        "TLS",
+        "forzamiento",
+        "campo externo",
+        "maestría"
+      ],
+      "content": "1 TLS con forzamiento sistema de dos niveles bajo campo externo término de forzamiento dinámica coherente notas de maestría tesis."
+    },
+    {
+      "stage": "Maestría",
+      "area": "Tesis de maestría",
+      "id": "maestria-concurrencia-positiva",
+      "title": "Concurrencia Positiva",
+      "url": "notas-maestria/Concurrencia%20Positiva.pdf",
+      "tags": [
+        "concurrencia",
+        "entrelazamiento",
+        "correlaciones cuánticas",
+        "maestría"
+      ],
+      "content": "Concurrencia positiva cuantificación de correlaciones cuánticas entrelazamiento sistemas bipartitos notas de maestría tesis."
+    },
+    {
+      "stage": "Maestría",
+      "area": "Tesis de maestría",
+      "id": "maestria-hilbert-schmidt",
+      "title": "Hilbert-Schmidt Inner Product",
+      "url": "notas-maestria/Hilbert-Schmidt%20Inner%20Product.pdf",
+      "tags": [
+        "Hilbert-Schmidt",
+        "producto interno",
+        "operadores",
+        "matriz densidad",
+        "maestría"
+      ],
+      "content": "Hilbert-Schmidt inner product producto interno de operadores matrices densidad comparación de estados cuánticos notas de maestría tesis."
+    },
+    {
+      "stage": "Maestría",
+      "area": "Tesis de maestría",
+      "id": "maestria-marco-interaccion",
+      "title": "Marco de Interacción",
+      "url": "notas-maestria/Marco%20de%20Interaccio%CC%81n.pdf",
+      "tags": [
+        "marco de interacción",
+        "cuadro de interacción",
+        "transformación unitaria",
+        "maestría"
+      ],
+      "content": "Marco de interacción transformación al cuadro de interacción separación dinámica libre interacción hamiltoniano libre hamiltoniano de interacción notas de maestría tesis."
+    },
+    {
+      "stage": "Maestría",
+      "area": "Tesis de maestría",
+      "id": "maestria-perturbaciones",
+      "title": "Teoría de Perturbaciones",
+      "url": "notas-maestria/T.%20de%20Perturbaciones.pdf",
+      "tags": [
+        "perturbaciones",
+        "teoría de perturbaciones",
+        "acoplamiento débil",
+        "maestría"
+      ],
+      "content": "Teoría de perturbaciones correcciones a estados energías evolución acoplamiento débil métodos perturbativos notas de maestría tesis."
+    },
+    {
+      "stage": "Maestría",
+      "area": "Tesis de maestría",
+      "id": "maestria-perturbaciones-1-tls",
+      "title": "Teoría de Perturbaciones 1 TLS",
+      "url": "notas-maestria/T.%20de%20Perturbaciones%201%20TLS.pdf",
+      "tags": [
+        "perturbaciones",
+        "TLS",
+        "sistema de dos niveles",
+        "maestría"
+      ],
+      "content": "Teoría de perturbaciones aplicada a un sistema de dos niveles 1 TLS correcciones perturbativas notas de maestría tesis."
+    },
+    {
+      "stage": "Maestría",
+      "area": "Tesis de maestría",
+      "id": "maestria-perturbaciones-proyectores",
+      "title": "Teoría de Perturbaciones con Proyectores",
+      "url": "notas-maestria/T.%20de%20Perturbaciones%20con%20Proyectores.pdf",
+      "tags": [
+        "perturbaciones",
+        "proyectores",
+        "hamiltoniano efectivo",
+        "maestría"
+      ],
+      "content": "Teoría de perturbaciones con proyectores separación de subespacios aproximaciones efectivas hamiltoniano efectivo notas de maestría tesis."
+    }
+  ]
+};

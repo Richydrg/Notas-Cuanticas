@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notas Cuánticas</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%232b5fb3' stroke-width='3'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23d4453a' stroke-width='3' transform='rotate(60 32 32)'/><ellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%236b48a6' stroke-width='3' transform='rotate(-60 32 32)'/><circle cx='32' cy='32' r='6' fill='%23f3c623' stroke='%23222' stroke-width='2'/></svg>">
+</head>
+<body data-root="">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="maestria/index.html">Maestría</a>
+      <a href="doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container hero compact">
+  <div class="text">
+    <h1 class="huge">Notas de posgrado en óptica cuántica, computación cuántica y sistemas cuánticos abiertos</h1>
+    <p class="lead">
+      Material de maestría y doctorado organizado alrededor de los temas
+      centrales de mi investigación y tesis.
+    </p>
+  </div>
+  <div class="hero-illus">
+    <img src="assets/img/bulbasaur.png" alt="Bulbasaur" class="floaty tilt-l" style="--rot: -6deg;">
+    <img src="assets/img/bulbasaurzzz.png" alt="Bulbasaur durmiendo" class="floaty" style="max-height: 150px;">
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="areas">
+      <a class="area-card" href="maestria/index.html">
+        <svg class="icon" viewBox="0 0 80 80" aria-hidden="true">
+          <!-- Función de onda y partícula -->
+          <path d="M 8 50 Q 18 30 28 50 T 48 50 T 68 50 T 76 50"
+                stroke="#6b48a6" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <circle cx="40" cy="36" r="6" fill="#f3c623" stroke="#2a2a2a" stroke-width="2"/>
+          <text x="40" y="72" text-anchor="middle" font-size="12" fill="#6b48a6" font-family="serif" font-style="italic">ψ</text>
+        </svg>
+        <h3>Maestría</h3>
+        <p style="margin:0; color: var(--ink-soft);">
+          Sistemas de dos niveles, perturbaciones, marcos de interacción y
+          medidas de correlación cuántica.
+        </p>
+        <div class="meta">8 notas</div>
+      </a>
+
+      <a class="area-card" href="doctorado/index.html">
+        <svg class="icon" viewBox="0 0 80 80" aria-hidden="true">
+          <ellipse cx="40" cy="40" rx="32" ry="12" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+          <ellipse cx="40" cy="40" rx="32" ry="12" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(60 40 40)"/>
+          <ellipse cx="40" cy="40" rx="32" ry="12" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(-60 40 40)"/>
+          <circle cx="40" cy="40" r="6" fill="#f3c623" stroke="#2a2a2a" stroke-width="2"/>
+        </svg>
+        <h3>Doctorado</h3>
+        <p style="margin:0; color: var(--ink-soft);">
+          Óptica cuántica, sistemas cuánticos abiertos y modelo Holstein-Tavis-Cummings.
+        </p>
+        <div class="meta">8 notas</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 1 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/search.js"></script>
+</body>
+</html>
