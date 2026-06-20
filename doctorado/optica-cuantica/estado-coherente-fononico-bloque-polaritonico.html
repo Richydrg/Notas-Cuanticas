@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estado coherente fonónico en bloque polaritónico · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams'
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<link rel="shortcut icon" href="../../favicon.ico?v=2" type="image/x-icon">
+<link rel="icon" href="../../favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/img/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/img/favicon-16x16.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/img/apple-touch-icon.png?v=2">
+<link rel="manifest" href="../../site.webmanifest?v=2">
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Estado coherente fonónico en bloque polaritónico
+</div>
+
+<div class="container">
+<article class="note">
+
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <ellipse cx="31" cy="32" rx="22" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2.4" transform="rotate(-18 31 32)"/>
+      <ellipse cx="34" cy="31" rx="22" ry="8" fill="none" stroke="#d4453a" stroke-width="2.4" transform="rotate(22 34 31)"/>
+      <circle cx="19" cy="35" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.8"/>
+      <circle cx="45" cy="29" r="5" fill="#fff3d8" stroke="#6b48a6" stroke-width="1.8"/>
+      <path d="M20 47 C29 55 42 53 49 44" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M47 44 l5 1 -3 -5" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M15 18 h34" stroke="#d4453a" stroke-width="2" fill="none"/>
+      <path d="M49 18 l-5 -4 v8 z" fill="#d4453a"/>
+    </svg>
+    <h1>Estado coherente fonónico en bloque polaritónico</h1>
+    <div class="author">Bloque $n=9$ · Colapsos, revivals y comparación con el modelo HC completo</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Dina%CC%81mica%20del%20Modelo%20HC.pdf#page=9" target="_blank">📄 PDF original pág. 9</a>
+      <a href="estado-coherente-fononico-bloque-polaritonico.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="estado-coherente-fononico-bloque-polaritonico.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#estado-inicial">Estado inicial y objetivo</a></li>
+      <li><a href="#parametros">Parámetros del bloque</a></li>
+      <li><a href="#estado-aproximado">Estado aproximado</a></li>
+      <li><a href="#traslape">Traslape de paquetes</a></li>
+      <li><a href="#inversion-lineal-p">Inversión polaritónica lineal</a></li>
+      <li><a href="#inversion-lineal-e">Inversión electrónica lineal</a></li>
+      <li><a href="#revival">Tiempo de revival</a></li>
+      <li><a href="#solucion-exacta">Solución exacta efectiva</a></li>
+      <li><a href="#inversion-exacta-p">Inversión polaritónica exacta</a></li>
+      <li><a href="#inversion-exacta-e">Inversión electrónica exacta</a></li>
+      <li><a href="#resultados">Resultados gráficos</a></li>
+      <li><a href="#lectura">Lectura física</a></li>
+    </ol>
+  </div>
+
+  <h2 id="estado-inicial">1. Estado inicial y objetivo</h2>
+  <p>
+    Se fija un bloque polaritónico del hamiltoniano efectivo de
+    Holstein-Cummings y se prepara el modo vibracional desplazado en un estado
+    coherente. Su expansión en estados de Fock es
+  </p>
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\beta}
+    =\sum_{m=0}^{\infty}\tilde c_m\ket m,
+    \qquad
+    \tilde c_m=e^{-M/2}\frac{\tilde\beta^m}{\sqrt{m!}},
+    \qquad M=|\tilde\beta|^2.}$$
+  </div>
+  <p>La distribución fonónica correspondiente es de Poisson:</p>
+  <div class="boxed def">
+    $$\boxed{|\tilde c_m|^2=e^{-M}\frac{M^m}{m!}.}$$
+  </div>
+  <p>
+    A diferencia del problema con un número fonónico definido, ahora
+    participan muchos dobletes. Cada componente $m$ evoluciona con una
+    frecuencia de Rabi efectiva distinta. El desfasaje de estas componentes
+    produce el colapso y su refase parcial genera los revivals.
+  </p>
+  <p>El manuscrito toma</p>
+  <div class="boxed result">
+    $$\boxed{n=9,\qquad \tilde\beta=3,\qquad M=9,
+    \qquad \ket{\tilde\Psi(0)}=\ket{-,9}\ket{\tilde\beta}.}$$
+    $$\boxed{d_9^+=0,\qquad d_9^-=1.}$$
+  </div>
+  <p>
+    Se emplearán dos niveles de descripción. Primero se linealiza la frecuencia
+    efectiva alrededor de $M$. Esta aproximación permite identificar dos
+    paquetes coherentes contrarrotantes y calcular el tiempo de revival.
+    Después se conserva la dependencia exacta con $m$, necesaria para recuperar
+    la anchura y la altura de los lóbulos.
+  </p>
+
+  <h2 id="parametros">2. Parámetros del bloque $n=9$</h2>
+  <p>Para un bloque $n$ y un número fonónico cercano a $M$ se definen</p>
+  $$\delta_n=2g\sqrt n-\nu,
+  \qquad
+  \Omega_{nM}^{\mathrm{ef}}
+  =\sqrt{\delta_n^2+\nu^2\lambda^2M}.$$
+  <p>La derivada respecto de $m$, evaluada en el centro de la distribución, es</p>
+  <div class="boxed result">
+    $$\boxed{\Omega_{nM}^{\mathrm{ef}\prime}
+    =\left.\frac{\partial\Omega_{nm}^{\mathrm{ef}}}{\partial m}\right|_{m=M}
+    =\frac{\nu^2\lambda^2}{2\Omega_{nM}^{\mathrm{ef}}}.}$$
+  </div>
+  <p>La expansión de Taylor a primer orden queda</p>
+  $$\Omega_{nm}^{\mathrm{ef}}
+  \simeq\Omega_{nM}^{\mathrm{ef}}+(m-M)\Omega_{nM}^{\mathrm{ef}\prime}
+  =\varphi_{nM}+m\Omega_{nM}^{\mathrm{ef}\prime},$$
+  <div class="boxed def">
+    $$\boxed{\varphi_{nM}
+    =\Omega_{nM}^{\mathrm{ef}}-M\Omega_{nM}^{\mathrm{ef}\prime}.}$$
+  </div>
+  <p>
+    Los coeficientes de mezcla se evalúan también en $m=M$:
+  </p>
+  $$C=\sqrt{\frac{\Omega_{nM}^{\mathrm{ef}}+\delta_n}
+  {2\Omega_{nM}^{\mathrm{ef}}}},
+  \qquad
+  S=\sqrt{\frac{\Omega_{nM}^{\mathrm{ef}}-\delta_n}
+  {2\Omega_{nM}^{\mathrm{ef}}}}.$$
+  <p>De estas definiciones se obtienen las identidades</p>
+  $$C^2+S^2=1,qquad
+  C^2-S^2=\frac{\delta_n}{\Omega_{nM}^{\mathrm{ef}}},
+  \qquad
+  2CS=\frac{\nu\lambda\sqrt M}{\Omega_{nM}^{\mathrm{ef}}}.$$
+  <p>Para $n=M=9$:</p>
+  <div class="boxed result">
+    $$\boxed{A_{99}=9\Omega+\frac{\nu\lambda^2}{4}+\frac{17}{2}\nu,
+    \qquad \delta_9=6g-\nu,}$$
+    $$\boxed{\Omega_{99}^{\mathrm{ef}}
+    =\sqrt{(6g-\nu)^2+9\nu^2\lambda^2},}$$
+    $$\boxed{\Omega_{99}^{\mathrm{ef}\prime}
+    =\frac{\nu^2\lambda^2}{2\Omega_{99}^{\mathrm{ef}}},
+    \qquad
+    \varphi_{99}=\Omega_{99}^{\mathrm{ef}}
+    -9\Omega_{99}^{\mathrm{ef}\prime}.}$$
+  </div>
+
+  <h2 id="estado-aproximado">3. Estado aproximado como dos paquetes coherentes</h2>
+  <p>
+    Al usar $d_9^+=0$, $d_9^-=1$ en la solución linealizada del bloque, el
+    estado se escribe como
+  </p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    \ket{\tilde\Psi(t)}\simeq e^{-iA_{99}t}\Bigg[&
+    -S e^{-i\varphi_{99}t/2}
+    \ket{\tilde\beta e^{-i\Omega't/2}}
+    \otimes\left(Ce^{-i\Omega't/2}\ket{+,9}-S\ket{-,9}\right)\\
+    &+C e^{+i\varphi_{99}t/2}
+    \ket{\tilde\beta e^{+i\Omega't/2}}
+    \otimes\left(Se^{+i\Omega't/2}\ket{+,9}+C\ket{-,9}\right)
+    \Bigg],
+    \end{aligned}}$$
+  </div>
+  <p>
+    Aquí se abrevia $\Omega'=\Omega_{99}^{\mathrm{ef}\prime}$. Los estados
+    coherentes fonónicos giran con velocidades angulares opuestas
+    $-\Omega'/2$ y $+\Omega'/2$. La dinámica deja de ser una oscilación de dos
+    amplitudes y se convierte en el movimiento relativo de dos paquetes en el
+    espacio de fases vibracional.
+  </p>
+  <p>Separando las ramas polaritónicas, se define</p>
+  $$\ket{\tilde\Psi(t)}
+  =e^{-iA_{99}t}\left(\ket{\chi_+(t)}\ket{+,9}
+  +\ket{\chi_-(t)}\ket{-,9}\right),$$
+  <div class="boxed def">
+    $$\boxed{\begin{aligned}
+    \ket{\chi_+}={}&CS\left[-e^{-i(\varphi_{99}+\Omega')t/2}
+    \ket{\tilde\beta e^{-i\Omega't/2}}
+    +e^{+i(\varphi_{99}+\Omega')t/2}
+    \ket{\tilde\beta e^{+i\Omega't/2}}\right],\\
+    \ket{\chi_-}={}&S^2e^{-i\varphi_{99}t/2}
+    \ket{\tilde\beta e^{-i\Omega't/2}}
+    +C^2e^{+i\varphi_{99}t/2}
+    \ket{\tilde\beta e^{+i\Omega't/2}}.
+    \end{aligned}}$$
+  </div>
+  <p>
+    Las normas $\braket{\chi_+|\chi_+}$ y
+    $\braket{\chi_-|\chi_-}$ son las probabilidades de las ramas
+    polaritónicas. En cambio, su traslape determina la inversión electrónica.
+  </p>
+
+  <h2 id="traslape">4. Traslape entre los paquetes fonónicos</h2>
+  <p>Para estados coherentes arbitrarios se cumple</p>
+  $$\braket{\alpha|\gamma}
+  =\exp\left[-\frac{|\alpha|^2}{2}-\frac{|\gamma|^2}{2}+\alpha^*\gamma\right].$$
+  <p>Tomando</p>
+  $$\alpha=\tilde\beta e^{-i\Omega't/2},
+  \qquad
+  \gamma=\tilde\beta e^{+i\Omega't/2},$$
+  <p>y usando $|\alpha|^2=|\gamma|^2=M$ y
+  $\alpha^*\gamma=M e^{i\Omega't}$, resulta</p>
+  <div class="boxed result">
+    $$\boxed{\braket{\tilde\beta e^{-i\Omega't/2}
+    |\tilde\beta e^{+i\Omega't/2}}
+    =e^{-2M\sin^2(\Omega't/2)}e^{iM\sin(\Omega't)}.}$$
+  </div>
+  <p>Para $M=9$:</p>
+  <div class="boxed def">
+    $$\boxed{\braket{\tilde\beta e^{-i\Omega't/2}
+    |\tilde\beta e^{+i\Omega't/2}}
+    =e^{-18\sin^2(\Omega't/2)}e^{i9\sin(\Omega't)}.}$$
+  </div>
+  <p>
+    El módulo del traslape se hace pequeño cuando los paquetes se separan y
+    vuelve a uno cuando su ángulo relativo es un múltiplo de $2\pi$. Esta es la
+    estructura geométrica del colapso y del revival en la aproximación lineal.
+  </p>
+
+  <h2 id="inversion-lineal-p">5. Inversión polaritónica lineal</h2>
+  <p>La inversión polaritónica es</p>
+  $$\mathcal W_{\mathrm{lin}}(t)
+  =\braket{\chi_+|\chi_+}-\braket{\chi_-|\chi_-}.$$
+  <p>
+    Al desarrollar ambas normas aparecen términos diagonales y dos términos de
+    interferencia entre los paquetes. Al sustituir el traslape coherente y usar
+    $C^2+S^2=1$, la expresión se reduce a
+  </p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    \mathcal W_{\mathrm{lin}}(t)
+    ={}&-1+\frac{(\Omega_{99}^{\mathrm{ef}})^2-\delta_9^2}
+    {(\Omega_{99}^{\mathrm{ef}})^2}\\
+    &\times\Bigg[1-e^{-18\sin^2(\Omega't/2)}
+    \cos\left(\varphi_{99}t+9\sin\Omega't+\frac{\Omega't}{2}\right)
+    \cos\left(\frac{\Omega't}{2}\right)\Bigg].
+    \end{aligned}}$$
+  </div>
+  <p>
+    El exponencial controla la envolvente del traslape; las funciones coseno
+    contienen la fase dinámica interna y la rotación relativa de los paquetes.
+  </p>
+  <h3>Caso resonante</h3>
+  <p>Si $\delta_9=0$, entonces $\nu=6g$ y</p>
+  $$\Omega_{99}^{\mathrm{ef}}=3\nu\lambda,qquad
+  \Omega'_{99}=\frac{\nu\lambda}{6},qquad
+  \varphi_{99}=\frac{3}{2}\nu\lambda.$$
+  <p>Por tanto,</p>
+  <div class="boxed result">
+    $$\boxed{\mathcal W_{R,\mathrm{lin}}(t)
+    =-e^{-18\sin^2(\nu\lambda t/12)}
+    \cos\left(\frac{3\nu\lambda t}{2}
+    +9\sin\frac{\nu\lambda t}{6}
+    +\frac{\nu\lambda t}{12}\right)
+    \cos\left(\frac{\nu\lambda t}{12}\right).}$$
+  </div>
+
+  <h2 id="inversion-lineal-e">6. Inversión electrónica lineal</h2>
+  <p>En el bloque $n=9$ se tiene</p>
+  $$\ket{e,8}=\frac{\ket{+,9}+\ket{-,9}}{\sqrt2},
+  \qquad
+  \ket{g,9}=\frac{\ket{+,9}-\ket{-,9}}{\sqrt2}.$$
+  <p>En consecuencia,</p>
+  <div class="boxed def">
+    $$\boxed{\hat\sigma_z
+    =\ket{+,9}\bra{-,9}+\ket{-,9}\bra{+,9}.}$$
+  </div>
+  <p>
+    La inversión electrónica no es la diferencia entre las normas de las ramas:
+    depende de su coherencia. Así,
+  </p>
+  <div class="boxed result">
+    $$\boxed{W_{\mathrm{lin}}(t)
+    =\braket{\chi_+|\chi_-}+\braket{\chi_-|\chi_+}
+    =2\operatorname{Re}\braket{\chi_+|\chi_-}.}$$
+  </div>
+  <p>El desarrollo del producto cruzado da</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    W_{\mathrm{lin}}(t)
+    =2CS(C^2-S^2)\Bigg\{&
+    \cos\left(\frac{\Omega't}{2}\right)\\
+    &-e^{-18\sin^2(\Omega't/2)}
+    \cos\left[\varphi_{99}t+\Omega't+9\sin(\Omega't)\right]
+    \Bigg\}.
+    \end{aligned}}$$
+  </div>
+  <p>En resonancia, $C^2=S^2=1/2$, por lo que</p>
+  <div class="boxed result">
+    $$\boxed{W_{R,\mathrm{lin}}(t)=0.}$$
+  </div>
+
+  <h2 id="revival">7. Tiempo de revival</h2>
+  <p>
+    Los dos paquetes giran con velocidades $\pm\Omega'_{nM}/2$. Su ángulo
+    relativo es $\Delta\vartheta(t)=\Omega'_{nM}t$. El primer reencuentro
+    ocurre cuando $\Omega'_{nM}t_r=2\pi$. Por tanto,
+  </p>
+  <div class="boxed result">
+    $$\boxed{t_r=\frac{2\pi}{\Omega_{nM}^{\mathrm{ef}\prime}}
+    =\frac{4\pi\Omega_{nM}^{\mathrm{ef}}}{\nu^2\lambda^2}
+    =\frac{4\pi}{\nu^2\lambda^2}
+    \sqrt{(2g\sqrt n-\nu)^2+\nu^2\lambda^2M}.}$$
+  </div>
+  <p>En resonancia:</p>
+  <div class="boxed def">
+    $$\boxed{t_r^{(R)}=\frac{4\pi\sqrt M}{\nu\lambda}.}$$
+  </div>
+  <p>Para $M=9$, $t_r^{(R)}=12\pi/(\nu\lambda)$.</p>
+  <p>
+    La linealización conserva este tiempo, pero elimina la curvatura de
+    $\Omega_{nm}^{\mathrm{ef}}$ dentro del ancho fonónico
+    $\Delta m=\sqrt M$. Por ello no reproduce bien la anchura ni la reducción
+    de altura de los lóbulos de revival.
+  </p>
+
+  <h2 id="solucion-exacta">8. Solución exacta del hamiltoniano efectivo</h2>
+  <p>La evolución exacta en un bloque $n$ es</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    \ket{\tilde\Psi(t)}={}&e^{-iB_nt}\tilde c_0d_n^-\ket{-,n,0}\\
+    &+\sum_{m=1}^{\infty}\left[
+    p_{nm}^+(t)\ket{+,n,m-1}+p_{nm}^-(t)\ket{-,n,m}\right],
+    \end{aligned}}$$
+    $$\boxed{B_n=n\Omega+\frac{\nu\lambda^2}{4}-g\sqrt n.}$$
+  </div>
+  <p>Las cantidades de cada doblete son</p>
+  <div class="boxed def">
+    $$\boxed{A_{nm}=n\Omega+\frac{\nu\lambda^2}{4}
+    +\nu\left(m-\frac12\right),
+    \quad \delta_n=2g\sqrt n-\nu,}$$
+    $$\boxed{k_m=\nu\lambda\sqrt m,
+    \qquad \Omega_{nm}^{\mathrm{ef}}
+    =\sqrt{\delta_n^2+k_m^2}.}$$
+  </div>
+  <p>Las amplitudes generales son</p>
+  <div class="boxed def">
+    $$\boxed{\begin{aligned}
+    p_{nm}^+(t)=e^{-iA_{nm}t}\Bigg[&
+    \left(\cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+    -i\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\right)
+    \tilde c_{m-1}d_n^+\\
+    &+i\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\tilde c_md_n^-
+    \Bigg],\\
+    p_{nm}^-(t)=e^{-iA_{nm}t}\Bigg[&
+    i\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\tilde c_{m-1}d_n^+\\
+    &+\left(\cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+    +i\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\right)
+    \tilde c_md_n^-\Bigg].
+    \end{aligned}}$$
+  </div>
+  <p>Para $\ket{-,9}\ket{\tilde\beta}$, $d_9^+=0$ y $d_9^-=1$:</p>
+  <div class="boxed result">
+    $$\boxed{p_{9m}^+(t)=e^{-iA_{9m}t}
+    i\frac{k_m}{\Omega_{9m}^{\mathrm{ef}}}
+    \sin\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right)\tilde c_m,}$$
+    $$\boxed{p_{9m}^-(t)=e^{-iA_{9m}t}
+    \left[\cos\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right)
+    +i\frac{\delta_9}{\Omega_{9m}^{\mathrm{ef}}}
+    \sin\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right)\right]\tilde c_m.}$$
+  </div>
+
+  <h2 id="inversion-exacta-p">9. Inversión polaritónica exacta</h2>
+  <p>La contribución aislada $\ket{-,9,0}$ tiene signo negativo, de modo que</p>
+  $$\mathcal W_{\mathrm{ef}}(t)
+  =-|\tilde c_0|^2+\sum_{m=1}^{\infty}
+  \left(|p_{9m}^+|^2-|p_{9m}^-|^2\right).$$
+  <p>Las probabilidades de cada doblete son</p>
+  $$|p_{9m}^+|^2=|\tilde c_m|^2
+  \frac{k_m^2}{(\Omega_{9m}^{\mathrm{ef}})^2}
+  \sin^2\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right),$$
+  $$|p_{9m}^-|^2=|\tilde c_m|^2\left[
+  \cos^2\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right)
+  +\frac{\delta_9^2}{(\Omega_{9m}^{\mathrm{ef}})^2}
+  \sin^2\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right)\right].$$
+  <p>Restando y usando $\sum_m|\tilde c_m|^2=1$ se obtiene</p>
+  <div class="boxed result">
+    $$\boxed{\mathcal W_{\mathrm{ef}}(t)
+    =-1+\sum_{m=1}^{\infty}|\tilde c_m|^2
+    \frac{k_m^2}{(\Omega_{9m}^{\mathrm{ef}})^2}
+    [1-\cos(\Omega_{9m}^{\mathrm{ef}}t)].}$$
+  </div>
+  <p>En resonancia, $\Omega_{9m}^{\mathrm{ef}}=k_m=\nu\lambda\sqrt m$:</p>
+  <div class="boxed result">
+    $$\boxed{\mathcal W_{R,\mathrm{ef}}(t)
+    =-\sum_{m=0}^{\infty}|\tilde c_m|^2
+    \cos(\nu\lambda\sqrt m\,t)
+    =-e^{-9}\sum_{m=0}^{\infty}\frac{9^m}{m!}
+    \cos(\nu\lambda\sqrt m\,t).}$$
+  </div>
+
+  <h2 id="inversion-exacta-e">10. Inversión electrónica exacta</h2>
+  <p>
+    El operador $\hat\sigma_z$ intercambia las ramas polaritónicas sin cambiar
+    el número fonónico. Como $p_{9m}^+$ acompaña a $\ket{+,9,m-1}$ y
+    $p_{9m}^-$ a $\ket{-,9,m}$, deben emparejarse
+    $p_{9,m+1}^+$ y $p_{9m}^-$. Por ello,
+  </p>
+  <div class="boxed result">
+    $$\boxed{W_{\mathrm{ef}}(t)
+    =2\operatorname{Re}\sum_{m=0}^{\infty}
+    p_{9,m+1}^{+*}(t)p_{9m}^-(t),}$$
+    $$p_{90}^-(t)=e^{-iB_9t}\tilde c_0.$$
+  </div>
+  <p>Se introducen las abreviaciones</p>
+  $$\mathcal C_m=\cos\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right),
+  \quad
+  \mathcal S_m=\sin\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right),
+  \quad
+  D_m=\frac{\delta_9}{\Omega_{9m}^{\mathrm{ef}}},
+  \quad
+  K_m=\frac{k_m}{\Omega_{9m}^{\mathrm{ef}}}.$$
+  <p>Para $m\geq1$:</p>
+  $$p_{9,m+1}^{+*}=-ie^{iA_{9,m+1}t}K_{m+1}\mathcal S_{m+1}\tilde c_{m+1}^*,$$
+  $$p_{9m}^-=e^{-iA_{9m}t}(\mathcal C_m+iD_m\mathcal S_m)\tilde c_m.$$
+  <p>Su producto es</p>
+  $$p_{9,m+1}^{+*}p_{9m}^-
+  =e^{i(A_{9,m+1}-A_{9m})t}
+  K_{m+1}\mathcal S_{m+1}\tilde c_{m+1}^*\tilde c_m
+  (D_m\mathcal S_m-i\mathcal C_m).$$
+  <p>Los centros energéticos consecutivos satisfacen</p>
+  $$A_{9,m+1}-A_{9m}
+  =\nu\left(m+\frac12\right)-\nu\left(m-\frac12\right)=\nu.$$
+  <p>
+    Como $\tilde\beta=3$ es real, también lo son los coeficientes
+    $\tilde c_m$. Entonces
+  </p>
+  $$\operatorname{Re}\{e^{i\nu t}(D_m\mathcal S_m-i\mathcal C_m)\}
+  =D_m\mathcal S_m\cos(\nu t)+\mathcal C_m\sin(\nu t).$$
+  <p>
+    El estado $\ket{-,9,0}$ no pertenece a un doblete y genera el término de
+    borde
+  </p>
+  $$2\operatorname{Re}[p_{91}^{+*}p_{90}^-]
+  =2\sin[(A_{91}-B_9)t]K_1\mathcal S_1\tilde c_1\tilde c_0.$$
+  <p>Al sumarlo con los términos $m\geq1$ se obtiene</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    W_{\mathrm{ef}}(t)={}&2\sin[(A_{91}-B_9)t]
+    K_1\mathcal S_1\tilde c_1\tilde c_0\\
+    &+2\sum_{m=1}^{\infty}K_{m+1}\mathcal S_{m+1}
+    \tilde c_{m+1}\tilde c_m
+    [D_m\mathcal S_m\cos(\nu t)+\mathcal C_m\sin(\nu t)].
+    \end{aligned}}$$
+  </div>
+  <p>
+    En resonancia, $D_m=0$, $K_m=1$,
+    $\Omega_{9m}^{\mathrm{ef}}=\nu\lambda\sqrt m$ y
+    $A_{91}-B_9=\nu$. El término de borde se incorpora a la suma usando
+    $\mathcal C_0=1$:
+  </p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    W_{R,\mathrm{ef}}(t)=2\sum_{m=0}^{\infty}&\sin(\nu t)
+    \sin\left(\frac{\nu\lambda\sqrt{m+1}\,t}{2}\right)
+    \cos\left(\frac{\nu\lambda\sqrt m\,t}{2}\right)
+    \tilde c_{m+1}\tilde c_m.
+    \end{aligned}}$$
+  </div>
+  <p>
+    La solución exacta conserva interferencias entre sectores fonónicos
+    vecinos. Por eso la inversión electrónica resonante ya no se anula: posee
+    una oscilación rápida a frecuencia $\nu$, modulada por la envolvente de
+    colapso y revival.
+  </p>
+
+  <h2 id="resultados">11. Resultados gráficos</h2>
+  <p>
+    Las figuras siguientes emplean $\tilde\beta=3$, es decir, $M=9$. Primero se
+    muestran los resultados de la aproximación lineal; después, la solución
+    exacta del hamiltoniano efectivo y su comparación con el modelo completo.
+  </p>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Estado%20coherente%20fononico%20en%20bloque%20polaritonico/InversionP_aprox_lineal.png" alt="Inversión polaritónica en la aproximación lineal.">
+    <figcaption>Inversión polaritónica obtenida con la aproximación lineal de la frecuencia de Rabi efectiva. La curva amarilla corresponde al caso resonante, $\nu=6g$, y la azul a $\nu=5.99g$. La linealización predice correctamente los tiempos de revival, determinados por el reencuentro de los dos paquetes coherentes, pero no reproduce la anchura ni la reducción de altura de los lóbulos de revival porque elimina la curvatura de $\Omega_{9m}^{\mathrm{ef}}$ respecto de $m$.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Estado%20coherente%20fononico%20en%20bloque%20polaritonico/InversionE_aprox_lineal.png" alt="Inversión electrónica en la aproximación lineal.">
+    <figcaption>Inversión electrónica dentro de la aproximación lineal. En resonancia, curva amarilla, el resultado es idénticamente cero porque $C^2=S^2=1/2$: cada polaritón contiene probabilidades iguales para los estados electrónicos excitado y base. Fuera de resonancia, curva azul para $\nu=5.99g$, la mezcla deja de ser exactamente simétrica y aparece una señal distinta de cero; sin embargo, la linealización todavía omite la dinámica producida por la curvatura de las frecuencias efectivas.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Estado%20coherente%20fononico%20en%20bloque%20polaritonico/InversionP.png" alt="Inversión polaritónica exacta del hamiltoniano efectivo.">
+    <figcaption>Inversión polaritónica calculada con la dependencia exacta de $\Omega_{9m}^{\mathrm{ef}}$. La curva amarilla corresponde a resonancia y la azul al caso fuera de resonancia. Ahora aparecen los colapsos y revivals característicos del modelo JCP, junto con el ensanchamiento y la reducción de altura de sus lóbulos. La desintonización introduce además el término $\delta_9^2/(\Omega_{9m}^{\mathrm{ef}})^2$, que impide una transferencia polaritónica completa y desplaza verticalmente la señal.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Estado%20coherente%20fononico%20en%20bloque%20polaritonico/InversionE.png" alt="Inversión electrónica exacta del hamiltoniano efectivo.">
+    <figcaption>Inversión electrónica del hamiltoniano efectivo: caso resonante en amarillo y no resonante en azul. Fuera de resonancia, $D_m=\delta_9/\Omega_{9m}^{\mathrm{ef}}$ deja de ser cero y la observable combina las fases de los sectores vecinos $m$ y $m+1$ con la oscilación rápida de frecuencia $\nu$. El batimiento resultante desplaza los máximos de refase, por lo que los grupos de oscilaciones azules parecen acercarse entre sí en el intervalo mostrado.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Estado%20coherente%20fononico%20en%20bloque%20polaritonico/ComparacionP.png" alt="Comparación de la inversión polaritónica efectiva y completa.">
+    <figcaption>Comparación, en resonancia, de la inversión polaritónica generada por el hamiltoniano efectivo y por el hamiltoniano completo de Holstein-Cummings resuelto numéricamente. Las curvas son prácticamente indistinguibles, lo que muestra que el modelo efectivo reproduce de manera precisa la dinámica polaritónica completa en el régimen y la escala temporal considerados.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Estado%20coherente%20fononico%20en%20bloque%20polaritonico/ComparacionE.png" alt="Comparación de la inversión electrónica efectiva y completa.">
+    <figcaption>Comparación de las inversiones electrónicas en resonancia. La evolución obtenida con el hamiltoniano efectivo coincide con la del modelo completo, incluso para la modulación rápida debida a la frecuencia vibracional y para la envolvente de colapsos y revivals.</figcaption>
+  </figure>
+
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Estado%20coherente%20fononico%20en%20bloque%20polaritonico/Fidelidad.png" alt="Fidelidad entre el hamiltoniano efectivo y el modelo completo.">
+    <figcaption>Fidelidad entre los estados evolucionados con el hamiltoniano efectivo y con el hamiltoniano completo de Holstein-Cummings. Su valor se mantiene prácticamente igual a uno durante el intervalo estudiado. Esta proximidad a la unidad explica la coincidencia de las inversiones polaritónica y electrónica en las dos figuras anteriores.</figcaption>
+  </figure>
+
+  <h2 id="lectura">12. Lectura física</h2>
+  <p>
+    El estado coherente fonónico convierte un solo bloque polaritónico en una
+    superposición de dobletes con diferentes números vibracionales. La
+    dependencia $\Omega_{9m}^{\mathrm{ef}}\propto\sqrt m$ hace que sus
+    componentes se desfasen inicialmente y vuelvan a alinearse parcialmente.
+    La aproximación lineal conserva la separación angular media entre los
+    paquetes y determina bien los tiempos de revival. La solución exacta
+    conserva además la curvatura de la dispersión y recupera la forma completa
+    de cada lóbulo.
+  </p>
+  <p>
+    La fidelidad cercana a uno muestra que el hamiltoniano efectivo no conserva
+    únicamente una escala de frecuencia. También preserva el estado cuántico y
+    las interferencias que controlan simultáneamente las inversiones
+    polaritónica y electrónica durante el intervalo analizado.
+  </p>
+
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 20 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>

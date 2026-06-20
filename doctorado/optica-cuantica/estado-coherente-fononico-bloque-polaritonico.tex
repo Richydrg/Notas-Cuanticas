@@ -1,0 +1,1202 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{braket}
+\usepackage{dsfont}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\emergencystretch=2em
+\allowdisplaybreaks
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\Id}{\mathds{1}}
+
+\title{Estado coherente fon\'onico en bloque polarit\'onico}
+\author{Ricardo Del Rosal Gardu\~no \\ \small Doctorado en F\'isica, BUAP}
+\date{Notas de doctorado}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\section{Estado inicial y objetivo}
+
+Se considera un bloque polarit\'onico fijo del modelo efectivo de
+Holstein--Cummings. A diferencia del caso con un n\'umero fon\'onico definido,
+el modo vibracional se prepara ahora en un estado coherente desplazado
+\begin{equation}
+  \boxed{
+  \ket{\tilde\beta}
+  =
+  \sum_{m=0}^{\infty}\tilde c_m\ket m,
+  \qquad
+  \tilde c_m
+  =
+  \ee^{-M/2}\frac{\tilde\beta^m}{\sqrt{m!}},
+  \qquad
+  M=|\tilde\beta|^2.
+  }
+\end{equation}
+
+
+La distribuci\'on fon\'onica es de Poisson:
+\begin{equation}
+  \boxed{
+  |\tilde c_m|^2
+  =
+  \ee^{-M}\frac{M^m}{m!}.
+  }
+\end{equation}
+El estado coherente contiene una superposici\'on de muchos valores de $m$.
+Cada componente evoluciona con su propia frecuencia de Rabi efectiva, por lo
+que la suma produce colapsos y resurgimientos de las observables.
+
+El manuscrito se centra en el bloque $n=9$ y toma
+\begin{equation}
+  \boxed{
+  \tilde\beta=3,
+  \qquad
+  M=9,
+  \qquad
+  \ket{\tilde\Psi(0)}=\ket{-,9}\ket{\tilde\beta}.
+  }
+\end{equation}
+La preparaci\'on polarit\'onica inferior equivale a
+\begin{equation}
+  \boxed{
+  d_9^+=0,
+  \qquad
+  d_9^-=1.
+  }
+\end{equation}
+
+Se estudiar\'an dos niveles de descripci\'on. Primero se linealiza la frecuencia
+de Rabi alrededor del n\'umero medio $M$. Esta aproximaci\'on permite expresar
+la evoluci\'on mediante estados coherentes rotados y obtener anal\'iticamente el
+tiempo de revival. Despu\'es se conserva la dependencia exacta con $m$ dentro
+del hamiltoniano efectivo. Esa suma completa recupera la forma de los revivals,
+su ensanchamiento y la reducci\'on de su altura.
+
+\section{Par\'ametros del bloque \texorpdfstring{$n=9$}{n=9}}
+
+Para un bloque $n$ y un n\'umero fon\'onico cercano a $M$, se definen
+\begin{equation}
+  \delta_n=2g\sqrt n-\nu,
+  \qquad
+  \Omega_{nM}^{\mathrm{ef}}
+  =
+  \sqrt{\delta_n^2+\nu^2\lambda^2M}.
+\end{equation}
+La derivada respecto al n\'umero fon\'onico, evaluada en $M$, es
+\begin{equation}
+  \boxed{
+  \Omega_{nM}^{\mathrm{ef}\prime}
+  =
+  \left.
+  \frac{\partial\Omega_{nm}^{\mathrm{ef}}}{\partial m}
+  \right|_{m=M}
+  =
+  \frac{\nu^2\lambda^2}{2\Omega_{nM}^{\mathrm{ef}}}.
+  }
+\end{equation}
+La frecuencia linealizada se escribe como
+\begin{equation}
+  \Omega_{nm}^{\mathrm{ef}}
+  \simeq
+  \varphi_{nM}+m\Omega_{nM}^{\mathrm{ef}\prime},
+\end{equation}
+donde
+\begin{equation}
+  \boxed{
+  \varphi_{nM}
+  =
+  \Omega_{nM}^{\mathrm{ef}}
+  -M\Omega_{nM}^{\mathrm{ef}\prime}.
+  }
+\end{equation}
+Los coeficientes de mezcla se aproximan por su valor en el centro de la
+distribuci\'on:
+\begin{equation}
+  C=C_{nM}
+  =
+  \sqrt{
+  \frac{\Omega_{nM}^{\mathrm{ef}}+\delta_n}
+  {2\Omega_{nM}^{\mathrm{ef}}}
+  },
+  \qquad
+  S=S_{nM}
+  =
+  \sqrt{
+  \frac{\Omega_{nM}^{\mathrm{ef}}-\delta_n}
+  {2\Omega_{nM}^{\mathrm{ef}}}
+  }.
+\end{equation}
+Por construcci\'on,
+\begin{equation}
+  C^2+S^2=1,
+  \qquad
+  C^2-S^2
+  =
+  \frac{\delta_n}{\Omega_{nM}^{\mathrm{ef}}},
+  \qquad
+  2CS
+  =
+  \frac{\nu\lambda\sqrt M}{\Omega_{nM}^{\mathrm{ef}}}.
+\end{equation}
+
+Para $n=M=9$ se obtiene
+\begin{equation}
+  \boxed{
+  A_{99}
+  =
+  9\Omega+\frac{\nu\lambda^2}{4}+\frac{17}{2}\nu,
+  \qquad
+  \delta_9=6g-\nu.
+  }
+\end{equation}
+La frecuencia efectiva y su derivada son
+\begin{equation}
+  \boxed{
+  \Omega_{99}^{\mathrm{ef}}
+  =
+  \sqrt{\delta_9^2+9\nu^2\lambda^2}
+  =
+  \sqrt{(6g-\nu)^2+9\nu^2\lambda^2},
+  }
+\end{equation}
+\begin{equation}
+  \boxed{
+  \Omega_{99}^{\mathrm{ef}\prime}
+  =
+  \frac{\nu^2\lambda^2}{2\Omega_{99}^{\mathrm{ef}}},
+  \qquad
+  \varphi_{99}
+  =
+  \Omega_{99}^{\mathrm{ef}}
+  -9\Omega_{99}^{\mathrm{ef}\prime}.
+  }
+\end{equation}
+
+\section{Estado aproximado como dos paquetes coherentes}
+
+La aproximaci\'on lineal obtenida en la nota de din\'amica da, para un bloque
+$n$ fijo,
+\begin{align}
+  \ket{\tilde\Psi(t)}
+  &\simeq
+  \ee^{-\ii A_{nM}t}
+  \Bigg[
+  (d_n^+C-d_n^-S)
+  \ee^{-\ii\varphi_{nM}t/2}
+  \ket{\tilde\beta\ee^{-\ii\Omega_{nM}^{\mathrm{ef}\prime}t/2}}
+  \notag\\
+  &\qquad\otimes
+  \left(
+  C\ee^{-\ii\Omega_{nM}^{\mathrm{ef}\prime}t/2}\ket{+,n}
+  -S\ket{-,n}
+  \right)
+  \notag\\
+  &\quad+
+  (d_n^+S+d_n^-C)
+  \ee^{+\ii\varphi_{nM}t/2}
+  \ket{\tilde\beta\ee^{+\ii\Omega_{nM}^{\mathrm{ef}\prime}t/2}}
+  \notag\\
+  &\qquad\otimes
+  \left(
+  S\ee^{+\ii\Omega_{nM}^{\mathrm{ef}\prime}t/2}\ket{+,n}
+  +C\ket{-,n}
+  \right)
+  \Bigg].
+\end{align}
+El estado vibracional inicial se divide en dos paquetes coherentes. Sus
+amplitudes en el espacio de fase son
+\begin{equation}
+  \tilde\beta_-(t)
+  =
+  \tilde\beta\ee^{-\ii\Omega_{nM}^{\mathrm{ef}\prime}t/2},
+  \qquad
+  \tilde\beta_+(t)
+  =
+  \tilde\beta\ee^{+\ii\Omega_{nM}^{\mathrm{ef}\prime}t/2}.
+\end{equation}
+Los paquetes giran en sentidos opuestos. Su separaci\'on angular es
+$\Omega_{nM}^{\mathrm{ef}\prime}t$. Cuando se separan, disminuye su traslape y
+se pierde la interferencia entre las ramas polarit\'onicas. Cuando vuelven a
+coincidir, reaparece la interferencia y ocurre un revival.
+
+Para $n=M=9$, $d_9^+=0$ y $d_9^-=1$, el estado se reduce a
+\begin{align}
+  \ket{\tilde\Psi(t)}
+  &\simeq
+  \ee^{-\ii A_{99}t}
+  \Bigg[
+  -S\ee^{-\ii\varphi_{99}t/2}
+  \ket{\tilde\beta\ee^{-\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}}
+  \notag\\
+  &\qquad\otimes
+  \left(
+  C\ee^{-\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}\ket{+,9}
+  -S\ket{-,9}
+  \right)
+  \notag\\
+  &\quad+
+  C\ee^{+\ii\varphi_{99}t/2}
+  \ket{\tilde\beta\ee^{+\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}}
+  \notag\\
+  &\qquad\otimes
+  \left(
+  S\ee^{+\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}\ket{+,9}
+  +C\ket{-,9}
+  \right)
+  \Bigg].
+\end{align}
+
+\subsection{Separaci\'on por ramas polarit\'onicas}
+
+Agrupando los t\'erminos que multiplican a $\ket{+,9}$ y a $\ket{-,9}$,
+\begin{equation}
+  \boxed{
+  \ket{\tilde\Psi(t)}
+  =
+  \ee^{-\ii A_{99}t}
+  \left(
+  \ket{\chi_+(t)}\ket{+,9}
+  +
+  \ket{\chi_-(t)}\ket{-,9}
+  \right).
+  }
+\end{equation}
+Las ramas vibracionales condicionadas son
+\begin{align}
+  \ket{\chi_+(t)}
+  &\equiv
+  CS
+  \Bigg[
+  \ee^{\frac{\ii}{2}(\varphi_{99}+\Omega_{99}^{\mathrm{ef}\prime})t}
+  \ket{\tilde\beta\ee^{+\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}}
+  \notag\\
+  &\hspace{2.5cm}
+  -
+  \ee^{-\frac{\ii}{2}(\varphi_{99}+\Omega_{99}^{\mathrm{ef}\prime})t}
+  \ket{\tilde\beta\ee^{-\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}}
+  \Bigg],
+  \\
+  \ket{\chi_-(t)}
+  &\equiv
+  C^2\ee^{+\ii\varphi_{99}t/2}
+  \ket{\tilde\beta\ee^{+\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}}
+  \notag\\
+  &\quad+
+  S^2\ee^{-\ii\varphi_{99}t/2}
+  \ket{\tilde\beta\ee^{-\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}}.
+\end{align}
+Estas ramas no son ortogonales en general. Los estados coherentes forman una
+base sobrecompleta, por lo que el traslape entre los dos paquetes vibracionales
+es distinto de cero salvo cuando est\'an suficientemente separados en el
+espacio de fase.
+
+\section{Traslape entre los paquetes fon\'onicos}
+
+El traslape de dos estados coherentes es
+\begin{equation}
+  \boxed{
+  \braket{\alpha|\beta}
+  =
+  \exp\left[
+  -\frac12\left(|\alpha|^2+|\beta|^2\right)
+  +\alpha^*\beta
+  \right].
+  }
+\end{equation}
+Para los paquetes que giran en sentidos opuestos se toma
+\begin{equation}
+  \alpha
+  =
+  \tilde\beta\ee^{-\ii\Omega_{99}^{\mathrm{ef}\prime}t/2},
+  \qquad
+  \beta
+  =
+  \tilde\beta\ee^{+\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}.
+\end{equation}
+Como $|\alpha|^2=|\beta|^2=M$,
+\begin{align}
+  \braket{
+  \tilde\beta\ee^{-\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}
+  |
+  \tilde\beta\ee^{+\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}}
+  &=
+  \exp\left[
+  -M+M\ee^{\ii\Omega_{99}^{\mathrm{ef}\prime}t}
+  \right]
+  \\
+  &=
+  \exp\left[
+  M\left(\cos\Omega_{99}^{\mathrm{ef}\prime}t-1\right)
+  +\ii M\sin\Omega_{99}^{\mathrm{ef}\prime}t
+  \right].
+\end{align}
+Usando $\cos x-1=-2\sin^2(x/2)$,
+\begin{equation}
+  \boxed{
+  \braket{
+  \tilde\beta\ee^{-\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}
+  |
+  \tilde\beta\ee^{+\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}}
+  =
+  \ee^{-2M\sin^2(\Omega_{99}^{\mathrm{ef}\prime}t/2)}
+  \ee^{\ii M\sin(\Omega_{99}^{\mathrm{ef}\prime}t)}.
+  }
+\end{equation}
+Para $M=9$,
+\begin{equation}
+  \boxed{
+  \braket{
+  \tilde\beta\ee^{-\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}
+  |
+  \tilde\beta\ee^{+\ii\Omega_{99}^{\mathrm{ef}\prime}t/2}}
+  =
+  \ee^{-18\sin^2(\Omega_{99}^{\mathrm{ef}\prime}t/2)}
+  \ee^{9\ii\sin(\Omega_{99}^{\mathrm{ef}\prime}t)}.
+  }
+\end{equation}
+El factor real exponencial controla la envolvente de la interferencia. Cuando
+los paquetes est\'an separados, ese factor se hace peque\~no. La segunda
+exponencial es una fase asociada al movimiento de los estados coherentes en el
+espacio de fase.
+
+\section{Inversi\'on polarit\'onica en la aproximaci\'on lineal}
+
+La inversi\'on polarit\'onica es
+\begin{equation}
+  \mathcal W_{\mathrm{lin}}(t)
+  =
+  \bra{\tilde\Psi(t)}\hat S_z^{(9)}\ket{\tilde\Psi(t)}.
+\end{equation}
+Como $\hat S_z^{(9)}\ket{\pm,9}=\pm\ket{\pm,9}$,
+\begin{equation}
+  \boxed{
+  \mathcal W_{\mathrm{lin}}(t)
+  =
+  \braket{\chi_+(t)|\chi_+(t)}
+  -
+  \braket{\chi_-(t)|\chi_-(t)}.
+  }
+\end{equation}
+
+Para abreviar, se define
+\begin{equation}
+  \omega'
+  \equiv
+  \Omega_{99}^{\mathrm{ef}\prime},
+  \qquad
+  \Phi
+  \equiv
+  \varphi_{99}+\omega'.
+\end{equation}
+Al multiplicar $\bra{\chi_+}$ por $\ket{\chi_+}$ aparecen dos t\'erminos de
+norma uno y dos t\'erminos cruzados:
+\begin{align}
+  \braket{\chi_+|\chi_+}
+  &=(CS)^2
+  \Bigg[
+  2
+  -
+  \ee^{-\ii\Phi t}
+  \braket{
+  \tilde\beta\ee^{+\ii\omega't/2}
+  |
+  \tilde\beta\ee^{-\ii\omega't/2}}
+  \notag\\
+  &\hspace{2.8cm}
+  -
+  \ee^{+\ii\Phi t}
+  \braket{
+  \tilde\beta\ee^{-\ii\omega't/2}
+  |
+  \tilde\beta\ee^{+\ii\omega't/2}}
+  \Bigg].
+\end{align}
+Los dos t\'erminos cruzados son complejos conjugados. Por tanto,
+\begin{equation}
+  \boxed{
+  \braket{\chi_+|\chi_+}
+  =
+  2C^2S^2
+  \left[
+  1-
+  \ee^{-2M\sin^2(\omega't/2)}
+  \cos\left(
+  \Phi t+M\sin\omega't
+  \right)
+  \right].
+  }
+\end{equation}
+
+Para la rama inferior,
+\begin{align}
+  \braket{\chi_-|\chi_-}
+  &=
+  C^4+S^4
+  \notag\\
+  &\quad+
+  C^2S^2
+  \left[
+  \ee^{-\ii\varphi_{99}t}
+  \braket{
+  \tilde\beta\ee^{+\ii\omega't/2}
+  |
+  \tilde\beta\ee^{-\ii\omega't/2}}
+  +\text{c.c.}
+  \right].
+\end{align}
+Entonces
+\begin{equation}
+  \boxed{
+  \braket{\chi_-|\chi_-}
+  =
+  C^4+S^4
+  +
+  2C^2S^2
+  \ee^{-2M\sin^2(\omega't/2)}
+  \cos\left(
+  \varphi_{99}t+M\sin\omega't
+  \right).
+  }
+\end{equation}
+
+Sustituyendo ambas normas,
+\begin{align}
+  \mathcal W_{\mathrm{lin}}(t)
+  &=
+  2C^2S^2-C^4-S^4
+  \notag\\
+  &\quad-
+  2C^2S^2
+  \ee^{-2M\sin^2(\omega't/2)}
+  \Big[
+  \cos(\varphi_{99}t+M\sin\omega't+\omega't)
+  \notag\\
+  &\hspace{5.1cm}
+  +
+  \cos(\varphi_{99}t+M\sin\omega't)
+  \Big].
+\end{align}
+Como
+\begin{equation}
+  C^4+S^4
+  =
+  (C^2+S^2)^2-2C^2S^2
+  =
+  1-2C^2S^2,
+\end{equation}
+el t\'ermino independiente queda
+\begin{equation}
+  2C^2S^2-C^4-S^4
+  =
+  -1+4C^2S^2.
+\end{equation}
+Se usa adem\'as
+\begin{equation}
+  \cos(a+b)+\cos a
+  =
+  2\cos\left(a+\frac b2\right)\cos\frac b2.
+\end{equation}
+Tomando
+\begin{equation}
+  a=\varphi_{99}t+M\sin\omega't,
+  \qquad
+  b=\omega't,
+\end{equation}
+se obtiene
+\begin{align}
+  \mathcal W_{\mathrm{lin}}(t)
+  &=-1+4C^2S^2
+  \Bigg[
+  1-
+  \ee^{-2M\sin^2(\omega't/2)}
+  \notag\\
+  &\hspace{2.5cm}\times
+  \cos\left(
+  \varphi_{99}t+M\sin\omega't+\frac{\omega't}{2}
+  \right)
+  \cos\frac{\omega't}{2}
+  \Bigg].
+\end{align}
+Finalmente,
+\begin{equation}
+  4C^2S^2
+  =
+  1-\frac{\delta_9^2}{(\Omega_{99}^{\mathrm{ef}})^2}
+  =
+  \frac{(\Omega_{99}^{\mathrm{ef}})^2-\delta_9^2}
+  {(\Omega_{99}^{\mathrm{ef}})^2}.
+\end{equation}
+Por tanto,
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  \mathcal W_{\mathrm{lin}}(t)
+  &=-1+
+  \frac{(\Omega_{99}^{\mathrm{ef}})^2-\delta_9^2}
+  {(\Omega_{99}^{\mathrm{ef}})^2}
+  \Bigg[
+  1-
+  \ee^{-18\sin^2(\Omega_{99}^{\mathrm{ef}\prime}t/2)}
+  \\
+  &\qquad\times
+  \cos\left(
+  \varphi_{99}t
+  +9\sin(\Omega_{99}^{\mathrm{ef}\prime}t)
+  +\frac{\Omega_{99}^{\mathrm{ef}\prime}t}{2}
+  \right)
+  \cos\left(
+  \frac{\Omega_{99}^{\mathrm{ef}\prime}t}{2}
+  \right)
+  \Bigg].
+  \end{aligned}
+  }
+\end{equation}
+
+\subsection{Caso resonante}
+
+Para el bloque $n=9$, la resonancia ocurre en $\nu=6g$, de modo que
+$\delta_9=0$. Entonces
+\begin{equation}
+  \Omega_{99}^{\mathrm{ef}}=3\nu\lambda,
+  \qquad
+  \Omega_{99}^{\mathrm{ef}\prime}
+  =
+  \frac{\nu\lambda}{6},
+  \qquad
+  \varphi_{99}
+  =
+  \frac32\nu\lambda.
+\end{equation}
+La inversi\'on polarit\'onica aproximada se reduce a
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  \mathcal W_{R,\mathrm{lin}}(t)
+  &=
+  -\exp\left[
+  -18\sin^2\left(\frac{\nu\lambda t}{12}\right)
+  \right]
+  \\
+  &\quad\times
+  \cos\left[
+  \frac32\nu\lambda t
+  +9\sin\left(\frac{\nu\lambda t}{6}\right)
+  +\frac{\nu\lambda t}{12}
+  \right]
+  \cos\left(\frac{\nu\lambda t}{12}\right).
+  \end{aligned}
+  }
+\end{equation}
+
+\section{Inversi\'on electr\'onica en la aproximaci\'on lineal}
+
+La inversi\'on electr\'onica se define por
+\begin{equation}
+  W_{\mathrm{lin}}(t)
+  =
+  \bra{\tilde\Psi(t)}\hat\sigma_z\ket{\tilde\Psi(t)}.
+\end{equation}
+En el bloque $n=9$,
+\begin{equation}
+  \ket{e,8}
+  =
+  \frac{\ket{+,9}+\ket{-,9}}{\sqrt2},
+  \qquad
+  \ket{g,9}
+  =
+  \frac{\ket{+,9}-\ket{-,9}}{\sqrt2}.
+\end{equation}
+Por ello,
+\begin{align}
+  \hat\sigma_z
+  &=
+  \ket{e,8}\bra{e,8}
+  -
+  \ket{g,9}\bra{g,9}
+  \notag\\
+  &=
+  \boxed{
+  \ket{+,9}\bra{-,9}
+  +
+  \ket{-,9}\bra{+,9}
+  }.
+\end{align}
+La inversi\'on electr\'onica no es una diferencia de normas polarit\'onicas.
+En la base polarit\'onica, $\hat\sigma_z$ intercambia las ramas $+$ y $-$.
+Por tanto,
+\begin{equation}
+  W_{\mathrm{lin}}(t)
+  =
+  \braket{\chi_+|\chi_-}
+  +
+  \braket{\chi_-|\chi_+}
+  =
+  \boxed{2\operatorname{Re}\braket{\chi_+|\chi_-}}.
+\end{equation}
+Al sustituir las ramas y usar el traslape coherente,
+\begin{align}
+  \operatorname{Re}\braket{\chi_+|\chi_-}
+  &=
+  CS(C^2-S^2)\cos\left(\frac{\omega't}{2}\right)
+  \notag\\
+  &\quad+
+  CS(S^2-C^2)\ee^{-2M\sin^2(\omega't/2)}
+  \cos\left[
+  \varphi_{99}t+\omega't+M\sin(\omega't)
+  \right].
+\end{align}
+En consecuencia,
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  W_{\mathrm{lin}}(t)
+  &=
+  2CS(C^2-S^2)
+  \Bigg\{
+  \cos\left(
+  \frac{\Omega_{99}^{\mathrm{ef}\prime}t}{2}
+  \right)
+  \\
+  &\quad-
+  \ee^{-18\sin^2(\Omega_{99}^{\mathrm{ef}\prime}t/2)}
+  \cos\left[
+  \varphi_{99}t
+  +\Omega_{99}^{\mathrm{ef}\prime}t
+  +9\sin(\Omega_{99}^{\mathrm{ef}\prime}t)
+  \right]
+  \Bigg\}.
+  \end{aligned}
+  }
+\end{equation}
+En resonancia, $\delta_9=0$ y $C^2=S^2=1/2$. Entonces
+\begin{equation}
+  \boxed{
+  W_{R,\mathrm{lin}}(t)=0.
+  }
+\end{equation}
+
+\section{Tiempo de revival}
+
+Los paquetes giran con velocidades opuestas
+$\pm\Omega_{nM}^{\mathrm{ef}\prime}/2$. Su \'angulo relativo es
+\begin{equation}
+  \Delta\vartheta(t)=\Omega_{nM}^{\mathrm{ef}\prime}t.
+\end{equation}
+El primer revival ocurre cuando
+$\Omega_{nM}^{\mathrm{ef}\prime}t_r=2\pi$. Por tanto,
+\begin{equation}
+  \boxed{
+  t_r
+  =
+  \frac{2\pi}{\Omega_{nM}^{\mathrm{ef}\prime}}
+  =
+  \frac{4\pi\Omega_{nM}^{\mathrm{ef}}}{\nu^2\lambda^2}
+  =
+  \frac{4\pi}{\nu^2\lambda^2}
+  \sqrt{(2g\sqrt n-\nu)^2+\nu^2\lambda^2M}.
+  }
+\end{equation}
+En resonancia,
+\begin{equation}
+  \boxed{
+  t_r^{(R)}=\frac{4\pi\sqrt M}{\nu\lambda}.
+  }
+\end{equation}
+Para $M=9$, $t_r^{(R)}=12\pi/(\nu\lambda)$.
+
+La linealizaci\'on captura los tiempos de revival, pero pierde la curvatura de
+$\Omega_{nm}^{\mathrm{ef}}$ dentro del ancho $\Delta m=\sqrt M$. Por eso no
+reproduce correctamente el ancho ni la disminuci\'on de altura de los l\'obulos
+de revival.
+
+\section{Soluci\'on exacta del hamiltoniano efectivo}
+
+Para recuperar esos efectos se usa la soluci\'on completa en un bloque $n$:
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  \ket{\tilde\Psi(t)}
+  &=
+  \ee^{-\ii B_nt}\tilde c_0d_n^-\ket{-,n,0}
+  \\
+  &\quad+
+  \sum_{m=1}^{\infty}
+  \left[
+  p_{nm}^+(t)\ket{+,n,m-1}
+  +
+  p_{nm}^-(t)\ket{-,n,m}
+  \right],
+  \end{aligned}
+  }
+\end{equation}
+donde
+\begin{equation}
+  \boxed{
+  B_n=n\Omega+\frac{\nu\lambda^2}{4}-g\sqrt n.
+  }
+\end{equation}
+Para que la notaci\'on de la soluci\'on quede completamente determinada, se
+recuerdan las cantidades asociadas con cada doblete polarit\'on--fon\'on:
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  A_{nm}
+  &=
+  n\Omega+\frac{\nu\lambda^2}{4}
+  +\nu\left(m-\frac12\right),
+  \\
+  \delta_n
+  &=2g\sqrt n-\nu,
+  \\
+  k_m
+  &=\nu\lambda\sqrt m,
+  \\
+  \Omega_{nm}^{\mathrm{ef}}
+  &=\sqrt{\delta_n^2+k_m^2}
+  =\sqrt{(2g\sqrt n-\nu)^2+\nu^2\lambda^2m}.
+  \end{aligned}
+  }
+\end{equation}
+La fase $A_{nm}t$ procede del centro energ\'etico del doblete, mientras que
+$\Omega_{nm}^{\mathrm{ef}}$ determina la separaci\'on entre sus dos
+eigenenerg\'ias y, por tanto, la frecuencia de intercambio entre las ramas.
+Las amplitudes exactas son
+\begin{align}
+  p_{nm}^+(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Bigg[
+  \left(
+  \cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  -
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)\tilde c_{m-1}d_n^+
+  \notag\\
+  &\hspace{2.8cm}
+  +
+  \ii\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \tilde c_md_n^-
+  \Bigg],
+  \\
+  p_{nm}^-(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Bigg[
+  \ii\frac{k_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \tilde c_{m-1}d_n^+
+  \notag\\
+  &\hspace{2.8cm}
+  +
+  \left(
+  \cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  +
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)\tilde c_md_n^-
+  \Bigg].
+\end{align}
+Para el estado inicial $\ket{-,9}\ket{\tilde\beta}$,
+\begin{equation}
+  \boxed{
+  p_{9m}^+(t)
+  =
+  \ee^{-\ii A_{9m}t}
+  \ii\frac{k_m}{\Omega_{9m}^{\mathrm{ef}}}
+  \sin\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right)\tilde c_m,
+  }
+\end{equation}
+\begin{equation}
+  \boxed{
+  p_{9m}^-(t)
+  =
+  \ee^{-\ii A_{9m}t}
+  \left[
+  \cos\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right)
+  +
+  \ii\frac{\delta_9}{\Omega_{9m}^{\mathrm{ef}}}
+  \sin\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right)
+  \right]\tilde c_m.
+  }
+\end{equation}
+
+\section{Inversi\'on polarit\'onica exacta}
+
+Para el bloque $n=9$,
+\begin{equation}
+  \mathcal W_{\mathrm{ef}}(t)
+  =
+  -|\tilde c_0|^2
+  +
+  \sum_{m=1}^{\infty}
+  \left(|p_{9m}^+(t)|^2-|p_{9m}^-(t)|^2\right).
+\end{equation}
+Las probabilidades son
+\begin{equation}
+  |p_{9m}^+|^2
+  =
+  |\tilde c_m|^2
+  \frac{k_m^2}{(\Omega_{9m}^{\mathrm{ef}})^2}
+  \sin^2\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right),
+\end{equation}
+\begin{equation}
+  |p_{9m}^-|^2
+  =
+  |\tilde c_m|^2
+  \left[
+  \cos^2\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right)
+  +
+  \frac{\delta_9^2}{(\Omega_{9m}^{\mathrm{ef}})^2}
+  \sin^2\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right)
+  \right].
+\end{equation}
+Su diferencia puede escribirse como
+\begin{align}
+  |p_{9m}^+|^2-|p_{9m}^-|^2
+  &=
+  -|\tilde c_m|^2
+  \notag\\
+  &\quad+
+  |\tilde c_m|^2
+  \frac{k_m^2}{(\Omega_{9m}^{\mathrm{ef}})^2}
+  [1-\cos(\Omega_{9m}^{\mathrm{ef}}t)].
+\end{align}
+Usando la normalizaci\'on de la distribuci\'on fon\'onica,
+\begin{equation}
+  \boxed{
+  \mathcal W_{\mathrm{ef}}(t)
+  =
+  -1+
+  \sum_{m=1}^{\infty}
+  |\tilde c_m|^2
+  \frac{k_m^2}{(\Omega_{9m}^{\mathrm{ef}})^2}
+  [1-\cos(\Omega_{9m}^{\mathrm{ef}}t)].
+  }
+\end{equation}
+
+\subsection{Caso resonante}
+
+En resonancia, $\Omega_{9m}^{\mathrm{ef}}=k_m=\nu\lambda\sqrt m$, y
+\begin{equation}
+  \boxed{
+  \mathcal W_{R,\mathrm{ef}}(t)
+  =
+  -
+  \sum_{m=0}^{\infty}
+  |\tilde c_m|^2\cos(\nu\lambda\sqrt m\,t).
+  }
+\end{equation}
+Para $\tilde\beta=3$,
+\begin{equation}
+  \boxed{
+  \mathcal W_{R,\mathrm{ef}}(t)
+  =
+  -\ee^{-9}
+  \sum_{m=0}^{\infty}
+  \frac{9^m}{m!}\cos(\nu\lambda\sqrt m\,t).
+  }
+\end{equation}
+El desfasaje de las frecuencias proporcionales a $\sqrt m$ produce el colapso;
+su refase parcial produce revivals con anchura y altura variables.
+
+\section{Inversi\'on electr\'onica exacta}
+
+La inversi\'on electr\'onica requiere un cuidado adicional porque el operador
+$\hat\sigma_z$ es no diagonal en la base polarit\'onica. Para cualquier n\'umero
+fon\'onico $m$ se tiene
+\begin{equation}
+  \hat\sigma_z
+  =
+  \ket{+,9,m}\bra{-,9,m}
+  +
+  \ket{-,9,m}\bra{+,9,m}.
+\end{equation}
+Por tanto, solamente interfieren amplitudes que tengan el mismo n\'umero de
+fonones. En la expansi\'on exacta, $p_{9m}^-$ multiplica a
+$\ket{-,9,m}$, pero $p_{9m}^+$ multiplica a $\ket{+,9,m-1}$. Para obtener la
+amplitud de la rama superior con $m$ fonones debe reemplazarse $m$ por $m+1$.
+De esta observaci\'on se sigue
+\begin{equation}
+  \boxed{
+  W_{\mathrm{ef}}(t)
+  =
+  2\operatorname{Re}
+  \sum_{m=0}^{\infty}
+  p_{9,m+1}^{+*}(t)p_{9m}^-(t),
+  }
+\end{equation}
+donde, para incluir el estado aislado de $m=0$, se entiende
+\begin{equation}
+  p_{90}^-(t)=\ee^{-\ii B_9t}\tilde c_0.
+\end{equation}
+
+Para hacer transparente el producto de amplitudes, se introducen las
+abreviaciones
+\begin{equation}
+  \mathcal C_m(t)
+  =
+  \cos\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right),
+  \qquad
+  \mathcal S_m(t)
+  =
+  \sin\left(\frac{\Omega_{9m}^{\mathrm{ef}}t}{2}\right),
+\end{equation}
+\begin{equation}
+  D_m=\frac{\delta_9}{\Omega_{9m}^{\mathrm{ef}}},
+  \qquad
+  K_m=\frac{k_m}{\Omega_{9m}^{\mathrm{ef}}}.
+\end{equation}
+Para $m\geq1$, las amplitudes toman la forma
+\begin{equation}
+  p_{9,m+1}^{+*}(t)
+  =
+  -\ii\ee^{+\ii A_{9,m+1}t}
+  K_{m+1}\mathcal S_{m+1}(t)\tilde c_{m+1}^*,
+\end{equation}
+\begin{equation}
+  p_{9m}^-(t)
+  =
+  \ee^{-\ii A_{9m}t}
+  [\mathcal C_m(t)+\ii D_m\mathcal S_m(t)]\tilde c_m.
+\end{equation}
+Al multiplicarlas,
+\begin{align}
+  p_{9,m+1}^{+*}p_{9m}^-
+  &=
+  \ee^{\ii(A_{9,m+1}-A_{9m})t}
+  K_{m+1}\mathcal S_{m+1}
+  \tilde c_{m+1}^*\tilde c_m
+  \notag\\
+  &\quad\times
+  [D_m\mathcal S_m-\ii\mathcal C_m].
+\end{align}
+La diferencia entre los centros energ\'eticos de dobletes consecutivos es
+\begin{align}
+  A_{9,m+1}-A_{9m}
+  &=
+  \nu\left(m+1-\frac12\right)
+  -\nu\left(m-\frac12\right)
+  \notag\\
+  &=\nu.
+\end{align}
+Si $\tilde\beta$ es real, como ocurre para $\tilde\beta=3$, los coeficientes
+$\tilde c_m$ tambi\'en son reales. Usando
+\begin{equation}
+  \operatorname{Re}
+  \left\{
+  \ee^{\ii\nu t}
+  [D_m\mathcal S_m-\ii\mathcal C_m]
+  \right\}
+  =
+  D_m\mathcal S_m\cos(\nu t)
+  +\mathcal C_m\sin(\nu t),
+\end{equation}
+se obtiene, para todos los t\'erminos con $m\geq1$,
+\begin{align}
+  2\operatorname{Re}
+  [p_{9,m+1}^{+*}p_{9m}^-]
+  &={}
+  2K_{m+1}\mathcal S_{m+1}	ilde c_{m+1}\tilde c_m
+  \notag\\
+  &\quad\times
+  [D_m\mathcal S_m\cos(\nu t)
+  +\mathcal C_m\sin(\nu t)].
+\end{align}
+
+El t\'ermino de borde $m=0$ debe calcularse por separado, puesto que
+$\ket{-,9,0}$ no pertenece a ning\'un doblete. En este caso,
+\begin{align}
+  p_{91}^{+*}p_{90}^-
+  &={}
+  -\ii
+  \ee^{\ii(A_{91}-B_9)t}
+  K_1\mathcal S_1\tilde c_1\tilde c_0,
+  \\
+  2\operatorname{Re}[p_{91}^{+*}p_{90}^-]
+  &={}
+  2\sin[(A_{91}-B_9)t]
+  K_1\mathcal S_1\tilde c_1\tilde c_0.
+\end{align}
+Sumando el t\'ermino de borde y todos los dobletes se llega a
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  W_{\mathrm{ef}}(t)
+  &={}
+  2\sin[(A_{91}-B_9)t]
+  K_1\mathcal S_1(t)\tilde c_1\tilde c_0
+  \\
+  &\quad+
+  2\sum_{m=1}^{\infty}
+  K_{m+1}\mathcal S_{m+1}(t)
+  \tilde c_{m+1}\tilde c_m
+  \\
+  &\qquad\times
+  [D_m\mathcal S_m(t)\cos(\nu t)
+  +\mathcal C_m(t)\sin(\nu t)].
+  \end{aligned}
+  }
+\end{equation}
+Esta expresi\'on muestra dos escalas din\'amicas. Las funciones
+$\mathcal C_m$ y $\mathcal S_m$ contienen las frecuencias de Rabi efectivas
+dependientes de $m$, mientras que $\sin(\nu t)$ y $\cos(\nu t)$ corresponden
+a la fase relativa entre dobletes fon\'onicos consecutivos.
+
+\subsection{Caso resonante}
+
+En resonancia polarit\'on--fon\'on, $\delta_9=0$. Por ello,
+\begin{equation}
+  D_m=0,
+  \qquad
+  K_m=1,
+  \qquad
+  \Omega_{9m}^{\mathrm{ef}}=\nu\lambda\sqrt m.
+\end{equation}
+Adem\'as, $A_{91}-B_9=\nu$ cuando $\nu=6g$. El t\'ermino de borde puede
+incorporarse a la suma si se usan
+$\mathcal C_0=1$ y
+$\mathcal S_1=\sin(\nu\lambda t/2)$. El resultado se reduce a
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  W_{R,\mathrm{ef}}(t)
+  ={}&
+  2\sum_{m=0}^{\infty}
+  \sin(\nu t)
+  \sin\left(\frac{\nu\lambda\sqrt{m+1}\,t}{2}\right)
+  \\
+  &\qquad\times
+  \cos\left(\frac{\nu\lambda\sqrt m\,t}{2}\right)
+  \tilde c_{m+1}\tilde c_m.
+  \end{aligned}
+  }
+\end{equation}
+Aunque la inversi\'on electr\'onica de la aproximaci\'on lineal se anula en
+resonancia, la soluci\'on exacta contiene interferencias entre sectores
+fon\'onicos vecinos. Estas interferencias conservan una din\'amica r\'apida a
+frecuencia $\nu$, modulada por el colapso y los revivals asociados con la
+distribuci\'on coherente.
+
+\section{Resultados gr\'aficos}
+
+Las siguientes figuras comparan la aproximaci\'on lineal, la soluci\'on exacta
+del hamiltoniano efectivo y la evoluci\'on num\'erica del hamiltoniano completo
+de Holstein--Cummings. En todas las comparaciones se usa
+$\tilde\beta=3$, de modo que $M=9$.
+
+\subsection{Aproximaci\'on lineal de la frecuencia efectiva}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fononico en bloque polaritonico/InversionP_aprox_lineal.png}}
+  \caption{Inversi\'on polarit\'onica obtenida con la aproximaci\'on lineal de
+  la frecuencia de Rabi efectiva. La curva amarilla corresponde al caso
+  resonante, $\nu=6g$, y la azul a $\nu=5.99g$. La linealizaci\'on predice
+  correctamente los tiempos de revival, determinados por la reuni\'on de los
+  dos paquetes coherentes, pero no reproduce la anchura ni la reducci\'on de
+  altura de los l\'obulos de revival porque elimina la curvatura de
+  $\Omega_{9m}^{\mathrm{ef}}$ respecto de $m$.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fononico en bloque polaritonico/InversionE_aprox_lineal.png}}
+  \caption{Inversi\'on electr\'onica dentro de la aproximaci\'on lineal. En
+  resonancia, curva amarilla, el resultado es id\'enticamente cero porque
+  $C^2=S^2=1/2$: cada polarit\'on contiene siempre probabilidades iguales para
+  los estados electr\'onicos excitado y base. Fuera de resonancia, curva azul
+  para $\nu=5.99g$, la mezcla deja de ser exactamente sim\'etrica y aparece una
+  se\~nal distinta de cero; sin embargo, la linealizaci\'on todav\'ia omite la
+  din\'amica producida por la curvatura de las frecuencias efectivas.}
+\end{figure}
+
+\subsection{Soluci\'on exacta del hamiltoniano efectivo}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fononico en bloque polaritonico/InversionP.png}}
+  \caption{Inversi\'on polarit\'onica calculada con la dependencia exacta de
+  $\Omega_{9m}^{\mathrm{ef}}$. La curva amarilla corresponde a resonancia y la
+  azul al caso fuera de resonancia. Ahora aparecen los colapsos y revivals
+  caracter\'isticos del modelo JCP, junto con el ensanchamiento y la reducci\'on
+  de altura de sus l\'obulos. La desintonizaci\'on introduce adem\'as el t\'ermino
+  $\delta_9^2/(\Omega_{9m}^{\mathrm{ef}})^2$, que impide una transferencia
+  polarit\'onica completa y desplaza verticalmente la se\~nal.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fononico en bloque polaritonico/InversionE.png}}
+  \caption{Inversi\'on electr\'onica del hamiltoniano efectivo: caso resonante
+  en amarillo y no resonante en azul. Fuera de resonancia, el cociente
+  $D_m=\delta_9/\Omega_{9m}^{\mathrm{ef}}$ deja de ser cero y la observable
+  combina las fases de sectores vecinos $m$ y $m+1$ con la oscilaci\'on r\'apida
+  de frecuencia $\nu$. El batimiento resultante desplaza los m\'aximos de
+  refase, por lo que los grupos de oscilaciones azules parecen acercarse entre
+  s\'i a lo largo del intervalo mostrado.}
+\end{figure}
+
+\subsection{Comparaci\'on con el hamiltoniano completo}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fononico en bloque polaritonico/ComparacionP.png}}
+  \caption{Comparaci\'on, en resonancia, de la inversi\'on polarit\'onica
+  generada por el hamiltoniano efectivo y por el hamiltoniano completo de
+  Holstein--Cummings resuelto num\'ericamente. Las curvas son pr\'acticamente
+  indistinguibles, lo que muestra que el modelo efectivo reproduce de manera
+  precisa la din\'amica polarit\'onica completa en el r\'egimen y la escala
+  temporal considerados.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fononico en bloque polaritonico/ComparacionE.png}}
+  \caption{Comparaci\'on de las inversiones electr\'onicas en resonancia. La
+  evoluci\'on obtenida con el hamiltoniano efectivo coincide con la del modelo
+  completo, incluso para la modulaci\'on r\'apida debida a la frecuencia
+  vibracional y para la envolvente de colapsos y revivals.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fononico en bloque polaritonico/Fidelidad.png}}
+  \caption{Fidelidad entre los estados evolucionados con el hamiltoniano
+  efectivo y con el hamiltoniano completo de Holstein--Cummings. Su valor se
+  mantiene pr\'acticamente igual a uno durante el intervalo estudiado. Esta
+  proximidad a la unidad explica la coincidencia de las inversiones
+  polarit\'onica y electr\'onica en las dos figuras anteriores.}
+\end{figure}
+
+\section{Lectura f\'isica final}
+
+El estado coherente fon\'onico convierte un solo bloque polarit\'onico en una
+superposici\'on de dobletes con diferentes n\'umeros vibracionales. La
+dependencia $\Omega_{9m}^{\mathrm{ef}}\propto\sqrt m$ hace que esas componentes
+se desfasen inicialmente, produciendo el colapso, y vuelvan a alinearse de
+manera parcial en los tiempos de revival. La aproximaci\'on lineal conserva la
+separaci\'on angular media entre los paquetes y, por ello, determina bien esos
+tiempos; la soluci\'on exacta conserva tambi\'en la curvatura de la dispersi\'on
+y recupera la forma completa de cada l\'obulo.
+
+La comparaci\'on con el hamiltoniano completo muestra, finalmente, que la
+reducci\'on al hamiltoniano efectivo no solamente conserva una escala de
+frecuencia, sino tambi\'en el estado cu\'antico y las interferencias necesarias
+para describir simult\'aneamente las inversiones polarit\'onica y electr\'onica
+durante el intervalo analizado.
+
+\end{document}

@@ -234,6 +234,35 @@
       "content": "Un fonón en un bloque polaritónico dinámica del modelo Holstein-Cummings HC. Bloque n=9 m=9. Subespacio {|+,9,8>, |-,9,9>}. Estado inicial |-,9,9> preparado con a_99=0 y b_99=1. Hamiltoniano efectivo polaritón fonón con A_99=9 Omega+nu lambda^2/4+17nu/2, delta_9=6g-nu, k_9=3nu lambda=3 eta. Frecuencia de Rabi efectiva Omega_99^ef=sqrt((6g-nu)^2+9 eta^2). Resonancia del bloque n=9 cuando nu=6g. Amplitudes exactas p_99^+(t) y p_99^-(t). Probabilidades P_+(t) y P_-(t). Inversión polaritónica mathcal W(t)=P_+(t)-P_-(t)=-1+2(k_9/Omega_99^ef)^2 sin^2(Omega_99^ef t/2). Caso resonante mathcal W_R(t)=-cos(k_9 t). Inversión electrónica W(t)=0 porque cada polaritón tiene mitad de población excitada y mitad base, y las coherencias cruzadas llevan fonones ortogonales. Gráficas: InversionPolaritonica, Comparacion-IP-R, Comparacion-IE, Comparacion-IP-NR1, Comparacion-IP-NR2, Fidelidad-R, Fidelidad-NR1, Fidelidad-NR2. Comparación entre hamiltoniano completo y efectivo, casos resonante y no resonante con eta=0.01g, nu=5.99g, nu=5.9g, nu=6g, bloque n=10."
     },
     {
+      "id": "estado-coherente-fononico-bloque-polaritonico",
+      "title": "Estado coherente fonónico en bloque polaritónico",
+      "url": "doctorado/optica-cuantica/estado-coherente-fononico-bloque-polaritonico.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "Holstein-Cummings",
+        "estado coherente fonónico",
+        "bloque polaritónico",
+        "colapsos",
+        "revivals",
+        "inversión polaritónica",
+        "inversión electrónica",
+        "fidelidad",
+        "hamiltoniano efectivo",
+        "tesis doctoral"
+      ],
+      "summary": "Dinámica del bloque polaritónico n=9 con un estado coherente fonónico: aproximación lineal, paquetes contrarrotantes, tiempo de revival, solución efectiva exacta y comparación con el hamiltoniano HC completo.",
+      "results": [
+        "t_r=4 pi Omega_nM^ef/(nu^2 lambda^2) y t_r^R=4 pi sqrt(M)/(nu lambda)",
+        "W_polaritonica lineal a partir del traslape de dos paquetes coherentes",
+        "W_electronica lineal=2 Re <chi_+|chi_-> y W_R,lineal=0",
+        "W_polaritonica efectiva exacta como suma de Poisson sobre m",
+        "W_electronica exacta por interferencia entre p_(9,m+1)^+ y p_(9,m)^-",
+        "Fidelidad cercana a uno entre el hamiltoniano efectivo y el HC completo"
+      ],
+      "content": "Estado coherente fonónico en un bloque polaritónico del modelo Holstein-Cummings. Bloque n=9, estado inicial |-,9>|tilde beta>, tilde beta=3 y M=9. Distribución de Poisson |tilde c_m|^2=exp(-M)M^m/m!. Frecuencia efectiva Omega_nm^ef=sqrt((2g sqrt(n)-nu)^2+nu^2 lambda^2 m). Linealización alrededor de M con Omega_nM^ef prima=nu^2 lambda^2/(2 Omega_nM^ef) y varphi_nM=Omega_nM^ef-M Omega_nM^ef prima. Evolución aproximada como dos paquetes coherentes fonónicos que giran con velocidades opuestas. Traslape exp[-2M sin^2(Omega prima t/2)] exp[iM sin(Omega prima t)]. Inversión polaritónica lineal, inversión electrónica lineal y caso resonante W_R,lineal=0. Tiempo de revival t_r=2pi/Omega prima. Solución exacta del hamiltoniano efectivo con amplitudes p_9m^+(t) y p_9m^-(t). Inversión polaritónica exacta, colapsos y revivals con frecuencias proporcionales a sqrt(m). Inversión electrónica exacta por productos p_(9,m+1)^* p_(9,m), término de borde m=0 y oscilación rápida de frecuencia nu. Gráficas InversionP_aprox_lineal, InversionE_aprox_lineal, InversionP, InversionE, ComparacionP, ComparacionE y Fidelidad. Comparación resonante y fuera de resonancia. Fidelidad prácticamente uno entre hamiltoniano efectivo y hamiltoniano completo HC."
+    },
+    {
       "id": "preparacion-estados-entrelazamiento",
       "title": "Preparación de estados y entrelazamiento",
       "url": "doctorado/optica-cuantica/preparacion-estados-entrelazamiento.html",
