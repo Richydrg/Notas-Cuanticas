@@ -263,6 +263,35 @@ window.SEARCH_INDEX = {
       "content": "Estado coherente fonónico en un bloque polaritónico del modelo Holstein-Cummings. Bloque n=9, estado inicial |-,9>|tilde beta>, tilde beta=3 y M=9. Distribución de Poisson |tilde c_m|^2=exp(-M)M^m/m!. Frecuencia efectiva Omega_nm^ef=sqrt((2g sqrt(n)-nu)^2+nu^2 lambda^2 m). Linealización alrededor de M con Omega_nM^ef prima=nu^2 lambda^2/(2 Omega_nM^ef) y varphi_nM=Omega_nM^ef-M Omega_nM^ef prima. Evolución aproximada como dos paquetes coherentes fonónicos que giran con velocidades opuestas. Traslape exp[-2M sin^2(Omega prima t/2)] exp[iM sin(Omega prima t)]. Inversión polaritónica lineal, inversión electrónica lineal y caso resonante W_R,lineal=0. Tiempo de revival t_r=2pi/Omega prima. Solución exacta del hamiltoniano efectivo con amplitudes p_9m^+(t) y p_9m^-(t). Inversión polaritónica exacta, colapsos y revivals con frecuencias proporcionales a sqrt(m). Inversión electrónica exacta por productos p_(9,m+1)^* p_(9,m), término de borde m=0 y oscilación rápida de frecuencia nu. Gráficas InversionP_aprox_lineal, InversionE_aprox_lineal, InversionP, InversionE, ComparacionP, ComparacionE y Fidelidad. Comparación resonante y fuera de resonancia. Fidelidad prácticamente uno entre hamiltoniano efectivo y hamiltoniano completo HC."
     },
     {
+      "id": "estados-coherentes-fotonico-fononico",
+      "title": "Estados coherentes fotónico y fonónico",
+      "url": "doctorado/optica-cuantica/estados-coherentes-fotonico-fononico.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "Holstein-Cummings",
+        "estado coherente fotónico",
+        "estado coherente fonónico",
+        "inversión polaritónica",
+        "inversión electrónica",
+        "fidelidad",
+        "revivals",
+        "hamiltoniano efectivo",
+        "campo coherente",
+        "tesis doctoral"
+      ],
+      "summary": "Dinámica del modelo HC con estados coherentes fotónico y fonónico: descomposición por dobletes, amplitudes p_nm, inversiones, fidelidad y comparación entre hamiltoniano efectivo y completo.",
+      "results": [
+        "d_n^±=(c_(n-1)c_e ± c_n c_g)/sqrt(2)",
+        "p_nm^+(t) y p_nm^-(t) para campo fotónico y fonónico coherentes",
+        "mathcal W(t)=sum(|p_nm^+|^2-|p_nm^-|^2)-sum|p_n0^-|^2",
+        "W(t)=2 Re sum p_(n,m+1)^+* p_nm^- - |c_0 c_g|^2",
+        "alpha=beta=3, tilde beta=3 en la representación desplazada, g=1, Omega=1000g, nu=6g, eta=nu lambda=0.02g",
+        "comparaciones y fidelidades para estados E y S"
+      ],
+      "content": "Estados coherentes fotónico y fonónico en la dinámica del modelo Holstein-Cummings. Estado inicial |tilde Psi(0)>=|alpha>(c_e|e>+c_g|g>)|tilde beta>. Campo fotónico coherente |alpha>=sum c_n|n> con c_n=exp(-|alpha|^2/2) alpha^n/sqrt(n!). Vibración desplazada coherente |tilde beta>=sum tilde c_m|m>. Coeficientes polaritónicos d_n^±=(c_(n-1)c_e ± c_n c_g)/sqrt(2). Parte dinámica inicial suma sobre n>=1 y m>=1 de tilde c_(m-1)d_n^+|+,n,m-1> + tilde c_m d_n^-|-,n,m>, más estados desacoplados tilde c_0 d_n^-|-,n,0>. Evolución con amplitudes p_nm^+(t), p_nm^-(t) y p_n0^-(t). Definiciones A_nm=n Omega+nu lambda^2/4+nu(m-1/2), delta_n=2g sqrt(n)-nu, kappa_m=nu lambda sqrt(m), Omega_nm^ef=sqrt(delta_n^2+kappa_m^2). Inversión polaritónica mathcal W(t). Inversión electrónica W(t)=2 Re sum p_(n,m+1)^+* p_nm^- - |c_0 c_g|^2 porque sigma_z no cambia el número fonónico. Parámetros alpha=beta=3, en representación desplazada tilde beta=3, estado E c_e=1 c_g=0, estado S c_e=-c_g=1/sqrt(2), g=1, Omega=1000g, eta=nu lambda=0.02g, nu=6g resonante con n=9. Tiempo de revival t_r=1884.96. Gráficas InversionP_E, InversionP_S, InversionE_E, InversionE_S, ComparacionPE, ComparacionPS, ComparacionEE, ComparacionES, FidelidadE y FidelidadS."
+    },
+    {
       "id": "preparacion-estados-entrelazamiento",
       "title": "Preparación de estados y entrelazamiento",
       "url": "doctorado/optica-cuantica/preparacion-estados-entrelazamiento.html",

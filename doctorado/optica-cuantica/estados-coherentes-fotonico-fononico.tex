@@ -1,0 +1,551 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{braket}
+\usepackage{dsfont}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\emergencystretch=2em
+\allowdisplaybreaks
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\Id}{\mathds{1}}
+
+\title{Estados coherentes fot\'onico y fon\'onico}
+\author{Ricardo Del Rosal Gardu\~no \\ \small Doctorado en F\'isica, BUAP}
+\date{Notas de doctorado}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\section{Estado inicial}
+
+Se considera el modelo de Holstein--Cummings despu\'es del desplazamiento
+vibracional, de la transformaci\'on a la base polarit\'onica y de la
+aproximaci\'on de onda rotante que conduce al hamiltoniano efectivo
+$\hat H_{\mathrm{ef}}^{(n)}$. El estado inicial se toma como un producto entre
+un estado coherente fot\'onico, un estado electr\'onico molecular general y un
+estado coherente fon\'onico:
+\begin{equation}
+  \boxed{
+  \ket{\tilde\Psi(0)}
+  =
+  \ket{\alpha}
+  \otimes
+  (c_e\ket e+c_g\ket g)
+  \otimes
+  \ket{\tilde\beta}.
+  }
+\end{equation}
+La tilde en $\ket{\tilde\Psi}$ y en $\ket{\tilde\beta}$ indica que se est\'a
+trabajando en la representaci\'on desplazada del modo vibracional. Los estados
+coherentes se expanden como
+\begin{equation}
+  \boxed{
+  \ket{\alpha}
+  =
+  \sum_{n=0}^{\infty}c_n\ket n,
+  \qquad
+  c_n
+  =
+  \ee^{-|\alpha|^2/2}
+  \frac{\alpha^n}{\sqrt{n!}},
+  }
+\end{equation}
+y
+\begin{equation}
+  \boxed{
+  \ket{\tilde\beta}
+  =
+  \sum_{m=0}^{\infty}\tilde c_m\ket m,
+  \qquad
+  \tilde c_m
+  =
+  \ee^{-|\tilde\beta|^2/2}
+  \frac{\tilde\beta^m}{\sqrt{m!}}.
+  }
+\end{equation}
+Los coeficientes $c_n$ pertenecen al modo fot\'onico de la cavidad, mientras
+que $\tilde c_m$ pertenecen al modo fon\'onico desplazado. Esta distinci\'on es
+importante porque en las expresiones finales aparecen productos de ambos tipos
+de amplitudes.
+
+\section{Base polarit\'onica}
+
+En cada bloque de excitaci\'on fija $n\geq1$, la base desnuda
+$\{\ket{e,n-1},\ket{g,n}\}$ se reescribe en la base polarit\'onica
+\begin{equation}
+  \boxed{
+  \ket{+,n}
+  =
+  \frac{1}{\sqrt2}(\ket{e,n-1}+\ket{g,n}),
+  \qquad
+  \ket{-,n}
+  =
+  \frac{1}{\sqrt2}(\ket{e,n-1}-\ket{g,n}).
+  }
+\end{equation}
+Por tanto,
+\begin{equation}
+  \ket{e,n-1}
+  =
+  \frac{\ket{+,n}+\ket{-,n}}{\sqrt2},
+  \qquad
+  \ket{g,n}
+  =
+  \frac{\ket{+,n}-\ket{-,n}}{\sqrt2}.
+\end{equation}
+Al proyectar la parte opto-electr\'onica inicial sobre los polaritones se
+obtienen los coeficientes
+\begin{equation}
+  \boxed{
+  d_n^\pm
+  =
+  \frac{1}{\sqrt2}
+  (c_{n-1}c_e\pm c_nc_g).
+  }
+\end{equation}
+El signo superior mide la amplitud inicial en la rama polarit\'onica
+$\ket{+,n}$ y el signo inferior la amplitud inicial en la rama
+$\ket{-,n}$. La dependencia con $c_{n-1}$ y $c_n$ aparece porque el estado
+$\ket{e,n-1}$ tiene un fot\'on menos que el estado $\ket{g,n}$ dentro del mismo
+bloque de excitaci\'on total $n$.
+
+\section{Parte din\'amica del estado inicial}
+
+El hamiltoniano efectivo polarit\'on--fon\'on conecta los pares
+\begin{equation}
+  \boxed{
+  \ket{+,n,m-1}
+  \longleftrightarrow
+  \ket{-,n,m},
+  \qquad n\geq1,\quad m\geq1.
+  }
+\end{equation}
+Por ello, la parte din\'amica del estado inicial se ordena agrupando amplitudes
+que pertenecen al mismo doblete:
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  \ket{\tilde\Psi_{\mathrm{dyn}}(0)}
+  &=
+  \sum_{n=1}^{\infty}
+  \sum_{m=1}^{\infty}
+  \left(
+  \tilde c_{m-1}d_n^+\ket{+,n,m-1}
+  +
+  \tilde c_md_n^-\ket{-,n,m}
+  \right)
+  \\
+  &\quad+
+  \sum_{n=1}^{\infty}
+  \tilde c_0d_n^-\ket{-,n,0}.
+  \end{aligned}
+  }
+\end{equation}
+El segundo t\'ermino contiene los estados $\ket{-,n,0}$. Estos estados no tienen
+pareja $\ket{+,n,-1}$, por lo que quedan desacoplados dentro de la din\'amica
+efectiva. Tambi\'en existe el sector $c_0c_g\ket{g,0}\ket{\tilde\beta}$,
+asociado con cero excitaciones opto-electr\'onicas. Ese sector queda separado
+de los dobletes $n\geq1$ y solamente contribuye a la inversi\'on electr\'onica
+como poblaci\'on del estado base.
+
+\section{Evoluci\'on temporal}
+
+La evoluci\'on de la parte din\'amica conserva la estructura por dobletes:
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  \ket{\tilde\Psi_{\mathrm{dyn}}(t)}
+  &=
+  \sum_{n=1}^{\infty}
+  \sum_{m=1}^{\infty}
+  \left(
+  p_{nm}^{+}(t)\ket{+,n,m-1}
+  +
+  p_{nm}^{-}(t)\ket{-,n,m}
+  \right)
+  \\
+  &\quad+
+  \sum_{n=1}^{\infty}
+  p_{n0}^{-}(t)\ket{-,n,0}.
+  \end{aligned}
+  }
+\end{equation}
+Para $m\geq1$, las amplitudes son
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  p_{nm}^{+}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Bigg[
+  \left(
+  \cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  -
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)
+  \tilde c_{m-1}d_n^+
+  \\
+  &\hspace{3.0cm}
+  +
+  \ii\frac{\kappa_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \tilde c_md_n^-
+  \Bigg],
+  \\
+  p_{nm}^{-}(t)
+  &=
+  \ee^{-\ii A_{nm}t}
+  \Bigg[
+  \ii\frac{\kappa_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \tilde c_{m-1}d_n^+
+  \\
+  &\hspace{3.0cm}
+  +
+  \left(
+  \cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  +
+  \ii\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)
+  \tilde c_md_n^-
+  \Bigg].
+  \end{aligned}
+  }
+\end{equation}
+Las cantidades que aparecen en estas amplitudes son
+\begin{equation}
+  \boxed{
+  A_{nm}
+  =
+  n\Omega
+  +
+  \frac{\nu\lambda^2}{4}
+  +
+  \nu\left(m-\frac12\right),
+  \qquad
+  \delta_n=2g\sqrt n-\nu,
+  }
+\end{equation}
+\begin{equation}
+  \boxed{
+  \kappa_m=\nu\lambda\sqrt m,
+  \qquad
+  \Omega_{nm}^{\mathrm{ef}}
+  =
+  \sqrt{\delta_n^2+\kappa_m^2}.
+  }
+\end{equation}
+El t\'ermino desacoplado evoluciona solamente con su fase propia:
+\begin{equation}
+  \boxed{
+  p_{n0}^{-}(t)
+  =
+  \tilde c_0d_n^-
+  \exp\left[
+  -\ii
+  \left(
+  n\Omega+\frac{\nu\lambda^2}{4}-g\sqrt n
+  \right)t
+  \right].
+  }
+\end{equation}
+
+\section{Inversi\'on polarit\'onica}
+
+La inversi\'on polarit\'onica efectiva mide la diferencia entre poblaci\'on de
+la rama superior y poblaci\'on de la rama inferior:
+\begin{equation}
+  \mathcal W(t)
+  =
+  \bra{\tilde\Psi(t)}
+  \hat S_z
+  \ket{\tilde\Psi(t)}.
+\end{equation}
+En la base polarit\'onica,
+\begin{equation}
+  \hat S_z^{(n)}
+  =
+  \ket{+,n}\bra{+,n}
+  -
+  \ket{-,n}\bra{-,n}.
+\end{equation}
+Por tanto, cada amplitud $p_{nm}^{+}$ entra con signo positivo y cada amplitud
+$p_{nm}^{-}$ con signo negativo. El estado desacoplado $\ket{-,n,0}$ tambi\'en
+pertenece a la rama inferior, de modo que
+\begin{equation}
+  \boxed{
+  \mathcal W(t)
+  =
+  \sum_{n=1}^{\infty}
+  \sum_{m=1}^{\infty}
+  \left(
+  |p_{nm}^{+}(t)|^2
+  -
+  |p_{nm}^{-}(t)|^2
+  \right)
+  -
+  \sum_{n=1}^{\infty}
+  |p_{n0}^{-}(t)|^2.
+  }
+\end{equation}
+Esta expresi\'on no contiene coherencias entre $+$ y $-$ porque
+$\hat S_z$ es diagonal en la base polarit\'onica.
+
+\section{Inversi\'on electr\'onica}
+
+La inversi\'on electr\'onica se define con el observable
+\begin{equation}
+  \hat\sigma_z
+  =
+  \ket e\bra e-\ket g\bra g,
+  \qquad
+  W(t)
+  =
+  \bra{\tilde\Psi(t)}
+  \hat\sigma_z
+  \ket{\tilde\Psi(t)}.
+\end{equation}
+En la base polarit\'onica, $\hat\sigma_z$ no es diagonal. Para un mismo bloque
+$n$ intercambia las ramas $\ket{+,n}$ y $\ket{-,n}$ sin cambiar el n\'umero
+fon\'onico. Por esta raz\'on deben emparejarse amplitudes que tengan el mismo
+n\'umero fon\'onico $m$.
+
+La amplitud $p_{nm}^{-}$ multiplica a $\ket{-,n,m}$, mientras que
+$p_{n,m+1}^{+}$ multiplica a $\ket{+,n,m}$. Por tanto, la inversi\'on
+electr\'onica de los dobletes $n\geq1$ se obtiene de los productos
+$p_{n,m+1}^{+*}p_{nm}^{-}$. A esto se suma el sector desacoplado
+$c_0c_g\ket{g,0}\ket{\tilde\beta}$, que contribuye con signo negativo porque
+est\'a en el estado electr\'onico base. As\'i,
+\begin{equation}
+  \boxed{
+  W(t)
+  =
+  2\operatorname{Re}
+  \left[
+  \sum_{n=1}^{\infty}
+  \sum_{m=0}^{\infty}
+  p_{n,m+1}^{+*}(t)p_{nm}^{-}(t)
+  \right]
+  -
+  |c_0c_g|^2.
+  }
+\end{equation}
+El detalle esencial es que $\hat\sigma_z$ no cambia $m$. Si se emparejaran
+amplitudes con n\'umeros fon\'onicos distintos, el producto interno se anular\'ia
+por ortogonalidad de los estados de Fock.
+
+\section{Casos iniciales y par\'ametros num\'ericos}
+
+En las gr\'aficas se toman estados coherentes en ambos modos con
+\begin{equation}
+  \boxed{
+  \alpha=\beta=3.
+  }
+\end{equation}
+Como la derivaci\'on est\'a escrita en la representaci\'on desplazada, la
+amplitud que aparece en la expansi\'on fon\'onica se denota por
+$\tilde\beta$. En esta secci\'on se usa el mismo valor num\'erico,
+$\tilde\beta=3$.
+Por tanto, las distribuciones fot\'onica y fon\'onica est\'an centradas en
+$|\alpha|^2=|\tilde\beta|^2=9$. El estado electr\'onico inicial se estudia en
+dos preparaciones:
+\begin{equation}
+  \boxed{
+  \text{E:}\quad c_e=1,\qquad c_g=0,
+  }
+\end{equation}
+y
+\begin{equation}
+  \boxed{
+  \text{S:}\quad c_e=-c_g=\frac{1}{\sqrt2}.
+  }
+\end{equation}
+En el caso E, el sistema parte en el estado electr\'onico excitado. En el caso
+S, el estado opto-electr\'onico se proyecta, cerca del m\'aximo de la
+distribuci\'on coherente, principalmente sobre una rama polarit\'onica.
+
+Los par\'ametros usados son
+\begin{equation}
+  \boxed{
+  g=1,
+  \qquad
+  \Omega=1000g,
+  \qquad
+  \nu=6g,
+  \qquad
+  \eta=\nu\lambda=0.02g.
+  }
+\end{equation}
+La elecci\'on $\nu=6g$ corresponde a la resonancia polarit\'on--fon\'on del
+bloque central $n=9$, porque
+\begin{equation}
+  \delta_9=2g\sqrt9-\nu=6g-\nu=0.
+\end{equation}
+Para una distribuci\'on fon\'onica centrada en $M=9$, el tiempo de revival
+obtenido con la aproximaci\'on coherente fon\'onica es
+\begin{equation}
+  \boxed{
+  t_r
+  =
+  \frac{4\pi\sqrt M}{\nu\lambda}
+  =
+  \frac{12\pi}{0.02}
+  \simeq
+  1884.96.
+  }
+\end{equation}
+
+\section{Resultados gr\'aficos}
+
+\subsection{Inversi\'on polarit\'onica}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fotonico y fononico/InversionP_E.png}}
+    \small (a) Estado E.
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fotonico y fononico/InversionP_S.png}}
+    \small (b) Estado S.
+  \end{minipage}
+  \caption{Inversi\'on polarit\'onica para estados iniciales fot\'onico y
+  fon\'onico coherentes con $\alpha=\beta=3$. En la representaci\'on desplazada
+  se escribe $\tilde\beta=3$. En (a) se usa
+  $c_e=1$, $c_g=0$; en (b), $c_e=-c_g=1/\sqrt2$. Ambas se\~nales muestran el
+  comportamiento esperado de colapsos, revivals y ensanchamiento de los
+  l\'obulos. La diferencia es que el caso S sigue con mayor precisi\'on el
+  tiempo anal\'itico $t_r=1884.96$. La raz\'on es que, cerca del m\'aximo de la
+  distribuci\'on fot\'onica, $c_{n-1}\simeq c_n$; entonces
+  $d_n^+=(c_{n-1}-c_n)/2$ queda suprimido y domina
+  $d_n^-=(c_{n-1}+c_n)/2$. La preparaci\'on se parece m\'as al caso
+  polarit\'onico ideal usado para estimar el tiempo de revival.}
+\end{figure}
+
+\subsection{Inversi\'on electr\'onica}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fotonico y fononico/InversionE_E.png}}
+    \small (a) Estado E.
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fotonico y fononico/InversionE_S.png}}
+    \small (b) Estado S.
+  \end{minipage}
+  \caption{Inversi\'on electr\'onica para las mismas preparaciones iniciales. En
+  el caso E, la inversi\'on comienza cerca de $1$ porque la mol\'ecula parte en
+  $\ket e$. La din\'amica reparte la poblaci\'on entre car\'acter excitado y base,
+  y las muchas frecuencias asociadas con las distribuciones coherentes producen
+  colapsos y revivals visibles alrededor de cero. En el caso S, las poblaciones
+  electr\'onicas iniciales est\'an balanceadas y la proyecci\'on dominante cerca de
+  $n=9$ corresponde a una rama polarit\'onica con mezcla casi equilibrada de
+  $\ket e$ y $\ket g$. Por eso la inversi\'on queda suprimida y oscila con
+  amplitud mucho menor. Las oscilaciones electr\'onicas son m\'as r\'apidas que
+  las polarit\'onicas porque dependen de coherencias entre ramas con el mismo
+  n\'umero fon\'onico, donde aparecen fases de escala $\nu$, mientras que la
+  envolvente polarit\'onica est\'a gobernada por escalas efectivas del orden de
+  $\eta\sqrt m$.}
+\end{figure}
+
+\subsection{Comparaci\'on con el hamiltoniano completo}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fotonico y fononico/ComparacionPE.png}}
+    \small (a) $\mathcal W(t)$, estado E.
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fotonico y fononico/ComparacionPS.png}}
+    \small (b) $\mathcal W(t)$, estado S.
+  \end{minipage}
+
+  \vspace{0.4cm}
+
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fotonico y fononico/ComparacionEE.png}}
+    \small (c) $W(t)$, estado E.
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fotonico y fononico/ComparacionES.png}}
+    \small (d) $W(t)$, estado S.
+  \end{minipage}
+  \caption{Comparaci\'on entre la evoluci\'on anal\'itica generada por el
+  hamiltoniano efectivo y la evoluci\'on num\'erica del hamiltoniano completo
+  $H_{HC}$. Se muestran la inversi\'on polarit\'onica para los estados E y S, y
+  la inversi\'on electr\'onica para las mismas dos preparaciones. En los cuatro
+  casos la coincidencia es alta durante el intervalo mostrado, lo que valida el
+  uso de $\hat H_{\mathrm{ef}}^{(n)}$ para describir la din\'amica relevante en
+  este r\'egimen resonante.}
+\end{figure}
+
+\subsection{Fidelidad}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fotonico y fononico/FidelidadE.png}}
+    \small (a) Estado E.
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{../../notas-doctorado/imgs/Estado coherente fotonico y fononico/FidelidadS.png}}
+    \small (b) Estado S.
+  \end{minipage}
+  \caption{Fidelidad entre el estado evolucionado con el hamiltoniano efectivo
+  y el estado evolucionado num\'ericamente con el hamiltoniano completo. En el
+  caso E, la preparaci\'on inicial excita de manera comparable las ramas
+  polarit\'onicas superior e inferior y, por la distribuci\'on coherente
+  fot\'onica, involucra muchos bloques $n$. Las peque\~nas fases y acoplamientos
+  descartados por la aproximaci\'on efectiva se acumulan con mayor rapidez. En
+  el caso S, cerca del m\'aximo de la distribuci\'on domina una rama
+  polarit\'onica y la evoluci\'on queda m\'as cerca del r\'egimen resonante ideal;
+  por eso la fidelidad se mantiene alta durante m\'as tiempo.}
+\end{figure}
+
+\section{Lectura f\'isica final}
+
+Esta secci\'on generaliza el an\'alisis de un bloque polarit\'onico ideal al caso
+en que tanto el campo fot\'onico como el modo fon\'onico tienen distribuciones
+coherentes. La din\'amica ya no est\'a centrada en un solo par $(n,m)$, sino en
+una ventana de bloques alrededor de $n\simeq|\alpha|^2$ y
+$m\simeq|\tilde\beta|^2$. Cada bloque aporta una frecuencia efectiva
+$\Omega_{nm}^{\mathrm{ef}}$, y la suma de todas ellas produce colapsos,
+revivals y envolventes anchas.
+
+La preparaci\'on electr\'onica controla cu\'anto peso inicial cae en cada rama
+polarit\'onica. Esa proyecci\'on explica por qu\'e el caso S sigue mejor el
+tiempo de revival calculado para una rama polarit\'onica dominante, mientras que
+el caso E muestra una mezcla m\'as amplia de contribuciones. La comparaci\'on
+con el hamiltoniano completo confirma que, en el r\'egimen usado, el
+hamiltoniano efectivo conserva la estructura din\'amica esencial.
+
+\end{document}

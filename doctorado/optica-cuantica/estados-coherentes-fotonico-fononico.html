@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estados coherentes fotónico y fonónico · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams'
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<link rel="shortcut icon" href="../../favicon.ico?v=2" type="image/x-icon">
+<link rel="icon" href="../../favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/img/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/img/favicon-16x16.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/img/apple-touch-icon.png?v=2">
+<link rel="manifest" href="../../site.webmanifest?v=2">
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Estados coherentes fotónico y fonónico
+</div>
+
+<div class="container">
+<article class="note">
+
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <ellipse cx="31" cy="32" rx="22" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2.4" transform="rotate(-18 31 32)"/>
+      <ellipse cx="34" cy="31" rx="22" ry="8" fill="none" stroke="#d4453a" stroke-width="2.4" transform="rotate(22 34 31)"/>
+      <circle cx="19" cy="35" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.8"/>
+      <circle cx="45" cy="29" r="5" fill="#fff3d8" stroke="#6b48a6" stroke-width="1.8"/>
+      <path d="M20 47 C29 55 42 53 49 44" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M47 44 l5 1 -3 -5" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M15 18 h34" stroke="#d4453a" stroke-width="2" fill="none"/>
+      <path d="M49 18 l-5 -4 v8 z" fill="#d4453a"/>
+    </svg>
+    <h1>Estados coherentes fotónico y fonónico</h1>
+    <div class="author">Dinámica HC · Campo fotónico coherente, vibración coherente y comparación con el modelo completo</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Dina%CC%81mica%20del%20Modelo%20HC.pdf#page=17" target="_blank">📄 PDF original pág. 17</a>
+      <a href="estados-coherentes-fotonico-fononico.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="estados-coherentes-fotonico-fononico.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#estado-inicial">Estado inicial</a></li>
+      <li><a href="#base-polaritonica">Base polaritónica</a></li>
+      <li><a href="#estado-dinamico">Parte dinámica inicial</a></li>
+      <li><a href="#evolucion">Evolución temporal</a></li>
+      <li><a href="#inversion-polaritonica">Inversión polaritónica</a></li>
+      <li><a href="#inversion-electronica">Inversión electrónica</a></li>
+      <li><a href="#parametros">Parámetros</a></li>
+      <li><a href="#resultados">Resultados gráficos</a></li>
+      <li><a href="#lectura">Lectura física</a></li>
+    </ol>
+  </div>
+
+  <h2 id="estado-inicial">1. Estado inicial</h2>
+  <p>
+    Se trabaja en la representación desplazada del modo vibracional. El estado
+    inicial es producto entre un estado coherente fotónico, un estado
+    electrónico molecular general y un estado coherente fonónico:
+  </p>
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\Psi(0)}
+    =\ket{\alpha}\otimes(c_e\ket e+c_g\ket g)\otimes\ket{\tilde\beta}.}$$
+  </div>
+  <p>Los estados coherentes se expanden como</p>
+  <div class="boxed def">
+    $$\boxed{\ket{\alpha}=\sum_{n=0}^{\infty}c_n\ket n,\qquad
+    c_n=e^{-|\alpha|^2/2}\frac{\alpha^n}{\sqrt{n!}},}$$
+    $$\boxed{\ket{\tilde\beta}=\sum_{m=0}^{\infty}\tilde c_m\ket m,\qquad
+    \tilde c_m=e^{-|\tilde\beta|^2/2}
+    \frac{\tilde\beta^m}{\sqrt{m!}}.}$$
+  </div>
+  <p>
+    Los coeficientes \(c_n\) son fotónicos. Los coeficientes \(\tilde c_m\)
+    pertenecen al modo fonónico en la representación desplazada.
+  </p>
+
+  <h2 id="base-polaritonica">2. Base polaritónica</h2>
+  <p>En cada bloque \(n\geq1\),</p>
+  <div class="boxed def">
+    $$\boxed{\ket{+,n}=\frac{1}{\sqrt2}(\ket{e,n-1}+\ket{g,n}),\qquad
+    \ket{-,n}=\frac{1}{\sqrt2}(\ket{e,n-1}-\ket{g,n}).}$$
+  </div>
+  <p>Al reescribir la parte opto-electrónica inicial en esa base se obtiene</p>
+  <div class="boxed result">
+    $$\boxed{d_n^\pm=\frac{1}{\sqrt2}(c_{n-1}c_e\pm c_nc_g).}$$
+  </div>
+  <p>
+    El coeficiente \(d_n^+\) es la amplitud inicial en la rama \(\ket{+,n}\),
+    mientras que \(d_n^-\) es la amplitud inicial en \(\ket{-,n}\).
+  </p>
+
+  <h2 id="estado-dinamico">3. Parte dinámica del estado inicial</h2>
+  <p>El hamiltoniano efectivo conecta</p>
+  <div class="boxed def">
+    $$\boxed{\ket{+,n,m-1}\longleftrightarrow\ket{-,n,m},
+    \qquad n\geq1,\quad m\geq1.}$$
+  </div>
+  <p>Por eso el estado inicial se agrupa por dobletes:</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    \ket{\tilde\Psi_{\mathrm{dyn}}(0)}
+    =&\sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+    \left(\tilde c_{m-1}d_n^+\ket{+,n,m-1}
+    +\tilde c_md_n^-\ket{-,n,m}\right)\\
+    &+\sum_{n=1}^{\infty}\tilde c_0d_n^-\ket{-,n,0}.
+    \end{aligned}}$$
+  </div>
+  <p>
+    Los estados \(\ket{-,n,0}\) quedan desacoplados porque no existe
+    \(\ket{+,n,-1}\). El sector \(c_0c_g\ket{g,0}\ket{\tilde\beta}\) también
+    queda fuera de los dobletes dinámicos \(n\geq1\), aunque contribuye a la
+    inversión electrónica como población del estado base.
+  </p>
+
+  <h2 id="evolucion">4. Evolución temporal</h2>
+  <p>La evolución conserva la estructura por dobletes:</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    \ket{\tilde\Psi_{\mathrm{dyn}}(t)}
+    =&\sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+    \left(p_{nm}^{+}(t)\ket{+,n,m-1}
+    +p_{nm}^{-}(t)\ket{-,n,m}\right)\\
+    &+\sum_{n=1}^{\infty}p_{n0}^{-}(t)\ket{-,n,0}.
+    \end{aligned}}$$
+  </div>
+  <p>Para \(m\geq1\),</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    p_{nm}^{+}(t)=e^{-iA_{nm}t}\Bigg[&
+    \left(\cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+    -i\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\right)
+    \tilde c_{m-1}d_n^+\\
+    &+i\frac{\kappa_m}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\tilde c_md_n^-\Bigg],
+    \end{aligned}}$$
+    $$\boxed{\begin{aligned}
+    p_{nm}^{-}(t)=e^{-iA_{nm}t}\Bigg[&
+    i\frac{\kappa_m}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\tilde c_{m-1}d_n^+\\
+    &+\left(\cos\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+    +i\frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+    \sin\frac{\Omega_{nm}^{\mathrm{ef}}t}{2}\right)
+    \tilde c_md_n^-\Bigg].
+    \end{aligned}}$$
+  </div>
+  <p>donde</p>
+  <div class="boxed def">
+    $$\boxed{A_{nm}=n\Omega+\frac{\nu\lambda^2}{4}
+    +\nu\left(m-\frac12\right),\qquad
+    \delta_n=2g\sqrt n-\nu,}$$
+    $$\boxed{\kappa_m=\nu\lambda\sqrt m,\qquad
+    \Omega_{nm}^{\mathrm{ef}}=\sqrt{\delta_n^2+\kappa_m^2}.}$$
+  </div>
+  <p>El estado desacoplado evoluciona como</p>
+  <div class="boxed def">
+    $$\boxed{p_{n0}^{-}(t)=\tilde c_0d_n^-
+    \exp\left[-i\left(n\Omega+\frac{\nu\lambda^2}{4}-g\sqrt n\right)t\right].}$$
+  </div>
+
+  <h2 id="inversion-polaritonica">5. Inversión polaritónica</h2>
+  <p>
+    La inversión polaritónica efectiva mide población en \(\ket{+,n}\) menos
+    población en \(\ket{-,n}\):
+  </p>
+  <div class="boxed result">
+    $$\boxed{\mathcal W(t)
+    =\sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+    \left(|p_{nm}^{+}(t)|^2-|p_{nm}^{-}(t)|^2\right)
+    -\sum_{n=1}^{\infty}|p_{n0}^{-}(t)|^2.}$$
+  </div>
+  <p>
+    No aparecen productos cruzados porque \(\hat S_z\) es diagonal en la base
+    polaritónica.
+  </p>
+
+  <h2 id="inversion-electronica">6. Inversión electrónica</h2>
+  <p>
+    Para la inversión electrónica se usa
+    \(\hat\sigma_z=\ket e\bra e-\ket g\bra g\). En la base polaritónica,
+    \(\hat\sigma_z\) intercambia \(\ket{+,n}\) y \(\ket{-,n}\), pero no cambia
+    el número fonónico. Por eso se emparejan amplitudes con el mismo \(m\):
+  </p>
+  <div class="boxed result">
+    $$\boxed{W(t)=2\operatorname{Re}\left[
+    \sum_{n=1}^{\infty}\sum_{m=0}^{\infty}
+    p_{n,m+1}^{+*}(t)p_{nm}^{-}(t)\right]-|c_0c_g|^2.}$$
+  </div>
+  <p>
+    El término \(-|c_0c_g|^2\) viene del sector con cero excitaciones
+    opto-electrónicas, que permanece en el estado electrónico base.
+  </p>
+
+  <h2 id="parametros">7. Parámetros numéricos</h2>
+  <p>
+    En todas las gráficas, el estado inicial fotónico y el fonónico son
+    coherentes con
+  </p>
+  <div class="boxed result">
+    $$\boxed{\alpha=\beta=3.}$$
+  </div>
+  <p>
+    Como la derivación se escribe en la representación desplazada, la amplitud
+    fonónica de la expansión se denota \(\tilde\beta\). En esta sección se usa
+    el mismo valor numérico, \(\tilde\beta=3\).
+  </p>
+  <p>Se comparan dos preparaciones electrónicas:</p>
+  <div class="boxed def">
+    $$\boxed{\text{E:}\quad c_e=1,\qquad c_g=0,}$$
+    $$\boxed{\text{S:}\quad c_e=-c_g=\frac{1}{\sqrt2}.}$$
+  </div>
+  <p>Los parámetros del modelo son</p>
+  <div class="boxed result">
+    $$\boxed{g=1,\qquad \Omega=1000g,\qquad
+    \eta=\nu\lambda=0.02g,\qquad \nu=6g.}$$
+  </div>
+  <p>
+    La elección \(\nu=6g\) es resonante para el bloque central \(n=9\), pues
+    \(\delta_9=6g-\nu=0\). Para \(M=|\tilde\beta|^2=9\), el tiempo de revival
+    estimado es
+  </p>
+  <div class="boxed result">
+    $$\boxed{t_r=\frac{4\pi\sqrt M}{\nu\lambda}
+    =\frac{12\pi}{0.02}\simeq 1884.96.}$$
+  </div>
+
+  <h2 id="resultados">8. Resultados gráficos</h2>
+
+  <h3>Inversión polaritónica</h3>
+  <div class="figure-grid two">
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Estado%20coherente%20fotonico%20y%20fononico/InversionP_E.png" alt="Inversión polaritónica para estado E.">
+      <figcaption>Estado E: \(c_e=1\), \(c_g=0\).</figcaption>
+    </figure>
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Estado%20coherente%20fotonico%20y%20fononico/InversionP_S.png" alt="Inversión polaritónica para estado S.">
+      <figcaption>Estado S: \(c_e=-c_g=1/\sqrt2\).</figcaption>
+    </figure>
+  </div>
+  <p>
+    Ambas inversiones polaritónicas muestran colapsos, revivals y
+    ensanchamiento de los lóbulos. El caso S sigue con mayor precisión el
+    tiempo \(t_r=1884.96\) porque, cerca del máximo de la distribución
+    fotónica, \(c_{n-1}\simeq c_n\). Entonces
+    \(d_n^+=(c_{n-1}-c_n)/2\) queda suprimido y domina
+    \(d_n^-=(c_{n-1}+c_n)/2\). La preparación se parece más al caso
+    polaritónico ideal usado para estimar el tiempo de revival.
+  </p>
+
+  <h3>Inversión electrónica</h3>
+  <div class="figure-grid two">
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Estado%20coherente%20fotonico%20y%20fononico/InversionE_E.png" alt="Inversión electrónica para estado E.">
+      <figcaption>Estado E: inversión electrónica con revivals visibles entre poblaciones excitada y base.</figcaption>
+    </figure>
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Estado%20coherente%20fotonico%20y%20fononico/InversionE_S.png" alt="Inversión electrónica para estado S.">
+      <figcaption>Estado S: inversión electrónica suprimida por la preparación balanceada.</figcaption>
+    </figure>
+  </div>
+  <p>
+    En el caso E, la inversión empieza cerca de \(1\) porque la molécula parte
+    en \(\ket e\). La población se redistribuye entre carácter excitado y base,
+    y las muchas frecuencias asociadas con las distribuciones coherentes
+    producen colapsos y revivals alrededor de cero. En el caso S, las
+    poblaciones electrónicas iniciales están balanceadas y la proyección
+    dominante cerca de \(n=9\) corresponde a una rama polaritónica con mezcla
+    casi equilibrada de \(\ket e\) y \(\ket g\). Por eso la inversión queda
+    suprimida. Las oscilaciones electrónicas son más rápidas que las
+    polaritónicas porque dependen de coherencias entre ramas con el mismo número
+    fonónico, donde aparecen fases de escala \(\nu\), mientras que la envolvente
+    polaritónica está gobernada por escalas efectivas del orden de
+    \(\eta\sqrt m\).
+  </p>
+
+  <h3>Comparación con el hamiltoniano completo</h3>
+  <div class="figure-grid four">
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Estado%20coherente%20fotonico%20y%20fononico/ComparacionPE.png" alt="Comparación polaritónica estado E.">
+      <figcaption>\(\mathcal W(t)\), estado E.</figcaption>
+    </figure>
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Estado%20coherente%20fotonico%20y%20fononico/ComparacionPS.png" alt="Comparación polaritónica estado S.">
+      <figcaption>\(\mathcal W(t)\), estado S.</figcaption>
+    </figure>
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Estado%20coherente%20fotonico%20y%20fononico/ComparacionEE.png" alt="Comparación electrónica estado E.">
+      <figcaption>\(W(t)\), estado E.</figcaption>
+    </figure>
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Estado%20coherente%20fotonico%20y%20fononico/ComparacionES.png" alt="Comparación electrónica estado S.">
+      <figcaption>\(W(t)\), estado S.</figcaption>
+    </figure>
+  </div>
+  <p>
+    En las cuatro comparaciones, la evolución analítica del hamiltoniano
+    efectivo reproduce con alta similitud la evolución numérica del
+    hamiltoniano completo \(H_{HC}\). Esta coincidencia valida el uso de
+    \(\hat H_{\mathrm{ef}}^{(n)}\) para describir las inversiones relevantes en
+    el régimen resonante considerado.
+  </p>
+
+  <h3>Fidelidad</h3>
+  <div class="figure-grid two">
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Estado%20coherente%20fotonico%20y%20fononico/FidelidadE.png" alt="Fidelidad para estado E.">
+      <figcaption>Fidelidad para el estado inicial E.</figcaption>
+    </figure>
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Estado%20coherente%20fotonico%20y%20fononico/FidelidadS.png" alt="Fidelidad para estado S.">
+      <figcaption>Fidelidad para el estado inicial S.</figcaption>
+    </figure>
+  </div>
+  <p>
+    En el caso E, la preparación inicial excita de manera comparable las ramas
+    polaritónicas superior e inferior y, por la distribución coherente
+    fotónica, involucra muchos bloques \(n\). Las pequeñas fases y acoplamientos
+    descartados por la aproximación efectiva se acumulan con mayor rapidez. En
+    el caso S, cerca del máximo de la distribución domina una rama polaritónica
+    y la evolución queda más cerca del régimen resonante ideal. Por eso la
+    fidelidad se mantiene alta durante más tiempo.
+  </p>
+
+  <h2 id="lectura">9. Lectura física</h2>
+  <p>
+    El caso con estados coherentes fotónico y fonónico extiende la dinámica de
+    un bloque aislado a una ventana de bloques alrededor de
+    \(n\simeq|\alpha|^2\) y \(m\simeq|\tilde\beta|^2\). Cada par \((n,m)\)
+    aporta una frecuencia \(\Omega_{nm}^{\mathrm{ef}}\). La suma de esas
+    frecuencias produce el colapso inicial, los revivals y las envolventes
+    ensanchadas.
+  </p>
+  <p>
+    La preparación electrónica determina qué combinación de ramas
+    polaritónicas se excita inicialmente. Por eso el estado S se comporta de
+    manera más cercana al caso polaritónico ideal, mientras que el estado E
+    involucra una mezcla más amplia de contribuciones. Las comparaciones y las
+    fidelidades muestran que el hamiltoniano efectivo conserva la estructura
+    dinámica principal dentro del intervalo estudiado.
+  </p>
+
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 26 de junio de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>
