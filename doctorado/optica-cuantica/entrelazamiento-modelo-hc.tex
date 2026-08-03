@@ -1,0 +1,1493 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{braket}
+\usepackage{dsfont}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\emergencystretch=2em
+\allowdisplaybreaks
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\Id}{\mathds{1}}
+
+\title{Entrelazamiento en el modelo HC}
+\author{Ricardo Del Rosal Gardu\~no \\ \small Doctorado en F\'isica, BUAP}
+\date{Notas de doctorado}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\bigskip
+
+\section{Sistema tripartito y biparticiones}
+
+El modelo de Holstein-Cummings contiene tres grados de libertad: el estado
+electr\'onico molecular, el modo fot\'onico de la cavidad y el modo fon\'onico
+intramolecular. El espacio de Hilbert completo es, por tanto,
+\begin{equation}
+  \boxed{
+  \mathcal H
+  =
+  \mathcal H_{\mathrm{el}}
+  \otimes
+  \mathcal H_{\mathrm{fot}}
+  \otimes
+  \mathcal H_{\mathrm{fon}}.
+  }
+\end{equation}
+
+Aunque el sistema es tripartito, primero puede estudiarse como una
+bipartici\'on entre el electr\'on y los otros dos grados de libertad:
+\begin{equation}
+  \mathcal H
+  =
+  \mathcal H_{\mathrm{el}}
+  \otimes
+  \left(
+  \mathcal H_{\mathrm{fot}}
+  \otimes
+  \mathcal H_{\mathrm{fon}}
+  \right).
+\end{equation}
+Esta partici\'on permite cuantificar cu\'anto se entrelaza el estado electr\'onico
+con el subsistema fot\'on-fon\'on considerado como una sola parte.
+
+Recordando la evoluci\'on obtenida para el hamiltoniano efectivo, el estado en
+la representaci\'on desplazada puede reagruparse seg\'un el estado electr\'onico:
+\begin{equation}
+  \boxed{
+  \ket{\tilde\Psi(t)}
+  =
+  \ket{\chi_g(t)}\ket g
+  +
+  \ket{\chi_e(t)}\ket e.
+  }
+\end{equation}
+En el sector din\'amico con $n\geq1$ y $m\geq1$, las ramas fot\'on-fon\'on son
+\begin{equation}
+  \ket{\chi_g(t)}
+  =
+  \sum_{n=1}^{\infty}
+  \sum_{m=1}^{\infty}
+  \left[
+  p_{nm}^{+}(t)\ket{n,m-1}
+  -
+  p_{nm}^{-}(t)\ket{n,m}
+  \right],
+\end{equation}
+\begin{equation}
+  \ket{\chi_e(t)}
+  =
+  \sum_{n=1}^{\infty}
+  \sum_{m=1}^{\infty}
+  \left[
+  p_{nm}^{+}(t)\ket{n-1,m-1}
+  +
+  p_{nm}^{-}(t)\ket{n-1,m}
+  \right].
+\end{equation}
+Estos vectores contienen toda la informaci\'on del campo y de la vibraci\'on
+condicionada a encontrar la mol\'ecula en $\ket g$ o en $\ket e$. No se
+normalizan por separado. Sus normas son las probabilidades de las ramas
+electr\'onicas correspondientes.
+
+\section{Matrices de densidad reducidas}
+
+Como el estado total es puro, su matriz de densidad es
+\begin{equation}
+  \hat\rho(t)
+  =
+  \ket{\tilde\Psi(t)}\bra{\tilde\Psi(t)}.
+\end{equation}
+Sustituyendo la descomposici\'on electr\'onica y desarrollando el producto
+exterior se obtiene
+\begin{equation}
+\begin{aligned}
+  \hat\rho(t)
+  ={}&
+  \ket{\chi_g}\bra{\chi_g}
+  \otimes\ket g\bra g
+  +
+  \ket{\chi_g}\bra{\chi_e}
+  \otimes\ket g\bra e
+  \\
+  &+
+  \ket{\chi_e}\bra{\chi_g}
+  \otimes\ket e\bra g
+  +
+  \ket{\chi_e}\bra{\chi_e}
+  \otimes\ket e\bra e.
+\end{aligned}
+\end{equation}
+
+Para estudiar el entrelazamiento entre la parte electr\'onica y el resto se
+calcula la matriz de densidad reducida electr\'onica:
+\begin{equation}
+  \hat\rho_{\mathrm{el}}(t)
+  =
+  \operatorname{Tr}_{\mathrm{fot,fon}}
+  \left[
+  \hat\rho(t)
+  \right].
+\end{equation}
+Escribiendo la traza parcial de manera expl\'icita en las bases de Fock de los
+modos fot\'onico y fon\'onico,
+\begin{equation}
+\begin{aligned}
+  \hat\rho_{\mathrm{el}}(t)
+  =
+  \sum_{n,m}
+  \Big(&
+  \bra n_{\mathrm{fot}}
+  \otimes
+  \bra m_{\mathrm{fon}}
+  \otimes
+  \Id_{\mathrm{el}}
+  \Big)
+  \hat\rho(t)
+  \\
+  &\times
+  \Big(
+  \ket n_{\mathrm{fot}}
+  \otimes
+  \ket m_{\mathrm{fon}}
+  \otimes
+  \Id_{\mathrm{el}}
+  \Big).
+\end{aligned}
+\end{equation}
+La identidad
+\begin{equation}
+  \operatorname{Tr}(\ket u\bra v)=\braket{v|u}
+\end{equation}
+convierte cada operador fot\'on-fon\'on en un producto interno. Por tanto,
+\begin{equation}
+\begin{aligned}
+  \hat\rho_{\mathrm{el}}(t)
+  ={}&
+  \braket{\chi_g|\chi_g}\ket g\bra g
+  +
+  \braket{\chi_e|\chi_g}\ket g\bra e
+  \\
+  &+
+  \braket{\chi_g|\chi_e}\ket e\bra g
+  +
+  \braket{\chi_e|\chi_e}\ket e\bra e.
+\end{aligned}
+\end{equation}
+En la base ordenada $\{\ket g,\ket e\}$,
+\begin{equation}
+  \boxed{
+  \hat\rho_{\mathrm{el}}(t)
+  =
+  \begin{pmatrix}
+    \braket{\chi_g|\chi_g} & \braket{\chi_e|\chi_g}
+    \\
+    \braket{\chi_g|\chi_e} & \braket{\chi_e|\chi_e}
+  \end{pmatrix}.
+  }
+\end{equation}
+Los elementos diagonales son las probabilidades electr\'onicas
+\begin{equation}
+  p_g(t)=\braket{\chi_g|\chi_g},
+  \qquad
+  p_e(t)=\braket{\chi_e|\chi_e},
+  \qquad
+  p_g(t)+p_e(t)=1.
+\end{equation}
+
+Por otro lado, al trazar sobre el subsistema electr\'onico se obtiene
+\begin{equation}
+  \hat\rho_{\mathrm{fot-fon}}(t)
+  =
+  \operatorname{Tr}_{\mathrm{el}}
+  \left[
+  \hat\rho(t)
+  \right].
+\end{equation}
+Los t\'erminos cruzados desaparecen porque $\braket{g|e}=0$, y queda
+\begin{equation}
+  \boxed{
+  \hat\rho_{\mathrm{fot-fon}}(t)
+  =
+  \ket{\chi_g(t)}\bra{\chi_g(t)}
+  +
+  \ket{\chi_e(t)}\bra{\chi_e(t)}.
+  }
+\end{equation}
+Como ambas matrices reducidas provienen de una bipartici\'on de un estado
+puro, tienen el mismo espectro no nulo y, en particular, la misma pureza.
+
+\section{Pureza, inversi\'on y coherencia}
+
+La pureza de un subsistema $A$ se define como
+\begin{equation}
+  P(\hat\rho_A)
+  =
+  \operatorname{Tr}(\hat\rho_A^2).
+\end{equation}
+Para un estado reducido puro, $P=1$. En ese caso el subsistema $A$ no est\'a
+entrelazado con su complemento. Para un qubit m\'aximamente mezclado, y por
+tanto m\'aximamente entrelazado con el resto cuando el estado global es puro,
+la pureza toma su valor m\'inimo $P=1/2$.
+
+Definimos la coherencia electr\'onica reducida como
+\begin{equation}
+  \boxed{
+  s(t)=\braket{\chi_g(t)|\chi_e(t)}.
+  }
+\end{equation}
+Entonces
+\begin{equation}
+  \hat\rho_{\mathrm{el}}
+  =
+  \begin{pmatrix}
+    p_g & s^*\\
+    s & p_e
+  \end{pmatrix}.
+\end{equation}
+Al elevar esta matriz al cuadrado,
+\begin{equation}
+  \hat\rho_{\mathrm{el}}^2
+  =
+  \begin{pmatrix}
+    p_g^2+|s|^2 & p_gs^*+p_es^*
+    \\
+    p_gs+p_es & p_e^2+|s|^2
+  \end{pmatrix}.
+\end{equation}
+Tomando la traza se obtiene
+\begin{equation}
+  P_{\mathrm{el}}(t)
+  =
+  p_g^2(t)+p_e^2(t)+2|s(t)|^2.
+\end{equation}
+
+El mismo resultado puede derivarse desde la matriz reducida fot\'on-fon\'on.
+En efecto,
+\begin{equation}
+\begin{aligned}
+  \hat\rho_{\mathrm{fot-fon}}^2
+  ={}&
+  p_g\ket{\chi_g}\bra{\chi_g}
+  +s\ket{\chi_g}\bra{\chi_e}
+  \\
+  &+s^*\ket{\chi_e}\bra{\chi_g}
+  +p_e\ket{\chi_e}\bra{\chi_e},
+\end{aligned}
+\end{equation}
+y su traza es
+\begin{equation}
+  \operatorname{Tr}(\hat\rho_{\mathrm{fot-fon}}^2)
+  =
+  p_g^2+p_e^2+2|s|^2.
+\end{equation}
+De manera equivalente, la pureza puede escribirse con las normas de las ramas:
+\begin{equation}
+  P_{\mathrm{el}}(t)
+  =
+  \|\chi_g(t)\|^4
+  +
+  \|\chi_e(t)\|^4
+  +
+  2\left|\braket{\chi_g(t)|\chi_e(t)}\right|^2.
+\end{equation}
+
+La inversi\'on electr\'onica es
+\begin{equation}
+  W(t)
+  =
+  p_e(t)-p_g(t).
+\end{equation}
+Junto con la normalizaci\'on $p_e+p_g=1$, esta ecuaci\'on permite despejar las
+poblaciones. Primero,
+\begin{equation}
+  W+p_g=1-p_g
+  \quad\Longrightarrow\quad
+  p_g=\frac{1-W}{2}.
+\end{equation}
+De manera an\'aloga,
+\begin{equation}
+  p_e-W=1-p_e
+  \quad\Longrightarrow\quad
+  p_e=\frac{1+W}{2}.
+\end{equation}
+Por consiguiente,
+\begin{equation}
+\begin{aligned}
+  p_g^2+p_e^2
+  &=
+  \frac14\left[(1-W)^2+(1+W)^2\right]
+  \\
+  &=
+  \frac14\left(
+  1-2W+W^2+1+2W+W^2
+  \right)
+  \\
+  &=
+  \frac{1+W^2}{2}.
+\end{aligned}
+\end{equation}
+La pureza electr\'onica general queda
+\begin{equation}
+  \boxed{
+  P_{\mathrm{el}}(t)
+  =
+  \frac12
+  \left[
+  1+W^2(t)+4|s(t)|^2
+  \right].
+  }
+\end{equation}
+Esta expresi\'on separa la contribuci\'on debida al desbalance de poblaciones,
+medido por $W(t)$, de la contribuci\'on debida a la coherencia que permanece
+entre las dos ramas electr\'onicas despu\'es de ignorar el campo y la vibraci\'on.
+
+\section{Caso 1: un fon\'on en un bloque polarit\'onico}
+
+Consideremos que el estado permanece dentro de un solo sub-bloque:
+\begin{equation}
+  \ket{\tilde\Psi(t)}
+  =
+  u(t)\ket{+,n,m-1}
+  +
+  v(t)\ket{-,n,m},
+\end{equation}
+con
+\begin{equation}
+  |u(t)|^2+|v(t)|^2=1.
+\end{equation}
+Los estados polarit\'onicos son
+\begin{equation}
+  \ket{\pm,n}
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \ket{e,n-1}
+  \pm
+  \ket{g,n}
+  \right).
+\end{equation}
+Al sustituirlos en el estado evolucionado,
+\begin{equation}
+\begin{aligned}
+  \ket{\tilde\Psi(t)}
+  ={}&
+  \frac{u(t)}{\sqrt2}
+  \left(
+  \ket{e,n-1}+\ket{g,n}
+  \right)
+  \ket{m-1}
+  \\
+  &+
+  \frac{v(t)}{\sqrt2}
+  \left(
+  \ket{e,n-1}-\ket{g,n}
+  \right)
+  \ket m.
+\end{aligned}
+\end{equation}
+Agrupando los t\'erminos que multiplican a $\ket e$ y a $\ket g$,
+\begin{equation}
+\begin{aligned}
+  \ket{\tilde\Psi(t)}
+  ={}&
+  \frac{1}{\sqrt2}
+  \ket e\ket{n-1}
+  \left[
+  u(t)\ket{m-1}+v(t)\ket m
+  \right]
+  \\
+  &+
+  \frac{1}{\sqrt2}
+  \ket g\ket n
+  \left[
+  u(t)\ket{m-1}-v(t)\ket m
+  \right].
+\end{aligned}
+\end{equation}
+Por tanto,
+\begin{equation}
+  \ket{\chi_e(t)}
+  =
+  \frac{\ket{n-1}}{\sqrt2}
+  \left[
+  u(t)\ket{m-1}+v(t)\ket m
+  \right],
+\end{equation}
+\begin{equation}
+  \ket{\chi_g(t)}
+  =
+  \frac{\ket n}{\sqrt2}
+  \left[
+  u(t)\ket{m-1}-v(t)\ket m
+  \right].
+\end{equation}
+La ortogonalidad de los estados fon\'onicos y la normalizaci\'on de $u$ y $v$
+dan
+\begin{equation}
+  p_e
+  =
+  \braket{\chi_e|\chi_e}
+  =
+  \frac12\left(|u|^2+|v|^2\right)
+  =
+  \frac12,
+\end{equation}
+\begin{equation}
+  p_g
+  =
+  \braket{\chi_g|\chi_g}
+  =
+  \frac12.
+\end{equation}
+La coherencia electr\'onica es nula porque las ramas contienen estados
+fot\'onicos ortogonales:
+\begin{equation}
+  s(t)
+  =
+  \braket{\chi_g|\chi_e}
+  \propto
+  \braket{n|n-1}
+  =0.
+\end{equation}
+En consecuencia,
+\begin{equation}
+  W(t)=p_e-p_g=0,
+\end{equation}
+y la pureza es
+\begin{equation}
+  \boxed{
+  P_{nm}(t)=\frac12.
+  }
+\end{equation}
+No es indispensable que el estado inicial sea un eigenestado del hamiltoniano
+efectivo. Basta con que el estado evolucionado permanezca dentro del mismo
+doblete $\{\ket{+,n,m-1},\ket{-,n,m}\}$.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Entrelazamiento/pureza-fonon-polariton.png}}
+  \caption{Pureza electr\'onica para un fon\'on en un \'unico bloque
+  polarit\'onico. La l\'inea permanece en $P_{\mathrm{el}}(t)=1/2$, valor
+  m\'inimo de la pureza de un qubit, porque las ramas electr\'onicas tienen
+  siempre la misma norma y est\'an acompa\~nadas por estados fot\'onicos
+  ortogonales. El electr\'on est\'a m\'aximamente entrelazado con el subsistema
+  fot\'on-fon\'on durante toda la evoluci\'on. Las curvas del hamiltoniano HC
+  completo y del hamiltoniano efectivo son pr\'acticamente indistinguibles.}
+\end{figure}
+
+\section{Caso 2: estado coherente fon\'onico en un bloque polarit\'onico}
+
+Se fija ahora un bloque polarit\'onico $n$, pero el modo vibracional ocupa una
+superposici\'on de muchos estados de Fock. El estado evolucionado es
+\begin{equation}
+\begin{aligned}
+  \ket{\tilde\Psi_n(t)}
+  ={}&
+  p_{n0}^{-}(t)\ket{-,n,0}
+  \\
+  &+
+  \sum_{m=1}^{\infty}
+  \left[
+  p_{nm}^{+}(t)\ket{+,n,m-1}
+  +
+  p_{nm}^{-}(t)\ket{-,n,m}
+  \right].
+\end{aligned}
+\end{equation}
+El primer t\'ermino es el sector fon\'onico de borde. Expandiendo los
+polaritones en la base electr\'onica desnuda,
+\begin{equation}
+\begin{aligned}
+  \ket{\tilde\Psi_n(t)}
+  ={}&
+  \frac{p_{n0}^{-}(t)}{\sqrt2}
+  \left(
+  \ket{e,n-1}-\ket{g,n}
+  \right)\ket0
+  \\
+  &+
+  \frac{1}{\sqrt2}
+  \sum_{m=1}^{\infty}
+  p_{nm}^{+}(t)
+  \left(
+  \ket{e,n-1}+\ket{g,n}
+  \right)
+  \ket{m-1}
+  \\
+  &+
+  \frac{1}{\sqrt2}
+  \sum_{m=1}^{\infty}
+  p_{nm}^{-}(t)
+  \left(
+  \ket{e,n-1}-\ket{g,n}
+  \right)
+  \ket m.
+\end{aligned}
+\end{equation}
+
+Reagrupando los t\'erminos que multiplican a $\ket e$,
+\begin{equation}
+\begin{aligned}
+  \ket{\chi_e(t)}
+  =
+  \frac{\ket{n-1}}{\sqrt2}
+  \Bigg[
+  &p_{n0}^{-}(t)\ket0
+  +
+  \sum_{m=1}^{\infty}p_{nm}^{+}(t)\ket{m-1}
+  \\
+  &+
+  \sum_{m=1}^{\infty}p_{nm}^{-}(t)\ket m
+  \Bigg].
+\end{aligned}
+\end{equation}
+En la primera suma se introduce $k=m-1$, de modo que $m=k+1$. En la segunda
+suma se cambia solamente el nombre del \'indice $m\to k$. Al incorporar el
+t\'ermino de borde como $p_{n,0}^{-}(t)$ resulta
+\begin{equation}
+  \boxed{
+  \ket{\chi_e(t)}
+  =
+  \frac{\ket{n-1}}{\sqrt2}
+  \sum_{k=0}^{\infty}
+  \left[
+  p_{n,k+1}^{+}(t)+p_{n,k}^{-}(t)
+  \right]
+  \ket k.
+  }
+\end{equation}
+La amplitud asociada al estado fot\'on-fon\'on $\ket{n-1,k}$ es
+\begin{equation}
+  E_k(t)
+  =
+  \frac{p_{n,k+1}^{+}(t)+p_{n,k}^{-}(t)}{\sqrt2}.
+\end{equation}
+
+Para la rama que acompa\~na a $\ket g$ se obtiene, de manera an\'aloga,
+\begin{equation}
+\begin{aligned}
+  \ket{\chi_g(t)}
+  =
+  \frac{\ket n}{\sqrt2}
+  \Bigg[
+  &-p_{n0}^{-}(t)\ket0
+  +
+  \sum_{m=1}^{\infty}p_{nm}^{+}(t)\ket{m-1}
+  \\
+  &-
+  \sum_{m=1}^{\infty}p_{nm}^{-}(t)\ket m
+  \Bigg],
+\end{aligned}
+\end{equation}
+y despu\'es del mismo cambio de \'indices,
+\begin{equation}
+  \boxed{
+  \ket{\chi_g(t)}
+  =
+  \frac{\ket n}{\sqrt2}
+  \sum_{k=0}^{\infty}
+  \left[
+  p_{n,k+1}^{+}(t)-p_{n,k}^{-}(t)
+  \right]
+  \ket k.
+  }
+\end{equation}
+La amplitud asociada al estado $\ket{n,k}$ es
+\begin{equation}
+  G_k(t)
+  =
+  \frac{p_{n,k+1}^{+}(t)-p_{n,k}^{-}(t)}{\sqrt2}.
+\end{equation}
+
+Los estados fot\'onicos que acompa\~nan a las dos ramas electr\'onicas son
+ortogonales:
+\begin{equation}
+  \braket{n|n-1}=0.
+\end{equation}
+Por ello,
+\begin{equation}
+  s(t)=\braket{\chi_g|\chi_e}=0.
+\end{equation}
+La matriz electr\'onica es diagonal y la pureza queda determinada por la
+inversi\'on electr\'onica del bloque:
+\begin{equation}
+  \boxed{
+  P_n(t)
+  =
+  \frac{1+W_n^2(t)}{2}.
+  }
+\end{equation}
+
+La inversi\'on aparece por interferencia entre amplitudes de dobletes
+fon\'onicos adyacentes. En efecto,
+\begin{equation}
+\begin{aligned}
+  W_n(t)
+  &=
+  p_e(t)-p_g(t)
+  \\
+  &=
+  \sum_{k=0}^{\infty}
+  \left(
+  |E_k(t)|^2-|G_k(t)|^2
+  \right).
+\end{aligned}
+\end{equation}
+Para dos n\'umeros complejos $a$ y $b$ se cumple
+\begin{equation}
+  \frac12\left(|a+b|^2-|a-b|^2\right)
+  =
+  2\operatorname{Re}(a^*b).
+\end{equation}
+Tomando $a=p_{n,k+1}^{+}$ y $b=p_{n,k}^{-}$ se obtiene
+\begin{equation}
+  \boxed{
+  W_n(t)
+  =
+  2\operatorname{Re}
+  \sum_{k=0}^{\infty}
+  p_{n,k+1}^{+*}(t)
+  p_{n,k}^{-}(t).
+  }
+\end{equation}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Entrelazamiento/pureza-fonon-coherente-polariton.png}}
+  \caption{Pureza electr\'onica para un estado fon\'onico coherente dentro de
+  un bloque polarit\'onico fijo. Como $s(t)=0$, se cumple exactamente
+  $P_n(t)=[1+W_n^2(t)]/2$. Cuando $W_n(t)=0$, las poblaciones $p_e$ y $p_g$
+  son iguales y la pureza alcanza $1/2$: el electr\'on est\'a m\'aximamente
+  entrelazado con el subsistema fot\'on-fon\'on. Cuando $|W_n(t)|$ se aproxima
+  a uno, una poblaci\'on electr\'onica domina, la rama opuesta pierde peso y la
+  pureza se acerca a uno. Las oscilaciones r\'apidas provienen de la
+  interferencia entre amplitudes fon\'onicas vecinas, mientras que la
+  envolvente refleja su desfasamiento y refase colectivos. La evoluci\'on
+  obtenida con el hamiltoniano completo y con el efectivo es pr\'acticamente
+  id\'entica.}
+\end{figure}
+
+\section{Caso 3: estados coherentes fot\'onico y fon\'onico}
+
+Cuando tanto el modo fot\'onico como el fon\'onico comienzan en estados
+coherentes aparecen muchos valores de $n$. Las ramas electr\'onicas pueden
+compartir estados fot\'on-fon\'on con las mismas etiquetas, de modo que la
+coherencia $s(t)$ ya no tiene que anularse.
+
+Reuniendo las amplitudes de las dos ramas en la base fot\'on-fon\'on
+$\{\ket{q,k}\}$ se definen
+\begin{equation}
+  E_{qk}(t)
+  =
+  \frac{p_{q,k+1}^{+}(t)+p_{q,k}^{-}(t)}{\sqrt2},
+  \qquad
+  G_{qk}(t)
+  =
+  \frac{p_{q,k+1}^{+}(t)-p_{q,k}^{-}(t)}{\sqrt2}.
+\end{equation}
+Aqu\'i $q$ etiqueta el sector fot\'onico despu\'es de reagrupar las ramas en
+una base com\'un. Entonces
+\begin{equation}
+  \ket{\chi_e(t)}
+  =
+  \sum_{q,k}E_{qk}(t)\ket{q,k},
+  \qquad
+  \ket{\chi_g(t)}
+  =
+  \sum_{q,k}G_{qk}(t)\ket{q,k}.
+\end{equation}
+Las poblaciones electr\'onicas son
+\begin{equation}
+  p_e(t)
+  =
+  \braket{\chi_e|\chi_e}
+  =
+  \sum_{q,k}|E_{qk}(t)|^2,
+\end{equation}
+\begin{equation}
+  p_g(t)
+  =
+  \braket{\chi_g|\chi_g}
+  =
+  \sum_{q,k}|G_{qk}(t)|^2.
+\end{equation}
+La coherencia reducida es
+\begin{equation}
+  s(t)
+  =
+  \braket{\chi_g|\chi_e}
+  =
+  \sum_{q,k}G_{qk}^{*}(t)E_{qk}(t).
+\end{equation}
+Por tanto, la pureza conserva la forma general
+\begin{equation}
+  \boxed{
+  P_{\alpha,\beta}(t)
+  =
+  \frac12
+  \left[
+  1+W^2(t)+4|s(t)|^2
+  \right].
+  }
+\end{equation}
+A pesar de que esta expresi\'on es anal\'itica, contiene sumas dobles y las
+frecuencias $\Omega_{nm}^{\mathrm{ef}}$ dependen de manera no lineal de $n$
+y $m$. En general no existe una suma cerrada y las series deben evaluarse con
+un truncamiento num\'erico que abarque las distribuciones coherentes.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Entrelazamiento/pureza-coherentes-excitado.png}}
+  \caption{Pureza para estados coherentes fot\'onico y fon\'onico con
+  $c_e=1$ y $c_g=0$. El estado inicial es un producto y comienza en
+  $P_{\mathrm{el}}(0)=1$. La interacci\'on correlaciona al electr\'on con una
+  superposici\'on de muchos sectores $(n,m)$, por lo que la pureza desciende y
+  desarrolla oscilaciones, colapsos y refases. Los acercamientos a $1/2$
+  corresponden a intervalos de entrelazamiento casi m\'aximo entre el electr\'on
+  y el subsistema fot\'on-fon\'on. Las soluciones completa y efectiva se
+  superponen pr\'acticamente en toda la ventana mostrada.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Entrelazamiento/pureza-coherentes-simetrico.png}}
+  \caption{Pureza para los mismos estados coherentes, ahora con
+  $c_e=1/\sqrt2$ y $c_g=-1/\sqrt2$. El estado electr\'onico inicial tambi\'en
+  es puro, por lo que $P_{\mathrm{el}}(0)=1$, pero esta superposici\'on se
+  encuentra m\'as alineada con una rama polarit\'onica. La generaci\'on de ramas
+  fot\'on-fon\'on distinguibles es m\'as gradual y la pureza decrece con mayor
+  lentitud, aunque finalmente se aproxima a $1/2$. El hamiltoniano efectivo
+  reproduce de manera pr\'acticamente id\'entica la din\'amica del modelo HC
+  completo.}
+\end{figure}
+
+\section{Entrelazamiento tripartito y eigenestados GHZ}
+
+El sistema tiene tres grados de libertad. Los espacios de la cavidad y de la
+vibraci\'on son infinitodimensionales, por lo que estrictamente no son qubits.
+Sin embargo, dentro de un doblete fijo $(n,m)$ solo aparecen dos estados
+relevantes de cada grado de libertad:
+\begin{equation}
+  \mathcal H_{\mathrm{el}}
+  =
+  \operatorname{span}\{\ket e,\ket g\},
+\end{equation}
+\begin{equation}
+  \mathcal H_{\mathrm{cav}}^{(n)}
+  =
+  \operatorname{span}\{\ket{n-1},\ket n\},
+\end{equation}
+\begin{equation}
+  \mathcal H_{\mathrm{vib}}^{(m)}
+  =
+  \operatorname{span}\{\ket{m-1},\ket m\}.
+\end{equation}
+Por esta raz\'on, el subespacio efectivo puede tratarse como un sistema de tres
+qubits codificados:
+\begin{equation}
+  \tilde{\mathcal H}_{\mathrm{ef}}^{(n,m)}
+  \subset
+  \mathbb C_{\mathrm{el}}^2
+  \otimes
+  \mathbb C_{\mathrm{cav}}^2
+  \otimes
+  \mathbb C_{\mathrm{vib}}^2.
+\end{equation}
+El qubit electr\'onico es un qubit f\'isico de dos niveles. Los otros dos son
+qubits codificados en pares de estados de Fock consecutivos.
+
+Los eigenestados del hamiltoniano efectivo son
+\begin{equation}
+  \ket{E_{nm}^{+}}
+  =
+  \mathcal C_{nm}\ket{+,n,m-1}
+  -
+  \mathcal S_{nm}\ket{-,n,m},
+\end{equation}
+\begin{equation}
+  \ket{E_{nm}^{-}}
+  =
+  \mathcal S_{nm}\ket{+,n,m-1}
+  +
+  \mathcal C_{nm}\ket{-,n,m},
+\end{equation}
+donde
+\begin{equation}
+  \mathcal C_{nm}
+  =
+  \sqrt{
+  \frac{\Omega_{nm}^{\mathrm{ef}}+\delta_n}
+  {2\Omega_{nm}^{\mathrm{ef}}}
+  },
+  \qquad
+  \mathcal S_{nm}
+  =
+  \sqrt{
+  \frac{\Omega_{nm}^{\mathrm{ef}}-\delta_n}
+  {2\Omega_{nm}^{\mathrm{ef}}}
+  }.
+\end{equation}
+
+En resonancia polarit\'on-fon\'on,
+\begin{equation}
+  \delta_n=0
+  \quad\Longrightarrow\quad
+  \mathcal C_{nm}=\mathcal S_{nm}=\frac1{\sqrt2}.
+\end{equation}
+Los eigenestados se reducen a
+\begin{equation}
+  \ket{E_{nm}^{+}}
+  =
+  \frac{
+  \ket{+,n,m-1}-\ket{-,n,m}
+  }{\sqrt2},
+\end{equation}
+\begin{equation}
+  \ket{E_{nm}^{-}}
+  =
+  \frac{
+  \ket{+,n,m-1}+\ket{-,n,m}
+  }{\sqrt2}.
+\end{equation}
+
+Regresando a la base electr\'onica, fot\'onica y fon\'onica,
+\begin{equation}
+\begin{aligned}
+  \ket{E_{nm}^{+}}
+  ={}&
+  \frac12
+  \Big(
+  \ket{e,n-1,m-1}
+  +
+  \ket{g,n,m-1}
+  \\
+  &\hspace{2.1cm}
+  -
+  \ket{e,n-1,m}
+  +
+  \ket{g,n,m}
+  \Big)
+  \\
+  ={}&
+  \ket e\ket{n-1}
+  \frac{\ket{m-1}-\ket m}{2}
+  +
+  \ket g\ket n
+  \frac{\ket{m-1}+\ket m}{2}.
+\end{aligned}
+\end{equation}
+De manera an\'aloga,
+\begin{equation}
+\begin{aligned}
+  \ket{E_{nm}^{-}}
+  ={}&
+  \frac12
+  \Big(
+  \ket{e,n-1,m-1}
+  +
+  \ket{g,n,m-1}
+  \\
+  &\hspace{2.1cm}
+  +
+  \ket{e,n-1,m}
+  -
+  \ket{g,n,m}
+  \Big)
+  \\
+  ={}&
+  \ket e\ket{n-1}
+  \frac{\ket{m-1}+\ket m}{2}
+  +
+  \ket g\ket n
+  \frac{\ket{m-1}-\ket m}{2}.
+\end{aligned}
+\end{equation}
+
+Definimos los estados vibracionales
+\begin{equation}
+  \ket{\phi_m^{\pm}}
+  =
+  \frac{\ket{m-1}\pm\ket m}{\sqrt2}.
+\end{equation}
+Entonces
+\begin{equation}
+  \boxed{
+  \ket{E_{nm}^{+}}
+  =
+  \frac1{\sqrt2}
+  \left(
+  \ket e\ket{n-1}\ket{\phi_m^{-}}
+  +
+  \ket g\ket n\ket{\phi_m^{+}}
+  \right).
+  }
+\end{equation}
+El segundo eigenestado es
+\begin{equation}
+  \boxed{
+  \ket{E_{nm}^{-}}
+  =
+  \frac1{\sqrt2}
+  \left(
+  \ket e\ket{n-1}\ket{\phi_m^{+}}
+  +
+  \ket g\ket n\ket{\phi_m^{-}}
+  \right).
+  }
+\end{equation}
+
+Estos estados son de tipo Greenberger-Horne-Zeilinger. Cada t\'ermino de la
+superposici\'on cambia simult\'aneamente el estado electr\'onico, el n\'umero de
+fotones y el estado vibracional codificado. Para verificar que las dos ramas
+son ortogonales en cada subsistema se usa
+\begin{equation}
+  \braket{e|g}=0,
+  \qquad
+  \braket{n-1|n}=0,
+\end{equation}
+y
+\begin{equation}
+\begin{aligned}
+  \braket{\phi_m^{-}|\phi_m^{+}}
+  &=
+  \frac12
+  (\bra{m-1}-\bra m)
+  (\ket{m-1}+\ket m)
+  \\
+  &=
+  \frac12(1+0-0-1)
+  =0.
+\end{aligned}
+\end{equation}
+
+Introduciendo los estados l\'ogicos
+\begin{equation}
+  \ket0_{\mathrm{el}}=\ket e,
+  \qquad
+  \ket1_{\mathrm{el}}=\ket g,
+\end{equation}
+\begin{equation}
+  \ket0_{\mathrm{cav}}=\ket{n-1},
+  \qquad
+  \ket1_{\mathrm{cav}}=\ket n,
+\end{equation}
+\begin{equation}
+  \ket0_{\mathrm{vib}}=\ket{\phi_m^{-}},
+  \qquad
+  \ket1_{\mathrm{vib}}=\ket{\phi_m^{+}},
+\end{equation}
+se obtiene
+\begin{equation}
+  \boxed{
+  \ket{E_{nm}^{+}}
+  =
+  \frac{\ket{000}+\ket{111}}{\sqrt2}.
+  }
+\end{equation}
+El otro eigenestado es
+\begin{equation}
+  \ket{E_{nm}^{-}}
+  =
+  \frac{\ket{001}+\ket{110}}{\sqrt2}
+\end{equation}
+con esta elecci\'on de estados l\'ogicos. Es localmente equivalente al GHZ
+can\'onico mediante una compuerta $\hat X$ aplicada al qubit vibracional.
+
+\section{Pureza reducida de los estados GHZ}
+
+Para medir el entrelazamiento tripartito se considera cada subsistema frente a
+los otros dos:
+\begin{equation}
+  \mathrm{vib}\,|\,(\mathrm{el,cav}),
+  \qquad
+  \mathrm{cav}\,|\,(\mathrm{el,vib}),
+  \qquad
+  \mathrm{el}\,|\,(\mathrm{cav,vib}).
+\end{equation}
+Esto no significa que cada pareja est\'e entrelazada por s\'i misma. Significa
+que cada subsistema individual est\'a m\'aximamente entrelazado con los otros
+dos considerados como un \'unico sistema compuesto.
+
+Para $\ket{E_{nm}^{+}}$, la matriz de densidad total es
+\begin{equation}
+\begin{aligned}
+  \hat\rho^{+}
+  =\frac12\Big(&
+  \ket{e,n-1,\phi_m^{-}}\bra{e,n-1,\phi_m^{-}}
+  \\
+  &+
+  \ket{e,n-1,\phi_m^{-}}\bra{g,n,\phi_m^{+}}
+  \\
+  &+
+  \ket{g,n,\phi_m^{+}}\bra{e,n-1,\phi_m^{-}}
+  \\
+  &+
+  \ket{g,n,\phi_m^{+}}\bra{g,n,\phi_m^{+}}
+  \Big).
+\end{aligned}
+\end{equation}
+Al trazar sobre el estado electr\'onico, los t\'erminos cruzados desaparecen
+por $\braket{e|g}=0$. La matriz reducida cavidad-vibraci\'on es
+\begin{equation}
+  \hat\rho_{\mathrm{cav-vib}}
+  =
+  \frac12
+  \left(
+  \ket{n-1,\phi_m^{-}}\bra{n-1,\phi_m^{-}}
+  +
+  \ket{n,\phi_m^{+}}\bra{n,\phi_m^{+}}
+  \right).
+\end{equation}
+Los dos proyectores son ortogonales. Por ello,
+\begin{equation}
+  \hat\rho_{\mathrm{cav-vib}}^2
+  =
+  \frac14
+  \left(
+  \ket{n-1,\phi_m^{-}}\bra{n-1,\phi_m^{-}}
+  +
+  \ket{n,\phi_m^{+}}\bra{n,\phi_m^{+}}
+  \right),
+\end{equation}
+y
+\begin{equation}
+  \boxed{
+  P(\hat\rho_{\mathrm{cav-vib}})
+  =
+  \operatorname{Tr}(\hat\rho_{\mathrm{cav-vib}}^2)
+  =
+  \frac12.
+  }
+\end{equation}
+Trazar sobre cualquiera de los otros subsistemas produce el mismo valor de
+pureza. Cada qubit codificado tiene una matriz reducida m\'aximamente mezclada.
+Las matrices de dos qubits obtenidas al descartar el tercero son, en cambio,
+mezclas cl\'asicas de dos productos ortogonales y no contienen
+entrelazamiento bipartito. El entrelazamiento reside genuinamente en la
+partici\'on tripartita.
+
+\section{Generaci\'on din\'amica de estados GHZ}
+
+Consideremos un polarit\'on que evoluciona bajo el hamiltoniano efectivo del
+doblete $(n,m)$:
+\begin{equation}
+  \hat H_{\mathrm{ef}}^{(n,m)}
+  =
+  \hbar A_{nm}\Id
+  +
+  \frac{\hbar}{2}
+  \left(
+  \delta_n\hat\sigma_z
+  -
+  \kappa_m\hat\sigma_x
+  \right),
+\end{equation}
+en la base
+\begin{equation}
+  \left\{
+  \ket{+,n,m-1},
+  \ket{-,n,m}
+  \right\}.
+\end{equation}
+Aqu\'i
+\begin{equation}
+  \kappa_m=\nu\lambda\sqrt m,
+  \qquad
+  \Omega_{nm}^{\mathrm{ef}}
+  =
+  \sqrt{\delta_n^2+\kappa_m^2}.
+\end{equation}
+
+El operador de evoluci\'on es
+\begin{equation}
+  \hat U_{nm}(t)
+  =
+  \exp\left(
+  -\frac{\ii}{\hbar}
+  \hat H_{\mathrm{ef}}^{(n,m)}t
+  \right).
+\end{equation}
+El t\'ermino proporcional a la identidad conmuta con el resto, de modo que la
+exponencial se factoriza:
+\begin{equation}
+  \hat U_{nm}(t)
+  =
+  e^{-\ii A_{nm}t}
+  \exp\left[
+  -\frac{\ii}{2}
+  \left(
+  \delta_n\hat\sigma_z
+  -
+  \kappa_m\hat\sigma_x
+  \right)t
+  \right].
+\end{equation}
+
+Definimos
+\begin{equation}
+  \hat M_{nm}
+  =
+  \delta_n\hat\sigma_z
+  -
+  \kappa_m\hat\sigma_x.
+\end{equation}
+Como las matrices de Pauli satisfacen
+\begin{equation}
+  \hat\sigma_z^2=\hat\sigma_x^2=\Id,
+  \qquad
+  \{\hat\sigma_z,\hat\sigma_x\}=0,
+\end{equation}
+se tiene
+\begin{equation}
+\begin{aligned}
+  \hat M_{nm}^2
+  &=
+  \delta_n^2\hat\sigma_z^2
+  +
+  \kappa_m^2\hat\sigma_x^2
+  -
+  \delta_n\kappa_m
+  \left(
+  \hat\sigma_z\hat\sigma_x
+  +
+  \hat\sigma_x\hat\sigma_z
+  \right)
+  \\
+  &=
+  \left(
+  \delta_n^2+\kappa_m^2
+  \right)\Id
+  \\
+  &=
+  \left(
+  \Omega_{nm}^{\mathrm{ef}}
+  \right)^2\Id.
+\end{aligned}
+\end{equation}
+En consecuencia, las potencias pares son
+\begin{equation}
+  \hat M_{nm}^{2q}
+  =
+  \left(
+  \Omega_{nm}^{\mathrm{ef}}
+  \right)^{2q}\Id,
+\end{equation}
+y las impares son
+\begin{equation}
+  \hat M_{nm}^{2q+1}
+  =
+  \left(
+  \Omega_{nm}^{\mathrm{ef}}
+  \right)^{2q}\hat M_{nm}.
+\end{equation}
+
+La exponencial de una matriz se define mediante su serie de potencias:
+\begin{equation}
+  e^{\hat X}
+  =
+  \sum_{r=0}^{\infty}
+  \frac{\hat X^r}{r!}.
+\end{equation}
+Separando las potencias pares de $\hat M_{nm}$,
+\begin{equation}
+\begin{aligned}
+  \sum_{q=0}^{\infty}
+  \frac{1}{(2q)!}
+  \left(-\frac{\ii t}{2}\right)^{2q}
+  \hat M_{nm}^{2q}
+  &=
+  \sum_{q=0}^{\infty}
+  \frac{(-1)^q}{(2q)!}
+  \left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)^{2q}
+  \Id
+  \\
+  &=
+  \cos\left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)
+  \Id.
+\end{aligned}
+\end{equation}
+Para las potencias impares,
+\begin{equation}
+\begin{aligned}
+  &\sum_{q=0}^{\infty}
+  \frac{1}{(2q+1)!}
+  \left(-\frac{\ii t}{2}\right)^{2q+1}
+  \hat M_{nm}^{2q+1}
+  \\
+  &\qquad=
+  -\ii
+  \frac{\hat M_{nm}}{\Omega_{nm}^{\mathrm{ef}}}
+  \sum_{q=0}^{\infty}
+  \frac{(-1)^q}{(2q+1)!}
+  \left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)^{2q+1}
+  \\
+  &\qquad=
+  -\ii
+  \frac{\hat M_{nm}}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right).
+\end{aligned}
+\end{equation}
+Por tanto, el operador de evoluci\'on completo es
+\begin{equation}
+  \boxed{
+  \hat U_{nm}(t)
+  =
+  e^{-\ii A_{nm}t}
+  \left[
+  \cos\left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)\Id
+  -
+  \ii
+  \frac{
+  \delta_n\hat\sigma_z-
+  \kappa_m\hat\sigma_x
+  }{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)
+  \right].
+  }
+\end{equation}
+
+Partimos del estado inicial
+\begin{equation}
+  \ket{\tilde\Psi(0)}
+  =
+  \ket{+,n,m-1}.
+\end{equation}
+En la base del doblete,
+\begin{equation}
+  \hat\sigma_z\ket{+,n,m-1}
+  =
+  \ket{+,n,m-1},
+\end{equation}
+\begin{equation}
+  \hat\sigma_x\ket{+,n,m-1}
+  =
+  \ket{-,n,m}.
+\end{equation}
+Al aplicar $\hat U_{nm}(t)$ se obtiene
+\begin{equation}
+\begin{aligned}
+  \ket{\tilde\Psi(t)}
+  =e^{-\ii A_{nm}t}\Bigg\{&
+  \left[
+  \cos\left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)
+  -
+  \ii
+  \frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)
+  \right]
+  \ket{+,n,m-1}
+  \\
+  &+
+  \ii
+  \frac{\kappa_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)
+  \ket{-,n,m}
+  \Bigg\}.
+\end{aligned}
+\end{equation}
+
+Omitiendo la fase global, definimos
+\begin{equation}
+  a(t)
+  =
+  \cos\left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right)
+  -
+  \ii
+  \frac{\delta_n}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right),
+\end{equation}
+\begin{equation}
+  b(t)
+  =
+  \ii
+  \frac{\kappa_m}{\Omega_{nm}^{\mathrm{ef}}}
+  \sin\left(
+  \frac{\Omega_{nm}^{\mathrm{ef}}t}{2}
+  \right).
+\end{equation}
+As\'i,
+\begin{equation}
+  \ket{\tilde\Psi(t)}
+  =
+  a(t)\ket{+,n,m-1}
+  +
+  b(t)\ket{-,n,m}.
+\end{equation}
+
+Regresando a la base electr\'onica desnuda,
+\begin{equation}
+\begin{aligned}
+  \ket{\tilde\Psi(t)}
+  =
+  \frac1{\sqrt2}\Big[&
+  \ket e\ket{n-1}
+  \left(
+  a(t)\ket{m-1}+b(t)\ket m
+  \right)
+  \\
+  &+
+  \ket g\ket n
+  \left(
+  a(t)\ket{m-1}-b(t)\ket m
+  \right)
+  \Big].
+\end{aligned}
+\end{equation}
+Los estados vibracionales que acompa\~nan a las ramas electr\'onicas son
+\begin{equation}
+  \ket{\xi_e(t)}
+  =
+  a(t)\ket{m-1}+b(t)\ket m,
+\end{equation}
+\begin{equation}
+  \ket{\xi_g(t)}
+  =
+  a(t)\ket{m-1}-b(t)\ket m.
+\end{equation}
+Su producto interno es
+\begin{equation}
+  \braket{\xi_g(t)|\xi_e(t)}
+  =
+  |a(t)|^2-|b(t)|^2.
+\end{equation}
+Para que el estado sea un GHZ con entrelazamiento m\'aximo se requiere que
+estas ramas sean ortogonales:
+\begin{equation}
+  |a(t)|^2-|b(t)|^2=0.
+\end{equation}
+Como la evoluci\'on es unitaria,
+\begin{equation}
+  |a(t)|^2+|b(t)|^2=1.
+\end{equation}
+Combinando ambas ecuaciones se obtiene la condici\'on
+\begin{equation}
+  \boxed{
+  |a(t)|^2=|b(t)|^2=\frac12.
+  }
+\end{equation}
+
+En resonancia,
+\begin{equation}
+  \delta_n=0
+  \quad\Longrightarrow\quad
+  \Omega_{nm}^{\mathrm{ef}}=\kappa_m.
+\end{equation}
+El estado evolucionado se simplifica a
+\begin{equation}
+  \ket{\tilde\Psi(t)}
+  =
+  e^{-\ii A_{nm}t}
+  \left[
+  \cos\left(
+  \frac{\kappa_mt}{2}
+  \right)
+  \ket{+,n,m-1}
+  +
+  \ii
+  \sin\left(
+  \frac{\kappa_mt}{2}
+  \right)
+  \ket{-,n,m}
+  \right].
+\end{equation}
+Las probabilidades de las dos ramas polarit\'onicas son
+\begin{equation}
+  P_+(t)
+  =
+  \cos^2\left(
+  \frac{\kappa_mt}{2}
+  \right),
+  \qquad
+  P_-(t)
+  =
+  \sin^2\left(
+  \frac{\kappa_mt}{2}
+  \right).
+\end{equation}
+Para generar un GHZ m\'aximo se requiere
+\begin{equation}
+  \cos^2\left(
+  \frac{\kappa_mt}{2}
+  \right)
+  =
+  \sin^2\left(
+  \frac{\kappa_mt}{2}
+  \right)
+  =
+  \frac12.
+\end{equation}
+Esto ocurre cuando
+\begin{equation}
+  \frac{\kappa_mt}{2}
+  =
+  \frac{(2q+1)\pi}{4},
+  \qquad
+  q=0,1,2,\ldots
+\end{equation}
+Por tanto, los tiempos de generaci\'on son
+\begin{equation}
+  \boxed{
+  t_q^{\mathrm{GHZ}}
+  =
+  \frac{(2q+1)\pi}{2\kappa_m}
+  =
+  \frac{(2q+1)\pi}{2\nu\lambda\sqrt m}.
+  }
+\end{equation}
+Es decir, partiendo de un polarit\'on puro aparece un estado GHZ en cada uno
+de los tiempos $t_q^{\mathrm{GHZ}}$.
+
+Para el primer tiempo, y omitiendo la fase global, el estado en la base
+desnuda es
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  \ket{\tilde\Psi(t_0^{\mathrm{GHZ}})}
+  =
+  \frac1{\sqrt2}\Bigg[&
+  \ket e\ket{n-1}
+  \frac{\ket{m-1}+\ii\ket m}{\sqrt2}
+  \\
+  &+
+  \ket g\ket n
+  \frac{\ket{m-1}-\ii\ket m}{\sqrt2}
+  \Bigg].
+  \end{aligned}
+  }
+\end{equation}
+Los estados vibracionales de las dos ramas son ortogonales, al igual que los
+estados electr\'onicos y fot\'onicos. El estado es, por tanto, un GHZ can\'onico
+salvo fases locales.
+
+\end{document}

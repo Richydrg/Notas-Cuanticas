@@ -1,6 +1,6 @@
 window.SEARCH_INDEX = {
   "version": 2,
-  "lastUpdated": "2026-06-04",
+  "lastUpdated": "2026-08-02",
   "notes": [
     {
       "id": "cuantizacion-campo",
@@ -204,6 +204,35 @@ window.SEARCH_INDEX = {
         "W(t)=P_e(t)-P_g(t), inversión polaritónica y fidelidad"
       ],
       "content": "Dinámica del modelo Holstein-Cummings HC efectivo para una molécula acoplada a una cavidad y una vibración intramolecular. Estado inicial tripartito campo electrónico vibración. Campo |alpha>=sum c_n|n>, molécula c_g|g>+c_e|e>, vibración desplazada |tilde beta>=sum tilde c_m|m>. Base polaritónica |±,n>=(|e,n-1>±|g,n>)/sqrt(2). Amplitudes polaritónicas d_n^±=(c_(n-1)c_e±c_n c_g)/sqrt(2). Organización por dobletes dinámicos {|+,n,m-1>,|-,n,m>}. Amplitudes iniciales a_nm=tilde c_(m-1)d_n^+ y b_nm=tilde c_m d_n^-. Sectores desacoplados n=0 y m=0. Definiciones A_nm=Omega n+nu lambda^2/4+nu(m-1/2), delta_n=2g sqrt(n)-nu, k_m=nu lambda sqrt(m), Omega_nm^ef=sqrt(delta_n^2+k_m^2). Coeficientes de mezcla C_nm y S_nm. Eigenestados E_nm^+ y E_nm^-. Evolución exacta por fases en la base de energía. Amplitudes p_nm^+(t) y p_nm^-(t) en la base polaritón-fonón con cos(Omega_nm^ef t/2), sin(Omega_nm^ef t/2), delta_n/Omega_nm^ef y k_m/Omega_nm^ef. Estado completo suma sector |g,0,m>, estados aislados |-,n,0> y dobletes dinámicos. Regreso a base electrónica mediante ramas chi_g(t) y chi_e(t). Vibración inicial coherente con distribución de Poisson M=|tilde beta|^2. Aproximación tilde c_m aproximadamente tilde c_(m-1). Linealización Omega_nm^ef aproximadamente varphi_nM+m Omega_nM^ef prima. Evolución como dos paquetes vibracionales coherentes que giran en sentidos opuestos y se correlacionan con ramas polaritónicas. Inversión electrónica W(t)=P_e-P_g. Inversión polaritónica mathcal W. Fidelidad entre evolución HC completa y efectiva."
+    },
+    {
+      "id": "entrelazamiento-modelo-hc",
+      "title": "Entrelazamiento en el modelo HC",
+      "url": "doctorado/optica-cuantica/entrelazamiento-modelo-hc.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "Holstein-Cummings",
+        "entrelazamiento",
+        "pureza",
+        "matriz de densidad reducida",
+        "inversión electrónica",
+        "coherencia electrónica",
+        "estado GHZ",
+        "entrelazamiento tripartito",
+        "polaritones",
+        "hamiltoniano efectivo",
+        "tesis doctoral"
+      ],
+      "summary": "Pureza electrónica y entrelazamiento en el modelo de Holstein-Cummings: matrices reducidas, tres regímenes dinámicos, eigenestados GHZ tripartitos y tiempos de generación resonante.",
+      "results": [
+        "P_el(t)=[1+W^2(t)+4|s(t)|^2]/2",
+        "P_nm(t)=1/2 para un único doblete polaritón-fonón",
+        "P_n(t)=[1+W_n^2(t)]/2 para un estado coherente fonónico en un bloque fijo",
+        "|E_nm^+> y |E_nm^-> son estados GHZ tripartitos en resonancia",
+        "t_q^GHZ=(2q+1)pi/(2 kappa_m)=(2q+1)pi/(2 nu lambda sqrt(m))"
+      ],
+      "content": "Entrelazamiento en el modelo Holstein-Cummings HC. Sistema tripartito H_el tensor H_fot tensor H_fon. Bipartición electrón frente a fotón-fonón. Estado |tilde Psi(t)>=|chi_g(t)>|g>+|chi_e(t)>|e>. Matriz de densidad total pura y matrices reducidas rho_el=Tr_fot,fon rho y rho_fot-fon=Tr_el rho. Poblaciones p_g=<chi_g|chi_g>, p_e=<chi_e|chi_e> y coherencia s=<chi_g|chi_e>. Pureza P_el=Tr rho_el^2=p_g^2+p_e^2+2|s|^2. Relación con inversión electrónica W=p_e-p_g: P_el=[1+W^2+4|s|^2]/2. Caso 1 un fonón en un bloque polaritónico: estado u(t)|+,n,m-1>+v(t)|-,n,m>, poblaciones electrónicas iguales, coherencia nula por ortogonalidad fotónica y pureza P_nm=1/2 durante toda la evolución. Caso 2 estado coherente fonónico en bloque n fijo: ramas con amplitudes E_k=[p_(n,k+1)^+ + p_(n,k)^-]/sqrt(2) y G_k=[p_(n,k+1)^+ - p_(n,k)^-]/sqrt(2), s=0, P_n=(1+W_n^2)/2 y W_n=2 Re sum p_(n,k+1)^+* p_(n,k)^-. Caso 3 estados coherentes fotónico y fonónico: amplitudes E_qk y G_qk, poblaciones como sumas dobles, s=sum G_qk^* E_qk y pureza P_alpha,beta. Comparaciones de pureza entre hamiltoniano HC completo y efectivo prácticamente idénticas para estado electrónico excitado y superposición simétrica. Entrelazamiento tripartito. Dentro del doblete fijo los grados electrónico, fotónico y vibracional forman tres qubits codificados. Eigenestados efectivos E_nm^+=C_nm|+,n,m-1>-S_nm|-,n,m> y E_nm^-=S_nm|+,n,m-1>+C_nm|-,n,m>. En resonancia delta_n=0, C_nm=S_nm=1/sqrt(2). Estados vibracionales phi_m^±=(|m-1>±|m>)/sqrt(2). E_nm^+=[|e>|n-1>|phi_m^->+|g>|n>|phi_m^+>]/sqrt(2), equivalente a (|000>+|111>)/sqrt(2). Pureza 1/2 para cada bipartición de un subsistema frente a los otros dos; las reducciones por pares no tienen entrelazamiento bipartito. Generación dinámica GHZ con H_eff^(n,m)=hbar A_nm I+hbar/2(delta_n sigma_z-kappa_m sigma_x). Derivación del propagador mediante potencias pares e impares de M_nm. Estado inicial |+,n,m-1>. En resonancia las probabilidades polaritónicas son cos^2(kappa_m t/2) y sin^2(kappa_m t/2). GHZ máximo cuando ambas valen 1/2, en tiempos t_q^GHZ=(2q+1)pi/(2 kappa_m)=(2q+1)pi/(2 nu lambda sqrt(m))."
     },
     {
       "id": "un-fonon-bloque-polaritonico",
