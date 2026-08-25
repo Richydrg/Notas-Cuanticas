@@ -1,6 +1,6 @@
 window.SEARCH_INDEX = {
   "version": 2,
-  "lastUpdated": "2026-08-02",
+  "lastUpdated": "2026-08-24",
   "notes": [
     {
       "id": "cuantizacion-campo",
@@ -233,6 +233,35 @@ window.SEARCH_INDEX = {
         "t_q^GHZ=(2q+1)pi/(2 kappa_m)=(2q+1)pi/(2 nu lambda sqrt(m))"
       ],
       "content": "Entrelazamiento en el modelo Holstein-Cummings HC. Sistema tripartito H_el tensor H_fot tensor H_fon. Bipartición electrón frente a fotón-fonón. Estado |tilde Psi(t)>=|chi_g(t)>|g>+|chi_e(t)>|e>. Matriz de densidad total pura y matrices reducidas rho_el=Tr_fot,fon rho y rho_fot-fon=Tr_el rho. Poblaciones p_g=<chi_g|chi_g>, p_e=<chi_e|chi_e> y coherencia s=<chi_g|chi_e>. Pureza P_el=Tr rho_el^2=p_g^2+p_e^2+2|s|^2. Relación con inversión electrónica W=p_e-p_g: P_el=[1+W^2+4|s|^2]/2. Caso 1 un fonón en un bloque polaritónico: estado u(t)|+,n,m-1>+v(t)|-,n,m>, poblaciones electrónicas iguales, coherencia nula por ortogonalidad fotónica y pureza P_nm=1/2 durante toda la evolución. Caso 2 estado coherente fonónico en bloque n fijo: ramas con amplitudes E_k=[p_(n,k+1)^+ + p_(n,k)^-]/sqrt(2) y G_k=[p_(n,k+1)^+ - p_(n,k)^-]/sqrt(2), s=0, P_n=(1+W_n^2)/2 y W_n=2 Re sum p_(n,k+1)^+* p_(n,k)^-. Caso 3 estados coherentes fotónico y fonónico: amplitudes E_qk y G_qk, poblaciones como sumas dobles, s=sum G_qk^* E_qk y pureza P_alpha,beta. Comparaciones de pureza entre hamiltoniano HC completo y efectivo prácticamente idénticas para estado electrónico excitado y superposición simétrica. Entrelazamiento tripartito. Dentro del doblete fijo los grados electrónico, fotónico y vibracional forman tres qubits codificados. Eigenestados efectivos E_nm^+=C_nm|+,n,m-1>-S_nm|-,n,m> y E_nm^-=S_nm|+,n,m-1>+C_nm|-,n,m>. En resonancia delta_n=0, C_nm=S_nm=1/sqrt(2). Estados vibracionales phi_m^±=(|m-1>±|m>)/sqrt(2). E_nm^+=[|e>|n-1>|phi_m^->+|g>|n>|phi_m^+>]/sqrt(2), equivalente a (|000>+|111>)/sqrt(2). Pureza 1/2 para cada bipartición de un subsistema frente a los otros dos; las reducciones por pares no tienen entrelazamiento bipartito. Generación dinámica GHZ con H_eff^(n,m)=hbar A_nm I+hbar/2(delta_n sigma_z-kappa_m sigma_x). Derivación del propagador mediante potencias pares e impares de M_nm. Estado inicial |+,n,m-1>. En resonancia las probabilidades polaritónicas son cos^2(kappa_m t/2) y sin^2(kappa_m t/2). GHZ máximo cuando ambas valen 1/2, en tiempos t_q^GHZ=(2q+1)pi/(2 kappa_m)=(2q+1)pi/(2 nu lambda sqrt(m))."
+    },
+    {
+      "id": "generacion-estados-entrelazados",
+      "title": "Generación de estados entrelazados",
+      "url": "doctorado/optica-cuantica/generacion-estados-entrelazados.html",
+      "stage": "Doctorado",
+      "area": "Óptica cuántica",
+      "tags": [
+        "Holstein-Cummings",
+        "generación de entrelazamiento",
+        "estado GHZ",
+        "estado separable",
+        "pureza electrónica",
+        "inversión electrónica",
+        "tres dobletes",
+        "polaritones",
+        "fonones",
+        "protocolo de entrelazamiento",
+        "tesis doctoral"
+      ],
+      "summary": "Protocolo detallado para localizar estados separables y generar estados GHZ tripartitos mediante la evolución resonante de tres dobletes polaritón-fonón.",
+      "results": [
+        "P_el(t)=[1+W^2(t)]/2 dentro de un bloque polaritónico fijo",
+        "|tilde Psi(0)>=|e>|n-1>[cos(theta)|m>+exp(i phi)sin(theta)|m+1>]",
+        "||Phi_+(t*)||^2=||Phi_-(t*)||^2=1/2 y <Phi_+(t*)|Phi_-(t*)>=0",
+        "F_1(theta,tau)=0 y F_2(theta,tau)=0 para phi=pi/2",
+        "theta_*=0.548014622536 y tau_*=20.1362696530"
+      ],
+      "content": "Generación de estados entrelazados en el modelo Holstein-Cummings. Protocolo de entrelazamiento para un estado coherente fonónico en un bloque polaritónico. Matriz electrónica reducida diagonal, pureza P_el=(1+W^2)/2 e instantes separables W(t*)=±1. Estados producto |e>|n-1>|phi_e> y |g>|n>|phi_g>. Inversión electrónica resonante y amplitudes p_nm^±. Generación de estados GHZ a partir de estados separables. Preparación inicial |e>|n-1>[cos(theta)|m>+exp(i phi)sin(theta)|m+1>]. Expansión polaritónica y participación de tres dobletes. Evolución resonante con U_nr(t)=exp(-i A_nr t)[cos(kappa_r t/2)I+i sin(kappa_r t/2)sigma_x]. Construcción paso a paso de los estados vibracionales Phi_+(t) y Phi_-(t). Tiempo adimensional tau=nu t. Regreso a la base opto-electrónica. Condiciones GHZ de igualdad de normas y ortogonalidad: ||Phi_+||^2=||Phi_-||^2=1/2 y <Phi_+|Phi_->=0. Derivación completa de F_1(theta,tau) y F_2(theta,tau). Elección phi=pi/2. Solución numérica theta_*=0.548014622536 y tau_*=20.1362696530. Protocolo para producir entrelazamiento genuinamente tripartito desde un estado completamente separable."
     },
     {
       "id": "un-fonon-bloque-polaritonico",

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generación de estados entrelazados · Óptica Cuántica · Notas Cuánticas</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.MathJax = {
+  loader: { load: ['[tex]/braket'] },
+  tex: {
+    packages: { '[+]': ['braket'] },
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams'
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<link rel="shortcut icon" href="../../favicon.ico?v=2" type="image/x-icon">
+<link rel="icon" href="../../favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/img/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/img/favicon-16x16.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/img/apple-touch-icon.png?v=2">
+<link rel="manifest" href="../../site.webmanifest?v=2">
+</head>
+<body data-root="../../">
+
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="../../NotasCuanticas.html">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#2b5fb3" stroke-width="2.5"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#d4453a" stroke-width="2.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#6b48a6" stroke-width="2.5" transform="rotate(-60 32 32)"/>
+        <circle cx="32" cy="32" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.5"/>
+      </svg>
+      <span>Notas Cuánticas</span>
+    </a>
+    <nav>
+      <a href="../../maestria/index.html">Maestría</a>
+      <a href="../../doctorado/index.html">Doctorado</a>
+      <div class="search-wrap">
+        <input type="text" class="search-input" placeholder="Buscar en las notas…" aria-label="Buscar">
+        <div class="search-results" role="listbox"></div>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="container crumbs">
+  <a href="../../NotasCuanticas.html">Inicio</a><span class="sep">›</span>
+  <a href="../index.html">Doctorado</a><span class="sep">›</span>
+  Generación de estados entrelazados
+</div>
+
+<div class="container">
+<article class="note">
+
+  <div class="note-header">
+    <svg width="68" height="68" viewBox="0 0 64 64" aria-hidden="true">
+      <ellipse cx="25" cy="32" rx="18" ry="8" fill="none" stroke="#2b5fb3" stroke-width="2.4" transform="rotate(-25 25 32)"/>
+      <ellipse cx="39" cy="32" rx="18" ry="8" fill="none" stroke="#d4453a" stroke-width="2.4" transform="rotate(25 39 32)"/>
+      <circle cx="20" cy="34" r="5" fill="#f3c623" stroke="#2a2a2a" stroke-width="1.8"/>
+      <circle cx="44" cy="30" r="5" fill="#fff3d8" stroke="#6b48a6" stroke-width="1.8"/>
+      <path d="M22 20 C28 12 36 12 42 20" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M22 44 C28 52 36 52 42 44" stroke="#6b48a6" stroke-width="2" fill="none"/>
+      <path d="M32 14 v36" stroke="#d4453a" stroke-width="1.8" stroke-dasharray="3 3"/>
+    </svg>
+    <h1>Generación de estados entrelazados</h1>
+    <div class="author">Protocolo de separabilidad · Evolución en tres dobletes · Generación de estados GHZ</div>
+    <div class="actions">
+      <a href="../../notas-doctorado/Entrelazamiento%20en%20el%20Modelo%20HC.pdf#page=11" target="_blank">📄 PDF original pág. 11</a>
+      <a href="generacion-estados-entrelazados.pdf" target="_blank">📑 PDF compilado</a>
+      <a href="generacion-estados-entrelazados.tex" download>⬇ Descargar .tex</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <strong>Contenido</strong>
+    <ol>
+      <li><a href="#protocolo">Protocolo de entrelazamiento</a></li>
+      <li><a href="#estado-separable">Estado separable inicial</a></li>
+      <li><a href="#evolucion">Evolución resonante en tres dobletes</a></li>
+      <li><a href="#condiciones-ghz">Condiciones para obtener un GHZ</a></li>
+      <li><a href="#primera-condicion">Igualdad de normas</a></li>
+      <li><a href="#segunda-condicion">Ortogonalidad</a></li>
+      <li><a href="#solucion">Solución simultánea y protocolo final</a></li>
+    </ol>
+  </div>
+
+  <h2 id="protocolo">1. Protocolo de entrelazamiento</h2>
+  <p>
+    Se considera primero un estado coherente fonónico dentro de un bloque
+    polaritónico fijo. La pureza electrónica para la bipartición electrón
+    frente a fotón-fonón comienza en $P_{\mathrm{el}}=1/2$, correspondiente a
+    entrelazamiento máximo para esta bipartición, y posteriormente alcanza
+    $P_{\mathrm{el}}=1$. En ese instante el electrón se separa del subsistema
+    fotón-fonón. La idea del protocolo es localizar dicho estado separable,
+    pues la evolución posterior vuelve a conducirlo hacia estados
+    entrelazados.
+  </p>
+  <figure class="note-figure wide">
+    <img src="../../notas-doctorado/imgs/Entrelazamiento/pureza-fonon-coherente-polariton.png" alt="Pureza electrónica para un estado coherente fonónico dentro de un bloque polaritónico.">
+    <figcaption>Pureza electrónica para un estado coherente fonónico dentro de un bloque polaritónico. Las evoluciones obtenidas con el hamiltoniano efectivo y con el hamiltoniano completo de Holstein-Cummings son prácticamente idénticas. Los máximos $P_{\mathrm{el}}=1$ identifican instantes en los que la bipartición electrón frente a fotón-fonón es separable.</figcaption>
+  </figure>
+  <p>El estado evolucionado dentro de un bloque $n$ fijo es</p>
+  $$\begin{aligned}
+  \ket{\tilde\Psi_n(t)}={}&p_{n0}^{-}(t)\ket{-,n,0}\\
+  &+\sum_{m=1}^{\infty}\left[
+  p_{nm}^{+}(t)\ket{+,n,m-1}
+  +p_{nm}^{-}(t)\ket{-,n,m}\right].
+  \end{aligned}$$
+  <p>Usando</p>
+  $$\ket{\pm,n}=\frac{1}{\sqrt2}
+  \left(\ket{e,n-1}\pm\ket{g,n}\right),$$
+  <p>y reagrupando las ramas electrónicas se obtiene</p>
+  $$\ket{\tilde\Psi_n(t)}
+  =\ket{\chi_e(t)}\ket e+\ket{\chi_g(t)}\ket g,$$
+  $$\ket{\chi_e(t)}
+  =\frac{\ket{n-1}}{\sqrt2}
+  \sum_{k=0}^{\infty}
+  \left[p_{n,k+1}^{+}(t)+p_{nk}^{-}(t)\right]\ket k,$$
+  $$\ket{\chi_g(t)}
+  =\frac{\ket n}{\sqrt2}
+  \sum_{k=0}^{\infty}
+  \left[p_{n,k+1}^{+}(t)-p_{nk}^{-}(t)\right]\ket k.$$
+  <p>Separando la cavidad de la vibración,</p>
+  $$\ket{\tilde\Psi_n(t)}
+  =\ket e\ket{n-1}\ket{\phi_e(t)}
+  +\ket g\ket n\ket{\phi_g(t)},$$
+  <div class="boxed def">
+    $$\boxed{\ket{\phi_e(t)}
+    =\frac{1}{\sqrt2}\sum_{k=0}^{\infty}
+    \left[p_{n,k+1}^{+}(t)+p_{nk}^{-}(t)\right]\ket k,}$$
+    $$\boxed{\ket{\phi_g(t)}
+    =\frac{1}{\sqrt2}\sum_{k=0}^{\infty}
+    \left[p_{n,k+1}^{+}(t)-p_{nk}^{-}(t)\right]\ket k.}$$
+  </div>
+  <p>
+    Las ramas contienen los estados fotónicos ortogonales $\ket{n-1}$ y
+    $\ket n$. La coherencia electrónica se anula y la matriz reducida es
+    diagonal:
+  </p>
+  $$\hat\rho_{\mathrm{el}}(t)
+  =P_e(t)\ket e\bra e+P_g(t)\ket g\bra g,$$
+  $$P_e=\braket{\phi_e|\phi_e},\qquad
+  P_g=\braket{\phi_g|\phi_g},\qquad P_e+P_g=1.$$
+  <p>Con $W(t)=P_e(t)-P_g(t)$ se tiene</p>
+  $$P_e(t)=\frac{1+W(t)}2,\qquad
+  P_g(t)=\frac{1-W(t)}2,$$
+  <div class="boxed result">
+    $$\boxed{P_{\mathrm{el}}(t)=P_e^2(t)+P_g^2(t)
+    =\frac{1+W^2(t)}2.}$$
+  </div>
+  <p>La separabilidad en $t_*$ requiere</p>
+  $$P_{\mathrm{el}}(t_*)=1
+  \quad\Longrightarrow\quad |W(t_*)|=1.$$
+  <p>Como $P_e+P_g=1$, esto solo puede suceder si</p>
+  $$(P_e,P_g)=(1,0)\qquad\text{o}\qquad(P_e,P_g)=(0,1).$$
+  <p>Para $W(t_*)=1$, $\ket{\phi_g(t_*)}=0$ y</p>
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\Psi_n(t_*)}
+    =\ket e\otimes\ket{n-1}\otimes\ket{\phi_e(t_*)}.}$$
+  </div>
+  <p>Para $W(t_*)=-1$, $\ket{\phi_e(t_*)}=0$ y</p>
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\Psi_n(t_*)}
+    =\ket g\otimes\ket n\otimes\ket{\phi_g(t_*)}.}$$
+  </div>
+  <p>
+    Los dos resultados son estados producto de los tres subsistemas. Para
+    alcanzar la rama excitada se exige
+  </p>
+  $$\ket{\phi_g(t_*)}=\frac1{\sqrt2}
+  \sum_{k=0}^{\infty}
+  \left[p_{n,k+1}^{+}(t_*)-p_{nk}^{-}(t_*)\right]\ket k=0.$$
+  <p>La independencia de los estados de Fock implica, término por término,</p>
+  $$p_{n,k+1}^{+}(t_*)=p_{nk}^{-}(t_*),$$
+  $$\ket{\phi_e(t_*)}=\sqrt2\sum_{k=0}^{\infty}p_{nk}^{-}(t_*)\ket k.$$
+  <p>Para la rama base se obtiene de forma análoga</p>
+  $$\ket{\phi_g(t_*)}=-\sqrt2
+  \sum_{k=0}^{\infty}p_{nk}^{-}(t_*)\ket k.$$
+  <p>
+    La inversión determina cuál de estos estados producto se alcanza para una
+    preparación inicial dada. En resonancia, $\delta_n=0$, la inversión para
+    un estado coherente fonónico dentro de un bloque polaritónico es
+  </p>
+  <div class="boxed result">
+    $$\boxed{W(t)=2\sin(2\nu t)
+    \sum_{m=0}^{\infty}\tilde c_{m+1}\tilde c_m
+    \sin\left(\frac{\kappa_{m+1}t}{2}\right)
+    \cos\left(\frac{\kappa_mt}{2}\right),
+    \qquad \kappa_m=\nu\lambda\sqrt m.}$$
+  </div>
+
+  <h2 id="estado-separable">2. Estado separable inicial para generar un GHZ</h2>
+  <p>
+    Los estados GHZ obtenidos al evolucionar dentro de un solo doblete parten
+    de un polaritón, que ya está entrelazado en los grados electrónico y
+    fotónico. Para generar un GHZ a partir de un estado completamente
+    separable hace falta salir del doblete aislado. Se propone
+  </p>
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\Psi(0)}
+    =\ket e\otimes\ket{n-1}\otimes
+    \left(\cos\theta\ket m
+    +e^{i\phi}\sin\theta\ket{m+1}\right).}$$
+  </div>
+  <p>Definiendo</p>
+  $$a=\cos\theta,\qquad b=e^{i\phi}\sin\theta,$$
+  <p>y usando $\ket{e,n-1}=(\ket{+,n}+\ket{-,n})/\sqrt2$,</p>
+  $$\begin{aligned}
+  \ket{\tilde\Psi(0)}
+  &=\frac1{\sqrt2}(\ket{+,n}+\ket{-,n})
+  \otimes(a\ket m+b\ket{m+1})\\
+  &=\frac1{\sqrt2}\left[
+  a\ket{+,n,m}+a\ket{-,n,m}
+  +b\ket{+,n,m+1}+b\ket{-,n,m+1}\right].
+  \end{aligned}$$
+  <p>
+    El hamiltoniano efectivo acopla
+    $\ket{+,n,r-1}\leftrightarrow\ket{-,n,r}$. Por tanto, el estado inicial
+    vive en tres dobletes:
+  </p>
+  <div class="boxed def">
+    $$\boxed{\begin{gathered}
+    \ket{+,n,m}\longleftrightarrow\ket{-,n,m+1},\\
+    \ket{+,n,m-1}\longleftrightarrow\ket{-,n,m},\\
+    \ket{+,n,m+1}\longleftrightarrow\ket{-,n,m+2}.
+    \end{gathered}}$$
+  </div>
+  <p>
+    La participación simultánea de estos tres sectores permite que un estado
+    producto inicial desarrolle correlaciones tripartitas.
+  </p>
+
+  <h2 id="evolucion">3. Evolución resonante en los tres dobletes</h2>
+  <p>En resonancia, $\delta_n=0$ y $\Omega_{nr}^{\mathrm{ef}}=\kappa_r$,</p>
+  <div class="boxed result">
+    $$\boxed{\hat U_{nr}(t)=e^{-iA_{nr}t}
+    \left[\cos\left(\frac{\kappa_rt}{2}\right)\mathbf1
+    +i\sin\left(\frac{\kappa_rt}{2}\right)\hat\sigma_x\right].}$$
+  </div>
+  <p>
+    Aquí, $\hat\sigma_x$ es el operador de intercambio restringido al doblete
+    $\{\ket{+,n,r-1},\ket{-,n,r}\}$:
+  </p>
+  $$\hat\sigma_x
+  =\ket{+,n,r-1}\bra{-,n,r}
+  +\ket{-,n,r}\bra{+,n,r-1}.$$
+  <p>Sea</p>
+  $$C_r=\cos\left(\frac{\kappa_rt}{2}\right),\qquad
+  S_r=\sin\left(\frac{\kappa_rt}{2}\right).$$
+  <p>Las evoluciones elementales son</p>
+  $$\ket{+,n,r-1}\longrightarrow e^{-iA_{nr}t}
+  \left[C_r\ket{+,n,r-1}+iS_r\ket{-,n,r}\right],$$
+  $$\ket{-,n,r}\longrightarrow e^{-iA_{nr}t}
+  \left[C_r\ket{-,n,r}+iS_r\ket{+,n,r-1}\right].$$
+  <p>Aplicándolas a los cuatro términos iniciales:</p>
+  $$\ket{+,n,m}\longrightarrow e^{-iA_{n,m+1}t}
+  \left[C_{m+1}\ket{+,n,m}+iS_{m+1}\ket{-,n,m+1}\right],$$
+  $$\ket{-,n,m}\longrightarrow e^{-iA_{nm}t}
+  \left[C_m\ket{-,n,m}+iS_m\ket{+,n,m-1}\right],$$
+  $$\ket{+,n,m+1}\longrightarrow e^{-iA_{n,m+2}t}
+  \left[C_{m+2}\ket{+,n,m+1}+iS_{m+2}\ket{-,n,m+2}\right],$$
+  $$\ket{-,n,m+1}\longrightarrow e^{-iA_{n,m+1}t}
+  \left[C_{m+1}\ket{-,n,m+1}+iS_{m+1}\ket{+,n,m}\right].$$
+  <p>La evolución completa es</p>
+  $$\begin{aligned}
+  \ket{\tilde\Psi(t)}=\frac1{\sqrt2}\Big\{&
+  ae^{-iA_{n,m+1}t}[C_{m+1}\ket{+,n,m}+iS_{m+1}\ket{-,n,m+1}]\\
+  &+ae^{-iA_{nm}t}[C_m\ket{-,n,m}+iS_m\ket{+,n,m-1}]\\
+  &+be^{-iA_{n,m+2}t}[C_{m+2}\ket{+,n,m+1}+iS_{m+2}\ket{-,n,m+2}]\\
+  &+be^{-iA_{n,m+1}t}[C_{m+1}\ket{-,n,m+1}+iS_{m+1}\ket{+,n,m}]\Big\}.
+  \end{aligned}$$
+  <p>Al factorizar las ramas polaritónicas,</p>
+  <div class="boxed result">
+    $$\boxed{\ket{\tilde\Psi(t)}
+    =\ket{+,n}\ket{\Phi_+(t)}+\ket{-,n}\ket{\Phi_-(t)}.}$$
+  </div>
+  $$\begin{aligned}
+  \ket{\Phi_+(t)}=\frac1{\sqrt2}\Big[&
+  iae^{-iA_{nm}t}S_m\ket{m-1}
+  +e^{-iA_{n,m+1}t}(aC_{m+1}+ibS_{m+1})\ket m\\
+  &+be^{-iA_{n,m+2}t}C_{m+2}\ket{m+1}\Big],
+  \end{aligned}$$
+  $$\begin{aligned}
+  \ket{\Phi_-(t)}=\frac1{\sqrt2}\Big[&
+  ae^{-iA_{nm}t}C_m\ket m
+  +e^{-iA_{n,m+1}t}(iaS_{m+1}+bC_{m+1})\ket{m+1}\\
+  &+ibe^{-iA_{n,m+2}t}S_{m+2}\ket{m+2}\Big].
+  \end{aligned}$$
+  <p>La energía común cumple</p>
+  $$A_{nr}=n\Omega+\frac{\nu\lambda^2}{4}
+  +\nu\left(r-\frac12\right)=A_n^{(0)}+\nu r,$$
+  $$A_n^{(0)}=n\Omega+\frac{\nu\lambda^2}{4}-\frac\nu2,$$
+  $$e^{-iA_{nr}t}=e^{-iA_n^{(0)}t}e^{-ir\nu t}.$$
+  <p>
+    El primer factor es una fase global. Al descartarlo y definir
+    $\tau=\nu t$, los estados vibracionales quedan
+  </p>
+  <div class="boxed def">
+    $$\boxed{\begin{aligned}
+    \ket{\Phi_+(t)}=\frac1{\sqrt2}\Big[&
+    iae^{-im\tau}S_m\ket{m-1}
+    +e^{-i(m+1)\tau}(aC_{m+1}+ibS_{m+1})\ket m\\
+    &+be^{-i(m+2)\tau}C_{m+2}\ket{m+1}\Big],
+    \end{aligned}}$$
+    $$\boxed{\begin{aligned}
+    \ket{\Phi_-(t)}=\frac1{\sqrt2}\Big[&
+    ae^{-im\tau}C_m\ket m
+    +e^{-i(m+1)\tau}(iaS_{m+1}+bC_{m+1})\ket{m+1}\\
+    &+ibe^{-i(m+2)\tau}S_{m+2}\ket{m+2}\Big].
+    \end{aligned}}$$
+  </div>
+
+  <h2 id="condiciones-ghz">4. Condiciones para obtener un estado GHZ</h2>
+  <p>Al volver a la base opto-electrónica,</p>
+  $$\ket{\pm,n}=\frac{\ket e\ket{n-1}\pm\ket g\ket n}{\sqrt2},$$
+  $$\begin{aligned}
+  \ket{\tilde\Psi(t)}={}&
+  \ket e\ket{n-1}\frac{\ket{\Phi_+}+\ket{\Phi_-}}{\sqrt2}
+  +\ket g\ket n\frac{\ket{\Phi_+}-\ket{\Phi_-}}{\sqrt2}.
+  \end{aligned}$$
+  <p>Definiendo</p>
+  $$\ket{\chi_e}=\frac{\ket{\Phi_+}+\ket{\Phi_-}}{\sqrt2},\qquad
+  \ket{\chi_g}=\frac{\ket{\Phi_+}-\ket{\Phi_-}}{\sqrt2},$$
+  <p>se obtiene</p>
+  $$\ket{\tilde\Psi(t)}
+  =\ket e\ket{n-1}\ket{\chi_e(t)}
+  +\ket g\ket n\ket{\chi_g(t)}.$$
+  <p>
+    Un GHZ máximo requiere ramas con el mismo peso y estados vibracionales
+    ortogonales:
+  </p>
+  $$\|\chi_e(t_*)\|^2=\|\chi_g(t_*)\|^2=\frac12,
+  \qquad\braket{\chi_g(t_*)|\chi_e(t_*)}=0.$$
+  <p>Las normas satisfacen</p>
+  $$\begin{aligned}
+  \braket{\chi_e|\chi_e}
+  &=\frac12[\braket{\Phi_+|\Phi_+}+\braket{\Phi_+|\Phi_-}
+  +\braket{\Phi_-|\Phi_+}+\braket{\Phi_-|\Phi_-}]\\
+  &=\frac12+\operatorname{Re}\braket{\Phi_+|\Phi_-},
+  \end{aligned}$$
+  $$\braket{\chi_g|\chi_g}
+  =\frac12-\operatorname{Re}\braket{\Phi_+|\Phi_-}.$$
+  <p>La ortogonalidad da</p>
+  $$\begin{aligned}
+  \braket{\chi_g|\chi_e}
+  &=\frac12(\braket{\Phi_+|\Phi_+}-\braket{\Phi_-|\Phi_-})
+  -i\operatorname{Im}\braket{\Phi_+|\Phi_-}=0.
+  \end{aligned}$$
+  <p>
+    Como $\braket{\Phi_+|\Phi_+}+\braket{\Phi_-|\Phi_-}=1$, todas las
+    condiciones se reúnen en
+  </p>
+  <div class="boxed result">
+    $$\boxed{\|\Phi_+(t_*)\|^2=\|\Phi_-(t_*)\|^2=\frac12,
+    \qquad\braket{\Phi_+(t_*)|\Phi_-(t_*)}=0.}$$
+  </div>
+
+  <h2 id="primera-condicion">5. Primera condición: igualdad de normas</h2>
+  <p>La diferencia de las normas es</p>
+  $$\begin{aligned}
+  \|\Phi_+\|^2-\|\Phi_-\|^2=\frac12\Big[&
+  |a|^2S_m^2+(aC_{m+1}-ib^*S_{m+1})(aC_{m+1}+ibS_{m+1})
+  +|b|^2C_{m+2}^2\\
+  &-|a|^2C_m^2-(-iaS_{m+1}+b^*C_{m+1})(iaS_{m+1}+bC_{m+1})
+  -|b|^2S_{m+2}^2\Big].
+  \end{aligned}$$
+  <p>Los productos centrales se desarrollan paso por paso:</p>
+  $$\begin{aligned}
+  &(aC_{m+1}-ib^*S_{m+1})(aC_{m+1}+ibS_{m+1})\\
+  &\qquad=a^2C_{m+1}^2+|b|^2S_{m+1}^2
+  -2a\operatorname{Im}(b)C_{m+1}S_{m+1},
+  \end{aligned}$$
+  $$\begin{aligned}
+  &(-iaS_{m+1}+b^*C_{m+1})(iaS_{m+1}+bC_{m+1})\\
+  &\qquad=a^2S_{m+1}^2+|b|^2C_{m+1}^2
+  +2a\operatorname{Im}(b)C_{m+1}S_{m+1}.
+  \end{aligned}$$
+  <p>Al sustituirlos,</p>
+  $$\begin{aligned}
+  \|\Phi_+\|^2-\|\Phi_-\|^2=\frac12\Big[&
+  a^2(S_m^2-C_m^2)+(a^2-|b|^2)(C_{m+1}^2-S_{m+1}^2)\\
+  &+|b|^2(C_{m+2}^2-S_{m+2}^2)
+  -4a\operatorname{Im}(b)C_{m+1}S_{m+1}\Big].
+  \end{aligned}$$
+  <p>Con $a=\cos\theta$, $|b|^2=\sin^2\theta$ y
+    $\operatorname{Im}(b)=\sin\phi\sin\theta$:</p>
+  $$\begin{aligned}
+  \|\Phi_+\|^2-\|\Phi_-\|^2=\frac12\Big[&
+  \cos^2\theta(S_m^2-C_m^2)
+  +\cos(2\theta)(C_{m+1}^2-S_{m+1}^2)\\
+  &+\sin^2\theta(C_{m+2}^2-S_{m+2}^2)
+  -4\cos\theta\sin\theta\sin\phi\,C_{m+1}S_{m+1}\Big].
+  \end{aligned}$$
+  <p>Definiendo</p>
+  $$x_r=\frac{\lambda\sqrt r\,\tau}{2},\qquad
+  C_r=\cos x_r,\qquad S_r=\sin x_r,$$
+  <p>y usando $\cos^2x-\sin^2x=\cos(2x)$ y
+    $2\sin x\cos x=\sin(2x)$, resulta</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    F_1(\theta,\tau)={}&
+    -\cos^2\theta\cos(\lambda\sqrt m\,\tau)
+    +\cos(2\theta)\cos(\lambda\sqrt{m+1}\,\tau)\\
+    &+\sin^2\theta\cos(\lambda\sqrt{m+2}\,\tau)
+    -\sin\phi\sin(2\theta)\sin(\lambda\sqrt{m+1}\,\tau)=0.
+    \end{aligned}}$$
+  </div>
+
+  <h2 id="segunda-condicion">6. Segunda condición: ortogonalidad</h2>
+  <p>
+    Solo $\ket m$ y $\ket{m+1}$ aparecen simultáneamente en
+    $\ket{\Phi_+}$ y $\ket{\Phi_-}$. Por tanto,
+  </p>
+  $$\begin{aligned}
+  \braket{\Phi_+|\Phi_-}
+  =\frac12\Big[&ae^{-im\tau}C_m e^{i(m+1)\tau}
+  (aC_{m+1}-ib^*S_{m+1})\\
+  &+b^*e^{i(m+2)\tau}C_{m+2}e^{-i(m+1)\tau}
+  (iaS_{m+1}+bC_{m+1})\Big]\\
+  =\frac{e^{i\tau}}2\Big[&C_{m+1}(a^2C_m+|b|^2C_{m+2})
+  +iab^*S_{m+1}(-C_m+C_{m+2})\Big].
+  \end{aligned}$$
+  <p>
+    Sustituyendo $a=\cos\theta$, $b=e^{i\phi}\sin\theta$ y
+    $ie^{-i\phi}=\sin\phi+i\cos\phi$, las partes real e imaginaria deben
+    anularse por separado:
+  </p>
+  $$\begin{aligned}
+  C_{m+1}[\cos^2\theta C_m+\sin^2\theta C_{m+2}]
+  +\frac12\sin(2\theta)\sin\phi\,S_{m+1}(C_{m+2}-C_m)=0,
+  \end{aligned}$$
+  $$\frac12\sin(2\theta)\cos\phi\,S_{m+1}(-C_m+C_{m+2})=0.$$
+  <p>Se elige $\phi=\pi/2$. La segunda ecuación se anula y queda</p>
+  $$C_{m+1}[\cos^2\theta C_m+\sin^2\theta C_{m+2}]
+  -\frac12\sin(2\theta)S_{m+1}(C_m-C_{m+2})=0.$$
+  <p>Sustituyendo $C_r$ y $S_r$:</p>
+  <div class="boxed result">
+    $$\boxed{\begin{aligned}
+    F_2(\theta,\tau)={}&
+    \cos\left(\frac{\lambda\sqrt{m+1}\,\tau}{2}\right)
+    \left[\cos^2\theta\cos\left(\frac{\lambda\sqrt m\,\tau}{2}\right)
+    +\sin^2\theta\cos\left(\frac{\lambda\sqrt{m+2}\,\tau}{2}\right)\right]\\
+    &-\frac12\sin(2\theta)
+    \sin\left(\frac{\lambda\sqrt{m+1}\,\tau}{2}\right)
+    \left[\cos\left(\frac{\lambda\sqrt m\,\tau}{2}\right)
+    -\cos\left(\frac{\lambda\sqrt{m+2}\,\tau}{2}\right)\right]=0.
+    \end{aligned}}$$
+  </div>
+
+  <h2 id="solucion">7. Solución simultánea y protocolo final</h2>
+  <p>Para $\phi=\pi/2$ deben resolverse simultáneamente</p>
+  <div class="boxed def">
+    $$\boxed{F_1(\theta,\tau)=0,\qquad F_2(\theta,\tau)=0.}$$
+  </div>
+  <p>La búsqueda numérica del manuscrito produce</p>
+  <div class="boxed result">
+    $$\boxed{\theta_*=0.548014622536,
+    \qquad\tau_*=20.1362696530.}$$
+  </div>
+  <p>La preparación vibracional separable es, por tanto,</p>
+  <div class="boxed result">
+    $$\boxed{\ket{\psi_{\mathrm{vib}}(0)}
+    =\cos\theta_*\ket m+i\sin\theta_*\ket{m+1}.}$$
+  </div>
+  <p>
+    Al evolucionar resonantemente durante $t_*=\tau_*/\nu$, las ramas
+    electrónico-fotónicas adquieren la misma probabilidad y los estados
+    vibracionales que las acompañan se vuelven ortogonales:
+  </p>
+  $$\ket{\tilde\Psi(t_*)}
+  =\ket e\ket{n-1}\ket{\chi_e(t_*)}
+  +\ket g\ket n\ket{\chi_g(t_*)},$$
+  $$\|\chi_e(t_*)\|^2=\|\chi_g(t_*)\|^2=\frac12,
+  \qquad\braket{\chi_g(t_*)|\chi_e(t_*)}=0.$$
+  <p>
+    Estas son las condiciones de un estado GHZ tripartito, salvo fases y
+    elecciones locales de la base lógica. El protocolo genera así
+    entrelazamiento genuinamente tripartito a partir de una preparación
+    inicial completamente separable.
+  </p>
+
+</article>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div class="author">Ricardo Del Rosal Garduño</div>
+    <div class="modified">Última modificación: 24 de agosto de 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/search-index.js"></script>
+<script src="../../assets/js/search.js"></script>
+</body>
+</html>
