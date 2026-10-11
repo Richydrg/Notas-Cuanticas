@@ -676,6 +676,100 @@ Tomando $a=p_{n,k+1}^{+}$ y $b=p_{n,k}^{-}$ se obtiene
   id\'entica.}
 \end{figure}
 
+\section{Caso 3: estados coherentes fot\'onico y fon\'onico}
+
+Cuando tanto el modo fot\'onico como el fon\'onico comienzan en estados
+coherentes aparecen muchos valores de $n$. Las ramas electr\'onicas pueden
+compartir estados fot\'on-fon\'on con las mismas etiquetas, de modo que la
+coherencia $s(t)$ ya no tiene que anularse.
+
+Reuniendo las amplitudes de las dos ramas en la base fot\'on-fon\'on
+$\{\ket{q,k}\}$ se definen
+\begin{equation}
+  E_{qk}(t)
+  =
+  \frac{p_{q,k+1}^{+}(t)+p_{q,k}^{-}(t)}{\sqrt2},
+  \qquad
+  G_{qk}(t)
+  =
+  \frac{p_{q,k+1}^{+}(t)-p_{q,k}^{-}(t)}{\sqrt2}.
+\end{equation}
+Aqu\'i $q$ etiqueta el sector fot\'onico despu\'es de reagrupar las ramas en
+una base com\'un. Entonces
+\begin{equation}
+  \ket{\chi_e(t)}
+  =
+  \sum_{q,k}E_{qk}(t)\ket{q,k},
+  \qquad
+  \ket{\chi_g(t)}
+  =
+  \sum_{q,k}G_{qk}(t)\ket{q,k}.
+\end{equation}
+Las poblaciones electr\'onicas son
+\begin{equation}
+  p_e(t)
+  =
+  \braket{\chi_e|\chi_e}
+  =
+  \sum_{q,k}|E_{qk}(t)|^2,
+\end{equation}
+\begin{equation}
+  p_g(t)
+  =
+  \braket{\chi_g|\chi_g}
+  =
+  \sum_{q,k}|G_{qk}(t)|^2.
+\end{equation}
+La coherencia reducida es
+\begin{equation}
+  s(t)
+  =
+  \braket{\chi_g|\chi_e}
+  =
+  \sum_{q,k}G_{qk}^{*}(t)E_{qk}(t).
+\end{equation}
+Por tanto, la pureza conserva la forma general
+\begin{equation}
+  \boxed{
+  P_{\alpha,\beta}(t)
+  =
+  \frac12
+  \left[
+  1+W^2(t)+4|s(t)|^2
+  \right].
+  }
+\end{equation}
+A pesar de que esta expresi\'on es anal\'itica, contiene sumas dobles y las
+frecuencias $\Omega_{nm}^{\mathrm{ef}}$ dependen de manera no lineal de $n$
+y $m$. En general no existe una suma cerrada y las series deben evaluarse con
+un truncamiento num\'erico que abarque las distribuciones coherentes.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Entrelazamiento/pureza-coherentes-excitado.png}}
+  \caption{Pureza para estados coherentes fot\'onico y fon\'onico con
+  $c_e=1$ y $c_g=0$. El estado inicial es un producto y comienza en
+  $P_{\mathrm{el}}(0)=1$. La interacci\'on correlaciona al electr\'on con una
+  superposici\'on de muchos sectores $(n,m)$, por lo que la pureza desciende y
+  desarrolla oscilaciones, colapsos y refases. Los acercamientos a $1/2$
+  corresponden a intervalos de entrelazamiento casi m\'aximo entre el electr\'on
+  y el subsistema fot\'on-fon\'on. Las soluciones completa y efectiva se
+  superponen pr\'acticamente en toda la ventana mostrada.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{\detokenize{../../notas-doctorado/imgs/Entrelazamiento/pureza-coherentes-simetrico.png}}
+  \caption{Pureza para los mismos estados coherentes, ahora con
+  $c_e=1/\sqrt2$ y $c_g=-1/\sqrt2$. El estado electr\'onico inicial tambi\'en
+  es puro, por lo que $P_{\mathrm{el}}(0)=1$, pero esta superposici\'on se
+  encuentra m\'as alineada con una rama polarit\'onica. La generaci\'on de ramas
+  fot\'on-fon\'on distinguibles es m\'as gradual y la pureza decrece con mayor
+  lentitud, aunque finalmente se aproxima a $1/2$. El hamiltoniano efectivo
+  reproduce de manera pr\'acticamente id\'entica la din\'amica del modelo HC
+  completo.}
+\end{figure}
+
 \section{Entrelazamiento tripartito y eigenestados GHZ}
 
 El sistema tiene tres grados de libertad. Los espacios de la cavidad y de la
@@ -1396,8 +1490,8 @@ Los estados vibracionales de las dos ramas son ortogonales, al igual que los
 estados electr\'onicos y fot\'onicos. El estado es, por tanto, un GHZ can\'onico
 salvo fases locales.
 
-% Continuaci\'on del mismo manuscrito: protocolos de generaci\'on de estados
-% entrelazados y de polaritones a partir de preparaciones separables.
-\input{generacion-estados-entrelazados}
+% Continuaci\'on del mismo manuscrito, conservada como un m\'odulo interno de
+% esta nota para facilitar el mantenimiento de la fuente.
+\input{entrelazamiento-modelo-hc-continuacion}
 
 \end{document}

@@ -89,6 +89,7 @@ window.MathJax = {
       <li><a href="#pureza">Pureza, inversión y coherencia</a></li>
       <li><a href="#caso-1">Caso 1: fonón en un bloque polaritónico</a></li>
       <li><a href="#caso-2">Caso 2: estado coherente fonónico</a></li>
+      <li><a href="#caso-3">Caso 3: estados coherentes fotónico y fonónico</a></li>
       <li><a href="#ghz">Eigenestados GHZ tripartitos</a></li>
       <li><a href="#pureza-ghz">Pureza de los estados GHZ</a></li>
       <li><a href="#generacion-ghz">Generación dinámica de estados GHZ</a></li>
@@ -420,7 +421,56 @@ window.MathJax = {
     <figcaption>Pureza electrónica para un estado fonónico coherente dentro de un bloque polaritónico fijo. Como $s(t)=0$, se cumple exactamente $P_n(t)=[1+W_n^2(t)]/2$. Cuando $W_n(t)=0$, las poblaciones $p_e$ y $p_g$ son iguales y la pureza alcanza $1/2$: el electrón está máximamente entrelazado con el subsistema fotón-fonón. Cuando $|W_n(t)|$ se aproxima a uno, una población electrónica domina, la rama opuesta pierde peso y la pureza se acerca a uno. Las oscilaciones rápidas provienen de la interferencia entre amplitudes fonónicas vecinas, mientras que la envolvente refleja su desfasamiento y refase colectivos. La evolución obtenida con el hamiltoniano completo y con el efectivo es prácticamente idéntica.</figcaption>
   </figure>
 
-  <h2 id="ghz">6. Entrelazamiento tripartito y eigenestados GHZ</h2>
+  <h2 id="caso-3">6. Caso 3: estados coherentes fotónico y fonónico</h2>
+  <p>
+    Cuando tanto el modo fotónico como el fonónico comienzan en estados
+    coherentes aparecen muchos valores de $n$. Las ramas electrónicas pueden
+    compartir estados fotón-fonón con las mismas etiquetas, de modo que la
+    coherencia $s(t)$ ya no tiene que anularse.
+  </p>
+  <p>
+    Reuniendo las amplitudes de las dos ramas en la base fotón-fonón
+    $\{\ket{q,k}\}$ se definen
+  </p>
+  $$E_{qk}(t)
+  =\frac{p_{q,k+1}^{+}(t)+p_{q,k}^{-}(t)}{\sqrt2},\qquad
+  G_{qk}(t)
+  =\frac{p_{q,k+1}^{+}(t)-p_{q,k}^{-}(t)}{\sqrt2}.$$
+  <p>
+    Aquí $q$ etiqueta el sector fotónico después de reagrupar las ramas en una
+    base común. Entonces
+  </p>
+  $$\ket{\chi_e(t)}=\sum_{q,k}E_{qk}(t)\ket{q,k},\qquad
+  \ket{\chi_g(t)}=\sum_{q,k}G_{qk}(t)\ket{q,k}.$$
+  <p>Las poblaciones electrónicas son</p>
+  $$p_e(t)=\sum_{q,k}|E_{qk}(t)|^2,\qquad
+  p_g(t)=\sum_{q,k}|G_{qk}(t)|^2,$$
+  <p>y la coherencia reducida es</p>
+  $$s(t)=\sum_{q,k}G_{qk}^{*}(t)E_{qk}(t).$$
+  <p>Por tanto, la pureza conserva la forma general</p>
+  <div class="boxed result">
+    $$\boxed{P_{\alpha,\beta}(t)
+    =\frac12\left[1+W^2(t)+4|s(t)|^2\right].}$$
+  </div>
+  <p>
+    A pesar de que esta expresión es analítica, contiene sumas dobles y las
+    frecuencias $\Omega_{nm}^{\mathrm{ef}}$ dependen de manera no lineal de
+    $n$ y $m$. En general no existe una suma cerrada y las series deben
+    evaluarse con un truncamiento numérico que abarque las distribuciones
+    coherentes.
+  </p>
+  <div class="figure-grid two">
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Entrelazamiento/pureza-coherentes-excitado.png" alt="Pureza con estados coherentes fotónico y fonónico y electrón inicialmente excitado.">
+      <figcaption>Pureza para estados coherentes fotónico y fonónico con $c_e=1$ y $c_g=0$. El estado inicial es un producto y comienza en $P_{\mathrm{el}}(0)=1$. La interacción correlaciona al electrón con una superposición de muchos sectores $(n,m)$, por lo que la pureza desciende y desarrolla oscilaciones, colapsos y refases. Los acercamientos a $1/2$ corresponden a intervalos de entrelazamiento casi máximo entre el electrón y el subsistema fotón-fonón. Las soluciones completa y efectiva se superponen prácticamente en toda la ventana mostrada.</figcaption>
+    </figure>
+    <figure class="note-figure">
+      <img src="../../notas-doctorado/imgs/Entrelazamiento/pureza-coherentes-simetrico.png" alt="Pureza con estados coherentes fotónico y fonónico y electrón inicialmente en superposición.">
+      <figcaption>Pureza para los mismos estados coherentes, ahora con $c_e=1/\sqrt2$ y $c_g=-1/\sqrt2$. El estado electrónico inicial también es puro, por lo que $P_{\mathrm{el}}(0)=1$, pero esta superposición se encuentra más alineada con una rama polaritónica. La generación de ramas fotón-fonón distinguibles es más gradual y la pureza decrece con mayor lentitud, aunque finalmente se aproxima a $1/2$. El hamiltoniano efectivo reproduce de manera prácticamente idéntica la dinámica del modelo HC completo.</figcaption>
+    </figure>
+  </div>
+
+  <h2 id="ghz">7. Entrelazamiento tripartito y eigenestados GHZ</h2>
   <p>
     El sistema posee tres grados de libertad. Los espacios de la cavidad y la
     vibración son infinitodimensionales, pero dentro de un doblete fijo
@@ -435,9 +485,9 @@ window.MathJax = {
     Por ello, el subespacio efectivo se comporta como tres qubits codificados:
   </p>
   $$\tilde{\mathcal H}_{\mathrm{ef}}^{(n,m)}
-  \subset\mathbb C_{mathrm{el}}^2\otimes
-  \mathbb C_{mathrm{cav}}^2\otimes
-  \mathbb C_{mathrm{vib}}^2.$$
+  \subset\mathbb C_{\mathrm{el}}^2\otimes
+  \mathbb C_{\mathrm{cav}}^2\otimes
+  \mathbb C_{\mathrm{vib}}^2.$$
   <p>
     El qubit electrónico es un sistema físico de dos niveles. Los qubits
     fotónico y vibracional están codificados en pares de estados de Fock
@@ -527,7 +577,7 @@ window.MathJax = {
     una compuerta $\hat X$ aplicada al qubit vibracional.
   </p>
 
-  <h2 id="pureza-ghz">7. Pureza reducida de los estados GHZ</h2>
+  <h2 id="pureza-ghz">8. Pureza reducida de los estados GHZ</h2>
   <p>
     Para hacer explícito el carácter multipartito se divide el sistema en las
     biparticiones
@@ -572,7 +622,7 @@ window.MathJax = {
     el entrelazamiento reside genuinamente en la partición tripartita.
   </p>
 
-  <h2 id="generacion-ghz">8. Generación dinámica de estados GHZ</h2>
+  <h2 id="generacion-ghz">9. Generación dinámica de estados GHZ</h2>
   <p>
     Se considera un estado polaritónico que evoluciona bajo el hamiltoniano
     efectivo del doblete $(n,m)$,
@@ -725,7 +775,7 @@ window.MathJax = {
     produce un estado GHZ en cada tiempo $t_q^{\mathrm{GHZ}}$.
   </p>
 
-  <h2 id="protocolo">9. Protocolo de entrelazamiento</h2>
+  <h2 id="protocolo">10. Protocolo de entrelazamiento</h2>
   <p>
     Se considera primero un estado coherente fonónico dentro de un bloque
     polaritónico fijo. La pureza electrónica para la bipartición electrón
@@ -830,7 +880,7 @@ window.MathJax = {
     \qquad \kappa_m=\nu\lambda\sqrt m.}$$
   </div>
 
-  <h2 id="estado-separable">10. Estado separable inicial para generar un GHZ</h2>
+  <h2 id="estado-separable">11. Estado separable inicial para generar un GHZ</h2>
   <p>
     Los estados GHZ obtenidos al evolucionar dentro de un solo doblete parten
     de un polaritón, que ya está entrelazado en los grados electrónico y
@@ -871,7 +921,7 @@ window.MathJax = {
     producto inicial desarrolle correlaciones tripartitas.
   </p>
 
-  <h2 id="evolucion">11. Evolución resonante en los tres dobletes</h2>
+  <h2 id="evolucion">12. Evolución resonante en los tres dobletes</h2>
   <p>En resonancia, $\delta_n=0$ y $\Omega_{nr}^{\mathrm{ef}}=\kappa_r$,</p>
   <div class="boxed result">
     $$\boxed{\hat U_{nr}(t)=e^{-iA_{nr}t}
@@ -951,7 +1001,7 @@ window.MathJax = {
     \end{aligned}}$$
   </div>
 
-  <h2 id="condiciones-ghz">12. Condiciones para obtener un estado GHZ</h2>
+  <h2 id="condiciones-ghz">13. Condiciones para obtener un estado GHZ</h2>
   <p>Al volver a la base opto-electrónica,</p>
   $$\ket{\pm,n}=\frac{\ket e\ket{n-1}\pm\ket g\ket n}{\sqrt2},$$
   $$\begin{aligned}
@@ -996,7 +1046,7 @@ window.MathJax = {
     \qquad\braket{\Phi_+(t_*)|\Phi_-(t_*)}=0.}$$
   </div>
 
-  <h2 id="primera-condicion">13. Primera condición: igualdad de normas</h2>
+  <h2 id="primera-condicion">14. Primera condición: igualdad de normas</h2>
   <p>La diferencia de las normas es</p>
   $$\begin{aligned}
   \|\Phi_+\|^2-\|\Phi_-\|^2=\frac12\Big[&
@@ -1047,7 +1097,7 @@ window.MathJax = {
     \end{aligned}}$$
   </div>
 
-  <h2 id="segunda-condicion">14. Segunda condición: ortogonalidad</h2>
+  <h2 id="segunda-condicion">15. Segunda condición: ortogonalidad</h2>
   <p>
     Solo $\ket m$ y $\ket{m+1}$ aparecen simultáneamente en
     $\ket{\Phi_+}$ y $\ket{\Phi_-}$. Por tanto,
@@ -1088,7 +1138,7 @@ window.MathJax = {
     \end{aligned}}$$
   </div>
 
-  <h2 id="solucion">15. Solución simultánea y protocolo final</h2>
+  <h2 id="solucion">16. Solución simultánea y protocolo final</h2>
   <p>Para $\phi=\pi/2$ deben resolverse simultáneamente</p>
   <div class="boxed def">
     $$\boxed{F_1(\theta,\tau)=0,\qquad F_2(\theta,\tau)=0.}$$
@@ -1121,7 +1171,7 @@ window.MathJax = {
   </p>
 
 
-  <h2 id="polaritones-separables">16. Generación de polaritones a partir de estados separables</h2>
+  <h2 id="polaritones-separables">17. Generación de polaritones a partir de estados separables</h2>
   <p>
     El problema final del manuscrito es inverso al anterior: se busca una
     preparación opto-electrónica separable que evolucione hacia un polaritón
@@ -1138,6 +1188,15 @@ window.MathJax = {
   $$\ket{+,n,0}\longrightarrow e^{-iA_{n1}t}
   \left[\cos\left(\frac{\eta t}{2}\right)\ket{+,n,0}
   +i\sin\left(\frac{\eta t}{2}\right)\ket{-,n,1}\right].$$
+  <p>Por tanto, antes de fijar el tiempo de preparación,</p>
+  $$\begin{aligned}
+  \ket{\tilde\Psi_e(t)}=\frac1{\sqrt2}\Bigg[&
+  e^{-iA_{n0}t}\ket{-,n,0}\\
+  &+e^{-iA_{n1}t}\left(
+  \cos\left(\frac{\eta t}{2}\right)\ket{+,n,0}
+  +i\sin\left(\frac{\eta t}{2}\right)\ket{-,n,1}
+  \right)\Bigg].
+  \end{aligned}$$
   <p>Al elegir $t_*=\pi/\eta$, la rama superior desaparece y</p>
   <div class="boxed result">
     $$\boxed{\ket{\tilde\Psi_e(t_*)}=e^{-iA_{n0}t_*}\ket{-,n}\otimes
@@ -1148,7 +1207,7 @@ window.MathJax = {
     puro y un estado vibracional nuevamente factorizado.
   </p>
 
-  <h3>16.1. Familia finita de preparaciones iniciales</h3>
+  <h3>17.1. Familia finita de preparaciones iniciales</h3>
   <p>Para $s\in\{e,g\}$ se define</p>
   $$\sigma_s=\begin{cases}+1,&s=e,\\-1,&s=g,\end{cases}\qquad
   \ket{s,n}=\begin{cases}\ket e\ket{n-1},&s=e,\\\ket g\ket n,&s=g,\end{cases}$$
@@ -1181,8 +1240,21 @@ window.MathJax = {
   <p>y la transformación toma la forma</p>
   $$\ket{s,n}\otimes\ket{\varphi_-^{(s)}}
   \longrightarrow\ket{-,n}\otimes\ket{\chi_-^{(s)}}.$$
+  <p>El estado vibracional final es</p>
+  $$\begin{aligned}
+  \ket{\chi_-^{(s)}}={}&
+  \frac{\sigma_sf_0^{(s)}e^{-iA_{n0}t_*^{(-)}}}{\sqrt2}\ket0\\
+  &+\frac{i}{\sqrt2}\sum_{m=1}^{M+1}
+  \frac{f_{m-1}^{(s)}e^{-iA_{nm}t_*^{(-)}}}
+  {\sin\vartheta_m^{(-)*}}\ket m.
+  \end{aligned}$$
+  <p>
+    El caso más sencillo es $M=0$: $\ket{\varphi_s}=\ket0$ y, para $q=0$,
+    $t_*^{(-)}=\pi/(\nu\lambda)$. Cuando $s=e$ se recupera el ejemplo
+    anterior.
+  </p>
 
-  <h3>16.2. Preparación de un polaritón superior</h3>
+  <h3>17.2. Preparación de un polaritón superior</h3>
   <p>
     Para producir un polaritón superior se impone
     $b_m^{(s)}(t_*^{(+)})=0$, de donde
@@ -1193,10 +1265,18 @@ window.MathJax = {
   </div>
   <p>
     Como $\ket{-,n,0}$ está desacoplado, el soporte debe comenzar en
-    $L\geq1$. Las condiciones en ambos extremos son
+    $L\geq1$, es decir, $f_0^{(s)}=0$. En el extremo inferior se requiere
   </p>
-  $$t_*^{(+)}=\frac{(2p+1)\pi}{\nu\lambda\sqrt L}
-  =\frac{2q\pi}{\nu\lambda\sqrt{M+1}},$$
+  $$\cos\vartheta_L^{(+)*}=0,
+  \qquad
+  t_*^{(+)}=\frac{(2p+1)\pi}{\nu\lambda\sqrt L},
+  \qquad p=0,1,2,\ldots,$$
+  <p>mientras que en el extremo superior</p>
+  $$\sin\vartheta_{M+1}^{(+)*}=0,
+  \qquad
+  t_*^{(+)}=\frac{2q\pi}{\nu\lambda\sqrt{M+1}},
+  \qquad q=1,2,\ldots.$$
+  <p>La compatibilidad de ambos extremos exige</p>
   <div class="boxed def">
     $$\boxed{M+1=\frac{4q^2L}{(2p+1)^2}.}$$
   </div>
@@ -1213,8 +1293,26 @@ window.MathJax = {
   <p>Su evolución produce</p>
   $$\ket{s,n}\otimes\ket{\varphi_+^{(s)}}
   \longrightarrow\ket{+,n}\otimes\ket{\chi_+^{(s)}}.$$
+  <p>El estado vibracional final queda</p>
+  $$\begin{aligned}
+  \ket{\chi_+^{(s)}}={}&
+  \frac{i\sigma_sf_L^{(s)}e^{-iA_{nL}t_*^{(+)}}}{\sqrt2}
+  \sin\vartheta_L^{(+)*}\ket{L-1}\\
+  &+\sum_{m=L+1}^{M}
+  \frac{f_{m-1}^{(s)}e^{-iA_{nm}t_*^{(+)}}}
+  {\sqrt2\cos\vartheta_m^{(+)*}}\ket{m-1}\\
+  &+\frac{f_M^{(s)}e^{-iA_{n,M+1}t_*^{(+)}}}{\sqrt2}
+  \cos\vartheta_{M+1}^{(+)*}\ket M.
+  \end{aligned}$$
   <p>
-    Las dos familias muestran que la dinámica polaritón-fonónica puede
+    En conjunto, las dos familias realizan las transformaciones
+  </p>
+  $$\ket{s,n}\otimes\ket{\varphi_-^{(s)}}
+  \longrightarrow\ket{-,n}\otimes\ket{\chi_-^{(s)}},$$
+  $$\ket{s,n}\otimes\ket{\varphi_+^{(s)}}
+  \longrightarrow\ket{+,n}\otimes\ket{\chi_+^{(s)}}.$$
+  <p>
+    Estas familias muestran que la dinámica polaritón-fonónica puede
     transformar un estado completamente separable en un polaritón puro cuando
     las amplitudes vibracionales satisfacen la recurrencia y las condiciones
     de borde correspondientes.

@@ -217,6 +217,7 @@ window.SEARCH_INDEX = {
         "pureza",
         "matriz de densidad reducida",
         "inversión electrónica",
+        "estados coherentes fotónico y fonónico",
         "estado GHZ",
         "estado separable",
         "entrelazamiento tripartito",
@@ -226,7 +227,7 @@ window.SEARCH_INDEX = {
         "hamiltoniano efectivo",
         "tesis doctoral"
       ],
-      "summary": "Estudio unificado del entrelazamiento en el modelo de Holstein-Cummings según el manuscrito: purezas reducidas, estados GHZ, generación desde estados separables y preparación dinámica de polaritones puros.",
+      "summary": "Nota completa de entrelazamiento en el modelo de Holstein-Cummings, en el orden del manuscrito: purezas reducidas, tres casos dinámicos, estados GHZ y preparación de polaritones.",
       "results": [
         "P_el(t)=[1+W^2(t)+4|s(t)|^2]/2",
         "|E_nm^+> y |E_nm^-> son estados GHZ tripartitos en resonancia",
@@ -234,7 +235,7 @@ window.SEARCH_INDEX = {
         "F_1(theta,tau)=F_2(theta,tau)=0 con theta_*=0.548014622536 y tau_*=20.1362696530",
         "Recurrencias vibracionales para generar polaritones |-,n> y |+,n> desde estados separables"
       ],
-      "content": "Entrelazamiento en el modelo Holstein-Cummings HC según el manuscrito completo. Sistema tripartito electrón cavidad vibración y bipartición electrón frente a fotón-fonón. Matrices reducidas, poblaciones p_g y p_e, coherencia s e inversión electrónica W. Pureza P_el=[1+W^2+4|s|^2]/2. Caso de un fonón en un bloque polaritónico y caso de un estado coherente fonónico en un bloque fijo. Eigenestados GHZ tripartitos en resonancia polaritón-fonón y purezas 1/2. Generación dinámica de GHZ desde un polaritón puro en tiempos t_q^GHZ. Protocolo de entrelazamiento mediante estados temporalmente separables con W(t*)=±1. Generación de GHZ a partir del estado separable |e>|n-1>[cos(theta)|m>+exp(i phi)sin(theta)|m+1>] mediante tres dobletes. Condiciones de igualdad de normas y ortogonalidad, ecuaciones F_1(theta,tau)=0 y F_2(theta,tau)=0, solución theta_*=0.548014622536 y tau_*=20.1362696530. Generación de polaritones puros desde preparaciones separables. Recurrencias f_m=i sigma_s f_(m-1) cot(theta_m) para el polaritón inferior y f_m=-i sigma_s f_(m-1) tan(theta_m) para el superior. Condiciones de borde del soporte vibracional y ejemplo L=1, M=3."
+      "content": "Entrelazamiento en el modelo Holstein-Cummings HC según el manuscrito completo y en su mismo orden. Sistema tripartito electrón cavidad vibración y bipartición electrón frente a fotón-fonón. Matrices reducidas, poblaciones p_g y p_e, coherencia s e inversión electrónica W. Pureza P_el=[1+W^2+4|s|^2]/2. Caso 1: un fonón en un bloque polaritónico. Caso 2: estado coherente fonónico en un bloque fijo. Caso 3: estados coherentes fotónico y fonónico, amplitudes E_qk y G_qk y pureza P_alpha,beta. Eigenestados GHZ tripartitos en resonancia polaritón-fonón y purezas 1/2. Generación dinámica de GHZ desde un polaritón puro en tiempos t_q^GHZ. Protocolo de entrelazamiento mediante estados temporalmente separables con W(t*)=±1. Generación de GHZ a partir del estado separable |e>|n-1>[cos(theta)|m>+exp(i phi)sin(theta)|m+1>] mediante tres dobletes. Condiciones de igualdad de normas y ortogonalidad, ecuaciones F_1(theta,tau)=0 y F_2(theta,tau)=0, solución theta_*=0.548014622536 y tau_*=20.1362696530. Generación de polaritones puros desde preparaciones separables. Recurrencias f_m=i sigma_s f_(m-1) cot(theta_m) para el polaritón inferior y f_m=-i sigma_s f_(m-1) tan(theta_m) para el superior. Condiciones de borde del soporte vibracional y ejemplo L=1, M=3."
     },
     {
       "id": "un-fonon-bloque-polaritonico",
