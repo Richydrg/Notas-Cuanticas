@@ -1,29 +1,5 @@
-\documentclass[11pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[spanish]{babel}
-\usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{braket}
-\usepackage{dsfont}
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage[margin=2.5cm]{geometry}
-\usepackage{hyperref}
-\hypersetup{hidelinks}
-\emergencystretch=2em
-\allowdisplaybreaks
-
-\newcommand{\ii}{\mathrm{i}}
-\newcommand{\Id}{\mathds{1}}
-
-\title{Generaci\'on de estados entrelazados}
-\author{Ricardo Del Rosal Gardu\~no \\ \small Doctorado en F\'isica, BUAP}
-\date{Notas de doctorado}
-
-\begin{document}
-\maketitle
-\tableofcontents
-\bigskip
+% Este archivo es la continuaci\'on modular de
+% entrelazamiento-modelo-hc.tex. No constituye una nota independiente.
 
 \section{Protocolo de entrelazamiento}
 
@@ -940,4 +916,295 @@ fases y elecciones locales de la base l\'ogica. El protocolo genera as\'i
 entrelazamiento genuinamente tripartito a partir de una preparaci\'on inicial
 completamente separable.
 
-\end{document}
+\section{Generaci\'on de polaritones a partir de estados separables}
+
+El manuscrito cierra el estudio con el problema inverso: preparar un estado
+opto-electr\'onico separable que, bajo la din\'amica resonante, evolucione a un
+polarit\'on puro multiplicado por un estado vibracional. Como ejemplo inicial,
+se considera
+\begin{equation}
+  \ket{\tilde\Psi_e(0)}
+  =
+  \ket e\ket{n-1}\ket 0
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \ket{+,n,0}+\ket{-,n,0}
+  \right).
+\end{equation}
+El estado $\ket{-,n,0}$ est\'a desacoplado, mientras que $\ket{+,n,0}$
+pertenece al doblete $m=1$. En resonancia, con
+\begin{equation}
+  \kappa_1=\nu\lambda\equiv\eta,
+\end{equation}
+su evoluci\'on es
+\begin{equation}
+  \ket{+,n,0}
+  \longrightarrow
+  e^{-\ii A_{n1}t}
+  \left[
+  \cos\left(\frac{\eta t}{2}\right)\ket{+,n,0}
+  +\ii\sin\left(\frac{\eta t}{2}\right)\ket{-,n,1}
+  \right].
+\end{equation}
+Por tanto,
+\begin{equation}
+\begin{aligned}
+  \ket{\tilde\Psi_e(t)}
+  =\frac{1}{\sqrt2}\Bigg[&
+  e^{-\ii A_{n0}t}\ket{-,n,0}
+  \\
+  &+e^{-\ii A_{n1}t}
+  \left(
+  \cos\left(\frac{\eta t}{2}\right)\ket{+,n,0}
+  +\ii\sin\left(\frac{\eta t}{2}\right)\ket{-,n,1}
+  \right)
+  \Bigg].
+\end{aligned}
+\end{equation}
+Al elegir
+\begin{equation}
+  t_*=\frac{\pi}{\eta},
+\end{equation}
+la rama polarit\'onica superior desaparece y se obtiene
+\begin{equation}
+  \ket{\tilde\Psi_e(t_*)}
+  =
+  e^{-\ii A_{n0}t_*}\ket{-,n}
+  \otimes
+  \frac{\ket 0+\ii e^{-\ii\nu t_*}\ket 1}{\sqrt2},
+\end{equation}
+donde se us\'o $A_{n0}-A_{n1}=-\nu$. As\'i, un estado inicialmente separable
+evoluciona a un polarit\'on inferior puro y a un estado vibracional que vuelve
+a factorizarse.
+
+\subsection{Familia finita de preparaciones iniciales}
+
+Sea $s\in\{e,g\}$ y definamos
+\begin{equation}
+  \sigma_s=
+  \begin{cases}
+    +1, & s=e,\\
+    -1, & s=g,
+  \end{cases}
+  \qquad
+  \ket{s,n}=
+  \begin{cases}
+    \ket e\ket{n-1}, & s=e,\\
+    \ket g\ket n, & s=g.
+  \end{cases}
+\end{equation}
+Entonces
+\begin{equation}
+  \ket{s,n}
+  =
+  \frac{1}{\sqrt2}
+  \left(
+  \ket{+,n}+\sigma_s\ket{-,n}
+  \right).
+\end{equation}
+Tomamos un estado vibracional de soporte finito,
+\begin{equation}
+  \ket{\varphi_s}
+  =
+  \sum_{m=L}^{M}f_m^{(s)}\ket m,
+\end{equation}
+y el estado separable inicial
+\begin{equation}
+  \ket{\tilde\Psi_s(0)}
+  =
+  \ket{s,n}\otimes\ket{\varphi_s}.
+\end{equation}
+En resonancia, definiendo
+\begin{equation}
+  \vartheta_m(t)=\frac{\kappa_m t}{2},
+\end{equation}
+las amplitudes de las ramas polarit\'onicas superior e inferior son
+\begin{equation}
+  a_m^{(s)}(t)
+  =
+  \frac{e^{-\ii A_{nm}t}}{\sqrt2}
+  \left[
+  f_{m-1}^{(s)}\cos\vartheta_m(t)
+  +\ii\sigma_s f_m^{(s)}\sin\vartheta_m(t)
+  \right],
+\end{equation}
+\begin{equation}
+  b_m^{(s)}(t)
+  =
+  \frac{e^{-\ii A_{nm}t}}{\sqrt2}
+  \left[
+  \ii f_{m-1}^{(s)}\sin\vartheta_m(t)
+  +\sigma_s f_m^{(s)}\cos\vartheta_m(t)
+  \right].
+\end{equation}
+
+Para obtener un polarit\'on inferior puro en $t_*^{(-)}$, toda la rama
+superior debe anularse. La condici\'on $a_m^{(s)}(t_*^{(-)})=0$ produce la
+recurrencia
+\begin{equation}
+  \boxed{
+  f_m^{(s)}
+  =
+  \ii\sigma_s f_{m-1}^{(s)}
+  \cot\vartheta_m^{(-)*},
+  \qquad
+  \vartheta_m^{(-)*}
+  =
+  \frac{\kappa_m t_*^{(-)}}{2}.
+  }
+\end{equation}
+Si el soporte comienza en $L=0$, la condici\'on de borde superior exige
+\begin{equation}
+  \cos\vartheta_{M+1}^{(-)*}=0,
+\end{equation}
+de donde
+\begin{equation}
+  \boxed{
+  t_*^{(-)}
+  =
+  \frac{(2q+1)\pi}{\kappa_{M+1}}
+  =
+  \frac{(2q+1)\pi}{\nu\lambda\sqrt{M+1}},
+  \qquad q=0,1,2,\ldots
+  }
+\end{equation}
+La preparaci\'on resultante evoluciona como
+\begin{equation}
+  \ket{\tilde\Psi_s(t_*^{(-)})}
+  =
+  \ket{-,n}\otimes\ket{\chi_-^{(s)}},
+\end{equation}
+con
+\begin{equation}
+\begin{aligned}
+  \ket{\chi_-^{(s)}}
+  ={}&
+  \frac{\sigma_s f_0^{(s)}e^{-\ii A_{n0}t_*^{(-)}}}{\sqrt2}\ket 0
+  \\
+  &+
+  \frac{\ii}{\sqrt2}
+  \sum_{m=1}^{M+1}
+  \frac{f_{m-1}^{(s)}e^{-\ii A_{nm}t_*^{(-)}}}
+  {\sin\vartheta_m^{(-)*}}\ket m.
+\end{aligned}
+\end{equation}
+El caso m\'as sencillo es $M=0$: $\ket{\varphi_s}=\ket 0$ y, para $q=0$,
+$t_*^{(-)}=\pi/(\nu\lambda)$. Cuando $s=e$ se recupera el ejemplo anterior.
+
+\subsection{Preparaci\'on de un polarit\'on superior}
+
+Para producir un polarit\'on superior puro se impone
+$b_m^{(s)}(t_*^{(+)})=0$. La recurrencia correspondiente es
+\begin{equation}
+  \boxed{
+  f_m^{(s)}
+  =
+  -\ii\sigma_s f_{m-1}^{(s)}
+  \tan\vartheta_m^{(+)*},
+  \qquad
+  \vartheta_m^{(+)*}
+  =
+  \frac{\kappa_m t_*^{(+)}}{2}.
+  }
+\end{equation}
+Como $\ket{-,n,0}$ est\'a desacoplado, el estado vibracional inicial no puede
+contener $m=0$. Por ello se requiere
+\begin{equation}
+  f_0^{(s)}=0,
+  \qquad
+  L\geq1.
+\end{equation}
+Ahora aparecen dos condiciones de borde. En el extremo inferior,
+\begin{equation}
+  \cos\vartheta_L^{(+)*}=0
+  \quad\Longrightarrow\quad
+  t_*^{(+)}
+  =
+  \frac{(2p+1)\pi}{\nu\lambda\sqrt L},
+  \qquad p=0,1,2,\ldots
+\end{equation}
+En el extremo superior,
+\begin{equation}
+  \sin\vartheta_{M+1}^{(+)*}=0
+  \quad\Longrightarrow\quad
+  t_*^{(+)}
+  =
+  \frac{2q\pi}{\nu\lambda\sqrt{M+1}},
+  \qquad q=1,2,\ldots
+\end{equation}
+Ambas condiciones son compatibles solamente si
+\begin{equation}
+  \boxed{
+  M+1
+  =
+  \frac{4q^2L}{(2p+1)^2}.
+  }
+\end{equation}
+El ejemplo m\'as sencillo es
+\begin{equation}
+  L=1,
+  \qquad
+  p=0,
+  \qquad
+  q=1,
+  \qquad
+  M=3,
+  \qquad
+  t_*^{(+)}=\frac{\pi}{\nu\lambda}.
+\end{equation}
+La preparaci\'on vibracional puede escribirse como
+\begin{equation}
+  \boxed{
+  \ket{\varphi_s^{+}}
+  =
+  \mathcal N
+  \left[
+  \ket1
+  -\ii\sigma_s\tan\left(\frac{\pi}{\sqrt2}\right)\ket2
+  -\tan\left(\frac{\pi}{\sqrt2}\right)
+  \tan\left(\frac{\sqrt3\pi}{2}\right)\ket3
+  \right],
+  }
+\end{equation}
+donde $\mathcal N$ normaliza el estado. Bajo la evoluci\'on resonante,
+\begin{equation}
+  \ket{\tilde\Psi_s(t_*^{(+)})}
+  =
+  \ket{+,n}\otimes\ket{\chi_+^{(s)}},
+\end{equation}
+con
+\begin{equation}
+\begin{aligned}
+  \ket{\chi_+^{(s)}}
+  ={}&
+  \frac{\ii\sigma_s f_L^{(s)}e^{-\ii A_{nL}t_*^{(+)}}}{\sqrt2}
+  \sin\vartheta_L^{(+)*}\ket{L-1}
+  \\
+  &+
+  \sum_{m=L+1}^{M}
+  \frac{f_{m-1}^{(s)}e^{-\ii A_{nm}t_*^{(+)}}}
+  {\sqrt2\cos\vartheta_m^{(+)*}}\ket{m-1}
+  \\
+  &+
+  \frac{f_M^{(s)}e^{-\ii A_{n,M+1}t_*^{(+)}}}{\sqrt2}
+  \cos\vartheta_{M+1}^{(+)*}\ket M.
+\end{aligned}
+\end{equation}
+
+En conjunto, las dos familias realizan las transformaciones
+\begin{equation}
+  \ket{s,n}\otimes\ket{\varphi_-^{(s)}}
+  \longrightarrow
+  \ket{-,n}\otimes\ket{\chi_-^{(s)}},
+\end{equation}
+\begin{equation}
+  \ket{s,n}\otimes\ket{\varphi_+^{(s)}}
+  \longrightarrow
+  \ket{+,n}\otimes\ket{\chi_+^{(s)}},
+\end{equation}
+en los tiempos $t_*^{(-)}$ y $t_*^{(+)}$, respectivamente. Esta construcci\'on
+resume el resultado final del manuscrito: la din\'amica polarit\'on-fon\'onica
+puede transformar una preparaci\'on completamente separable en un polarit\'on
+puro, siempre que las amplitudes vibracionales satisfagan la recurrencia y las
+condiciones de borde correspondientes.

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "lastUpdated": "2026-08-24",
+  "lastUpdated": "2026-10-10",
   "notes": [
     {
       "id": "cuantizacion-campo",
@@ -217,51 +217,24 @@
         "pureza",
         "matriz de densidad reducida",
         "inversión electrónica",
-        "coherencia electrónica",
-        "estado GHZ",
-        "entrelazamiento tripartito",
-        "polaritones",
-        "hamiltoniano efectivo",
-        "tesis doctoral"
-      ],
-      "summary": "Pureza electrónica y entrelazamiento en el modelo de Holstein-Cummings: matrices reducidas, tres regímenes dinámicos, eigenestados GHZ tripartitos y tiempos de generación resonante.",
-      "results": [
-        "P_el(t)=[1+W^2(t)+4|s(t)|^2]/2",
-        "P_nm(t)=1/2 para un único doblete polaritón-fonón",
-        "P_n(t)=[1+W_n^2(t)]/2 para un estado coherente fonónico en un bloque fijo",
-        "|E_nm^+> y |E_nm^-> son estados GHZ tripartitos en resonancia",
-        "t_q^GHZ=(2q+1)pi/(2 kappa_m)=(2q+1)pi/(2 nu lambda sqrt(m))"
-      ],
-      "content": "Entrelazamiento en el modelo Holstein-Cummings HC. Sistema tripartito H_el tensor H_fot tensor H_fon. Bipartición electrón frente a fotón-fonón. Estado |tilde Psi(t)>=|chi_g(t)>|g>+|chi_e(t)>|e>. Matriz de densidad total pura y matrices reducidas rho_el=Tr_fot,fon rho y rho_fot-fon=Tr_el rho. Poblaciones p_g=<chi_g|chi_g>, p_e=<chi_e|chi_e> y coherencia s=<chi_g|chi_e>. Pureza P_el=Tr rho_el^2=p_g^2+p_e^2+2|s|^2. Relación con inversión electrónica W=p_e-p_g: P_el=[1+W^2+4|s|^2]/2. Caso 1 un fonón en un bloque polaritónico: estado u(t)|+,n,m-1>+v(t)|-,n,m>, poblaciones electrónicas iguales, coherencia nula por ortogonalidad fotónica y pureza P_nm=1/2 durante toda la evolución. Caso 2 estado coherente fonónico en bloque n fijo: ramas con amplitudes E_k=[p_(n,k+1)^+ + p_(n,k)^-]/sqrt(2) y G_k=[p_(n,k+1)^+ - p_(n,k)^-]/sqrt(2), s=0, P_n=(1+W_n^2)/2 y W_n=2 Re sum p_(n,k+1)^+* p_(n,k)^-. Caso 3 estados coherentes fotónico y fonónico: amplitudes E_qk y G_qk, poblaciones como sumas dobles, s=sum G_qk^* E_qk y pureza P_alpha,beta. Comparaciones de pureza entre hamiltoniano HC completo y efectivo prácticamente idénticas para estado electrónico excitado y superposición simétrica. Entrelazamiento tripartito. Dentro del doblete fijo los grados electrónico, fotónico y vibracional forman tres qubits codificados. Eigenestados efectivos E_nm^+=C_nm|+,n,m-1>-S_nm|-,n,m> y E_nm^-=S_nm|+,n,m-1>+C_nm|-,n,m>. En resonancia delta_n=0, C_nm=S_nm=1/sqrt(2). Estados vibracionales phi_m^±=(|m-1>±|m>)/sqrt(2). E_nm^+=[|e>|n-1>|phi_m^->+|g>|n>|phi_m^+>]/sqrt(2), equivalente a (|000>+|111>)/sqrt(2). Pureza 1/2 para cada bipartición de un subsistema frente a los otros dos; las reducciones por pares no tienen entrelazamiento bipartito. Generación dinámica GHZ con H_eff^(n,m)=hbar A_nm I+hbar/2(delta_n sigma_z-kappa_m sigma_x). Derivación del propagador mediante potencias pares e impares de M_nm. Estado inicial |+,n,m-1>. En resonancia las probabilidades polaritónicas son cos^2(kappa_m t/2) y sin^2(kappa_m t/2). GHZ máximo cuando ambas valen 1/2, en tiempos t_q^GHZ=(2q+1)pi/(2 kappa_m)=(2q+1)pi/(2 nu lambda sqrt(m))."
-    },
-    {
-      "id": "generacion-estados-entrelazados",
-      "title": "Generación de estados entrelazados",
-      "url": "doctorado/optica-cuantica/generacion-estados-entrelazados.html",
-      "stage": "Doctorado",
-      "area": "Óptica cuántica",
-      "tags": [
-        "Holstein-Cummings",
-        "generación de entrelazamiento",
         "estado GHZ",
         "estado separable",
-        "pureza electrónica",
-        "inversión electrónica",
-        "tres dobletes",
+        "entrelazamiento tripartito",
         "polaritones",
         "fonones",
         "protocolo de entrelazamiento",
+        "hamiltoniano efectivo",
         "tesis doctoral"
       ],
-      "summary": "Protocolo detallado para localizar estados separables y generar estados GHZ tripartitos mediante la evolución resonante de tres dobletes polaritón-fonón.",
+      "summary": "Estudio unificado del entrelazamiento en el modelo de Holstein-Cummings según el manuscrito: purezas reducidas, estados GHZ, generación desde estados separables y preparación dinámica de polaritones puros.",
       "results": [
-        "P_el(t)=[1+W^2(t)]/2 dentro de un bloque polaritónico fijo",
-        "|tilde Psi(0)>=|e>|n-1>[cos(theta)|m>+exp(i phi)sin(theta)|m+1>]",
-        "||Phi_+(t*)||^2=||Phi_-(t*)||^2=1/2 y <Phi_+(t*)|Phi_-(t*)>=0",
-        "F_1(theta,tau)=0 y F_2(theta,tau)=0 para phi=pi/2",
-        "theta_*=0.548014622536 y tau_*=20.1362696530"
+        "P_el(t)=[1+W^2(t)+4|s(t)|^2]/2",
+        "|E_nm^+> y |E_nm^-> son estados GHZ tripartitos en resonancia",
+        "t_q^GHZ=(2q+1)pi/(2 nu lambda sqrt(m))",
+        "F_1(theta,tau)=F_2(theta,tau)=0 con theta_*=0.548014622536 y tau_*=20.1362696530",
+        "Recurrencias vibracionales para generar polaritones |-,n> y |+,n> desde estados separables"
       ],
-      "content": "Generación de estados entrelazados en el modelo Holstein-Cummings. Protocolo de entrelazamiento para un estado coherente fonónico en un bloque polaritónico. Matriz electrónica reducida diagonal, pureza P_el=(1+W^2)/2 e instantes separables W(t*)=±1. Estados producto |e>|n-1>|phi_e> y |g>|n>|phi_g>. Inversión electrónica resonante y amplitudes p_nm^±. Generación de estados GHZ a partir de estados separables. Preparación inicial |e>|n-1>[cos(theta)|m>+exp(i phi)sin(theta)|m+1>]. Expansión polaritónica y participación de tres dobletes. Evolución resonante con U_nr(t)=exp(-i A_nr t)[cos(kappa_r t/2)I+i sin(kappa_r t/2)sigma_x]. Construcción paso a paso de los estados vibracionales Phi_+(t) y Phi_-(t). Tiempo adimensional tau=nu t. Regreso a la base opto-electrónica. Condiciones GHZ de igualdad de normas y ortogonalidad: ||Phi_+||^2=||Phi_-||^2=1/2 y <Phi_+|Phi_->=0. Derivación completa de F_1(theta,tau) y F_2(theta,tau). Elección phi=pi/2. Solución numérica theta_*=0.548014622536 y tau_*=20.1362696530. Protocolo para producir entrelazamiento genuinamente tripartito desde un estado completamente separable."
+      "content": "Entrelazamiento en el modelo Holstein-Cummings HC según el manuscrito completo. Sistema tripartito electrón cavidad vibración y bipartición electrón frente a fotón-fonón. Matrices reducidas, poblaciones p_g y p_e, coherencia s e inversión electrónica W. Pureza P_el=[1+W^2+4|s|^2]/2. Caso de un fonón en un bloque polaritónico y caso de un estado coherente fonónico en un bloque fijo. Eigenestados GHZ tripartitos en resonancia polaritón-fonón y purezas 1/2. Generación dinámica de GHZ desde un polaritón puro en tiempos t_q^GHZ. Protocolo de entrelazamiento mediante estados temporalmente separables con W(t*)=±1. Generación de GHZ a partir del estado separable |e>|n-1>[cos(theta)|m>+exp(i phi)sin(theta)|m+1>] mediante tres dobletes. Condiciones de igualdad de normas y ortogonalidad, ecuaciones F_1(theta,tau)=0 y F_2(theta,tau)=0, solución theta_*=0.548014622536 y tau_*=20.1362696530. Generación de polaritones puros desde preparaciones separables. Recurrencias f_m=i sigma_s f_(m-1) cot(theta_m) para el polaritón inferior y f_m=-i sigma_s f_(m-1) tan(theta_m) para el superior. Condiciones de borde del soporte vibracional y ejemplo L=1, M=3."
     },
     {
       "id": "un-fonon-bloque-polaritonico",
