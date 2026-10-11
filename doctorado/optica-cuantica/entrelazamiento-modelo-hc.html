@@ -245,14 +245,38 @@ window.MathJax = {
   \end{pmatrix},$$
   <p>de modo que</p>
   $$P_{\mathrm{el}}(t)=p_g^2(t)+p_e^2(t)+2|s(t)|^2.$$
-  <p>
-    El mismo resultado se obtiene al elevar al cuadrado
-    $\hat\rho_{\mathrm{fot-fon}}$ y tomar su traza. También puede escribirse
-    directamente en términos de las normas de las ramas:
-  </p>
+  <p>De manera equivalente,</p>
+  $$\hat\rho_{\mathrm{fot-fon}}
+  =\ket{\chi_g}\bra{\chi_g}+\ket{\chi_e}\bra{\chi_e},$$
+  <p>por lo que</p>
+  $$\begin{aligned}
+  \hat\rho_{\mathrm{fot-fon}}^2={}&
+  p_g\ket{\chi_g}\bra{\chi_g}
+  +s\ket{\chi_g}\bra{\chi_e}\\
+  &+s^*\ket{\chi_e}\bra{\chi_g}
+  +p_e\ket{\chi_e}\bra{\chi_e}.
+  \end{aligned}$$
+  <p>Al tomar la traza se recupera</p>
+  $$\begin{aligned}
+  P\!\left(\hat\rho_{\mathrm{fot-fon}}\right)
+  &=\operatorname{Tr}\!\left(\hat\rho_{\mathrm{fot-fon}}^2\right)\\
+  &=p_g\braket{\chi_g|\chi_g}
+  +s\braket{\chi_e|\chi_g}
+  +s^*\braket{\chi_g|\chi_e}
+  +p_e\braket{\chi_e|\chi_e}\\
+  &=p_g^2+p_e^2+2|s|^2.
+  \end{aligned}$$
+  <p>En términos de las normas de las ramas,</p>
   $$P_{\mathrm{el}}(t)
   =\|\chi_g(t)\|^4+\|\chi_e(t)\|^4
   +2\left|\braket{\chi_g(t)|\chi_e(t)}\right|^2.$$
+  <p>
+    Si $\ket{\chi_g(t)}$ y $\ket{\chi_e(t)}$ son paralelos, $s(t)$ es grande
+    y la pureza tiende a uno: el electrón no está entrelazado con la parte
+    fotón-fonón. Si son ortogonales y tienen la misma norma,
+    $\|\chi_g\|^2=\|\chi_e\|^2=1/2$, entonces
+    $\braket{\chi_g|\chi_e}=0$ y $P=1/2$.
+  </p>
   <p>
     La inversión electrónica es
   </p>
@@ -336,11 +360,6 @@ window.MathJax = {
     efectivo. El resultado vale para cualquier evolución que permanezca en el
     mismo doblete $\{\ket{+,n,m-1},\ket{-,n,m}\}$.
   </p>
-  <figure class="note-figure wide">
-    <img src="../../notas-doctorado/imgs/Entrelazamiento/pureza-fonon-polariton.png" alt="Pureza electrónica para un fonón en un bloque polaritónico.">
-    <figcaption>Pureza electrónica para un fonón en un único bloque polaritónico. La línea permanece en $P_{\mathrm{el}}(t)=1/2$, valor mínimo de la pureza de un qubit, porque las ramas electrónicas tienen siempre la misma norma y están acompañadas por estados fotónicos ortogonales. El electrón está, por tanto, máximamente entrelazado con el subsistema fotón-fonón durante toda la evolución. Las curvas del hamiltoniano HC completo y del hamiltoniano efectivo son prácticamente indistinguibles.</figcaption>
-  </figure>
-
   <h2 id="caso-2">5. Caso 2: estado coherente fonónico en un bloque polaritónico</h2>
   <p>
     Se fija ahora un bloque polaritónico $n$, pero el modo vibracional ocupa una
@@ -416,11 +435,6 @@ window.MathJax = {
     \sum_{k=0}^{\infty}
     p_{n,k+1}^{+*}(t)p_{n,k}^{-}(t).}$$
   </div>
-  <figure class="note-figure wide">
-    <img src="../../notas-doctorado/imgs/Entrelazamiento/pureza-fonon-coherente-polariton.png" alt="Pureza electrónica para un estado fonónico coherente en un bloque polaritónico.">
-    <figcaption>Pureza electrónica para un estado fonónico coherente dentro de un bloque polaritónico fijo. Como $s(t)=0$, se cumple exactamente $P_n(t)=[1+W_n^2(t)]/2$. Cuando $W_n(t)=0$, las poblaciones $p_e$ y $p_g$ son iguales y la pureza alcanza $1/2$: el electrón está máximamente entrelazado con el subsistema fotón-fonón. Cuando $|W_n(t)|$ se aproxima a uno, una población electrónica domina, la rama opuesta pierde peso y la pureza se acerca a uno. Las oscilaciones rápidas provienen de la interferencia entre amplitudes fonónicas vecinas, mientras que la envolvente refleja su desfasamiento y refase colectivos. La evolución obtenida con el hamiltoniano completo y con el efectivo es prácticamente idéntica.</figcaption>
-  </figure>
-
   <h2 id="caso-3">6. Caso 3: estados coherentes fotónico y fonónico</h2>
   <p>
     Cuando tanto el modo fotónico como el fonónico comienzan en estados
@@ -459,17 +473,6 @@ window.MathJax = {
     evaluarse con un truncamiento numérico que abarque las distribuciones
     coherentes.
   </p>
-  <div class="figure-grid two">
-    <figure class="note-figure">
-      <img src="../../notas-doctorado/imgs/Entrelazamiento/pureza-coherentes-excitado.png" alt="Pureza con estados coherentes fotónico y fonónico y electrón inicialmente excitado.">
-      <figcaption>Pureza para estados coherentes fotónico y fonónico con $c_e=1$ y $c_g=0$. El estado inicial es un producto y comienza en $P_{\mathrm{el}}(0)=1$. La interacción correlaciona al electrón con una superposición de muchos sectores $(n,m)$, por lo que la pureza desciende y desarrolla oscilaciones, colapsos y refases. Los acercamientos a $1/2$ corresponden a intervalos de entrelazamiento casi máximo entre el electrón y el subsistema fotón-fonón. Las soluciones completa y efectiva se superponen prácticamente en toda la ventana mostrada.</figcaption>
-    </figure>
-    <figure class="note-figure">
-      <img src="../../notas-doctorado/imgs/Entrelazamiento/pureza-coherentes-simetrico.png" alt="Pureza con estados coherentes fotónico y fonónico y electrón inicialmente en superposición.">
-      <figcaption>Pureza para los mismos estados coherentes, ahora con $c_e=1/\sqrt2$ y $c_g=-1/\sqrt2$. El estado electrónico inicial también es puro, por lo que $P_{\mathrm{el}}(0)=1$, pero esta superposición se encuentra más alineada con una rama polaritónica. La generación de ramas fotón-fonón distinguibles es más gradual y la pureza decrece con mayor lentitud, aunque finalmente se aproxima a $1/2$. El hamiltoniano efectivo reproduce de manera prácticamente idéntica la dinámica del modelo HC completo.</figcaption>
-    </figure>
-  </div>
-
   <h2 id="ghz">7. Entrelazamiento tripartito y eigenestados GHZ</h2>
   <p>
     El sistema posee tres grados de libertad. Los espacios de la cavidad y la
@@ -573,8 +576,9 @@ window.MathJax = {
   </div>
   <p>
     El otro eigenestado es $(\ket{001}+\ket{110})/\sqrt2$ con esta elección
-    de estados lógicos y es localmente equivalente al GHZ canónico mediante
-    una compuerta $\hat X$ aplicada al qubit vibracional.
+    de estados lógicos y es localmente equivalente al GHZ canónico: basta con
+    intercambiar los estados lógicos o aplicar una transformación local de tipo
+    $\hat X$ o $\hat Z$.
   </p>
 
   <h2 id="pureza-ghz">8. Pureza reducida de los estados GHZ</h2>
@@ -590,10 +594,37 @@ window.MathJax = {
     cada subsistema individual está máximamente entrelazado con los otros dos
     considerados como un único sistema compuesto.
   </p>
+  <p>Para $\ket{E_{nm}^{+}}$ la matriz de densidad total es</p>
+  $$\begin{aligned}
+  \hat\rho^{+}={}&\frac12
+  \left(
+  \ket e\ket{n-1}\ket{\phi_m^{-}}
+  +\ket g\ket n\ket{\phi_m^{+}}
+  \right)\\
+  &\times\left(
+  \bra e\bra{n-1}\bra{\phi_m^{-}}
+  +\bra g\bra n\bra{\phi_m^{+}}
+  \right)\\
+  ={}&\frac12\Big(
+  \ket{e,n-1,\phi_m^{-}}\bra{e,n-1,\phi_m^{-}}\\
+  &+\ket{e,n-1,\phi_m^{-}}\bra{g,n,\phi_m^{+}}\\
+  &+\ket{g,n,\phi_m^{+}}\bra{e,n-1,\phi_m^{-}}\\
+  &+\ket{g,n,\phi_m^{+}}\bra{g,n,\phi_m^{+}}
+  \Big).
+  \end{aligned}$$
+  <p>Al trazar sobre el estado electrónico se obtiene</p>
+  $$\begin{aligned}
+  \hat\rho_{\mathrm{cav-vib}}
+  =\operatorname{Tr}_{\mathrm{el}}\hat\rho^{+}
+  =\frac12\Big(&
+  \ket{n-1,\phi_m^{-}}\bra{n-1,\phi_m^{-}}\braket{e|e}\\
+  &+\ket{n-1,\phi_m^{-}}\bra{n,\phi_m^{+}}\braket{g|e}\\
+  &+\ket{n,\phi_m^{+}}\bra{n-1,\phi_m^{-}}\braket{e|g}\\
+  &+\ket{n,\phi_m^{+}}\bra{n,\phi_m^{+}}\braket{g|g}
+  \Big).
+  \end{aligned}$$
   <p>
-    Para $\ket{E_{nm}^{+}}$, la matriz de densidad total contiene cuatro
-    términos. Al trazar sobre el electrón, los términos cruzados desaparecen
-    por $\braket{e|g}=0$ y queda
+    Los términos cruzados desaparecen porque $\braket{e|g}=0$. Por tanto,
   </p>
   $$\hat\rho_{\mathrm{cav-vib}}
   =\frac12\left(
@@ -788,7 +819,6 @@ window.MathJax = {
   </p>
   <figure class="note-figure wide">
     <img src="../../notas-doctorado/imgs/Entrelazamiento/pureza-fonon-coherente-polariton.png" alt="Pureza electrónica para un estado coherente fonónico dentro de un bloque polaritónico.">
-    <figcaption>Pureza electrónica para un estado coherente fonónico dentro de un bloque polaritónico. Las evoluciones obtenidas con el hamiltoniano efectivo y con el hamiltoniano completo de Holstein-Cummings son prácticamente idénticas. Los máximos $P_{\mathrm{el}}=1$ identifican instantes en los que la bipartición electrón frente a fotón-fonón es separable.</figcaption>
   </figure>
   <p>El estado evolucionado dentro de un bloque $n$ fijo es</p>
   $$\begin{aligned}
@@ -1148,28 +1178,6 @@ window.MathJax = {
     $$\boxed{\theta_*=0.548014622536,
     \qquad\tau_*=20.1362696530.}$$
   </div>
-  <p>La preparación vibracional separable es, por tanto,</p>
-  <div class="boxed result">
-    $$\boxed{\ket{\psi_{\mathrm{vib}}(0)}
-    =\cos\theta_*\ket m+i\sin\theta_*\ket{m+1}.}$$
-  </div>
-  <p>
-    Al evolucionar resonantemente durante $t_*=\tau_*/\nu$, las ramas
-    electrónico-fotónicas adquieren la misma probabilidad y los estados
-    vibracionales que las acompañan se vuelven ortogonales:
-  </p>
-  $$\ket{\tilde\Psi(t_*)}
-  =\ket e\ket{n-1}\ket{\chi_e(t_*)}
-  +\ket g\ket n\ket{\chi_g(t_*)},$$
-  $$\|\chi_e(t_*)\|^2=\|\chi_g(t_*)\|^2=\frac12,
-  \qquad\braket{\chi_g(t_*)|\chi_e(t_*)}=0.$$
-  <p>
-    Estas son las condiciones de un estado GHZ tripartito, salvo fases y
-    elecciones locales de la base lógica. El protocolo genera así
-    entrelazamiento genuinamente tripartito a partir de una preparación
-    inicial completamente separable.
-  </p>
-
 
   <h2 id="polaritones-separables">17. Generación de polaritones a partir de estados separables</h2>
   <p>
@@ -1216,23 +1224,23 @@ window.MathJax = {
   $$\ket{\varphi_s}=\sum_{m=L}^{M}f_m^{(s)}\ket m,\qquad
   \ket{\tilde\Psi_s(0)}=\ket{s,n}\otimes\ket{\varphi_s}.$$
   <p>
-    En resonancia, con $\vartheta_m(t)=\kappa_mt/2$, las amplitudes de las
+    En resonancia, con $\theta_m(t)=\kappa_mt/2$, las amplitudes de las
     ramas polaritónicas superior e inferior son
   </p>
   $$a_m^{(s)}(t)=\frac{e^{-iA_{nm}t}}{\sqrt2}
-  \left[f_{m-1}^{(s)}\cos\vartheta_m+i\sigma_sf_m^{(s)}\sin\vartheta_m\right],$$
+  \left[f_{m-1}^{(s)}\cos\theta_m+i\sigma_sf_m^{(s)}\sin\theta_m\right],$$
   $$b_m^{(s)}(t)=\frac{e^{-iA_{nm}t}}{\sqrt2}
-  \left[if_{m-1}^{(s)}\sin\vartheta_m+\sigma_sf_m^{(s)}\cos\vartheta_m\right].$$
+  \left[if_{m-1}^{(s)}\sin\theta_m+\sigma_sf_m^{(s)}\cos\theta_m\right].$$
   <p>
     Para obtener un polaritón inferior puro se exige
     $a_m^{(s)}(t_*^{(-)})=0$. Esto produce la recurrencia
   </p>
   <div class="boxed result">
-    $$\boxed{f_m^{(s)}=i\sigma_sf_{m-1}^{(s)}\cot\vartheta_m^{(-)*},\qquad
-    \vartheta_m^{(-)*}=\frac{\kappa_mt_*^{(-)}}2.}$$
+    $$\boxed{f_m^{(s)}=i\sigma_sf_{m-1}^{(s)}\cot\theta_m^{(-)*},\qquad
+    \theta_m^{(-)*}=\frac{\kappa_mt_*^{(-)}}2.}$$
   </div>
   <p>Si $L=0$, la condición en el extremo superior es</p>
-  $$\cos\vartheta_{M+1}^{(-)*}=0,$$
+  $$\cos\theta_{M+1}^{(-)*}=0,$$
   <div class="boxed result">
     $$\boxed{t_*^{(-)}=\frac{(2q+1)\pi}{\nu\lambda\sqrt{M+1}},\qquad
     q=0,1,2,\ldots}$$
@@ -1246,7 +1254,7 @@ window.MathJax = {
   \frac{\sigma_sf_0^{(s)}e^{-iA_{n0}t_*^{(-)}}}{\sqrt2}\ket0\\
   &+\frac{i}{\sqrt2}\sum_{m=1}^{M+1}
   \frac{f_{m-1}^{(s)}e^{-iA_{nm}t_*^{(-)}}}
-  {\sin\vartheta_m^{(-)*}}\ket m.
+  {\sin\theta_m^{(-)*}}\ket m.
   \end{aligned}$$
   <p>
     El caso más sencillo es $M=0$: $\ket{\varphi_s}=\ket0$ y, para $q=0$,
@@ -1260,19 +1268,19 @@ window.MathJax = {
     $b_m^{(s)}(t_*^{(+)})=0$, de donde
   </p>
   <div class="boxed result">
-    $$\boxed{f_m^{(s)}=-i\sigma_sf_{m-1}^{(s)}\tan\vartheta_m^{(+)*},\qquad
-    \vartheta_m^{(+)*}=\frac{\kappa_mt_*^{(+)}}2.}$$
+    $$\boxed{f_m^{(s)}=-i\sigma_sf_{m-1}^{(s)}\tan\theta_m^{(+)*},\qquad
+    \theta_m^{(+)*}=\frac{\kappa_mt_*^{(+)}}2.}$$
   </div>
   <p>
     Como $\ket{-,n,0}$ está desacoplado, el soporte debe comenzar en
     $L\geq1$, es decir, $f_0^{(s)}=0$. En el extremo inferior se requiere
   </p>
-  $$\cos\vartheta_L^{(+)*}=0,
+  $$\cos\theta_L^{(+)*}=0,
   \qquad
   t_*^{(+)}=\frac{(2p+1)\pi}{\nu\lambda\sqrt L},
   \qquad p=0,1,2,\ldots,$$
   <p>mientras que en el extremo superior</p>
-  $$\sin\vartheta_{M+1}^{(+)*}=0,
+  $$\sin\theta_{M+1}^{(+)*}=0,
   \qquad
   t_*^{(+)}=\frac{2q\pi}{\nu\lambda\sqrt{M+1}},
   \qquad q=1,2,\ldots.$$
@@ -1297,26 +1305,50 @@ window.MathJax = {
   $$\begin{aligned}
   \ket{\chi_+^{(s)}}={}&
   \frac{i\sigma_sf_L^{(s)}e^{-iA_{nL}t_*^{(+)}}}{\sqrt2}
-  \sin\vartheta_L^{(+)*}\ket{L-1}\\
+  \sin\theta_L^{(+)*}\ket{L-1}\\
   &+\sum_{m=L+1}^{M}
   \frac{f_{m-1}^{(s)}e^{-iA_{nm}t_*^{(+)}}}
-  {\sqrt2\cos\vartheta_m^{(+)*}}\ket{m-1}\\
+  {\sqrt2\cos\theta_m^{(+)*}}\ket{m-1}\\
   &+\frac{f_M^{(s)}e^{-iA_{n,M+1}t_*^{(+)}}}{\sqrt2}
-  \cos\vartheta_{M+1}^{(+)*}\ket M.
+  \cos\theta_{M+1}^{(+)*}\ket M.
   \end{aligned}$$
   <p>
-    En conjunto, las dos familias realizan las transformaciones
+    Finalmente, podemos partir de un estado separable y llegar a un polaritón
+    puro multiplicado por un estado vibracional:
   </p>
-  $$\ket{s,n}\otimes\ket{\varphi_-^{(s)}}
-  \longrightarrow\ket{-,n}\otimes\ket{\chi_-^{(s)}},$$
-  $$\ket{s,n}\otimes\ket{\varphi_+^{(s)}}
-  \longrightarrow\ket{+,n}\otimes\ket{\chi_+^{(s)}}.$$
-  <p>
-    Estas familias muestran que la dinámica polaritón-fonónica puede
-    transformar un estado completamente separable en un polaritón puro cuando
-    las amplitudes vibracionales satisfacen la recurrencia y las condiciones
-    de borde correspondientes.
-  </p>
+  <div class="boxed result">
+    $$\boxed{\ket{s,n}\otimes\ket{\varphi_{\pm}^{(s)}}
+    \xrightarrow{\ t_*^{(\pm)}\ }
+    \ket{\pm,n}\otimes\ket{\chi_{\pm}^{(s)}}.}$$
+  </div>
+  <p>donde $s\in\{e,g\}$ y</p>
+  $$\ket{\varphi_+^{(s)}}
+  =\sum_{m=L\geq1}^{M}f_m^{(s)}\ket m,
+  \qquad
+  \ket{\varphi_-^{(s)}}
+  =\sum_{m=0}^{M}f_m^{(s)}\ket m.$$
+  $$\begin{aligned}
+  \ket{\chi_+^{(s)}}={}&
+  \frac{i}{\sqrt2}\sigma_s f_L^{(s)}e^{-iA_{nL}t_*^{(+)}}
+  \sin\theta_L^{(+)*}\ket{L-1}\\
+  &+\sum_{m=L+1}^{M}
+  \frac{f_{m-1}^{(s)}e^{-iA_{nm}t_*^{(+)}}}
+  {\sqrt2\cos\theta_m^{(+)*}}\ket{m-1}\\
+  &+\frac1{\sqrt2}f_M^{(s)}e^{-iA_{n,M+1}t_*^{(+)}}
+  \cos\theta_{M+1}^{(+)*}\ket M,
+  \end{aligned}$$
+  $$\begin{aligned}
+  \ket{\chi_-^{(s)}}={}&
+  \frac1{\sqrt2}\sigma_s f_0^{(s)}e^{-iA_{n0}t_*^{(-)}}\ket0\\
+  &+\frac{i}{\sqrt2}\sum_{m=1}^{M+1}
+  \frac{f_{m-1}^{(s)}e^{-iA_{nm}t_*^{(-)}}}
+  {\sin\theta_m^{(-)*}}\ket m.
+  \end{aligned}$$
+  $$\theta_m^{(\pm)*}=\frac{\kappa_m t_*^{(\pm)}}2,
+  \qquad
+  t_*^{(-)}=\frac{(2q+1)\pi}{\nu\lambda},
+  \qquad
+  t_*^{(+)}=\frac{2q\pi}{\nu\lambda\sqrt{M+1}}.$$
 
 </article>
 </div>
